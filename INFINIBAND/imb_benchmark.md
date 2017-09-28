@@ -1,5 +1,5 @@
 - INSTALLING MPI				
-  - (reference youtube video)[https://www.youtube.com/watch?v=nmymBKrXlnE&t=9s]
+  - [reference youtube video](https://www.youtube.com/watch?v=nmymBKrXlnE&t=9s)
 ```		
 sudo wget http://www.mpich.org/static/downloads/3.0.4/mpich-3.0.4.tar.gz			
 tar xvf mpich			
