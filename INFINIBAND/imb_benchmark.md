@@ -1,20 +1,18 @@
 - INSTALLING MPI				
-
-```
-https://www.youtube.com/watch?v=nmymBKrXlnE&t=9s			
+  - (reference youtube video)[https://www.youtube.com/watch?v=nmymBKrXlnE&t=9s]
+```		
 sudo wget http://www.mpich.org/static/downloads/3.0.4/mpich-3.0.4.tar.gz			
 tar xvf mpich			
 ./configure --prefix=/mirror/mpich2 --disable-f77 --disable-fc			
 make			
 make install			
-add the exports in the ./bashrc file			
+// add the exports in the ./bashrc file			
 export PATH=/mirror/mpich2/bin:$PATH			
 export LD_LIBRARY_PATH="/mirror/mpich2/lib:$LD_LIBRARY_PATH"			
 sudo vi /etc/environment -> add the PATH value above  			
 mpicc hellow.c -o hello			
 mpirun -np 4 ./hello			
 sudo ln -s /usr/bin/make /usr/bin/gmake			
-
 ```
 
 
@@ -38,11 +36,11 @@ https://docs.google.com/document/d/1W3AM0wGDInEL5QvOsxNSV5KfVDnakNOa9Y9vXKzqPWw/
 ```
 
 
-Problem with CONNECTING IMB with two nodes 				
-```
-http://slideplayer.com/slide/2812715/			
-https://www.ibm.com/developerworks/community/wikis/home?lang=en#!/wiki/IBM%20Platform%20HPC%20Wiki/page/Use%20Intel%20MPI%20benchmark		
+- Problem with CONNECTING IMB with two nodes 				
+  - [reference presentation](http://slideplayer.com/slide/2812715/)
+  - [ibm wiki page](https://www.ibm.com/developerworks/community/wikis/home?lang=en#!/wiki/IBM%20Platform%20HPC%20Wiki/page/Use%20Intel%20MPI%20benchmark)
 
+```
 [SOLVED] The reason for Host Key verification fails			
 https://www.slothparadise.com/running-mpi-common-mpi-troubleshooting-problems/			
 
