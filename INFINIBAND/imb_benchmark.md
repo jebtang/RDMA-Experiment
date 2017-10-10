@@ -1,37 +1,48 @@
-- INSTALLING MPI				
+
+### INSTALLING MPI				
   - [reference youtube video](https://www.youtube.com/watch?v=nmymBKrXlnE&t=9s)
+
 ```		
-sudo wget http://www.mpich.org/static/downloads/3.0.4/mpich-3.0.4.tar.gz			
-tar xvf mpich			
-./configure --prefix=/mirror/mpich2 --disable-f77 --disable-fc			
-make			
-make install			
+$ sudo wget http://www.mpich.org/static/downloads/3.0.4/mpich-3.0.4.tar.gz			
+$ tar xvf mpich			
+$ ./configure --prefix=/mirror/mpich2 --disable-f77 --disable-fc			
+$ make			
+$ make install			
+
 // add the exports in the ./bashrc file			
-export PATH=/mirror/mpich2/bin:$PATH			
-export LD_LIBRARY_PATH="/mirror/mpich2/lib:$LD_LIBRARY_PATH"			
-sudo vi /etc/environment -> add the PATH value above  			
-mpicc hellow.c -o hello			
-mpirun -np 4 ./hello			
-sudo ln -s /usr/bin/make /usr/bin/gmake			
+$ export PATH=/mirror/mpich2/bin:$PATH			
+$ export LD_LIBRARY_PATH="/mirror/mpich2/lib:$LD_LIBRARY_PATH"			
+$ sudo vi /etc/environment -> add the PATH value above  			
+$ mpicc hellow.c -o hello			
+$ mpirun -np 4 ./hello			
+$ sudo ln -s /usr/bin/make /usr/bin/gmake			
 ```
 
+<br>
 
-- INSTALLING IMB				
+### INSTALLING IMB				
+- hosts_example file
 ```
-git clone https://github.com/intel/mpi-benchmarks.git			
-cd src			
-vi make_ict -> cc= mpicc			
-make			
-./IMB-MPT1			
+172.24.30.31
+172.24.30.30
+```
+
+- run IMB benchmark
+```
+$ git clone https://github.com/intel/mpi-benchmarks.git			
+$ cd src			
+$ vi make_ict //change form into -> cc= mpicc			
+$ make			
+$ ./IMB-MPT1			
 
 // run IMB with two nodes 				
 // create hostfile with two INFINIBAND IP addresses			
-mpirun -np 2 --hostfile hosts_example ./IMB_MPI1			
+$ mpirun -np 2 --hostfile hosts_example ./IMB-MPI1			
 https://docs.google.com/document/d/1W3AM0wGDInEL5QvOsxNSV5KfVDnakNOa9Y9vXKzqPWw/edit			
 
 // properly use IMB 				
 // result evaluation 			
-4194304 / ( 1.048576 * 35776.65 )			Bytes / Usec / Repetition
+// 4194304 / ( 1.048576 * 35776.65 )			Bytes / Usec / Repetition
 
 ```
 
