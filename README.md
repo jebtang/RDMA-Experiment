@@ -16,6 +16,7 @@ We would like to confirm that the first row does mean that the benchmark has run
 3. **Proving that IMB connects several nodes**
     - log proves that IMB has attempted to connect with the other node via ssh
     - Similar to MPI the files should also be shared
+    - MPI and IMB all assumes that the running file is in the same location as the initiator
 ```
 mpirun -np 2 --hostfile hostfile ./IMB-MPI1 [proxy:0:1@node2] launch_procs (pm/pmiserv/pmip_cb.c:640): unable to change wdir to /home/sungho/mpi-benchmarks/src (No such file or directory)
 
