@@ -21,18 +21,27 @@ We would like to confirm that the first row does mean that the benchmark has run
 ```
 mpirun -np 2 --hostfile hostfile ./IMB-MPI1 [proxy:0:1@node2] launch_procs (pm/pmiserv/pmip_cb.c:640): unable to change wdir to /home/sungho/mpi-benchmarks/src (No such file or directory)
 
-[proxy:0:1@node2] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_
-cb.c:892): launch_procs returned error                          
-[proxy:0:1@node2] HYDT_dmxu_poll_wait_for_event (tools/demux/dem
-ux_poll.c:76): callback returned error status                   
-[proxy:0:1@node2] main (pm/pmiserv/pmip.c:206): demux engine err
-or waiting for event            
-[mpiexec@node3] control_cb (pm/pmiserv/pmiserv_cb.c:200): assert
- (!closed) failed               
-[mpiexec@node3] HYDT_dmxu_poll_wait_for_event (tools/demux/demux
-_poll.c:76): callback returned error status                     
-[mpiexec@node3] HYD_pmci_wait_for_completion (pm/pmiserv/pmiserv
-_pmci.c:198): error waiting for event                           
-[mpiexec@node3] main (ui/mpich/mpiexec.c:344): process manager e
-rror waiting for completion
+[proxy:0:1@node2] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:892): launch_procs returned error                          
+[proxy:0:1@node2] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status                   
+[proxy:0:1@node2] main (pm/pmiserv/pmip.c:206): demux engine error waiting for event            
+[mpiexec@node3] control_cb (pm/pmiserv/pmiserv_cb.c:200): assert (!closed) failed               
+[mpiexec@node3] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status                     
+[mpiexec@node3] HYD_pmci_wait_for_completion (pm/pmiserv/pmiserv_pmci.c:198): error waiting for event                           
+[mpiexec@node3] main (ui/mpich/mpiexec.c:344): process manager error waiting for completion
 ```
+
+<br>
+
+4. **Command line of IMB**
+```
+$ mpirun -n <P> IMB-<component> [arguments]
+
+```
+| command | description |
+|--|--|
+| p | number of processes |
+| component | type of MPI version test |
+
+5. **Multiple Group Test**
+    - the benchmarks run in several process groups.
+    - parallel transfer of  benchmarks
