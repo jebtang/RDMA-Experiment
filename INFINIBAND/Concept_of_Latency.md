@@ -14,8 +14,6 @@
     - Latency means time when a particular packet takes to reach the destination from source
     - Throughput is the amount of data that can traverse through a given medium. The network throughput is measured in bits per second (bps).
 
-
-
 - **Difference between throughput and bandwidth**
     - Bandwidth are the theoretical maximum units of work per unit of time
     - Throughput are the actual units of work per unit of time
@@ -33,3 +31,5 @@ i.e.
 capacity is 200 but not all the time it is fully utilised, actual traffic is only 150 out of a max of 200.
 i.e. the bandwidth is 200 per unit time but still actual throughput is 150 ...
 ```
+
+<br>

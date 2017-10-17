@@ -1,9 +1,9 @@
 ### INFINIBAND_BENCHMARK ESSENTIALS
 
-1. **[infiniband benchmark implementation](INFINIBAND/imb_benchmark.md)**
-   - [test result of ethernet](INFINIBAND/results/imb_result_ethernet)
-   - [test result of infiniband](INFINIBAND/results/imb_result_infiniband)
-   - [test result of mellanox benchmark](INFINIBAND/results/mellanox_infini_test)
+1. **Contents of Infiniband**
+   - [information of mpi-3 installation](mpi-3_install.md)
+   - [information of imb installation](imb_install.md)
+   - [benchmark test results](BENCHMARK_RESULTS)
 
 <br>
 
@@ -37,6 +37,8 @@ mpirun -np 2 --hostfile hostfile ./IMB-MPI1 [proxy:0:1@node2] launch_procs (pm/p
 4. **Number of Process Configuration**  
     - p refers to the number of cores
     - so if there are 16 nodes each equipped with 2 of 4cores  = 128 processes
+
+<br>
 
 5. **Mapping Configuration**
     -  Exchange benchmark with 128 processes, defining 16 groups of 8 processes each by invoking:
