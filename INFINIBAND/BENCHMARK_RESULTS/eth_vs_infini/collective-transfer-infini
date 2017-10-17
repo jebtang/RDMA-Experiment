@@ -1,0 +1,39 @@
+# command
+# np - 8 16 32 64
+$ mpirun -np 2 --hostfile hosts_infin ./IMB-MPI1 Reduce Allreduce Scatter Reduce_Scatter Gather Alltoall Bcast
+
+# Reduce
+# each process ends a number to the root then the total number is calculated by the root
+
+# Allreduce
+# same as reduce but the final result is sent to all processes
+
+# Scatter
+# the root of the process sends a message to all processes. The size of the message equals to chosen size * number of processes
+
+# Reduce_Scatter
+# same as reduce but followed by scatter
+
+# Gather
+# all processes send the same message to the root
+
+# Alltoall
+# all processes send a message of a size equal to the chosen size number of processes to all processes
+
+# Bcast
+# the root process broadcasts data to all processes
+
+
+# np - 8
+
+# np - 16
+
+# np - 32
+
+# np - 64
+
+# np - 128
+
+# np - 256
+
+# np - 512

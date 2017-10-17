@@ -1,0 +1,102 @@
+# command
+$ mpirun -np 2 --hostfile hosts_eths ./IMB-MPI1 pingpong pingping
+
+# ping-pong
+# sends a single message to another process then the second process sends back
+
+# ping-ping
+# both process send and receive message at the same time
+
+
+#------------------------------------------------------------
+#    Intel (R) MPI Benchmarks 2018, MPI-1 part
+#------------------------------------------------------------
+# Date                  : Mon Oct 16 13:39:45 2017
+# Machine               : x86_64
+# System                : Linux
+# Release               : 4.4.0-96-generic
+# Version               : #119-Ubuntu SMP Tue Sep 12 14:59:54 UTC 2017
+# MPI Version           : 3.0
+# MPI Thread Environment:
+
+
+# Calling sequence was:
+
+# ./IMB-MPI1 pingpong pingping
+
+# Minimum message length in bytes:   0
+# Maximum message length in bytes:   4194304
+#
+# MPI_Datatype                   :   MPI_BYTE
+# MPI_Datatype for reductions    :   MPI_FLOAT
+# MPI_Op                         :   MPI_SUM
+#
+#
+
+# List of Benchmarks to run:
+
+# PingPong
+# PingPing
+
+#---------------------------------------------------
+# Benchmarking PingPong
+# #processes = 2
+#---------------------------------------------------
+       #bytes #repetitions      t[usec]   Mbytes/sec
+            0         1000        35.54         0.00
+            1         1000        34.72         0.03
+            2         1000        34.73         0.06
+            4         1000        34.74         0.12
+            8         1000        34.76         0.23
+           16         1000        33.87         0.47
+           32         1000        35.04         0.91
+           64         1000        36.11         1.77
+          128         1000        38.64         3.31
+          256         1000        42.97         5.96
+          512         1000        49.65        10.31
+         1024         1000        64.83        15.80
+         2048         1000       122.28        16.75
+         4096         1000       122.87        33.34
+         8192         1000       165.03        49.64
+        16384         1000       220.63        74.26
+        32768         1000       374.22        87.56
+        65536          640       658.92        99.46
+       131072          320      1298.12       100.97
+       262144          160      2420.08       108.32
+       524288           80      4687.67       111.84
+      1048576           40      9152.98       114.56
+      2097152           20     18074.14       116.03
+      4194304           10     35939.73       116.70
+
+#---------------------------------------------------
+# Benchmarking PingPing
+# #processes = 2
+#---------------------------------------------------
+       #bytes #repetitions      t[usec]   Mbytes/sec
+            0         1000        34.52         0.00
+            1         1000        34.31         0.03
+            2         1000        34.45         0.06
+            4         1000        34.50         0.12
+            8         1000        34.80         0.23
+           16         1000        35.10         0.46
+           32         1000        35.92         0.89
+           64         1000        36.89         1.74
+          128         1000        43.87         2.92
+          256         1000        47.63         5.37
+          512         1000        69.92         7.32
+         1024         1000        83.03        12.33
+         2048         1000       131.25        15.60
+         4096         1000       138.47        29.58
+         8192         1000       167.38        48.94
+        16384         1000       229.49        71.39
+        32768         1000       364.49        89.90
+        65536          640       671.15        97.65
+       131072          320      1471.45        89.08
+       262144          160      2687.74        97.53
+       524288           80      5131.18       102.18
+      1048576           40      9989.24       104.97
+      2097152           20     19728.54       106.30
+      4194304           10     39026.88       107.47
+
+
+# All processes entering MPI_Finalize
