@@ -7,4 +7,8 @@
    - [information of imb installation](INFINIBAND/imb_install.md)
    - [benchmark test results](INFINIBAND/BENCHMARK_RESULTS)
 
+
+2. **[Related Research papers](MPI-PAPERS)**
+3. **[Notes](NOTES)**
+
 <br>
