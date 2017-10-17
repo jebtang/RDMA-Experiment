@@ -1,6 +1,6 @@
 ### INFINIBAND_BENCHMARK ESSENTIALS
 
-2. **Infiniband benchmark interpretation**
+1. **Infiniband benchmark interpretation**
     - the benchmark repeats itself for the specified duration of time or number of times
 ```
 Bandwidth benchmarks may be run for a number of iterations, or for a fixed duration.
@@ -9,7 +9,7 @@ We would like to confirm that the first row does mean that the benchmark has run
 
 <br>
 
-3. **Proving that IMB connects several nodes**
+2. **Proving that IMB connects several nodes**
     - log proves that IMB has attempted to connect with the other node via ssh
     - Similar to MPI the files should also be shared
     - MPI and IMB all assumes that the running file is in the same location as the initiator
@@ -27,13 +27,13 @@ mpirun -np 2 --hostfile hostfile ./IMB-MPI1 [proxy:0:1@node2] launch_procs (pm/p
 
 <br>
 
-4. **Number of Process Configuration**  
+3. **Number of Process Configuration**  
     - p refers to the number of cores
     - so if there are 16 nodes each equipped with 2 of 4cores  = 128 processes
 
 <br>
 
-5. **Mapping Configuration**
+4. **Mapping Configuration**
     -  Exchange benchmark with 128 processes, defining 16 groups of 8 processes each by invoking:
 ```
 mpirun -np 128 ./IMB-MPI1 -map 16x8 -npmin 8 Exchange
