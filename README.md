@@ -9,6 +9,6 @@
 
 
 2. **[Related Research papers](MPI-PAPERS)**
-3. **[Notes](NOTES)**
+3. **[Related Notes](NOTES)**
 
 <br>
