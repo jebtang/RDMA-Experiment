@@ -1,12 +1,5 @@
 ### INFINIBAND_BENCHMARK ESSENTIALS
 
-1. **Contents of Infiniband**
-   - [information of mpi-3 installation](mpi-3_install.md)
-   - [information of imb installation](imb_install.md)
-   - [benchmark test results](BENCHMARK_RESULTS)
-
-<br>
-
 2. **Infiniband benchmark interpretation**
     - the benchmark repeats itself for the specified duration of time or number of times
 ```
