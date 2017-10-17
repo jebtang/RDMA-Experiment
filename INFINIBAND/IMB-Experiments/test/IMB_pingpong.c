@@ -68,7 +68,6 @@ For more documentation than found here, see
 
 
 
-#include <stdio.h>
 #include "IMB_declare.h"
 #include "IMB_benchmark.h"
 #include "IMB_prototypes.h"
@@ -125,7 +124,6 @@ Output variables:
 
 */
 
-printf("howdy chara\n");
 
 {
     double t1, t2;
@@ -141,6 +139,10 @@ printf("howdy chara\n");
     defect=0;
 #endif
     ierr = 0;
+
+
+    printf("howdy chara\n");
+
 
     /*  GET SIZE OF DATA TYPE */
     MPI_Type_size(c_info->s_data_type,&s_size);
