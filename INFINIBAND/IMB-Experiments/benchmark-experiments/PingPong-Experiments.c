@@ -112,6 +112,10 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
                   throughput = (Bmark->scale_bw * SCALE * MEGA) * size / timing[MAX].times[PURE];
           }
 
-        sprintf(aux_string + offset, format, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE]);
+          // pingpong printout
+          sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
+
+          // sendrecv printout
+          sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], throughput);
 
         }

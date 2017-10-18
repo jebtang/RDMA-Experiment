@@ -376,7 +376,7 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
         if (Bmark->RUN_MODES[0].type != ParallelTransferMsgRate) {
             throughput = (Bmark->scale_bw * SCALE * MEGA) * size / timing[MAX].times[PURE];
 
-            printf("chara throughput: %f\n", throughput);
+            printf("CHARA THROUGHPUT: %f\n", throughput);
 #ifndef MPIIO
 
         }else
@@ -420,24 +420,28 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
     } 
     else
     {
-        printf("chara just before printing it out?\n");
+        printf("CHARA PRINTING OUT\n");
         switch (out_format)
         {
         case OUT_TIME_AND_BW:
+            printf("\tOUT_TIME_AND_BW\n");
             IMB_edit_format(2, 2);
             sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
             break;
         case OUT_BW_AND_MSG_RATE:
+            printf("\tOUT_BW_AND_MSG_RATE\n");
             IMB_edit_format(2, 1);
             offset += sprintf(aux_string + offset, format, size, n_sample, throughput);
             sprintf(&(format[0]),"%%%d.0f",ow_format);
             sprintf(aux_string + offset, format, msgrate);
             break;
-        case OUT_TIME_RANGE_AND_BW:    
+        case OUT_TIME_RANGE_AND_BW:
+            printf("\tOUT_TIME_RANGE_AND_BW\n");
             IMB_edit_format(2, 4);
             sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], throughput);
             break;
-        case OUT_TIME_RANGE:    
+        case OUT_TIME_RANGE:
+            printf("\tOUT_TIME_RANGE\n");
             IMB_edit_format(2, 3);
             sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE]);
             break;

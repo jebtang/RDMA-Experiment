@@ -75,17 +75,17 @@
       <file leaf-file-name="IMB_output.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB_output.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="383" column="0" lean-forward="true" selection-start-line="383" selection-start-column="0" selection-end-line="383" selection-end-column="0" />
+            <state relative-caret-position="718">
+              <caret line="456" column="68" lean-forward="true" selection-start-line="456" selection-start-column="68" selection-end-line="456" selection-end-column="68" />
               <folding>
                 <element signature="e#6551#6742#0" expanded="true" />
                 <element signature="e#7104#7241#0" expanded="true" />
                 <element signature="e#8142#8177#0" expanded="true" />
-                <element signature="e#15231#15525#0" expanded="true" />
-                <element signature="e#15876#15892#0" expanded="true" />
-                <element signature="e#17420#17658#0" expanded="true" />
-                <element signature="e#41901#42459#0" expanded="true" />
-                <element signature="e#42849#43500#0" expanded="true" />
+                <element signature="e#15388#15682#0" expanded="true" />
+                <element signature="e#16033#16049#0" expanded="true" />
+                <element signature="e#17577#17815#0" expanded="true" />
+                <element signature="e#42058#42616#0" expanded="true" />
+                <element signature="e#43006#43657#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -110,6 +110,7 @@
       <find>Benchmark</find>
       <find>IMB_display</find>
       <find>IMB_display_times</find>
+      <find>OUT_TIME_RANGE_AND_BW</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -189,12 +190,12 @@
       <option name="presentableId" value="Default" />
       <updated>1508285057291</updated>
       <workItem from="1508285058972" duration="2090000" />
-      <workItem from="1508351281012" duration="6709000" />
+      <workItem from="1508351281012" duration="7101000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8799000" />
+    <option name="totallyTimeSpent" value="9191000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -252,8 +253,8 @@
         <state relative-caret-position="1530">
           <caret line="90" column="18" lean-forward="false" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="18" />
           <folding>
-            <element signature="e#5968#6366#0" expanded="true" />
-            <element signature="e#6412#6470#0" expanded="true" />
+            <element signature="e#5968#6366#0" expanded="false" />
+            <element signature="e#6412#6470#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -279,8 +280,8 @@
         <state relative-caret-position="232">
           <caret line="90" column="18" lean-forward="false" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="18" />
           <folding>
-            <element signature="e#5968#6366#0" expanded="true" />
-            <element signature="e#6412#6470#0" expanded="true" />
+            <element signature="e#5968#6366#0" expanded="false" />
+            <element signature="e#6412#6470#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -366,17 +367,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB_output.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="383" column="0" lean-forward="true" selection-start-line="383" selection-start-column="0" selection-end-line="383" selection-end-column="0" />
+        <state relative-caret-position="718">
+          <caret line="456" column="68" lean-forward="true" selection-start-line="456" selection-start-column="68" selection-end-line="456" selection-end-column="68" />
           <folding>
             <element signature="e#6551#6742#0" expanded="true" />
             <element signature="e#7104#7241#0" expanded="true" />
             <element signature="e#8142#8177#0" expanded="true" />
-            <element signature="e#15231#15525#0" expanded="true" />
-            <element signature="e#15876#15892#0" expanded="true" />
-            <element signature="e#17420#17658#0" expanded="true" />
-            <element signature="e#41901#42459#0" expanded="true" />
-            <element signature="e#42849#43500#0" expanded="true" />
+            <element signature="e#15388#15682#0" expanded="true" />
+            <element signature="e#16033#16049#0" expanded="true" />
+            <element signature="e#17577#17815#0" expanded="true" />
+            <element signature="e#42058#42616#0" expanded="true" />
+            <element signature="e#43006#43657#0" expanded="true" />
           </folding>
         </state>
       </provider>
