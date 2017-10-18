@@ -140,13 +140,15 @@ Output variables:
 #endif
     ierr = 0;
 
-
-    printf("howdy chara\n");
-
+    // chara
+    // each of the nodes are proven run the benchmark files concurrently
+    // printf("this is the file of node2\n")
 
     /*  GET SIZE OF DATA TYPE */
     MPI_Type_size(c_info->s_data_type,&s_size);
     MPI_Type_size(c_info->r_data_type,&r_size);
+
+	printf("MPI_Type_size : %d\n", s_size);
 
     if ((s_size!=0) && (r_size!=0))
     {
