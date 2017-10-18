@@ -24,8 +24,7 @@ void IMB_pingpong(struct comm_info* c_info,
   MPI_Type_size(c_info->s_data_type,&s_size);
   MPI_Type_size(c_info->r_data_type,&r_size);
 
-  if ((s_size!=0) && (r_size!=0))
-  {
+  if ((s_size!=0) && (r_size!=0)){
       s_num=size/s_size;  // divide the message with s_size
       r_num=size/r_size;  // divide the message with r_size
   }
@@ -36,32 +35,31 @@ void IMB_pingpong(struct comm_info* c_info,
 // and then implement the way of getting the latency times for each of the iterations 10000
 // and then find the biggest and the smallest latency like the sendRecv
 
-t1 = MPI_Wtime();
+  if (c_info->rank == c_info->pair0){ // checking for sender
 
-for(i=0;i<ITERATIONS->n_sample;i++)
-{
-  // MPI_Send
-  // MPI_Recv
-}
+      t1 = MPI_Wtime();
 
-t2 = MPI_Wtime();
-*time=(t2 - t1)/ITERATIONS->n_sample;
+      for(i=0;i<ITERATIONS->n_sample;i++){
+        // MPI_Send
+        // MPI_Recv
+        // other error checking
+      }
 
+      t2 = MPI_Wtime();
+      *time=(t2 - t1)/ITERATIONS->n_sample;
 
+  } else if (c_info->rank == c_info->pair1){ // checking for receiver
 
+      t1 = MPI_Wtime();
+  	   for(i=0;i<ITERATIONS->n_sample;i++){
+         // MPI_Recv
+         // MPI_Send
+         // other error checking
+       }
 
-
-
-
-
-
-
-
-
-
-
-
-
+      t2 = MPI_Wtime();
+      *time=(t2 - t1)/ITERATIONS->n_sample;
+  }
 
 
 }
