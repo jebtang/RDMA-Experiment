@@ -373,12 +373,13 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
 
     if (timing[MAX].times[PURE] > 0.) 
     {
-        if (Bmark->RUN_MODES[0].type != ParallelTransferMsgRate)
+        if (Bmark->RUN_MODES[0].type != ParallelTransferMsgRate) {
             throughput = (Bmark->scale_bw * SCALE * MEGA) * size / timing[MAX].times[PURE];
 
-            printf("chara throughput: %f\n",throughput);
+            printf("chara throughput: %f\n", throughput);
 #ifndef MPIIO
-        else
+
+        }else
         {
             peers = c_info->num_procs / 2;
             msgrate = (Bmark->scale_bw * SCALE * MAX_WIN_SIZE * peers) / timing[MAX].times[PURE];
