@@ -160,9 +160,9 @@ Output variables:
 
     if (c_info->rank == c_info->pair0)
     {
-        debug_array = "this is pair1!!!\n";
+        strncpy(debug_array, "this is pair0!!!\n", 20);
 
-	/*  CALCULATE SOURCE AND DESTINATION */
+        /*  CALCULATE SOURCE AND DESTINATION */
 	dest = c_info->pair1;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
 
@@ -170,7 +170,6 @@ Output variables:
 
 	t1 = MPI_Wtime();
 
-	printf("t1: %f  ITERATIONS->n_sample: %d\n", t1, ITERATIONS->n_sample);
 
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
@@ -197,9 +196,9 @@ Output variables:
     }
     else if (c_info->rank == c_info->pair1)
     {
-        debug_array = "this is pair1!!!\n";
+        strncpy(debug_array, "this is pair1!!!\n", 20);
 
-		dest =c_info->pair0 ;
+        dest =c_info->pair0 ;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
 
 	for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
@@ -207,6 +206,7 @@ Output variables:
 	t1 = MPI_Wtime();
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
+
 	    ierr = MPI_Recv((char*)c_info->r_buffer+i%ITERATIONS->r_cache_iter*ITERATIONS->r_offs,
 			    r_num,c_info->r_data_type,source,
 			    r_tag,c_info->communicator,&stat);
@@ -230,4 +230,8 @@ Output variables:
     {
 	*time = 0.;
     }
+
+
+    printf("%s: %f  ITERATIONS->n_sample: %d\n", debug_array, t1, ITERATIONS->n_sample);
+
 }
