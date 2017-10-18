@@ -232,6 +232,6 @@ Output variables:
     }
 
 
-    printf("%s: ITERATIONS->n_sample: %d\n", debug_array, ITERATIONS->n_sample);
+//    printf("%s: ITERATIONS->n_sample: %d\n", debug_array, ITERATIONS->n_sample);
 
 }

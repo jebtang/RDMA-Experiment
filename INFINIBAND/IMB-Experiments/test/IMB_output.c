@@ -248,6 +248,8 @@ Input variables:
 
         if (header)
         {
+
+            printf("chara start printing header\n");
             IMB_print_header (out_format, Bmark, c_info, BMODE);
         } 
 
@@ -373,6 +375,8 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
     {
         if (Bmark->RUN_MODES[0].type != ParallelTransferMsgRate)
             throughput = (Bmark->scale_bw * SCALE * MEGA) * size / timing[MAX].times[PURE];
+
+            printf("chara throughput: %f\n",throughput);
 #ifndef MPIIO
         else
         {
@@ -413,8 +417,9 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
             break;
         } /*switch*/
     } 
-    else 
+    else
     {
+        printf("chara just before printing it out?\n");
         switch (out_format)
         {
         case OUT_TIME_AND_BW:
@@ -505,6 +510,7 @@ void IMB_calculate_times(int ntimes,
     *defect = 0;
 #endif
 
+    // chara is this the place where they calculate the time?
 
     for (i = 0; i < ncount; i++) {
         nproc += c_info->g_sizes[i];

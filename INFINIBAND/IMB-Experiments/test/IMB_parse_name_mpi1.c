@@ -14,7 +14,7 @@ contained in above mentioned license.
 Use of the name and trademark "Intel(R) MPI Benchmarks" is allowed ONLY
 within the regulations of the "License for Use of "Intel(R) MPI
 Benchmarks" Name and Trademark" as reproduced in the file
-"use-of-trademark-license.txt" in the "license" subdirectory. 
+"use-of-trademark-license.txt" in the "license" subdirectory.
 
 THE PROGRAM IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED INCLUDING, WITHOUT
@@ -34,7 +34,7 @@ WITHOUT LIMITATION LOST PROFITS), HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OR
 DISTRIBUTION OF THE PROGRAM OR THE EXERCISE OF ANY RIGHTS GRANTED
-HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. 
+HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 EXPORT LAWS: THIS LICENSE ADDS NO RESTRICTIONS TO THE EXPORT LAWS OF
 YOUR JURISDICTION. It is licensee's responsibility to comply with any
@@ -50,16 +50,16 @@ goods and services.
 
 For more documentation than found here, see
 
-[1] doc/ReadMe_IMB.txt 
+[1] doc/ReadMe_IMB.txt
 
 [2] Intel (R) MPI Benchmarks
     Users Guide and Methodology Description
-    In 
+    In
     doc/IMB_Users_Guide.pdf
-    
- File: IMB_parse_name_mpi1.c 
 
- Implemented functions: 
+ File: IMB_parse_name_mpi1.c
+
+ Implemented functions:
 
  IMB_get_def_cases;
  IMB_set_bmark;
@@ -78,25 +78,25 @@ For more documentation than found here, see
 
 #include "IMB_prototypes.h"
 
- 
+
 int IMB_get_def_cases(char*** defc, char*** Gcmt)
 /*
 
-                      
+
                       Initializes default benchmark names (defc) and accompanying
                       comments (Gcmt)
-                      
 
 
-In/out variables: 
 
--defc                 (type char***)                      
+In/out variables:
+
+-defc                 (type char***)
                       List of benchkark names (strings)
-                      
 
--Gcmt                 (type char***)                      
+
+-Gcmt                 (type char***)
                       List of general comments (strings)
-                      
+
 
 
 */
@@ -109,21 +109,21 @@ In/out variables:
 int IMB_get_all_cases(char*** allc)
 /*
 
-                      
+
                       Initializes default benchmark names (defc) and accompanying
                       comments (Gcmt)
-                      
 
 
-In/out variables: 
 
--defc                 (type char***)                      
+In/out variables:
+
+-defc                 (type char***)
                       List of benchkark names (strings)
-                      
 
--Gcmt                 (type char***)                      
+
+-Gcmt                 (type char***)
                       List of general comments (strings)
-                      
+
 
 
 */
@@ -138,16 +138,16 @@ void IMB_set_bmark(struct Bench* Bmark)
 
 
 
-In/out variables: 
+In/out variables:
 
--Bmark                (type struct Bench*)                      
+-Bmark                (type struct Bench*)
                       (For explanation of struct Bench type:
                       describes all aspects of modes of a benchmark;
                       see [1] for more information)
-                      
+
                       On input, only the name of the benchmark is set.
                       On output, all necessary run modes are set accordingly
-                      
+
 
 
 */
@@ -176,7 +176,7 @@ In/out variables:
     Bmark->select_source = 0;
 
     if (!strcmp(Bmark->name,"pingpong"))
-    { 
+    {
           strcpy(Bmark->name,"PingPong");
           Bmark->Benchmark	= IMB_pingpong;
           Bmark->select_source	= 1;
@@ -185,7 +185,7 @@ In/out variables:
           Bmark->scale_time 	= 0.5;
     }
     else if (!strcmp(Bmark->name,"pingping"))
-    { 
+    {
 	strcpy(Bmark->name,"PingPing");
 	Bmark->Benchmark 	= IMB_pingping;
 	Bmark->select_source 	= 1;
@@ -225,7 +225,7 @@ In/out variables:
 	type 			= SingleTransfer;
     }
     else if (!strcmp(Bmark->name,"sendrecv"))
-    { 
+    {
 	strcpy(Bmark->name,"Sendrecv");
 	Bmark->Benchmark = IMB_sendrecv;
 	Bmark->bench_comments = &Sendrecv_cmt[0];
@@ -234,7 +234,7 @@ In/out variables:
 	Bmark->scale_bw   = 2.0;
     }
     else if (!strcmp(Bmark->name,"exchange") )
-    { 
+    {
 	strcpy(Bmark->name,"Exchange");
 	Bmark->Benchmark = IMB_exchange;
 	Bmark->bench_comments = &Exchange_cmt[0];
@@ -243,7 +243,7 @@ In/out variables:
 	Bmark->scale_bw   = 4.0;
     }
     else if (!strcmp(Bmark->name,"allreduce"))
-    { 
+    {
 	strcpy(Bmark->name,"Allreduce");
 	Bmark->Benchmark = IMB_allreduce;
 	type = Collective;
@@ -251,7 +251,7 @@ In/out variables:
 	Bmark->reduction = 1;
     }
     else if (!strcmp(Bmark->name,"reduce"))
-    { 
+    {
 	strcpy(Bmark->name,"Reduce");
 	Bmark->Benchmark = IMB_reduce;
 	type = Collective;
@@ -259,7 +259,7 @@ In/out variables:
 	Bmark->reduction = 1;
     }
     else if (!strcmp(Bmark->name,"reduce_scatter"))
-    { 
+    {
 	strcpy(Bmark->name,"Reduce_scatter");
 	Bmark->Benchmark = IMB_reduce_scatter;
 	type = Collective;
@@ -267,77 +267,77 @@ In/out variables:
 	Bmark->reduction = 1;
     }
     else if (!strcmp(Bmark->name,"bcast"))
-    { 
+    {
 	strcpy(Bmark->name,"Bcast");
 	Bmark->Benchmark = IMB_bcast;
 	type = Collective;
 	Bmark->bench_comments = &Bcast_cmt[0];
     }
     else if (!strcmp(Bmark->name,"barrier"))
-    { 
+    {
 	strcpy(Bmark->name,"Barrier");
 	Bmark->Benchmark = IMB_barrier;
 	type = Sync;
 	Bmark->bench_comments = &Barrier_cmt[0];
     }
     else if (!strcmp(Bmark->name,"allgather"))
-    { 
+    {
 	strcpy(Bmark->name,"Allgather");
 	Bmark->Benchmark = IMB_allgather;
 	type = Collective;
 	Bmark->bench_comments = &Allgather_cmt[0];
     }
     else if (!strcmp(Bmark->name,"allgatherv"))
-    { 
+    {
 	strcpy(Bmark->name,"Allgatherv");
 	Bmark->Benchmark = IMB_allgatherv;
 	type = Collective;
 	Bmark->bench_comments = &Allgatherv_cmt[0];
     }
     else if (!strcmp(Bmark->name,"gather"))
-    { 
+    {
 	strcpy(Bmark->name,"Gather");
 	Bmark->Benchmark = IMB_gather;
 	type = Collective;
 	Bmark->bench_comments = &Gather_cmt[0];
     }
     else if (!strcmp(Bmark->name,"gatherv"))
-    { 
+    {
 	strcpy(Bmark->name,"Gatherv");
 	Bmark->Benchmark = IMB_gatherv;
 	type = Collective;
 	Bmark->bench_comments = &Gatherv_cmt[0];
     }
     else if (!strcmp(Bmark->name,"scatter"))
-    { 
+    {
 	strcpy(Bmark->name,"Scatter");
 	Bmark->Benchmark = IMB_scatter;
 	type = Collective;
 	Bmark->bench_comments = &Scatter_cmt[0];
     }
     else if (!strcmp(Bmark->name,"scatterv"))
-    { 
+    {
 	strcpy(Bmark->name,"Scatterv");
 	Bmark->Benchmark = IMB_scatterv;
 	type = Collective;
 	Bmark->bench_comments = &Scatterv_cmt[0];
     }
     else if (!strcmp(Bmark->name,"alltoall"))
-    { 
+    {
 	strcpy(Bmark->name,"Alltoall");
 	Bmark->Benchmark = IMB_alltoall;
 	type = Collective;
 	Bmark->bench_comments = &Alltoall_cmt[0];
     }
     else if (!strcmp(Bmark->name,"alltoallv"))
-    { 
+    {
 	strcpy(Bmark->name,"Alltoallv");
 	Bmark->Benchmark = IMB_alltoallv;
 	type = Collective;
 	Bmark->bench_comments = &Alltoallv_cmt[0];
     }
     else if (!strcmp(Bmark->name,"uniband"))
-    { 
+    {
 	strcpy(Bmark->name,"Uniband");
 	Bmark->Benchmark = IMB_uni_bandwidth;
 	Bmark->bench_comments = &Uni_bandwidth_cmt[0];
@@ -346,7 +346,7 @@ In/out variables:
 	Bmark->scale_bw   = 1.0;
     }
     else if (!strcmp(Bmark->name,"biband"))
-    { 
+    {
 	strcpy(Bmark->name,"Biband");
 	Bmark->Benchmark = IMB_bi_bandwidth;
 	Bmark->bench_comments = &Bi_bandwidth_cmt[0];
@@ -354,11 +354,10 @@ In/out variables:
 	Bmark->scale_time = 1.0;
 	Bmark->scale_bw   = 2.0;
     }
-    else 
+    else
     {
 	type = BTYPE_INVALID;
     }
 
     Bmark->RUN_MODES[0].type=type;
 }
-

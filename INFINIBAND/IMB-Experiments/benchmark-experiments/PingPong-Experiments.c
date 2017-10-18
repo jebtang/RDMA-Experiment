@@ -1,20 +1,46 @@
-#include "IMB_declare.h"
+// starting from IMB.c
+int main(){
 
-struct comm_info{
+  /* LOOP OVER INDIVIDUAL BENCHMARKS */
+  while( (p=BList[j].name) ){
 
-  int 	NP;	// #processes participating in benchmarks
+    /* LOOP OVER PROCESS NUMBERS */
+    while ( do_it ){
 
-  // MPI_DATAtype is a typedef of int
-  MPI_Datatype 	s_data_type;	// data type of sent data
-  MPI_Datatype 	r_data_type;	// data type of received data
+      /* LOOP OVER MESSAGE LENGTHS */
+      while ( ((C_INFO.n_lens == 0 && size < MAXMSG ) ||
+               (C_INFO.n_lens > 0  && iter < C_INFO.n_lens))
+              && (Bmark->sample_failure != SAMPLE_FAILED_TIME_OUT) )
+      {
 
+        IMB_init_buffers_iter(&C_INFO, &ITERATIONS, Bmark, BMODE, iter, size); // probabl add pingpong here
+        MPI_Barrier(MPI_COMM_WORLD);
+
+
+        // pointer function directing to the benchmark
+        Bmark->Benchmark(&C_INFO,size,&ITERATIONS,BMODE,time);
+        /*
+            void (*Benchmark)(struct comm_info* c_info,int size, struct iter_schedule* ITERATIONS,MODES RUN_MODE,double* time);
+            void IMB_pingpong(struct comm_info* c_info,int size, struct iter_schedule* ITERATIONS, MODES RUN_MODE, double* time )
+        */
+
+
+        // IMB_ouput.c
+        IMB_output   (&C_INFO,Bmark,BMODE,header,size,&ITERATIONS,time); // where the print out is made
+        IMB_close_transfer(&C_INFO, Bmark, size);
+
+      }
+    }
+  }
 }
 
+
+// the function is called the number of fixed message sizes
 void IMB_pingpong(struct comm_info* c_info,
-                  int size,
-                  struct iter_schedule* ITERATIONS,
+                  int size, // fixed vary of message size
+                  struct iter_schedule* ITERATIONS, // fixed number of times for running the benchmark
                   MODES RUN_MODE,
-                  double* time)
+                  double* time ) // time for calculating the average time
 {
 
   Type_Size s_size,r_size; //Type_Size is an INT
@@ -62,6 +88,30 @@ void IMB_pingpong(struct comm_info* c_info,
       *time=(t2 - t1)/ITERATIONS->n_sample;
   }
 
+  // data printed each of the message size has finished the operation
 }
 
-// data printed each of the message size has finished the operation
+
+// IMB_output.c
+void IMB_output(struct comm_info* c_info, struct Bench* Bmark, MODES BMODE,
+                int header, int size, struct iter_schedule* ITERATIONS,
+                double *time){
+
+                IMB_print_header (out_format, Bmark, c_info, BMODE);
+                IMB_display_times(Bmark, all_times, c_info, i_gr, ITERATIONS->n_sample, size, out_format);
+
+                }
+
+void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_info,
+        int group, int n_sample, int size, int out_format){
+
+
+          if (timing[MAX].times[PURE] > 0.)
+          {
+              if (Bmark->RUN_MODES[0].type != ParallelTransferMsgRate)
+                  throughput = (Bmark->scale_bw * SCALE * MEGA) * size / timing[MAX].times[PURE];
+          }
+
+        sprintf(aux_string + offset, format, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE]);
+
+        }
