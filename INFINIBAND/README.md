@@ -45,5 +45,5 @@ mpirun -np 2 --hostfile hostfile ./IMB-MPI1 [proxy:0:1@node2] launch_procs (pm/p
 5. **Mapping Configuration**
     -  Exchange benchmark with 128 processes, defining 16 groups of 8 processes each by invoking:
 ```
-mpirun -np 128 ./IMB-MPI1 -map 16x8 -npmin 8 Exchange
+mpirun -np 128 --hostfile filename ./IMB-MPI1 -map 16x8 -npmin 8 Exchange
 ```

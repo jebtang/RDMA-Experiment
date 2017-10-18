@@ -24,11 +24,12 @@ void IMB_pingpong(struct comm_info* c_info,
   MPI_Type_size(c_info->s_data_type,&s_size);
   MPI_Type_size(c_info->r_data_type,&r_size);
 
+
+  // size : varing number of message sizes [0 ~ 1024 etc]
   if ((s_size!=0) && (r_size!=0)){
       s_num=size/s_size;  // divide the message with s_size
       r_num=size/r_size;  // divide the message with r_size
   }
-
 
 // check whether this variable is equal with the results that are shown in the console result
 // and then lets check the SendRecv to see how the time max and time min is implemented
@@ -61,5 +62,6 @@ void IMB_pingpong(struct comm_info* c_info,
       *time=(t2 - t1)/ITERATIONS->n_sample;
   }
 
-
 }
+
+// data printed each of the message size has finished the operation

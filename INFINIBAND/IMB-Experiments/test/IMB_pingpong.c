@@ -134,6 +134,7 @@ Output variables:
     int s_tag, r_tag;
     int dest, source;
     MPI_Status stat;
+    char debug_array[20];
 
 #ifdef CHECK
     defect=0;
@@ -148,8 +149,6 @@ Output variables:
     MPI_Type_size(c_info->s_data_type,&s_size);
     MPI_Type_size(c_info->r_data_type,&r_size);
 
-	printf("MPI_Type_size : %d  size: %d \n", s_size, size);
-
     if ((s_size!=0) && (r_size!=0))
     {
 	s_num=size/s_size;
@@ -161,7 +160,7 @@ Output variables:
 
     if (c_info->rank == c_info->pair0)
     {
-	printf("this is pair0!!!\n");
+        debug_array = "this is pair1!!!\n";
 
 	/*  CALCULATE SOURCE AND DESTINATION */
 	dest = c_info->pair1;
@@ -198,8 +197,7 @@ Output variables:
     }
     else if (c_info->rank == c_info->pair1)
     {
-	printf("this is pair1!!!\n");
-
+        debug_array = "this is pair1!!!\n";
 
 		dest =c_info->pair0 ;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
