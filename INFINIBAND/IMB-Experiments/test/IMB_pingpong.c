@@ -148,7 +148,7 @@ Output variables:
     MPI_Type_size(c_info->s_data_type,&s_size);
     MPI_Type_size(c_info->r_data_type,&r_size);
 
-	printf("MPI_Type_size : %d\n", s_size);
+	printf("MPI_Type_size : %d  size: %d \n", s_size, size);
 
     if ((s_size!=0) && (r_size!=0))
     {
@@ -161,6 +161,8 @@ Output variables:
 
     if (c_info->rank == c_info->pair0)
     {
+	printf("this is pair0!!!\n");
+
 	/*  CALCULATE SOURCE AND DESTINATION */
 	dest = c_info->pair1;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
@@ -168,6 +170,9 @@ Output variables:
 	for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
 	t1 = MPI_Wtime();
+
+	printf("t1: %f  ITERATIONS->n_sample: %d\n", t1, ITERATIONS->n_sample);
+
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
 	    ierr = MPI_Send((char*)c_info->s_buffer+i%ITERATIONS->s_cache_iter*ITERATIONS->s_offs,
@@ -187,11 +192,16 @@ Output variables:
 	} /*for*/
 
 	t2 = MPI_Wtime();
+
+
 	*time=(t2 - t1)/ITERATIONS->n_sample;
     }
     else if (c_info->rank == c_info->pair1)
     {
-	dest =c_info->pair0 ;
+	printf("this is pair1!!!\n");
+
+
+		dest =c_info->pair0 ;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
 
 	for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
