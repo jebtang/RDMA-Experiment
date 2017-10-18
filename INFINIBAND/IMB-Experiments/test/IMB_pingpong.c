@@ -160,7 +160,7 @@ Output variables:
 
     if (c_info->rank == c_info->pair0)
     {
-        strncpy(debug_array, "this is pair0!!!\n", 20);
+        strncpy(debug_array, "pair 0", 20);
 
         /*  CALCULATE SOURCE AND DESTINATION */
 	dest = c_info->pair1;
@@ -196,7 +196,7 @@ Output variables:
     }
     else if (c_info->rank == c_info->pair1)
     {
-        strncpy(debug_array, "this is pair1!!!\n", 20);
+        strncpy(debug_array, "pair 1", 20);
 
         dest =c_info->pair0 ;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
@@ -232,6 +232,6 @@ Output variables:
     }
 
 
-    printf("%s: %f  ITERATIONS->n_sample: %d\n", debug_array, t1, ITERATIONS->n_sample);
+    printf("%s: ITERATIONS->n_sample: %d\n", debug_array, ITERATIONS->n_sample);
 
 }
