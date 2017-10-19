@@ -126,7 +126,7 @@ Output variables:
 
 
 {
-    double t1, t2;
+    double t1, t2, s1;
     int    i;
 
     Type_Size s_size,r_size;
@@ -186,6 +186,7 @@ Output variables:
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
 
+		s1 = MPI_Wtime();
 	    ierr = MPI_Send((char*)c_info->s_buffer+i%ITERATIONS->s_cache_iter*ITERATIONS->s_offs,
 			    s_num,c_info->s_data_type,dest,
 			    s_tag,c_info->communicator);
@@ -201,7 +202,12 @@ Output variables:
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
 
-      std_array[0][i]=(MPI_Wtime()-t1);
+      std_array[0][i]=(MPI_Wtime()-s1);
+
+	if(ITERATIONS->n_sample==10){
+		printf("pair0 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
+	}
+
 	} /*for*/
 
 	t2 = MPI_Wtime();
@@ -225,6 +231,7 @@ Output variables:
 	t1 = MPI_Wtime();
 	for(i=0;i<ITERATIONS->n_sample;i++){
 
+		s1 = MPI_Wtime();
 		ierr = MPI_Recv((char*)c_info->r_buffer+i%ITERATIONS->r_cache_iter*ITERATIONS->r_offs,
 			    r_num,c_info->r_data_type,source,
 			    r_tag,c_info->communicator,&stat);
@@ -240,13 +247,11 @@ Output variables:
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
 
-		std_array[0][i]=(MPI_Wtime()-t1);
+		std_array[0][i]=(MPI_Wtime()-s1);
 
 		if(ITERATIONS->n_sample==10){
-			 printf("std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
+			 printf("pair1 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
 		}
-
-
 
 	} /*for*/
 
