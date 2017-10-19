@@ -62,11 +62,11 @@
       <file leaf-file-name="IMB_pingpong.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="233" column="13" lean-forward="true" selection-start-line="233" selection-start-column="13" selection-end-line="233" selection-end-column="13" />
+            <state relative-caret-position="594">
+              <caret line="251" column="0" lean-forward="true" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
               <folding>
                 <element signature="e#3190#3214#0" expanded="true" />
-                <element signature="e#4820#4829#0" expanded="true" />
+                <element signature="e#4817#4826#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,6 +164,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -188,12 +193,12 @@
       <updated>1508285057291</updated>
       <workItem from="1508285058972" duration="2090000" />
       <workItem from="1508351281012" duration="9454000" />
-      <workItem from="1508436515658" duration="9543000" />
+      <workItem from="1508436515658" duration="9705000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21087000" />
+    <option name="totallyTimeSpent" value="21249000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -435,13 +440,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/IMB_pingpong_backup.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="233" column="13" lean-forward="true" selection-start-line="233" selection-start-column="13" selection-end-line="233" selection-end-column="13" />
+        <state relative-caret-position="594">
+          <caret line="251" column="0" lean-forward="true" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
           <folding>
             <element signature="e#3190#3214#0" expanded="true" />
-            <element signature="e#4820#4829#0" expanded="true" />
+            <element signature="e#4817#4826#0" expanded="true" />
           </folding>
         </state>
       </provider>

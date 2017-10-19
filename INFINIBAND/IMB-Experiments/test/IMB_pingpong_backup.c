@@ -136,7 +136,7 @@ Output variables:
     int std;
     MPI_Status stat;
     char debug_array[20];
-	double std_array[ITERATIONS->n_sample];
+	double std_array[1][ITERATIONS->n_sample];
 
 #ifdef CHECK
     defect=0;
@@ -191,7 +191,7 @@ Output variables:
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
 		std_t2 = MPI_Wtime();
-		std_array[i]=(std_t2-std_t1);
+		std_array[0][i]=(std_t2-std_t1);
 
 	} /*for*/
 
@@ -230,7 +230,7 @@ Output variables:
 		     dest, &defect);
 
 		std_t2 = MPI_Wtime();
-		std_array[i]=(std_t2-std_t1);
+		std_array[0][i]=(std_t2-std_t1);
 	} /*for*/
 
 	t2 = MPI_Wtime();
@@ -248,7 +248,7 @@ Output variables:
 
 	//checking whether the results are identical
 	for(i=0;i<ITERATIONS->n_sample;i++)
-		std += std_array[i];
+		std += std_array[0][i];
 
 	printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, std*pow(10,6)/2);
 
