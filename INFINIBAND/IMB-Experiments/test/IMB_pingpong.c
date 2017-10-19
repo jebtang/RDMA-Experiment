@@ -133,7 +133,8 @@ Output variables:
     int s_num, r_num;
     int s_tag, r_tag;
     int dest, source;
-    double std;
+    double test_std;
+
     MPI_Status stat;
     char debug_array[20];
     double std_array[2][ITERATIONS->n_sample];
@@ -205,6 +206,7 @@ Output variables:
 	t2 = MPI_Wtime();
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
+	test_std = t2 - t1)/ITERATIONS->n_sample;
 
 	}
     else if (c_info->rank == c_info->pair1)
@@ -242,6 +244,7 @@ Output variables:
 
 	t2 = MPI_Wtime();
 	*time=(t2 - t1)/ITERATIONS->n_sample;
+	test_std = t2 - t1)/ITERATIONS->n_sample;
 
 	}
     else
@@ -258,7 +261,7 @@ Output variables:
     std_1 += std_array[1][i];
   }
 
-	printf("%s: total: %f, std_0: %f std_1: %f\n", debug_array, (*time)*pow(10,6)/2, std_0*pow(10,6)/2, std_1*pow(10,6)/2);
+	printf("%s: total: %f, test_std: %f  std_0: %f std_1: %f\n", debug_array, (*time)*pow(10,6)/2, (std_test)*pow(10,6)/2, std_0*pow(10,6)/2, std_1*pow(10,6)/2);
 
 
 }
