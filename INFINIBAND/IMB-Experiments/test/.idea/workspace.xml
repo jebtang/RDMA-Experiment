@@ -23,17 +23,17 @@
       <file leaf-file-name="IMB_output.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB_output.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="563" column="25" lean-forward="true" selection-start-line="563" selection-start-column="25" selection-end-line="563" selection-end-column="25" />
+            <state relative-caret-position="411">
+              <caret line="429" column="0" lean-forward="true" selection-start-line="429" selection-start-column="0" selection-end-line="429" selection-end-column="0" />
               <folding>
                 <element signature="e#6551#6742#0" expanded="true" />
                 <element signature="e#7104#7241#0" expanded="true" />
                 <element signature="e#8142#8177#0" expanded="true" />
-                <element signature="e#15557#15851#0" expanded="true" />
-                <element signature="e#16202#16218#0" expanded="true" />
-                <element signature="e#18134#18372#0" expanded="true" />
-                <element signature="e#42779#43337#0" expanded="true" />
-                <element signature="e#43727#44378#0" expanded="true" />
+                <element signature="e#15579#15873#0" expanded="true" />
+                <element signature="e#16224#16240#0" expanded="true" />
+                <element signature="e#18156#18394#0" expanded="true" />
+                <element signature="e#42801#43359#0" expanded="true" />
+                <element signature="e#43749#44400#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,7 +72,6 @@
       <find>timing[MAX]</find>
       <find>CHARA P</find>
       <find>printf</find>
-      <find>chara</find>
       <find>header</find>
       <find>PURE</find>
       <find>DEFIN</find>
@@ -80,6 +79,7 @@
       <find>timing</find>
       <find>MAX_TIME_ID</find>
       <find>MAX_TIM</find>
+      <find>chara</find>
       <find>CHARA</find>
     </findStrings>
   </component>
@@ -162,12 +162,12 @@
       <updated>1508285057291</updated>
       <workItem from="1508285058972" duration="2090000" />
       <workItem from="1508351281012" duration="9454000" />
-      <workItem from="1508436515658" duration="1375000" />
+      <workItem from="1508436515658" duration="1461000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12919000" />
+    <option name="totallyTimeSpent" value="13005000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -254,11 +254,11 @@
             <element signature="e#6551#6742#0" expanded="true" />
             <element signature="e#7104#7241#0" expanded="true" />
             <element signature="e#8142#8177#0" expanded="true" />
-            <element signature="e#15557#15851#0" expanded="true" />
-            <element signature="e#16202#16218#0" expanded="true" />
-            <element signature="e#18134#18372#0" expanded="true" />
-            <element signature="e#42779#43337#0" expanded="true" />
-            <element signature="e#43727#44378#0" expanded="true" />
+            <element signature="e#15579#15873#0" expanded="true" />
+            <element signature="e#16224#16240#0" expanded="true" />
+            <element signature="e#18156#18394#0" expanded="true" />
+            <element signature="e#42801#43359#0" expanded="true" />
+            <element signature="e#43749#44400#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -396,17 +396,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB_output.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="563" column="25" lean-forward="true" selection-start-line="563" selection-start-column="25" selection-end-line="563" selection-end-column="25" />
+        <state relative-caret-position="411">
+          <caret line="429" column="0" lean-forward="true" selection-start-line="429" selection-start-column="0" selection-end-line="429" selection-end-column="0" />
           <folding>
             <element signature="e#6551#6742#0" expanded="true" />
             <element signature="e#7104#7241#0" expanded="true" />
             <element signature="e#8142#8177#0" expanded="true" />
-            <element signature="e#15557#15851#0" expanded="true" />
-            <element signature="e#16202#16218#0" expanded="true" />
-            <element signature="e#18134#18372#0" expanded="true" />
-            <element signature="e#42779#43337#0" expanded="true" />
-            <element signature="e#43727#44378#0" expanded="true" />
+            <element signature="e#15579#15873#0" expanded="true" />
+            <element signature="e#16224#16240#0" expanded="true" />
+            <element signature="e#18156#18394#0" expanded="true" />
+            <element signature="e#42801#43359#0" expanded="true" />
+            <element signature="e#43749#44400#0" expanded="true" />
           </folding>
         </state>
       </provider>
