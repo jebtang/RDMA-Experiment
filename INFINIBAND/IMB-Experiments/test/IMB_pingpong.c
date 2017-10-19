@@ -136,7 +136,7 @@ Output variables:
     int std;
     MPI_Status stat;
     char debug_array[20];
-	double std_array[ITERATIONS->n_sample];
+	double std_array[1][ITERATIONS->n_sample];
 
 #ifdef CHECK
     defect=0;
@@ -191,21 +191,13 @@ Output variables:
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
 		std_t2 = MPI_Wtime();
-		std_array[i]=(std_t2-std_t1);
+		std_array[0][i]=(std_t2-std_t1);
 
 	} /*for*/
 
 	t2 = MPI_Wtime();
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
-  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
-
-  //checking whether the results are identical
-  for(i=0;i<ITERATIONS->n_sample;i++)
-    std += std_array[i];
-
-  printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, std*pow(10,6)/2);
-
 
 	}
     else if (c_info->rank == c_info->pair1)
@@ -238,21 +230,11 @@ Output variables:
 		     dest, &defect);
 
 		std_t2 = MPI_Wtime();
-		std_array[i]=(std_t2-std_t1);
+		std_array[1][i]=(std_t2-std_t1);
 	} /*for*/
 
 	t2 = MPI_Wtime();
 	*time=(t2 - t1)/ITERATIONS->n_sample;
-
-  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
-
-  //checking whether the results are identical
-  for(i=0;i<ITERATIONS->n_sample;i++)
-    std += std_array[i];
-
-  printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, std*pow(10,6)/2);
-
-
 
 	}
     else
@@ -262,14 +244,14 @@ Output variables:
 
 //	printf("%s: total: %f, ", debug_array, (*time)*pow(10,6)/2);
 
-  // for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
-  //
-	// //checking whether the results are identical
-	// for(i=0;i<ITERATIONS->n_sample;i++)
-	// 	std += std_array[i];
-  //
-	// printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, std*pow(10,6)/2);
-  //
+  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+
+	//checking whether the results are identical
+	for(i=0;i<ITERATIONS->n_sample;i++)
+		std += std_array[0][i];
+
+	printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, std*pow(10,6)/2);
+
 
 
 }
