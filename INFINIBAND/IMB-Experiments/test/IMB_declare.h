@@ -197,6 +197,7 @@ typedef enum {
     MIN = 0,        // Min time by ranks
     MAX,            // Max time by ranks
     AVG,            // Avg time by ranks
+    STD,
     MAX_TIME_METRIC // Metric count
 } Time_Metric;
 
@@ -204,6 +205,7 @@ typedef enum {
     PURE = 0,   // Communication time
     OVRLP,      // Communication + computation time
     COMP,       // Computation time
+    EXT,        // added to increase num
     MAX_TIME_ID // Size of times array
 } Time_Id;
 

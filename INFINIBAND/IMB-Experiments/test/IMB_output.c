@@ -320,7 +320,7 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
     double t_comp     = 0.; 
     double msgrate = 0;
 
-    printf("MAX_TIME_ID: %d  MIN %d  MAX %d  AVG %d\n", MAX_TIME_ID, MIN, MAX, AVG);
+//    printf("MAX_TIME_ID: %d  MIN %d  MAX %d  AVG %d\n", MAX_TIME_ID, MIN, MAX, AVG);
 
     Timing timing[MAX_TIME_ID]; // min, max and avg
 #ifdef CHECK
@@ -560,6 +560,10 @@ void IMB_calculate_times(int ntimes,
 
             // the averages are done by just adding all of them
             timing[AVG].times[time_id] += tlist[offset];
+
+            // testing std
+            timing[STD].times[time_id] +=1;
+
 #ifdef CHECK
             {
 		const size_t check_index = is_group_mode
