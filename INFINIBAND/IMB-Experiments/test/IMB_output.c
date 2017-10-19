@@ -526,9 +526,6 @@ void IMB_calculate_times(int ntimes,
     // CHARA CALCULATE AVG MIN MAX
     // note pure =0 and ntimes =1 in pingpong
 
-    printf("ncount: %d\n", ncount);
-
-    
     for (time_id = PURE; time_id < ntimes; time_id++) 
     {
         times_count = 0;

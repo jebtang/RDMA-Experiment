@@ -125,6 +125,7 @@ void IMB_calculate_times(int ntimes, struct comm_info* c_info, int group_id, dou
   // for pingpong this the PURE is 0 and ntimes is 1
   for (time_id = PURE; time_id < ntimes; time_id++){
 
+      // n count does not reflect the number of repetition in pingpong
       for (i = 0; i < ncount; i++){
 
           // if there is a failed data just skip

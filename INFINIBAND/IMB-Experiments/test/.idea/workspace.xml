@@ -23,17 +23,17 @@
       <file leaf-file-name="IMB_output.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB_output.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="530" column="4" lean-forward="false" selection-start-line="530" selection-start-column="4" selection-end-line="530" selection-end-column="4" />
+            <state relative-caret-position="494">
+              <caret line="528" column="4" lean-forward="false" selection-start-line="528" selection-start-column="4" selection-end-line="528" selection-end-column="4" />
               <folding>
                 <element signature="e#6551#6742#0" expanded="true" />
                 <element signature="e#7104#7241#0" expanded="true" />
                 <element signature="e#8142#8177#0" expanded="true" />
                 <element signature="e#15579#15873#0" expanded="true" />
                 <element signature="e#16224#16240#0" expanded="true" />
-                <element signature="e#18278#18516#0" expanded="true" />
-                <element signature="e#42923#43481#0" expanded="true" />
-                <element signature="e#43871#44522#0" expanded="true" />
+                <element signature="e#18236#18474#0" expanded="true" />
+                <element signature="e#42881#43439#0" expanded="true" />
+                <element signature="e#43829#44480#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -44,6 +44,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
               <caret line="209" column="10" lean-forward="true" selection-start-line="209" selection-start-column="10" selection-end-line="209" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IMB_pingpong.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="534">
+              <caret line="195" column="18" lean-forward="false" selection-start-line="195" selection-start-column="18" selection-end-line="195" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -79,9 +89,10 @@
       <find>timing</find>
       <find>MAX_TIME_ID</find>
       <find>MAX_TIM</find>
-      <find>chara</find>
       <find>'</find>
+      <find>chara</find>
       <find>CHARA</find>
+      <find>n_sample</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -89,8 +100,8 @@
       <list>
         <option value="$PROJECT_DIR$/IMB_comm_info.h" />
         <option value="$PROJECT_DIR$/IMB_mem_manager.c" />
-        <option value="$PROJECT_DIR$/IMB_pingpong.c" />
         <option value="$PROJECT_DIR$/IMB_declare.h" />
+        <option value="$PROJECT_DIR$/IMB_pingpong.c" />
         <option value="$PROJECT_DIR$/IMB_output.c" />
       </list>
     </option>
@@ -163,12 +174,12 @@
       <updated>1508285057291</updated>
       <workItem from="1508285058972" duration="2090000" />
       <workItem from="1508351281012" duration="9454000" />
-      <workItem from="1508436515658" duration="1875000" />
+      <workItem from="1508436515658" duration="2386000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13419000" />
+    <option name="totallyTimeSpent" value="13930000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -257,9 +268,9 @@
             <element signature="e#8142#8177#0" expanded="true" />
             <element signature="e#15579#15873#0" expanded="true" />
             <element signature="e#16224#16240#0" expanded="true" />
-            <element signature="e#18278#18516#0" expanded="true" />
-            <element signature="e#42923#43481#0" expanded="true" />
-            <element signature="e#43871#44522#0" expanded="true" />
+            <element signature="e#18236#18474#0" expanded="true" />
+            <element signature="e#42881#43439#0" expanded="true" />
+            <element signature="e#43829#44480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -337,14 +348,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IMB_prototypes.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="505" column="15" lean-forward="false" selection-start-line="505" selection-start-column="5" selection-end-line="505" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IMB.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5236">
@@ -352,14 +355,6 @@
           <folding>
             <element signature="e#9916#9960#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3740">
-          <caret line="222" column="28" lean-forward="false" selection-start-line="222" selection-start-column="28" selection-end-line="222" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -387,6 +382,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/IMB_gatherv.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMB_prototypes.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="527" column="4" lean-forward="true" selection-start-line="527" selection-start-column="4" selection-end-line="527" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="195" column="18" lean-forward="false" selection-start-line="195" selection-start-column="18" selection-end-line="195" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/IMB_declare.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -397,17 +416,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB_output.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="530" column="4" lean-forward="false" selection-start-line="530" selection-start-column="4" selection-end-line="530" selection-end-column="4" />
+        <state relative-caret-position="494">
+          <caret line="528" column="4" lean-forward="false" selection-start-line="528" selection-start-column="4" selection-end-line="528" selection-end-column="4" />
           <folding>
             <element signature="e#6551#6742#0" expanded="true" />
             <element signature="e#7104#7241#0" expanded="true" />
             <element signature="e#8142#8177#0" expanded="true" />
             <element signature="e#15579#15873#0" expanded="true" />
             <element signature="e#16224#16240#0" expanded="true" />
-            <element signature="e#18278#18516#0" expanded="true" />
-            <element signature="e#42923#43481#0" expanded="true" />
-            <element signature="e#43871#44522#0" expanded="true" />
+            <element signature="e#18236#18474#0" expanded="true" />
+            <element signature="e#42881#43439#0" expanded="true" />
+            <element signature="e#43829#44480#0" expanded="true" />
           </folding>
         </state>
       </provider>

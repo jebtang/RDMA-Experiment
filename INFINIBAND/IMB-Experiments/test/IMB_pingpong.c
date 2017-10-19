@@ -193,7 +193,9 @@ Output variables:
 
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
-    }
+	printf("pair 0 total calculation: %f", time);
+
+	}
     else if (c_info->rank == c_info->pair1)
     {
         strncpy(debug_array, "pair 1", 20);
@@ -225,6 +227,9 @@ Output variables:
 	t2 = MPI_Wtime();
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
+
+	printf("pair 1 total calculation: %f", time);
+
     }
     else
     {
