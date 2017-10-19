@@ -188,7 +188,8 @@ Output variables:
 	}
       t2 = MPI_Wtime();
       
-      *time=(t2 - t1)/ITERATIONS->n_sample;
+      //*time=(t2 - t1)/ITERATIONS->n_sample;
+       *time=(t2 - t1);
 
     }
   else
