@@ -565,8 +565,8 @@ void IMB_calculate_times(int ntimes,
             // the averages are done by just adding all of them
             timing[AVG].times[time_id] += tlist[offset];
 
-            // testing std
-            timing[STD].times[time_id] += tlist[offset];
+            // testing total
+            timing[TOT].times[time_id] += tlist[offset];
 
 #ifdef CHECK
             {

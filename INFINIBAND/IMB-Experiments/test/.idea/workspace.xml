@@ -33,17 +33,17 @@
       <file leaf-file-name="IMB_output.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB_output.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="533" column="16" lean-forward="true" selection-start-line="533" selection-start-column="16" selection-end-line="533" selection-end-column="16" />
+            <state relative-caret-position="530">
+              <caret line="569" column="0" lean-forward="true" selection-start-line="569" selection-start-column="0" selection-end-line="569" selection-end-column="0" />
               <folding>
                 <element signature="e#6551#6742#0" expanded="true" />
                 <element signature="e#7104#7241#0" expanded="true" />
                 <element signature="e#8142#8177#0" expanded="true" />
                 <element signature="e#15579#15873#0" expanded="true" />
                 <element signature="e#16224#16240#0" expanded="true" />
-                <element signature="e#18236#18474#0" expanded="true" />
-                <element signature="e#42883#43441#0" expanded="true" />
-                <element signature="e#43831#44482#0" expanded="true" />
+                <element signature="e#18238#18476#0" expanded="true" />
+                <element signature="e#42885#43443#0" expanded="true" />
+                <element signature="e#43833#44484#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,7 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>IMB_print_header</find>
       <find>IMB_pingpong</find>
       <find>ping</find>
       <find>IMB_init_buffers_iter</find>
@@ -105,6 +104,7 @@
       <find>header</find>
       <find>chara</find>
       <find>STD</find>
+      <find>timing[STD</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -186,12 +186,12 @@
       <updated>1508285057291</updated>
       <workItem from="1508285058972" duration="2090000" />
       <workItem from="1508351281012" duration="9454000" />
-      <workItem from="1508436515658" duration="8875000" />
+      <workItem from="1508436515658" duration="8972000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20419000" />
+    <option name="totallyTimeSpent" value="20516000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -280,9 +280,9 @@
             <element signature="e#8142#8177#0" expanded="true" />
             <element signature="e#15579#15873#0" expanded="true" />
             <element signature="e#16224#16240#0" expanded="true" />
-            <element signature="e#18236#18474#0" expanded="true" />
-            <element signature="e#42883#43441#0" expanded="true" />
-            <element signature="e#43831#44482#0" expanded="true" />
+            <element signature="e#18238#18476#0" expanded="true" />
+            <element signature="e#42885#43443#0" expanded="true" />
+            <element signature="e#43833#44484#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -428,17 +428,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB_output.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="533" column="16" lean-forward="true" selection-start-line="533" selection-start-column="16" selection-end-line="533" selection-end-column="16" />
+        <state relative-caret-position="530">
+          <caret line="569" column="0" lean-forward="true" selection-start-line="569" selection-start-column="0" selection-end-line="569" selection-end-column="0" />
           <folding>
             <element signature="e#6551#6742#0" expanded="true" />
             <element signature="e#7104#7241#0" expanded="true" />
             <element signature="e#8142#8177#0" expanded="true" />
             <element signature="e#15579#15873#0" expanded="true" />
             <element signature="e#16224#16240#0" expanded="true" />
-            <element signature="e#18236#18474#0" expanded="true" />
-            <element signature="e#42883#43441#0" expanded="true" />
-            <element signature="e#43831#44482#0" expanded="true" />
+            <element signature="e#18238#18476#0" expanded="true" />
+            <element signature="e#42885#43443#0" expanded="true" />
+            <element signature="e#43833#44484#0" expanded="true" />
           </folding>
         </state>
       </provider>
