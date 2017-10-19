@@ -116,10 +116,6 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
 
           // pingpong printout
           sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
-
-          // sendrecv printout
-          sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], throughput);
-
         }
 
 
