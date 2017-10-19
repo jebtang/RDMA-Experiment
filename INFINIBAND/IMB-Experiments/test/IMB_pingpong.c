@@ -244,12 +244,12 @@ Output variables:
 
 //	printf("%s: total: %f, ", debug_array, (*time)*pow(10,6)/2);
 
-	double test = 0;
+	double std = 0;
 	//checking whether the results are identical
 	for(i=0;i<ITERATIONS->n_sample;i++)
-		test = std_array[i];
+		std += std_array[i];
 
-	printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, test*pow(10,6)/2);
+	printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, std*pow(10,6)/2);
 
 
 
