@@ -238,6 +238,6 @@ Output variables:
 	*time = 0.;
     }
 
-	printf("%s: total calculation: %f,  n_sample %d\n", debug_array, (*time)*pow(10,6), ITERATIONS->n_sample);
+	printf("%s: total: %f\n", debug_array, (*time)*pow(10,6)/2);
 
 }
