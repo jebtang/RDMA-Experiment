@@ -133,7 +133,7 @@ Output variables:
     int s_num, r_num;
     int s_tag, r_tag;
     int dest, source;
-    int std;
+    double std;
     MPI_Status stat;
     char debug_array[20];
 	double std_array[ITERATIONS->n_sample];
