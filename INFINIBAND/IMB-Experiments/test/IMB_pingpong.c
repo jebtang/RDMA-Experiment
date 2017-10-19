@@ -250,7 +250,12 @@ Output variables:
 
 	} /*for*/
 
+
 	t2 = MPI_Wtime();
+
+	if(ITERATIONS->n_sample==10) {
+		printf("the *time: %f", (t2 - t1));
+	}
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
 	test_std = (t2 - t1)/ITERATIONS->n_sample;
