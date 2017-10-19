@@ -136,7 +136,7 @@ Output variables:
     double std;
     MPI_Status stat;
     char debug_array[20];
-	double std_array[ITERATIONS->n_sample];
+	double std_array[2][ITERATIONS->n_sample];
 
 #ifdef CHECK
     defect=0;
@@ -175,7 +175,6 @@ Output variables:
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
 
-    for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 		std_t1 = MPI_Wtime();
 	    ierr = MPI_Send((char*)c_info->s_buffer+i%ITERATIONS->s_cache_iter*ITERATIONS->s_offs,
 			    s_num,c_info->s_data_type,dest,
@@ -191,10 +190,9 @@ Output variables:
 		     size, size, asize,
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
-		std_t2 = MPI_Wtime();
 
-		std_array[i]=(std_t2-std_t1);
-    for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+		std_t2 = MPI_Wtime();
+		std_array[0][i]=(std_t2-std_t1);
 
 
 	} /*for*/
@@ -214,10 +212,8 @@ Output variables:
 	for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
 	t1 = MPI_Wtime();
-	for(i=0;i<ITERATIONS->n_sample;i++)
-	{
+	for(i=0;i<ITERATIONS->n_sample;i++){
 
-    for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 		std_t1 = MPI_Wtime();
 		ierr = MPI_Recv((char*)c_info->r_buffer+i%ITERATIONS->r_cache_iter*ITERATIONS->r_offs,
 			    r_num,c_info->r_data_type,source,
@@ -235,8 +231,7 @@ Output variables:
 		     dest, &defect);
 
 		std_t2 = MPI_Wtime();
-		std_array[i]=(std_t2-std_t1);
-    for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+		std_array[1][i]=(std_t2-std_t1);
 
 	} /*for*/
 
@@ -251,14 +246,14 @@ Output variables:
 
 //	printf("%s: total: %f, ", debug_array, (*time)*pow(10,6)/2);
 
-  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
-
+  double std_0, std_1 = 0;
 	//checking whether the results are identical
-	for(i=0;i<ITERATIONS->n_sample;i++)
-		std += std_array[i];
+	for(i=0;i<ITERATIONS->n_sample;i++){
+		std_0 += std_array[0][i];
+    std_1 += std_array[1][i];
+  }
 
-	printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, std*pow(10,6)/2);
+	printf("%s: total: %f, std_0: %f std_1: %f\n", debug_array, (*time)*pow(10,6)/2, std_0*pow(10,6)/2, std_1*pow(10,6)/2);
 
-  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
 }
