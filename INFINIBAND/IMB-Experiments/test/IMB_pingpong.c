@@ -206,7 +206,7 @@ Output variables:
 	t2 = MPI_Wtime();
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
-	test_std = t2 - t1)/ITERATIONS->n_sample;
+	test_std = (t2 - t1)/ITERATIONS->n_sample;
 
 	}
     else if (c_info->rank == c_info->pair1)
@@ -244,7 +244,7 @@ Output variables:
 
 	t2 = MPI_Wtime();
 	*time=(t2 - t1)/ITERATIONS->n_sample;
-	test_std = t2 - t1)/ITERATIONS->n_sample;
+	test_std = (t2 - t1)/ITERATIONS->n_sample;
 
 	}
     else
