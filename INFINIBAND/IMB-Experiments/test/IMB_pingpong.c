@@ -175,7 +175,7 @@ Output variables:
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
 
-//		std_t1 = MPI_Wtime();
+		std_t1 = MPI_Wtime();
 	    ierr = MPI_Send((char*)c_info->s_buffer+i%ITERATIONS->s_cache_iter*ITERATIONS->s_offs,
 			    s_num,c_info->s_data_type,dest,
 			    s_tag,c_info->communicator);
@@ -190,7 +190,7 @@ Output variables:
 		     size, size, asize,
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
-//		std_t2 = MPI_Wtime();
+		std_t2 = MPI_Wtime();
 //		std_array[0][i]=(std_t2-std_t1);
 
 	} /*for*/
