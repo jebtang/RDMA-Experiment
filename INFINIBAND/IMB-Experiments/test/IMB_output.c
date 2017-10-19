@@ -429,7 +429,7 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
             // sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
 
             IMB_edit_format(2, 5);
-            sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], throughput, timing[STD].times[PURE]);
+            sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[TOT].times[PURE], timing[AVG].times[PURE], throughput);
             break;
         case OUT_BW_AND_MSG_RATE:
             IMB_edit_format(2, 1);
@@ -997,7 +997,7 @@ void IMB_print_header (int out_format, struct Bench* bmark,
         // line_len += 4;
         // strcat(aux_string,"&#bytes&#repetitions&t[usec]&Mbytes/sec&");
         line_len += 7;
-        strcat(aux_string,"&#bytes&#repetitions&t_min[usec]&t_max[usec]&t_avg[usec]&Mbytes/sec&std[usec]");
+        strcat(aux_string,"&#bytes&#repetitions&t_min[usec]&t_max[usec]&total[usec]&t_avg[usec]&Mbytes/sec");
 
         break;
 
