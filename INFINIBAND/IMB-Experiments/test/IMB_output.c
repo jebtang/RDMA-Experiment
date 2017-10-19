@@ -986,7 +986,7 @@ void IMB_print_header (int out_format, struct Bench* bmark,
     case OUT_TIME_AND_BW:
         // line_len += 4;
         // strcat(aux_string,"&#bytes&#repetitions&t[usec]&Mbytes/sec&");
-        line_len += 8;
+        line_len += 7;
         strcat(aux_string,"&#bytes&#repetitions&t_min[usec]&t_max[usec]&t_avg[usec]&Mbytes/sec&std[usec]");
 
         break;

@@ -75,8 +75,8 @@
       <file leaf-file-name="IMB_output.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB_output.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="429" column="31" lean-forward="true" selection-start-line="429" selection-start-column="31" selection-end-line="429" selection-end-column="31" />
+            <state relative-caret-position="337">
+              <caret line="992" column="0" lean-forward="true" selection-start-line="992" selection-start-column="0" selection-end-line="992" selection-end-column="0" />
               <folding>
                 <element signature="e#6551#6742#0" expanded="true" />
                 <element signature="e#7104#7241#0" expanded="true" />
@@ -115,6 +115,7 @@
       <find>CHARA P</find>
       <find>printf</find>
       <find>chara</find>
+      <find>header</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -194,12 +195,12 @@
       <option name="presentableId" value="Default" />
       <updated>1508285057291</updated>
       <workItem from="1508285058972" duration="2090000" />
-      <workItem from="1508351281012" duration="9215000" />
+      <workItem from="1508351281012" duration="9285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11305000" />
+    <option name="totallyTimeSpent" value="11375000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -371,8 +372,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB_output.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="429" column="31" lean-forward="true" selection-start-line="429" selection-start-column="31" selection-end-line="429" selection-end-column="31" />
+        <state relative-caret-position="337">
+          <caret line="992" column="0" lean-forward="true" selection-start-line="992" selection-start-column="0" selection-end-line="992" selection-end-column="0" />
           <folding>
             <element signature="e#6551#6742#0" expanded="true" />
             <element signature="e#7104#7241#0" expanded="true" />
