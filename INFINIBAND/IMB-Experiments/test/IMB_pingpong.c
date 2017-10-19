@@ -126,7 +126,7 @@ Output variables:
 
 
 {
-    double t1, t2;
+    double t1, t2, std_t1, std_t2;
     int    i;
 
     Type_Size s_size,r_size;
@@ -135,7 +135,7 @@ Output variables:
     int dest, source;
     MPI_Status stat;
     char debug_array[20];
-	double std_array[ITERATIONS->n_sample];
+	double std_array[1][ITERATIONS->n_sample];
 
 #ifdef CHECK
     defect=0;
@@ -174,6 +174,8 @@ Output variables:
 
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
+
+		std_t1 = MPI_Wtime();
 	    ierr = MPI_Send((char*)c_info->s_buffer+i%ITERATIONS->s_cache_iter*ITERATIONS->s_offs,
 			    s_num,c_info->s_data_type,dest,
 			    s_tag,c_info->communicator);
@@ -188,13 +190,14 @@ Output variables:
 		     size, size, asize,
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
+		std_t2 = MPI_Wtime();
+		std_array[0][i]=(std_t2-std_t1);
+
 	} /*for*/
 
 	t2 = MPI_Wtime();
 
-
 	*time=(t2 - t1)/ITERATIONS->n_sample;
-//	printf("pair 0 total calculation: %f\n", *time);
 
 	}
     else if (c_info->rank == c_info->pair1)
@@ -210,7 +213,8 @@ Output variables:
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
 
-	    ierr = MPI_Recv((char*)c_info->r_buffer+i%ITERATIONS->r_cache_iter*ITERATIONS->r_offs,
+		std_t1 = MPI_Wtime();
+		ierr = MPI_Recv((char*)c_info->r_buffer+i%ITERATIONS->r_cache_iter*ITERATIONS->r_offs,
 			    r_num,c_info->r_data_type,source,
 			    r_tag,c_info->communicator,&stat);
 	    MPI_ERRHAND(ierr);
@@ -224,9 +228,12 @@ Output variables:
 		     size, size, asize,
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
-	} /*for*/
-	t2 = MPI_Wtime();
 
+		std_t2 = MPI_Wtime();
+		std_array[1][i]=(std_t2-std_t1);
+	} /*for*/
+
+	t2 = MPI_Wtime();
 	*time=(t2 - t1)/ITERATIONS->n_sample;
 
 
@@ -238,6 +245,14 @@ Output variables:
 	*time = 0.;
     }
 
-	printf("%s: total: %f\n", debug_array, (*time)*pow(10,6)/2);
+	printf("%s: total: %f, ", debug_array, (*time)*pow(10,6)/2);
+
+	double test = 0;
+	//checking whether the results are identical
+	for(i=0;i<ITERATIONS->n_sample;i++)
+		test = std_array[0][i];
+
+	printf("sample: %f\n", test*pow(10,6)/2);
+
 
 }
