@@ -175,6 +175,7 @@ Output variables:
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
 
+    for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 		std_t1 = MPI_Wtime();
 	    ierr = MPI_Send((char*)c_info->s_buffer+i%ITERATIONS->s_cache_iter*ITERATIONS->s_offs,
 			    s_num,c_info->s_data_type,dest,
@@ -191,7 +192,10 @@ Output variables:
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
 		std_t2 = MPI_Wtime();
+
 		std_array[i]=(std_t2-std_t1);
+    for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+
 
 	} /*for*/
 
@@ -213,6 +217,7 @@ Output variables:
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
 
+    for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 		std_t1 = MPI_Wtime();
 		ierr = MPI_Recv((char*)c_info->r_buffer+i%ITERATIONS->r_cache_iter*ITERATIONS->r_offs,
 			    r_num,c_info->r_data_type,source,
@@ -231,6 +236,8 @@ Output variables:
 
 		std_t2 = MPI_Wtime();
 		std_array[i]=(std_t2-std_t1);
+    for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+
 	} /*for*/
 
 	t2 = MPI_Wtime();
