@@ -135,7 +135,7 @@ Output variables:
     int dest, source;
     MPI_Status stat;
     char debug_array[20];
-	double std_array[1][ITERATIONS->n_sample];
+	double std_array[ITERATIONS->n_sample];
 
 #ifdef CHECK
     defect=0;
@@ -191,7 +191,7 @@ Output variables:
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
 		std_t2 = MPI_Wtime();
-		std_array[0][i]=(std_t2-std_t1);
+		std_array[i]=(std_t2-std_t1);
 
 	} /*for*/
 
@@ -213,7 +213,7 @@ Output variables:
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
 
-//		std_t1 = MPI_Wtime();
+		std_t1 = MPI_Wtime();
 		ierr = MPI_Recv((char*)c_info->r_buffer+i%ITERATIONS->r_cache_iter*ITERATIONS->r_offs,
 			    r_num,c_info->r_data_type,source,
 			    r_tag,c_info->communicator,&stat);
@@ -229,8 +229,8 @@ Output variables:
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
 
-//		std_t2 = MPI_Wtime();
-//		std_array[1][i]=(std_t2-std_t1);
+		std_t2 = MPI_Wtime();
+		std_array[i]=(std_t2-std_t1);
 	} /*for*/
 
 	t2 = MPI_Wtime();
@@ -250,7 +250,7 @@ Output variables:
 	double test = 0;
 	//checking whether the results are identical
 	for(i=0;i<ITERATIONS->n_sample;i++)
-		test = std_array[0][i];
+		test = std_array[i];
 
 	printf("sample: %f\n", test*pow(10,6)/2);
 
