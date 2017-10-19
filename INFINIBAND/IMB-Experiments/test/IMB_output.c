@@ -429,7 +429,7 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
             // sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
 
             IMB_edit_format(2, 5);
-            sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[TOT].times[PURE], timing[AVG].times[PURE], throughput);
+            sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], timing[STD].times[PURE], throughput);
             break;
         case OUT_BW_AND_MSG_RATE:
             IMB_edit_format(2, 1);
@@ -532,7 +532,7 @@ void IMB_calculate_times(int ntimes,
         timing[MIN].times[time_id] = DBL_MAX;
 
         // TOT intialize
-        timing[TOT].times[time_id] = 0;
+        // timing[TOT].times[time_id] = 0;
 
         for (i = 0; i < ncount; i++) 
         {
@@ -566,7 +566,7 @@ void IMB_calculate_times(int ntimes,
             timing[AVG].times[time_id] += tlist[offset];
 
             // testing total
-            timing[TOT].times[time_id] += tlist[offset];
+            // timing[TOT].times[time_id] += tlist[offset];
 
 #ifdef CHECK
             {
@@ -578,6 +578,7 @@ void IMB_calculate_times(int ntimes,
 #endif 
         }
         timing[AVG].times[time_id] /= times_count;
+        timing[STD].times[time_id] = chara_std;
     }
 }
 
@@ -997,7 +998,7 @@ void IMB_print_header (int out_format, struct Bench* bmark,
         // line_len += 4;
         // strcat(aux_string,"&#bytes&#repetitions&t[usec]&Mbytes/sec&");
         line_len += 7;
-        strcat(aux_string,"&#bytes&#repetitions&t_min[usec]&t_max[usec]&total[usec]&t_avg[usec]&Mbytes/sec");
+        strcat(aux_string,"&#bytes&#repetitions&t_min[usec]&t_max[usec]&t_avg[usec]&Mbytes/sec&std[usec]");
 
         break;
 

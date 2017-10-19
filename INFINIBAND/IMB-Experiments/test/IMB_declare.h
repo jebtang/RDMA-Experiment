@@ -198,7 +198,7 @@ typedef enum {
     MIN = 0,        // Min time by ranks
     MAX,            // Max time by ranks
     AVG,            // Avg time by ranks
-    TOT,
+    STD,
     MAX_TIME_METRIC // Metric count
 } Time_Metric;
 
