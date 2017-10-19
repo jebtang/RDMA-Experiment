@@ -244,6 +244,8 @@ Output variables:
 
 //	printf("%s: total: %f, ", debug_array, (*time)*pow(10,6)/2);
 
+  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+
 	double std = 0;
 	//checking whether the results are identical
 	for(i=0;i<ITERATIONS->n_sample;i++)
