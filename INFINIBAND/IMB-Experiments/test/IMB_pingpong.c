@@ -205,8 +205,16 @@ Output variables:
 
 	t2 = MPI_Wtime();
 
+  // this place should be safe place since the total number is correct here regardless of the variable initialization
 	*time=(t2 - t1)/ITERATIONS->n_sample;
 	test_std = (t2 - t1)/ITERATIONS->n_sample;
+  double std_0 = 0;
+	//checking whether the results are identical
+	for(i=0;i<ITERATIONS->n_sample;i++){
+		test_std += std_array[0][i];
+  }
+
+  // safe place?
 
 	}
     else if (c_info->rank == c_info->pair1)
@@ -244,7 +252,12 @@ Output variables:
 
 	t2 = MPI_Wtime();
 	*time=(t2 - t1)/ITERATIONS->n_sample;
-	test_std = (t2 - t1)/ITERATIONS->n_sample;
+  double std_0 = 0;
+	//checking whether the results are identical
+	for(i=0;i<ITERATIONS->n_sample;i++){
+		test_std += std_array[0][i];
+  }
+
 
 	}
     else
@@ -253,6 +266,9 @@ Output variables:
     }
 
 //	printf("%s: total: %f, ", debug_array, (*time)*pow(10,6)/2);
+
+
+  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
   double std_0 = 0;
 	//checking whether the results are identical
