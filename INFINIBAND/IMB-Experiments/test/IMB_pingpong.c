@@ -191,7 +191,7 @@ Output variables:
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
 		std_t2 = MPI_Wtime();
-//		std_array[0][i]=(std_t2-std_t1);
+		std_array[0][i]=(std_t2-std_t1);
 
 	} /*for*/
 
