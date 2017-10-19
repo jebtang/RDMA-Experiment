@@ -254,7 +254,7 @@ Output variables:
 	t2 = MPI_Wtime();
 
 	if(ITERATIONS->n_sample==10) {
-		printf("the *time: %f", (t2 - t1));
+		printf("*time: %f\n", (t2 - t1));
 	}
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
