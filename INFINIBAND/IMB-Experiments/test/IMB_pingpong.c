@@ -136,7 +136,12 @@ Output variables:
     double std;
     MPI_Status stat;
     char debug_array[20];
-	double std_array[2][ITERATIONS->n_sample];
+    double std_array[2][ITERATIONS->n_sample];
+
+    for(i=0;i<ITERATIONS->n_sample;i++){
+  		std_array[0][i] = 0;
+      std_array[1][i] = 0;
+    }
 
 #ifdef CHECK
     defect=0;
