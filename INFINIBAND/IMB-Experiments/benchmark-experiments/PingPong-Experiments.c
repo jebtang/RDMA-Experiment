@@ -126,6 +126,7 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
 
 void IMB_calculate_times(int ntimes, struct comm_info* c_info, int group_id, double* tlist, Timing* timing, double* defect){
 
+  // for pingpong this the PURE is 0 and ntimes is 1
   for (time_id = PURE; time_id < ntimes; time_id++){
 
       for (i = 0; i < ncount; i++){
@@ -152,7 +153,7 @@ void IMB_calculate_times(int ntimes, struct comm_info* c_info, int group_id, dou
           timing[AVG].times[time_id] += tlist[offset];
       }
 
-
+      // get the average value of the time
       timing[AVG].times[time_id] /= times_count;
   }
 }

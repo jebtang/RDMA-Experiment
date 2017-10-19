@@ -248,8 +248,6 @@ Input variables:
 
         if (header)
         {
-
-            printf("chara start printing header\n");
             IMB_print_header (out_format, Bmark, c_info, BMODE);
         } 
 
@@ -376,7 +374,7 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
         if (Bmark->RUN_MODES[0].type != ParallelTransferMsgRate) {
             throughput = (Bmark->scale_bw * SCALE * MEGA) * size / timing[MAX].times[PURE];
 
-            printf("CHARA THROUGHPUT: %f\n", throughput);
+//            printf("CHARA THROUGHPUT: %f\n", throughput);
 #ifndef MPIIO
 
         }else
@@ -420,28 +418,28 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
     } 
     else
     {
-        printf("CHARA PRINTING OUT\n");
-        switch (out_format)
-        {
+//        printf("CHARA PRINTING OUT\n");
+        switch (out_format) {
         case OUT_TIME_AND_BW:
-            printf("\tOUT_TIME_AND_BW\n");
-            IMB_edit_format(2, 2);
-            sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
+//          printf("\tOUT_TIME_AND_BW\n");
+            // IMB_edit_format(2, 2);
+            // just switched the pingpong printout into max min avg throughput
+            // sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
+
+            IMB_edit_format(2, 4);
+            sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], throughput);
             break;
         case OUT_BW_AND_MSG_RATE:
-            printf("\tOUT_BW_AND_MSG_RATE\n");
             IMB_edit_format(2, 1);
             offset += sprintf(aux_string + offset, format, size, n_sample, throughput);
             sprintf(&(format[0]),"%%%d.0f",ow_format);
             sprintf(aux_string + offset, format, msgrate);
             break;
         case OUT_TIME_RANGE_AND_BW:
-            printf("\tOUT_TIME_RANGE_AND_BW\n");
             IMB_edit_format(2, 4);
             sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], throughput);
             break;
         case OUT_TIME_RANGE:
-            printf("\tOUT_TIME_RANGE\n");
             IMB_edit_format(2, 3);
             sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE]);
             break;
@@ -515,8 +513,6 @@ void IMB_calculate_times(int ntimes,
     *defect = 0;
 #endif
 
-    // chara is this the place where they calculate the time?
-
     for (i = 0; i < ncount; i++) {
         nproc += c_info->g_sizes[i];
     }
@@ -525,9 +521,8 @@ void IMB_calculate_times(int ntimes,
            ? c_info->g_sizes[group_id]
            : nproc;
 
-    // chara this is the place where they aggregate time
-    printf("IMB_calculate_time ntimes: %d, PURE: %d\n",ntimes, PURE);
-
+    // CHARA CALCULATE AVG MIN MAX
+    // note pure =0 and ntimes =1 in pingpong
     for (time_id = PURE; time_id < ntimes; time_id++) 
     {
         times_count = 0;
