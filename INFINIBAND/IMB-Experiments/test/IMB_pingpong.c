@@ -199,6 +199,19 @@ Output variables:
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
 
+
+	printf("%s: total: %f, ", debug_array, (*time)*pow(10,6)/2);
+
+	double test = 0;
+	//checking whether the results are identical
+	for(i=0;i<ITERATIONS->n_sample;i++)
+		test = std_array[i];
+
+	printf("sample: %f\n", test*pow(10,6)/2);
+
+
+
+
 	}
     else if (c_info->rank == c_info->pair1)
     {
@@ -236,15 +249,6 @@ Output variables:
 	t2 = MPI_Wtime();
 	*time=(t2 - t1)/ITERATIONS->n_sample;
 
-
-//	printf("pair 1 total calculation: %f,  n_sample %d\n", *time, ITERATIONS->n_sample);
-
-    }
-    else
-    {
-	*time = 0.;
-    }
-
 	printf("%s: total: %f, ", debug_array, (*time)*pow(10,6)/2);
 
 	double test = 0;
@@ -254,5 +258,11 @@ Output variables:
 
 	printf("sample: %f\n", test*pow(10,6)/2);
 
+
+	}
+    else
+    {
+	*time = 0.;
+    }
 
 }
