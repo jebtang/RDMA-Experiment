@@ -306,6 +306,7 @@ Return value          (type int)
 #ifdef MPI1
                     C_INFO.select_source = Bmark->select_source;
 #endif
+                    printf("start pingpong? %d\n", iter)
                     Bmark->Benchmark(&C_INFO,size,&ITERATIONS,BMODE,time);
                 }
                 /* >> IMB 3.1  */
