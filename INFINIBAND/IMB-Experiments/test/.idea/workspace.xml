@@ -20,11 +20,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="IMB.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IMB.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="464">
+              <caret line="317" column="28" lean-forward="false" selection-start-line="317" selection-start-column="0" selection-end-line="318" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="IMB_output.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IMB_output.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="536" column="12" lean-forward="true" selection-start-line="536" selection-start-column="12" selection-end-line="536" selection-end-column="12" />
+            <state relative-caret-position="28">
+              <caret line="229" column="24" lean-forward="false" selection-start-line="229" selection-start-column="24" selection-end-line="229" selection-end-column="24" />
               <folding>
                 <element signature="e#6551#6742#0" expanded="true" />
                 <element signature="e#7104#7241#0" expanded="true" />
@@ -42,8 +52,8 @@
       <file leaf-file-name="IMB_declare.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IMB_declare.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="209" column="10" lean-forward="true" selection-start-line="209" selection-start-column="10" selection-end-line="209" selection-end-column="10" />
+            <state relative-caret-position="153">
+              <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -52,9 +62,11 @@
       <file leaf-file-name="IMB_pingpong.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="199" column="5" lean-forward="true" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="662">
+              <caret line="242" column="0" lean-forward="true" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+              <folding>
+                <element signature="e#3190#3214#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,10 +101,10 @@
       <find>MAX_TIME_ID</find>
       <find>MAX_TIM</find>
       <find>'</find>
-      <find>chara</find>
       <find>CHARA</find>
       <find>n_sample</find>
       <find>ncount</find>
+      <find>chara</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -100,8 +112,8 @@
       <list>
         <option value="$PROJECT_DIR$/IMB_comm_info.h" />
         <option value="$PROJECT_DIR$/IMB_mem_manager.c" />
-        <option value="$PROJECT_DIR$/IMB_declare.h" />
         <option value="$PROJECT_DIR$/IMB_output.c" />
+        <option value="$PROJECT_DIR$/IMB_declare.h" />
         <option value="$PROJECT_DIR$/IMB_pingpong.c" />
       </list>
     </option>
@@ -174,12 +186,12 @@
       <updated>1508285057291</updated>
       <workItem from="1508285058972" duration="2090000" />
       <workItem from="1508351281012" duration="9454000" />
-      <workItem from="1508436515658" duration="2609000" />
+      <workItem from="1508436515658" duration="5654000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14153000" />
+    <option name="totallyTimeSpent" value="17198000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -348,16 +360,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IMB.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5236">
-          <caret line="308" column="36" lean-forward="false" selection-start-line="308" selection-start-column="27" selection-end-line="308" selection-end-column="36" />
-          <folding>
-            <element signature="e#9916#9960#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IMB_benchlist.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-390">
@@ -400,16 +402,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB_declare.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="209" column="10" lean-forward="true" selection-start-line="209" selection-start-column="10" selection-end-line="209" selection-end-column="10" />
+        <state relative-caret-position="153">
+          <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB_output.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="536" column="12" lean-forward="true" selection-start-line="536" selection-start-column="12" selection-end-line="536" selection-end-column="12" />
+        <state relative-caret-position="28">
+          <caret line="229" column="24" lean-forward="false" selection-start-line="229" selection-start-column="24" selection-end-line="229" selection-end-column="24" />
           <folding>
             <element signature="e#6551#6742#0" expanded="true" />
             <element signature="e#7104#7241#0" expanded="true" />
@@ -423,11 +425,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/IMB.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="317" column="28" lean-forward="false" selection-start-line="317" selection-start-column="0" selection-end-line="318" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="199" column="5" lean-forward="true" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="662">
+          <caret line="242" column="0" lean-forward="true" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+          <folding>
+            <element signature="e#3190#3214#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

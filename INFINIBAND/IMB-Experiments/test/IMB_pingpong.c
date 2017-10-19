@@ -135,6 +135,7 @@ Output variables:
     int dest, source;
     MPI_Status stat;
     char debug_array[20];
+	double std_array[ITERATIONS->n_sample];
 
 #ifdef CHECK
     defect=0;
@@ -193,7 +194,7 @@ Output variables:
 
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
-	printf("pair 0 total calculation: %f\n", *time);
+//	printf("pair 0 total calculation: %f\n", *time);
 
 	}
     else if (c_info->rank == c_info->pair1)
@@ -228,7 +229,8 @@ Output variables:
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
 
-	printf("pair 1 total calculation: %f\n", *time);
+
+//	printf("pair 1 total calculation: %f,  n_sample %d\n", *time, ITERATIONS->n_sample);
 
     }
     else
@@ -236,7 +238,7 @@ Output variables:
 	*time = 0.;
     }
 
-
-//    printf("%s: ITERATIONS->n_sample: %d\n", debug_array, ITERATIONS->n_sample);
+	printf("\t%s: total calculation: %f,  n_sample %d\n", debug_array, *time, ITERATIONS->n_sample);
+//   	printf("%s: ITERATIONS->n_sample: %d\n", debug_array, ITERATIONS->n_sample);
 
 }
