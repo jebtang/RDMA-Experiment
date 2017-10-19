@@ -310,6 +310,7 @@ Return value          (type int)
                     // there is an synchronization issue
 //                    printf("start pingpong? %d\n", iter);
                     Bmark->Benchmark(&C_INFO,size,&ITERATIONS,BMODE,time);
+                    MPI_Barrier(MPI_COMM_WORLD);
                 }
                 /* >> IMB 3.1  */
 

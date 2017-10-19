@@ -23,8 +23,8 @@
       <file leaf-file-name="IMB.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="304" column="48" lean-forward="false" selection-start-line="304" selection-start-column="48" selection-end-line="304" selection-end-column="48" />
+            <state relative-caret-position="537">
+              <caret line="316" column="68" lean-forward="true" selection-start-line="316" selection-start-column="68" selection-end-line="316" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -193,12 +193,12 @@
       <updated>1508285057291</updated>
       <workItem from="1508285058972" duration="2090000" />
       <workItem from="1508351281012" duration="9454000" />
-      <workItem from="1508436515658" duration="11384000" />
+      <workItem from="1508436515658" duration="11494000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22928000" />
+    <option name="totallyTimeSpent" value="23038000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -453,8 +453,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="304" column="48" lean-forward="false" selection-start-line="304" selection-start-column="48" selection-end-line="304" selection-end-column="48" />
+        <state relative-caret-position="537">
+          <caret line="316" column="68" lean-forward="true" selection-start-line="316" selection-start-column="68" selection-end-line="316" selection-end-column="68" />
           <folding />
         </state>
       </provider>
