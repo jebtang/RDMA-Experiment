@@ -242,6 +242,12 @@ Output variables:
 
 		std_array[0][i]=(MPI_Wtime()-t1);
 
+		if(ITERATIONS->n_sample==10){
+			 printf("std_array[%d] %f\n",i, std_array[0][i]);
+		}
+
+
+
 	} /*for*/
 
 	t2 = MPI_Wtime();
@@ -257,8 +263,7 @@ Output variables:
 
 //	printf("%s: total: %f, ", debug_array, (*time)*pow(10,6)/2);
 
-
-  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+//  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
   double std_0 = 0;
 	//checking whether the results are identical
@@ -271,7 +276,7 @@ Output variables:
 
 	printf("%s: n_sample: %d  total: %f, test_std: %f  std_0: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_0*pow(10,6)/2);
 
-   for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+//   for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
 
 }
