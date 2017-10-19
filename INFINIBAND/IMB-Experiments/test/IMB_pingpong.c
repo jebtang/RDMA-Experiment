@@ -243,7 +243,7 @@ Output variables:
 		std_array[0][i]=(MPI_Wtime()-t1);
 
 		if(ITERATIONS->n_sample==10){
-			 printf("std_array[%d] %f\n",i, std_array[0][i]);
+			 printf("std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
 		}
 
 
