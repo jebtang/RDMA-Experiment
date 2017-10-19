@@ -193,7 +193,7 @@ Output variables:
 
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
-	printf("pair 0 total calculation: %f", time);
+	printf("pair 0 total calculation: %f", *time);
 
 	}
     else if (c_info->rank == c_info->pair1)
@@ -228,7 +228,7 @@ Output variables:
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
 
-	printf("pair 1 total calculation: %f", time);
+	printf("pair 1 total calculation: %f", *time);
 
     }
     else
