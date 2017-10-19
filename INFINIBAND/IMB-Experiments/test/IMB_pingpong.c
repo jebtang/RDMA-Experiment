@@ -261,7 +261,7 @@ Output variables:
     std_1 += std_array[1][i];
   }
 
-	printf("%s: total: %f, test_std: %f  std_0: %f std_1: %f\n", debug_array, (*time)*pow(10,6)/2, (std_test)*pow(10,6)/2, std_0*pow(10,6)/2, std_1*pow(10,6)/2);
+	printf("%s: total: %f, test_std: %f  std_0: %f std_1: %f\n", debug_array, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_0*pow(10,6)/2, std_1*pow(10,6)/2);
 
 
 }
