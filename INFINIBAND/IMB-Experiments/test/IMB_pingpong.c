@@ -230,7 +230,7 @@ Output variables:
 		     dest, &defect);
 
 		std_t2 = MPI_Wtime();
-		std_array[1][i]=(std_t2-std_t1);
+		std_array[0][i]=(std_t2-std_t1);
 	} /*for*/
 
 	t2 = MPI_Wtime();
