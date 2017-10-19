@@ -531,8 +531,8 @@ void IMB_calculate_times(int ntimes,
         times_count = 0;
         timing[MIN].times[time_id] = DBL_MAX;
 
-        // STD intialize
-        timing[STD].times[time_id] = 0;
+        // TOT intialize
+        timing[TOT].times[time_id] = 0;
 
         for (i = 0; i < ncount; i++) 
         {
