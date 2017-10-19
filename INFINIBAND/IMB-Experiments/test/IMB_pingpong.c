@@ -144,6 +144,11 @@ Output variables:
       std_array[1][i] = 0;
     }
 
+
+	MPI_Comm_size(MPI_COMM_WORLD, &size);
+
+
+
 #ifdef CHECK
     defect=0;
 #endif
@@ -244,7 +249,6 @@ Output variables:
 	*time=(t2 - t1)/ITERATIONS->n_sample;
 	test_std = (t2 - t1)/ITERATIONS->n_sample;
 
-
 	}
     else
     {
@@ -260,7 +264,7 @@ Output variables:
 	//checking whether the results are identical
 	for(i=0;i<ITERATIONS->n_sample;i++){
 		std_0 += std_array[0][i];
-  }
+  	}
 
 	printf("%s: total: %f, test_std: %f  std_0: %f\n", debug_array, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_0*pow(10,6)/2);
 

@@ -189,10 +189,16 @@ Output variables:
       t2 = MPI_Wtime();
       
       *time=(t2 - t1)/ITERATIONS->n_sample;
+
     }
   else
     { 
       *time = 0.; 
     }
+
+    printf("total: %f\n", (*time)*pow(10,6)/2);
+
+
+
 }
 
