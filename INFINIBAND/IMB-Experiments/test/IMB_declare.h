@@ -192,6 +192,7 @@ extern double *all_defect;
 
 static int asize = (int) sizeof(assign_type);
 static int ierr;
+static double chara_std = 0;
 
 typedef enum {
     MIN = 0,        // Min time by ranks

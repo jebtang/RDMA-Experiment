@@ -204,10 +204,6 @@ Output variables:
 
       std_array[0][i]=(MPI_Wtime()-s1);
 
-//	if(ITERATIONS->n_sample==10){
-//		printf("pair0 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
-//	}
-
 	} /*for*/
 
 	t2 = MPI_Wtime();
@@ -249,10 +245,6 @@ Output variables:
 
 		std_array[0][i]=(MPI_Wtime()-s1);
 
-//		if(ITERATIONS->n_sample==10){
-//			 printf("pair1 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
-//		}
-
 	} /*for*/
 
 
@@ -282,9 +274,9 @@ Output variables:
   	}
 
 	std_0 /=ITERATIONS->n_sample;
+	chara_std = std_0*pow(10,6)/2;
+	printf("%s: n_sample: %d  total: %f, test_std: %f  std_0: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, chara_std);
 
-
-	printf("%s: n_sample: %d  total: %f, test_std: %f  std_0: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_0*pow(10,6)/2);
 
 //   for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
