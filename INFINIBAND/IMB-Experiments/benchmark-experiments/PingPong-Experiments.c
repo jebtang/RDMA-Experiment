@@ -18,7 +18,7 @@ int main(){
 
 
 
-        // runs the number of diffferent length of message and each number of processes 
+        // runs the number of diffferent length of message and each number of processes
         // pointer function directing to the benchmark
         Bmark->Benchmark(&C_INFO,size,&ITERATIONS,BMODE,time);
         /*
