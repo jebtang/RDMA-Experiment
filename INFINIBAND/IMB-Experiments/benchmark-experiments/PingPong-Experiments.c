@@ -105,6 +105,8 @@ void IMB_output(struct comm_info* c_info, struct Bench* Bmark, MODES BMODE,
 void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_info,
         int group, int n_sample, int size, int out_format){
 
+          IMB_calculate_times(Bmark->Ntimes, c_info, group, tlist, timing);
+
 
           if (timing[MAX].times[PURE] > 0.)
           {
@@ -119,3 +121,38 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
           sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], throughput);
 
         }
+
+
+
+void IMB_calculate_times(int ntimes, struct comm_info* c_info, int group_id, double* tlist, Timing* timing, double* defect){
+
+  for (time_id = PURE; time_id < ntimes; time_id++){
+
+      for (i = 0; i < ncount; i++){
+
+          // if there is a failed data just skip
+          if (tlist[offset] < 0.) {
+              continue;
+          }
+          times_count++;
+
+          // assign the smallest time to MIN
+          if (tlist[offset] < timing[MIN].times[time_id]) {
+              timing[MIN].times[time_id] = tlist[offset];
+              timing[MIN].offset[time_id] = rank;
+          }
+
+          // assign the largest time to MAX
+          if ((tlist[offset] > timing[MAX].times[time_id])) {
+              timing[MAX].times[time_id] = tlist[offset];
+              timing[MAX].offset[time_id] = rank;
+          }
+
+          // add all the time in the average
+          timing[AVG].times[time_id] += tlist[offset];
+      }
+
+
+      timing[AVG].times[time_id] /= times_count;
+  }
+}

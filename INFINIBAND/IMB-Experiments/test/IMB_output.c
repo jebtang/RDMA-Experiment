@@ -525,6 +525,9 @@ void IMB_calculate_times(int ntimes,
            ? c_info->g_sizes[group_id]
            : nproc;
 
+    // chara this is the place where they aggregate time
+    printf("IMB_calculate_time ntimes: %d, PURE: %d\n",ntimes, PURE);
+
     for (time_id = PURE; time_id < ntimes; time_id++) 
     {
         times_count = 0;
@@ -542,16 +545,23 @@ void IMB_calculate_times(int ntimes,
             }
             times_count++;
 
+
+            // tlist[offset] is indeed the time data
+            // it compares and see if there are small ones
             if (tlist[offset] < timing[MIN].times[time_id]) {
                 timing[MIN].times[time_id] = tlist[offset];
                 timing[MIN].offset[time_id] = rank;
             }
 
+            // and then compares if there are bigger ones
+            // and then pub them in
             if ((tlist[offset] > timing[MAX].times[time_id])) {
-                timing[MAX].times[time_id] = tlist[offset];
+                timing[MAX].times[time_id] = tlist[offset]; // this is the time data
                 timing[MAX].offset[time_id] = rank;
             }
 
+
+            // the averages are done by just adding all of them
             timing[AVG].times[time_id] += tlist[offset];
 #ifdef CHECK
             {
