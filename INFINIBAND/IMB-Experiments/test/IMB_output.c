@@ -426,8 +426,8 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
             // just switched the pingpong printout into max min avg throughput
             // sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
 
-            IMB_edit_format(2, 4);
-            sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], throughput);
+            IMB_edit_format(2, 5);
+            sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], throughput, 0);
             break;
         case OUT_BW_AND_MSG_RATE:
             IMB_edit_format(2, 1);
@@ -986,8 +986,8 @@ void IMB_print_header (int out_format, struct Bench* bmark,
     case OUT_TIME_AND_BW:
         // line_len += 4;
         // strcat(aux_string,"&#bytes&#repetitions&t[usec]&Mbytes/sec&");
-        line_len += 6;
-        strcat(aux_string,"&#bytes&#repetitions&t_min[usec]&t_max[usec]&t_avg[usec]&Mbytes/sec&");
+        line_len += 8;
+        strcat(aux_string,"&#bytes&#repetitions&t_min[usec]&t_max[usec]&t_avg[usec]&Mbytes/sec&std[usec]");
 
         break;
 
