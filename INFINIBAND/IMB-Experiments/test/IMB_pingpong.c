@@ -133,6 +133,7 @@ Output variables:
     int s_num, r_num;
     int s_tag, r_tag;
     int dest, source;
+    int std;
     MPI_Status stat;
     char debug_array[20];
 	double std_array[ITERATIONS->n_sample];
@@ -169,9 +170,8 @@ Output variables:
 
 	for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
+
 	t1 = MPI_Wtime();
-
-
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
 
@@ -198,6 +198,14 @@ Output variables:
 	t2 = MPI_Wtime();
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
+  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+
+  //checking whether the results are identical
+  for(i=0;i<ITERATIONS->n_sample;i++)
+    std += std_array[i];
+
+  printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, std*pow(10,6)/2);
+
 
 	}
     else if (c_info->rank == c_info->pair1)
@@ -236,6 +244,16 @@ Output variables:
 	t2 = MPI_Wtime();
 	*time=(t2 - t1)/ITERATIONS->n_sample;
 
+  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+
+  //checking whether the results are identical
+  for(i=0;i<ITERATIONS->n_sample;i++)
+    std += std_array[i];
+
+  printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, std*pow(10,6)/2);
+
+
+
 	}
     else
     {
@@ -244,15 +262,14 @@ Output variables:
 
 //	printf("%s: total: %f, ", debug_array, (*time)*pow(10,6)/2);
 
-  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
-
-	double std = 0;
-	//checking whether the results are identical
-	for(i=0;i<ITERATIONS->n_sample;i++)
-		std += std_array[i];
-
-	printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, std*pow(10,6)/2);
-
+  // for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+  //
+	// //checking whether the results are identical
+	// for(i=0;i<ITERATIONS->n_sample;i++)
+	// 	std += std_array[i];
+  //
+	// printf("%s: total: %f, sample: %f\n", debug_array, (*time)*pow(10,6)/2, std*pow(10,6)/2);
+  //
 
 
 }
