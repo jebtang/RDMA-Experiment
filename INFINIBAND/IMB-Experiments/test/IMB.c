@@ -302,11 +302,13 @@ Return value          (type int)
                 }
 
                 if( !Bmark->sample_failure ) {
+                    MPI_Barrier(MPI_COMM_WORLD);
                     IMB_warm_up  (&C_INFO,Bmark,&ITERATIONS,iter);                    
 #ifdef MPI1
                     C_INFO.select_source = Bmark->select_source;
 #endif
-                    printf("start pingpong? %d\n", iter);
+                    // there is an synchronization issue
+//                    printf("start pingpong? %d\n", iter);
                     Bmark->Benchmark(&C_INFO,size,&ITERATIONS,BMODE,time);
                 }
                 /* >> IMB 3.1  */
