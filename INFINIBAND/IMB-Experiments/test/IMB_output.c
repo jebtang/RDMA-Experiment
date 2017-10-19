@@ -980,11 +980,15 @@ void IMB_print_header (int out_format, struct Bench* bmark,
     }
 
 
+    // CHARA PRINT HEADER
     switch (out_format)
     {
     case OUT_TIME_AND_BW:
-        line_len += 4;
-        strcat(aux_string,"&#bytes&#repetitions&t[usec]&Mbytes/sec&");
+        // line_len += 4;
+        // strcat(aux_string,"&#bytes&#repetitions&t[usec]&Mbytes/sec&");
+        line_len += 6;
+        strcat(aux_string,"&#bytes&#repetitions&t_min[usec]&t_max[usec]&t_avg[usec]&Mbytes/sec&");
+
         break;
 
     case OUT_BW_AND_MSG_RATE:
