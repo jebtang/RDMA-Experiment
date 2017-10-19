@@ -62,8 +62,8 @@
       <file leaf-file-name="IMB_pingpong.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="268" column="104" lean-forward="false" selection-start-line="268" selection-start-column="104" selection-end-line="268" selection-end-column="104" />
+            <state relative-caret-position="665">
+              <caret line="270" column="0" lean-forward="true" selection-start-line="270" selection-start-column="0" selection-end-line="270" selection-end-column="0" />
               <folding>
                 <element signature="e#3190#3214#0" expanded="true" />
                 <element signature="e#4959#4968#0" expanded="true" />
@@ -204,12 +204,12 @@
       <updated>1508285057291</updated>
       <workItem from="1508285058972" duration="2090000" />
       <workItem from="1508351281012" duration="9454000" />
-      <workItem from="1508436515658" duration="13153000" />
+      <workItem from="1508436515658" duration="13342000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24697000" />
+    <option name="totallyTimeSpent" value="24886000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -469,8 +469,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="268" column="104" lean-forward="false" selection-start-line="268" selection-start-column="104" selection-end-line="268" selection-end-column="104" />
+        <state relative-caret-position="665">
+          <caret line="270" column="0" lean-forward="true" selection-start-line="270" selection-start-column="0" selection-end-line="270" selection-end-column="0" />
           <folding>
             <element signature="e#3190#3214#0" expanded="true" />
             <element signature="e#4959#4968#0" expanded="true" />

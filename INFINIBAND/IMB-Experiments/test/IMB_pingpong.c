@@ -266,6 +266,9 @@ Output variables:
 		std_0 += std_array[0][i];
   	}
 
+	std_0 /=ITERATIONS->n_sample;
+
+
 	printf("%s: n_sample: %d  total: %f, test_std: %f  std_0: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_0*pow(10,6)/2);
 
    for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
