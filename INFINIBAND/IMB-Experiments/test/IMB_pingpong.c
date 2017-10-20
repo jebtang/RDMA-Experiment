@@ -290,7 +290,7 @@ Output variables:
   	}
 
 	std_mean /=ITERATIONS->n_sample;
-	std_mean = std_mean*pow(10,6)/2;
+	std_mean = std_mean*pow(10,6);
 
 
 	for(i=0;i<ITERATIONS->n_sample;i++){
@@ -299,8 +299,7 @@ Output variables:
 		std_ele = std_ele * std_ele;
 		std_real+= std_ele;
 	}
-
-
+	//
 	std_real/=ITERATIONS->n_sample;
 	std_real = sqroot(std_real);
 
@@ -311,5 +310,3 @@ Output variables:
 
 
 }
-
-
