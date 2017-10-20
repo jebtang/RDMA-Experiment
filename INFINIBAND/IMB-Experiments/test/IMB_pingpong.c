@@ -275,9 +275,9 @@ Output variables:
 	std_mean = std_mean*pow(10,6)/2;
 
 
-	// for(i=0;i<ITERATIONS->n_sample;i++){
-	//	std_real += pow(((std_array[0][i]*pow(10,6))-std_mean),2);
-	// }
+	for(i=0;i<ITERATIONS->n_sample;i++){
+		std_real += pow(((std_array[0][i]*pow(10,6))-std_mean),2);
+	}
 
 	// std_real/=ITERATIONS->n_sample;
 	// std_real = pow(std_real,0.5);
