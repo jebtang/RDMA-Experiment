@@ -578,8 +578,8 @@ void IMB_calculate_times(int ntimes,
 #endif 
         }
         timing[AVG].times[time_id] /= times_count;
-        timing[STD].times[time_id] = *chara_std;
-//        printf("this is not working? duh!!!! %f\n", chara_std);
+        timing[STD].times[time_id] = 0;
+//      printf("this is not working? duh!!!! %f\n", chara_std);
     }
 }
 
