@@ -565,7 +565,7 @@ void IMB_calculate_times(int ntimes,
             // the averages are done by just adding all of them
             timing[AVG].times[time_id] += tlist[offset];
 
-            printf("almost there %f\n",*chara_std);
+            // printf("almost there %f\n",*chara_std);
             // testing total
             // timing[TOT].times[time_id] += tlist[offset];
 
