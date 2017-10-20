@@ -33,9 +33,11 @@
       <file leaf-file-name="IMB_mem_manager.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IMB_mem_manager.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1980">
-              <caret line="958" column="25" lean-forward="true" selection-start-line="958" selection-start-column="25" selection-end-line="958" selection-end-column="25" />
-              <folding />
+            <state relative-caret-position="145">
+              <caret line="924" column="36" lean-forward="false" selection-start-line="924" selection-start-column="36" selection-end-line="924" selection-end-column="36" />
+              <folding>
+                <element signature="e#4379#4437#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -43,17 +45,17 @@
       <file leaf-file-name="IMB_output.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB_output.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="564">
-              <caret line="582" column="5" lean-forward="true" selection-start-line="582" selection-start-column="5" selection-end-line="582" selection-end-column="5" />
+            <state relative-caret-position="607">
+              <caret line="567" column="39" lean-forward="false" selection-start-line="567" selection-start-column="39" selection-end-line="567" selection-end-column="39" />
               <folding>
                 <element signature="e#6551#6742#0" expanded="true" />
                 <element signature="e#7104#7241#0" expanded="true" />
                 <element signature="e#8142#8177#0" expanded="true" />
                 <element signature="e#15579#15873#0" expanded="true" />
                 <element signature="e#16224#16240#0" expanded="true" />
-                <element signature="e#18241#18479#0" expanded="true" />
-                <element signature="e#42990#43548#0" expanded="true" />
-                <element signature="e#43938#44589#0" expanded="true" />
+                <element signature="e#18292#18530#0" expanded="true" />
+                <element signature="e#43041#43599#0" expanded="true" />
+                <element signature="e#43989#44640#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,9 +98,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>DEFIN</find>
-      <find>define</find>
-      <find>MAX_TIME_ID</find>
       <find>MAX_TIM</find>
       <find>'</find>
       <find>n_sample</find>
@@ -117,7 +116,6 @@
       <find>timing</find>
       <find>TOT</find>
       <find>timing[TOT]</find>
-      <find>chara</find>
       <find>timing[STD]</find>
       <find>st</find>
       <find>Benchmark(</find>
@@ -126,6 +124,10 @@
       <find>Bmark-&gt;Benchmark(c_info,size,I</find>
       <find>std</find>
       <find>timing[std</find>
+      <find>printf</find>
+      <find>ho</find>
+      <find>firsk</find>
+      <find>chara</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -133,11 +135,11 @@
       <list>
         <option value="$PROJECT_DIR$/IMB_comm_info.h" />
         <option value="$PROJECT_DIR$/IMB_pingping.c" />
-        <option value="$PROJECT_DIR$/IMB_mem_manager.c" />
         <option value="$PROJECT_DIR$/IMB.c" />
         <option value="$PROJECT_DIR$/IMB_benchmark.h" />
         <option value="$PROJECT_DIR$/IMB_declare.h" />
         <option value="$PROJECT_DIR$/IMB_pingpong.c" />
+        <option value="$PROJECT_DIR$/IMB_mem_manager.c" />
         <option value="$PROJECT_DIR$/IMB_output.c" />
       </list>
     </option>
@@ -215,12 +217,12 @@
       <updated>1508285057291</updated>
       <workItem from="1508285058972" duration="2090000" />
       <workItem from="1508351281012" duration="9454000" />
-      <workItem from="1508436515658" duration="16695000" />
+      <workItem from="1508436515658" duration="16810000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28239000" />
+    <option name="totallyTimeSpent" value="28354000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -309,9 +311,9 @@
             <element signature="e#8142#8177#0" expanded="true" />
             <element signature="e#15579#15873#0" expanded="true" />
             <element signature="e#16224#16240#0" expanded="true" />
-            <element signature="e#18241#18479#0" expanded="true" />
-            <element signature="e#42990#43548#0" expanded="true" />
-            <element signature="e#43938#44589#0" expanded="true" />
+            <element signature="e#18292#18530#0" expanded="true" />
+            <element signature="e#43041#43599#0" expanded="true" />
+            <element signature="e#43989#44640#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -431,14 +433,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IMB_benchmark.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-93">
-          <caret line="148" column="31" lean-forward="true" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IMB_declare.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
@@ -449,9 +443,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB_mem_manager.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1980">
-          <caret line="958" column="25" lean-forward="true" selection-start-line="958" selection-start-column="25" selection-end-line="958" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="145">
+          <caret line="924" column="36" lean-forward="false" selection-start-line="924" selection-start-column="36" selection-end-line="924" selection-end-column="36" />
+          <folding>
+            <element signature="e#4379#4437#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -466,19 +462,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/IMB_benchmark.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-93">
+          <caret line="148" column="31" lean-forward="true" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/IMB_output.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="582" column="5" lean-forward="true" selection-start-line="582" selection-start-column="5" selection-end-line="582" selection-end-column="5" />
+        <state relative-caret-position="607">
+          <caret line="567" column="39" lean-forward="false" selection-start-line="567" selection-start-column="39" selection-end-line="567" selection-end-column="39" />
           <folding>
             <element signature="e#6551#6742#0" expanded="true" />
             <element signature="e#7104#7241#0" expanded="true" />
             <element signature="e#8142#8177#0" expanded="true" />
             <element signature="e#15579#15873#0" expanded="true" />
             <element signature="e#16224#16240#0" expanded="true" />
-            <element signature="e#18241#18479#0" expanded="true" />
-            <element signature="e#42990#43548#0" expanded="true" />
-            <element signature="e#43938#44589#0" expanded="true" />
+            <element signature="e#18292#18530#0" expanded="true" />
+            <element signature="e#43041#43599#0" expanded="true" />
+            <element signature="e#43989#44640#0" expanded="true" />
           </folding>
         </state>
       </provider>

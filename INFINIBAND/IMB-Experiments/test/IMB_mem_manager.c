@@ -870,7 +870,6 @@ In/out variables:
 #ifdef MPI1
         c_info->select_source = Bmark->select_source;
 #endif
-        printf("howdy\n");
         Bmark->Benchmark(c_info,size,ITERATIONS,BMODE,&time[0]);
         time[1] = time[0];
 
@@ -905,7 +904,6 @@ In/out variables:
 #ifdef MPI1
             c_info->select_source = Bmark->select_source;
 #endif
-            printf("howdy\n");
             Bmark->Benchmark(c_info,size,ITERATIONS,BMODE,&time[0]);
             time[1] = time[0];
 #ifdef MPIIO
@@ -933,6 +931,8 @@ In/out variables:
         if (c_info->n_lens>0 && BMODE->type != Sync) {
             // check monotonicity with msg sizes 
             int i;
+            for (i = 0; i < iter; i++) {
+            for (i = 0; i < iter; i++) {
             for (i = 0; i < iter; i++) {
                 t_sample = ( c_info->msglen[i] < size )
                             ? min(t_sample,ITERATIONS->numiters[i])
