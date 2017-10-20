@@ -214,9 +214,9 @@ Output variables:
 
       std_array[0][i]=(MPI_Wtime()-s1);
 
-		if(ITERATIONS->n_sample==10){
-			 printf("pair0 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
-		}
+//		if(ITERATIONS->n_sample==10){
+//			 printf("pair0 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
+//		}
 
 	} /*for*/
 
