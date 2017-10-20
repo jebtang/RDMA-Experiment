@@ -127,7 +127,7 @@ Output variables:
 
 {
     double t1, t2, s1;
-    int    i;
+    int    i, z=0;
 
     Type_Size s_size,r_size;
     int s_num, r_num;
@@ -263,20 +263,28 @@ Output variables:
 
 //  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
-  double std_0 = 0;
+  double std_mean = 0;
+  double std_real = 0;
 	//checking whether the results are identical
 	for(i=0;i<ITERATIONS->n_sample;i++){
 		std_0 += std_array[0][i];
   	}
 
-	std_0 /=ITERATIONS->n_sample;
-	std_0 = std_0*pow(10,6)/2;
-	chara_std = &std_0;
-	printf("%s: n_sample: %d  total: %f, test_std: %f  std_0: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, *chara_std);
+	std_mean /=ITERATIONS->n_sample;
+	std_mean = std_0*pow(10,6)/2;
 
 
+	for(i=0;i<ITERATIONS->n_sample;i++){
+		std_real += pow(((std_array[0][i]*pow(10,6))-std_mean),2);
+	}
 
-//   for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
+	std_real/=ITERATIONS->n_sample;
+	std_real = sqrt(std_real);
+
+	// printf("%s: n_sample: %d  total: %f, test_std: %f  std_mean: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_mean);
+	printf("%d-%s: n_sample: %d  avg: %f, std_mean: %f std_real: %f\n",z, debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, std_mean, std_real);
+
+	if((++z)==5) z=0;
 
 
 }
