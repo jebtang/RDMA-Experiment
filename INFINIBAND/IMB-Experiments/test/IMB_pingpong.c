@@ -279,7 +279,7 @@ Output variables:
 	for(i=0;i<ITERATIONS->n_sample;i++){
 		std_ele = std_array[0][i]*pow(10,6);
 		std_ele = std_ele-std_mean;
-		// std_ele = pow(std_ele,2);
+		std_ele = pow(std_ele,2);
 		// std_real+= std_ele;
 	}
 
