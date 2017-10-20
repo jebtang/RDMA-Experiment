@@ -291,6 +291,10 @@ Output variables:
 
 	std_mean /=ITERATIONS->n_sample;
 	std_mean = std_mean*pow(10,6)/2;
+	 // if you remove the division 2 the display answer becomes correct
+	 // but it should not be deceived because the time is prolonged due to the print
+	 // the print is between the time interval
+	 // and the print function may effect the time
 
 
 	for(i=0;i<ITERATIONS->n_sample;i++){
