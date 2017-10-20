@@ -955,7 +955,7 @@ In/out variables:
             DBGF_I1("final #samples ",ITERATIONS->n_sample);
         }
 #endif
-    } else { /*if( (ITERATIONS->iter_policy == imode_dynamic) || (ITERATIONS->iter_policy == imode_auto && !root_based) )*/
+     else { /*if( (ITERATIONS->iter_policy == imode_dynamic) || (ITERATIONS->iter_policy == imode_auto && !root_based) )*/
         double time[MAX_TIME_ID];
         Bmark->Benchmark(c_info,size,ITERATIONS,BMODE,&time[0]);
     }
