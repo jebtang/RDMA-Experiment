@@ -871,6 +871,7 @@ In/out variables:
         c_info->select_source = Bmark->select_source;
 #endif
         Bmark->Benchmark(c_info,size,ITERATIONS,BMODE,&time[0]);
+
         time[1] = time[0];
 
 #ifdef MPIIO
@@ -932,8 +933,6 @@ In/out variables:
             // check monotonicity with msg sizes 
             int i;
             for (i = 0; i < iter; i++) {
-            for (i = 0; i < iter; i++) {
-            for (i = 0; i < iter; i++) {
                 t_sample = ( c_info->msglen[i] < size )
                             ? min(t_sample,ITERATIONS->numiters[i])
                             : max(t_sample,ITERATIONS->numiters[i]);
@@ -955,7 +954,7 @@ In/out variables:
             DBGF_I1("final #samples ",ITERATIONS->n_sample);
         }
 #endif
-     else { /*if( (ITERATIONS->iter_policy == imode_dynamic) || (ITERATIONS->iter_policy == imode_auto && !root_based) )*/
+    } else { /*if( (ITERATIONS->iter_policy == imode_dynamic) || (ITERATIONS->iter_policy == imode_auto && !root_based) )*/
         double time[MAX_TIME_ID];
         Bmark->Benchmark(c_info,size,ITERATIONS,BMODE,&time[0]);
     }
