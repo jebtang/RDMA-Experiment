@@ -250,6 +250,10 @@ Output variables:
 
 	t2 = MPI_Wtime();
 
+	if(ITERATIONS->n_sample==10) {
+		printf("*time: %f\n", (t2 - t1));
+	}
+
 	*time=(t2 - t1)/ITERATIONS->n_sample;
 	test_std = (t2 - t1)/ITERATIONS->n_sample;
 
@@ -274,7 +278,7 @@ Output variables:
 	printf("%s: n_sample: %d  total: %f, test_std: %f  std_0: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, chara_std);
 
 
-
+	
 //   for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
 
