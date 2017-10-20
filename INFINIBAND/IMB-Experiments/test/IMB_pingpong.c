@@ -267,11 +267,11 @@ Output variables:
   double std_real = 0;
 	//checking whether the results are identical
 	for(i=0;i<ITERATIONS->n_sample;i++){
-		std_0 += std_array[0][i];
+		std_mean += std_array[0][i];
   	}
 
 	std_mean /=ITERATIONS->n_sample;
-	std_mean = std_0*pow(10,6)/2;
+	std_mean = std_mean*pow(10,6)/2;
 
 
 	for(i=0;i<ITERATIONS->n_sample;i++){
