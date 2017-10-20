@@ -71,7 +71,6 @@ For more documentation than found here, see
 #include "IMB_declare.h"
 #include "IMB_benchmark.h"
 #include "IMB_prototypes.h"
-#include <math.h>
 
 /*************************************************************************/
 
@@ -274,13 +273,13 @@ Output variables:
 	std_mean /=ITERATIONS->n_sample;
 	std_mean = std_mean*pow(10,6)/2;
 
-//
-//	for(i=0;i<ITERATIONS->n_sample;i++){
-//		std_real += pow(((std_array[0][i]*pow(10,6))-std_mean),2);
-//	}
+
+	for(i=0;i<ITERATIONS->n_sample;i++){
+		std_real += pow(((std_array[0][i]*pow(10,6))-std_mean),2);
+	}
 
 	std_real/=ITERATIONS->n_sample;
-	std_real = sqrt(std_real);
+	std_real = pow(std_real,0.5);
 
 	// printf("%s: n_sample: %d  total: %f, test_std: %f  std_mean: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_mean);
 	printf("%d-%s: n_sample: %d  avg: %f, std_mean: %f std_real: %f\n",z, debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, std_mean, std_real);

@@ -85,10 +85,11 @@
       <file leaf-file-name="IMB_pingpong.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="277" column="0" lean-forward="false" selection-start-line="277" selection-start-column="0" selection-end-line="277" selection-end-column="0" />
+            <state relative-caret-position="305">
+              <caret line="267" column="34" lean-forward="false" selection-start-line="267" selection-start-column="34" selection-end-line="267" selection-end-column="34" />
               <folding>
-                <element signature="e#4986#4995#0" expanded="true" />
+                <element signature="e#3190#3214#0" expanded="true" />
+                <element signature="e#4968#4977#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -217,12 +218,12 @@
       <updated>1508285057291</updated>
       <workItem from="1508285058972" duration="2090000" />
       <workItem from="1508351281012" duration="9454000" />
-      <workItem from="1508436515658" duration="18456000" />
+      <workItem from="1508436515658" duration="18522000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30000000" />
+    <option name="totallyTimeSpent" value="30066000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -479,10 +480,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="277" column="0" lean-forward="false" selection-start-line="277" selection-start-column="0" selection-end-line="277" selection-end-column="0" />
+        <state relative-caret-position="305">
+          <caret line="267" column="34" lean-forward="false" selection-start-line="267" selection-start-column="34" selection-end-line="267" selection-end-column="34" />
           <folding>
-            <element signature="e#4986#4995#0" expanded="true" />
+            <element signature="e#3190#3214#0" expanded="true" />
+            <element signature="e#4968#4977#0" expanded="true" />
           </folding>
         </state>
       </provider>
