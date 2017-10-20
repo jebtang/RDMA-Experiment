@@ -14,7 +14,7 @@ contained in above mentioned license.
 Use of the name and trademark "Intel(R) MPI Benchmarks" is allowed ONLY
 within the regulations of the "License for Use of "Intel(R) MPI
 Benchmarks" Name and Trademark" as reproduced in the file
-"use-of-trademark-license.txt" in the "license" subdirectory.
+"use-of-trademark-license.txt" in the "license" subdirectory. 
 
 THE PROGRAM IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED INCLUDING, WITHOUT
@@ -34,7 +34,7 @@ WITHOUT LIMITATION LOST PROFITS), HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OR
 DISTRIBUTION OF THE PROGRAM OR THE EXERCISE OF ANY RIGHTS GRANTED
-HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. 
 
 EXPORT LAWS: THIS LICENSE ADDS NO RESTRICTIONS TO THE EXPORT LAWS OF
 YOUR JURISDICTION. It is licensee's responsibility to comply with any
@@ -50,16 +50,16 @@ goods and services.
 
 For more documentation than found here, see
 
-[1] doc/ReadMe_IMB.txt
+[1] doc/ReadMe_IMB.txt 
 
 [2] Intel (R) MPI Benchmarks
     Users Guide and Methodology Description
-    In
+    In 
     doc/IMB_Users_Guide.pdf
+    
+ File: IMB_pingpong.c 
 
- File: IMB_pingpong.c
-
- Implemented functions:
+ Implemented functions: 
 
  IMB_pingpong;
 
@@ -68,14 +68,17 @@ For more documentation than found here, see
 
 
 
+
 #include "IMB_declare.h"
 #include "IMB_benchmark.h"
+
 #include "IMB_prototypes.h"
+
 
 /*************************************************************************/
 
 /* ===================================================================== */
-/*
+/* 
 IMB 3.1 changes
 July 2007
 Hans-Joachim Plum, Intel GmbH
@@ -88,87 +91,57 @@ Hans-Joachim Plum, Intel GmbH
 */
 /* ===================================================================== */
 
-double sqroot(double square)
-{
-	double root=square/3;
-	int i;
-	if (square <= 0) return 0;
-	for (i=0; i<32; i++)
-		root = (root + square / root) / 2;
-	return root;
-}
-
 
 void IMB_pingpong(struct comm_info* c_info, int size, struct iter_schedule* ITERATIONS,
                   MODES RUN_MODE, double* time)
 /*
 
-
+                      
                       MPI-1 benchmark kernel
                       2 process MPI_Send + MPI_Recv  pair
+                      
 
 
+Input variables: 
 
-Input variables:
-
--c_info               (type struct comm_info*)
+-c_info               (type struct comm_info*)                      
                       Collection of all base data for MPI;
                       see [1] for more information
+                      
 
-
--size                 (type int)
+-size                 (type int)                      
                       Basic message size in bytes
 
--ITERATIONS           (type struct iter_schedule *)
+-ITERATIONS           (type struct iter_schedule *)                      
                       Repetition scheduling
 
--RUN_MODE             (type MODES)
+-RUN_MODE             (type MODES)                      
                       (only MPI-2 case: see [1])
 
 
-Output variables:
+Output variables: 
 
--time                 (type double*)
+-time                 (type double*)                      
                       Timing result per sample
 
 
 */
-
-
 {
-    double t1, t2, s1;
-    int    i, z=0;
+    double t1, t2;
+    int    i;
 
     Type_Size s_size,r_size;
     int s_num, r_num;
     int s_tag, r_tag;
     int dest, source;
-    double test_std;
-
     MPI_Status stat;
-    char debug_array[20];
-    double std_array[2][ITERATIONS->n_sample];
 
-    for(i=0;i<ITERATIONS->n_sample;i++){
-  		std_array[0][i] = 0;
-      std_array[1][i] = 0;
-    }
-
-
-	MPI_Comm_size(MPI_COMM_WORLD, &size);
-
-
-
-#ifdef CHECK
+#ifdef CHECK 
     defect=0;
 #endif
     ierr = 0;
 
-    // chara
-    // each of the nodes are proven run the benchmark files concurrently
-    // printf("this is the file of node2\n")
-
-    /*  GET SIZE OF DATA TYPE */
+    /*  GET SIZE OF DATA TYPE */  
     MPI_Type_size(c_info->s_data_type,&s_size);
     MPI_Type_size(c_info->r_data_type,&r_size);
 
@@ -183,20 +156,15 @@ Output variables:
 
     if (c_info->rank == c_info->pair0)
     {
-        strncpy(debug_array, "pair 0", 20);
-
-        /*  CALCULATE SOURCE AND DESTINATION */
+	/*  CALCULATE SOURCE AND DESTINATION */ 
 	dest = c_info->pair1;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
 
 	for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
-
 	t1 = MPI_Wtime();
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
-
-		s1 = MPI_Wtime();
 	    ierr = MPI_Send((char*)c_info->s_buffer+i%ITERATIONS->s_cache_iter*ITERATIONS->s_offs,
 			    s_num,c_info->s_data_type,dest,
 			    s_tag,c_info->communicator);
@@ -211,38 +179,22 @@ Output variables:
 		     size, size, asize,
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
-
-      std_array[0][i]=(MPI_Wtime()-s1);
-
-//		if(ITERATIONS->n_sample==10){
-//			 printf("pair0 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
-//		}
-
 	} /*for*/
 
 	t2 = MPI_Wtime();
-
-  // this place should be safe place since the total number is correct here regardless of the variable initialization
 	*time=(t2 - t1)/ITERATIONS->n_sample;
-	test_std = (t2 - t1)/ITERATIONS->n_sample;
-
-  // safe place?
-
-	}
+    }
     else if (c_info->rank == c_info->pair1)
     {
-        strncpy(debug_array, "pair 1", 20);
-
-        dest =c_info->pair0 ;
+	dest =c_info->pair0 ;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
 
 	for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
 
 	t1 = MPI_Wtime();
-	for(i=0;i<ITERATIONS->n_sample;i++){
-
-		s1 = MPI_Wtime();
-		ierr = MPI_Recv((char*)c_info->r_buffer+i%ITERATIONS->r_cache_iter*ITERATIONS->r_offs,
+	for(i=0;i<ITERATIONS->n_sample;i++)
+	{
+	    ierr = MPI_Recv((char*)c_info->r_buffer+i%ITERATIONS->r_cache_iter*ITERATIONS->r_offs,
 			    r_num,c_info->r_data_type,source,
 			    r_tag,c_info->communicator,&stat);
 	    MPI_ERRHAND(ierr);
@@ -256,61 +208,15 @@ Output variables:
 		     size, size, asize,
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
-
-		std_array[0][i]=(MPI_Wtime()-s1);
-
-		// if(ITERATIONS->n_sample==10){
-		// 	printf("pair1 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
-		// }
-
 	} /*for*/
-
-
 	t2 = MPI_Wtime();
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
-	test_std = (t2 - t1)/ITERATIONS->n_sample;
-
-	}
-    else
-    {
+    }
+    else 
+    { 
 	*time = 0.;
     }
-
-//	printf("%s: total: %f, ", debug_array, (*time)*pow(10,6)/2);
-
-//  for(i=0; i<N_BARR; i++) MPI_Barrier(c_info->communicator);
-
-  double std_mean = 0;
-  double std_real = 0;
-  double std_ele = 0;
-	//checking whether the results are identical
-	for(i=0;i<ITERATIONS->n_sample;i++){
-		std_mean += std_array[0][i];
-  	}
-
-	std_mean /=ITERATIONS->n_sample;
-	std_mean = std_mean*pow(10,6)/2; // this division two only applies to pingpong
-	 // if you remove the division 2 the display answer becomes correct
-	 // but it should not be deceived because the time is prolonged due to the print
-	 // the print is between the time interval
-	 // and the print function may effect the time
-
-
-	for(i=0;i<ITERATIONS->n_sample;i++){
-		std_ele = std_array[0][i]*pow(10,6)/2; // this division two only applies to pingpong
-		std_ele = std_ele-std_mean;
-		std_ele = std_ele * std_ele;
-		std_real+= std_ele;
-	}
-	//
-	std_real/=ITERATIONS->n_sample;
-	std_real = sqroot(std_real);
-
-	// printf("%s: n_sample: %d  total: %f, test_std: %f  std_mean: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_mean);
-	printf("%d-%s: n_sample: %d  avg: %f, std_mean: %f std_real: %f\n",z, debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, std_mean, std_real);
-
-
-
-
 }
+
+
