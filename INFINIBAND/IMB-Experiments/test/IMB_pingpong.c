@@ -71,7 +71,6 @@ For more documentation than found here, see
 #include "IMB_declare.h"
 #include "IMB_benchmark.h"
 #include "IMB_prototypes.h"
-#include <math.h>
 
 /*************************************************************************/
 
@@ -88,6 +87,16 @@ Hans-Joachim Plum, Intel GmbH
   out-of-cache data
 */
 /* ===================================================================== */
+
+double sqroot(double square)
+{
+	double root=square/3;
+	int i;
+	if (square <= 0) return 0;
+	for (i=0; i<32; i++)
+		root = (root + square / root) / 2;
+	return root;
+}
 
 
 void IMB_pingpong(struct comm_info* c_info, int size, struct iter_schedule* ITERATIONS,
@@ -283,9 +292,9 @@ Output variables:
 		std_real+= std_ele;
 	}
 
-	
+
 	std_real/=ITERATIONS->n_sample;
-	std_real = sqrt(std_real);
+	std_real = sqroot(std_real);
 
 	// printf("%s: n_sample: %d  total: %f, test_std: %f  std_mean: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_mean);
 	printf("%d-%s: n_sample: %d  avg: %f, std_mean: %f std_real: %f\n",z, debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, std_mean, std_real);
@@ -294,3 +303,5 @@ Output variables:
 
 
 }
+
+
