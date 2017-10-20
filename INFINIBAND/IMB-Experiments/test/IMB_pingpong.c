@@ -90,7 +90,7 @@ Hans-Joachim Plum, Intel GmbH
 
 
 void IMB_pingpong(struct comm_info* c_info, int size, struct iter_schedule* ITERATIONS,
-                  MODES RUN_MODE, double* time, double* std)
+                  MODES RUN_MODE, double* time)
 /*
 
 
