@@ -310,7 +310,7 @@ Return value          (type int)
 #endif
 
                     // chara
-                    Bmark->Benchmark(&C_INFO,size,&ITERATIONS,BMODE,time, std);
+                    Bmark->Benchmark(&C_INFO,size,&ITERATIONS,BMODE,time);
                     //MPI_Barrier(MPI_COMM_WORLD);
                 }
                 /* >> IMB 3.1  */
