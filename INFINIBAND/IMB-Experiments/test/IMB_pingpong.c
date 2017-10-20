@@ -214,6 +214,10 @@ Output variables:
 
       std_array[0][i]=(MPI_Wtime()-s1);
 
+		if(ITERATIONS->n_sample==10){
+			 printf("pair0 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
+		}
+
 	} /*for*/
 
 	t2 = MPI_Wtime();
@@ -254,6 +258,10 @@ Output variables:
 		     dest, &defect);
 
 		std_array[0][i]=(MPI_Wtime()-s1);
+
+		if(ITERATIONS->n_sample==10){
+			printf("pair1 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
+		}
 
 	} /*for*/
 
