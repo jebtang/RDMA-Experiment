@@ -127,7 +127,8 @@ Return value          (type int)
     /* >> IMB 3.1  */
     MODES 	BMODE;            
     double  time[MAX_TIME_ID];
-    
+    double  *std;
+
     Type_Size unit_size;
 
 #ifdef USE_MPI_INIT_THREAD
@@ -307,9 +308,9 @@ Return value          (type int)
 #ifdef MPI1
                     C_INFO.select_source = Bmark->select_source;
 #endif
-                    // there is an synchronization issue
-//                    printf("start pingpong? %d\n", iter);
-                    Bmark->Benchmark(&C_INFO,size,&ITERATIONS,BMODE,time);
+
+                    // chara
+                    Bmark->Benchmark(&C_INFO,size,&ITERATIONS,BMODE,time, std);
                     //MPI_Barrier(MPI_COMM_WORLD);
                 }
                 /* >> IMB 3.1  */

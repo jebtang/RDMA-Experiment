@@ -168,7 +168,7 @@ struct Bench
 
     void (*Benchmark)(struct comm_info* c_info,int size,	/* Pointer to function runnning the benchmark */
 /* IMB 3.1 << */
-		      struct iter_schedule* ITERATIONS,MODES RUN_MODE,double* time);
+		      struct iter_schedule* ITERATIONS,MODES RUN_MODE,double* time, double* std);
 /* >> IMB 3.1  */
                               
 
