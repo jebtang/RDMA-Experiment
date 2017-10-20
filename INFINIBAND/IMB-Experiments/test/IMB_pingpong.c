@@ -266,6 +266,7 @@ Output variables:
 
   double std_mean = 0;
   double std_real = 0;
+  double std_ele = 0;
 	//checking whether the results are identical
 	for(i=0;i<ITERATIONS->n_sample;i++){
 		std_mean += std_array[0][i];
@@ -276,8 +277,13 @@ Output variables:
 
 
 	for(i=0;i<ITERATIONS->n_sample;i++){
-		std_real += pow(((std_array[0][i]*pow(10,6))-std_mean),2);
+		std_ele = std_array[0][i]*pow(10,6);
+		std_ele = std_ele-std_mean;
+		std_ele = pow(std_ele,2);
+		std_real+= std_ele;
 	}
+
+
 
 	// std_real/=ITERATIONS->n_sample;
 	// std_real = pow(std_real,0.5);
