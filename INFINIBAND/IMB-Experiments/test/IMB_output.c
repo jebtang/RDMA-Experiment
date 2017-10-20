@@ -320,6 +320,8 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
     double t_comp     = 0.;
     double msgrate = 0;
 
+//    printf("MAX_TIME_ID: %d  MIN %d  MAX %d  AVG %d\n", MAX_TIME_ID, MIN, MAX, AVG);
+
     Timing timing[MAX_TIME_ID]; // min, max and avg
 #ifdef CHECK
     double defect = 0.;
@@ -371,10 +373,13 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
 
     if (timing[MAX].times[PURE] > 0.)
     {
-        if (Bmark->RUN_MODES[0].type != ParallelTransferMsgRate)
+        if (Bmark->RUN_MODES[0].type != ParallelTransferMsgRate) {
             throughput = (Bmark->scale_bw * SCALE * MEGA) * size / timing[MAX].times[PURE];
+
+//            printf("CHARA THROUGHPUT: %f\n", throughput);
 #ifndef MPIIO
-        else
+
+        }else
         {
             peers = c_info->num_procs / 2;
             msgrate = (Bmark->scale_bw * SCALE * MAX_WIN_SIZE * peers) / timing[MAX].times[PURE];
@@ -415,11 +420,16 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
     }
     else
     {
-        switch (out_format)
-        {
+//        printf("CHARA PRINTING OUT\n");
+        switch (out_format) {
         case OUT_TIME_AND_BW:
-            IMB_edit_format(2, 2);
-            sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
+//          printf("\tOUT_TIME_AND_BW\n");
+            // IMB_edit_format(2, 2);
+            // just switched the pingpong printout into max min avg throughput
+            // sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
+
+            IMB_edit_format(2, 4);
+            sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], throughput);
             break;
         case OUT_BW_AND_MSG_RATE:
             IMB_edit_format(2, 1);
@@ -505,7 +515,6 @@ void IMB_calculate_times(int ntimes,
     *defect = 0;
 #endif
 
-
     for (i = 0; i < ncount; i++) {
         nproc += c_info->g_sizes[i];
     }
@@ -514,10 +523,16 @@ void IMB_calculate_times(int ntimes,
            ? c_info->g_sizes[group_id]
            : nproc;
 
+    // CHARA CALCULATE AVG MIN MAX
+    // note pure =0 and ntimes =1 in pingpong
+
     for (time_id = PURE; time_id < ntimes; time_id++)
     {
         times_count = 0;
         timing[MIN].times[time_id] = DBL_MAX;
+
+        // TOT intialize
+        timing[STD].times[time_id] = 0;
 
         for (i = 0; i < ncount; i++)
         {
@@ -531,17 +546,29 @@ void IMB_calculate_times(int ntimes,
             }
             times_count++;
 
+
+            // tlist[offset] is indeed the time data
+            // it compares and see if there are small ones
             if (tlist[offset] < timing[MIN].times[time_id]) {
                 timing[MIN].times[time_id] = tlist[offset];
                 timing[MIN].offset[time_id] = rank;
             }
 
+            // and then compares if there are bigger ones
+            // and then pub them in
             if ((tlist[offset] > timing[MAX].times[time_id])) {
-                timing[MAX].times[time_id] = tlist[offset];
+                timing[MAX].times[time_id] = tlist[offset]; // this is the time data
                 timing[MAX].offset[time_id] = rank;
             }
 
+
+            // the averages are done by just adding all of them
             timing[AVG].times[time_id] += tlist[offset];
+
+            // printf("almost there %f\n",*chara_std);
+            // testing total
+            // timing[TOT].times[time_id] += tlist[offset];
+
 #ifdef CHECK
             {
 		const size_t check_index = is_group_mode
@@ -552,6 +579,8 @@ void IMB_calculate_times(int ntimes,
 #endif
         }
         timing[AVG].times[time_id] /= times_count;
+        timing[STD].times[time_id] = 0;
+//      printf("this is not working? duh!!!! %f\n", chara_std);
     }
 }
 
@@ -964,11 +993,15 @@ void IMB_print_header (int out_format, struct Bench* bmark,
     }
 
 
+    // CHARA PRINT HEADER
     switch (out_format)
     {
     case OUT_TIME_AND_BW:
-        line_len += 4;
-        strcat(aux_string,"&#bytes&#repetitions&t[usec]&Mbytes/sec&");
+        // line_len += 4;
+        // strcat(aux_string,"&#bytes&#repetitions&t[usec]&Mbytes/sec&");
+        line_len += 7;
+        strcat(aux_string,"&#bytes&#repetitions&t_min[usec]&t_max[usec]&t_avg[usec]&Mbytes/sec&std[usec]");
+
         break;
 
     case OUT_BW_AND_MSG_RATE:
