@@ -279,14 +279,13 @@ Output variables:
 	for(i=0;i<ITERATIONS->n_sample;i++){
 		std_ele = std_array[0][i]*pow(10,6);
 		std_ele = std_ele-std_mean;
-		std_ele = pow(std_ele,2);
-		// std_real+= std_ele;
+		std_ele = std_ele * std_ele;
+		std_real+= std_ele;
 	}
 
-
-
-	// std_real/=ITERATIONS->n_sample;
-	// std_real = pow(std_real,0.5);
+	
+	std_real/=ITERATIONS->n_sample;
+	std_real = sqrt(std_real);
 
 	// printf("%s: n_sample: %d  total: %f, test_std: %f  std_mean: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_mean);
 	printf("%d-%s: n_sample: %d  avg: %f, std_mean: %f std_real: %f\n",z, debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, std_mean, std_real);
