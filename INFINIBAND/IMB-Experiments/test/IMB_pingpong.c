@@ -71,6 +71,7 @@ For more documentation than found here, see
 #include "IMB_declare.h"
 #include "IMB_benchmark.h"
 #include "IMB_prototypes.h"
+#include <math.h>
 
 /*************************************************************************/
 
