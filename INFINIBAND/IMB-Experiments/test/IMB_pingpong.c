@@ -270,8 +270,9 @@ Output variables:
   	}
 
 	std_0 /=ITERATIONS->n_sample;
-	chara_std = std_0*pow(10,6)/2;
-	printf("%s: n_sample: %d  total: %f, test_std: %f  std_0: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, chara_std);
+	std_0 = std_0*pow(10,6)/2;
+	chara_std = &std_0;
+	printf("%s: n_sample: %d  total: %f, test_std: %f  std_0: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, *chara_std);
 
 
 
