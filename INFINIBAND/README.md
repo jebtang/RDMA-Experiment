@@ -6,6 +6,8 @@
     - [information of mpi-3 installation](/INFINIBAND/mpi-3_install.md)
     - [information of imb installation](/INFINIBAND/imb_install.md)
     - [benchmark test results](/INFINIBAND/BENCHMARK_RESULTS)
+    - [IMB-Experiemnts of standard deviation](/INFINIBAND/IMB-Experiments/pingpong-std-concept)
+
 
 <br>
 
