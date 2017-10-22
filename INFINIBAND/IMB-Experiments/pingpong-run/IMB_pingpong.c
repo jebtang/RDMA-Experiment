@@ -261,7 +261,7 @@ Output variables:
   	std_real = sqroot(std_real);
 
   	// printf("%s: n_sample: %d  total: %f, test_std: %f  std_mean: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_mean);
-  	printf("%d-%s: n_sample: %d  avg: %f, std_mean: %f std_real: %f\n",z, debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, std_mean, std_real);
+  	printf("%s: n_sample: %d  avg: %f, std_mean: %f std_real: %f\n",debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, std_mean, std_real);
 
 
 }
