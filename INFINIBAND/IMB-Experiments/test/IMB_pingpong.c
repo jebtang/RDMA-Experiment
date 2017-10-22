@@ -259,9 +259,9 @@ Output variables:
 
 		std_array[0][i]=(MPI_Wtime()-s1);
 
-		if(ITERATIONS->n_sample==10){
-			printf("pair1 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
-		}
+		// if(ITERATIONS->n_sample==10){
+		// 	printf("pair1 - std_array[%d] %f\n",i, std_array[0][i]*pow(10,6));
+		// }
 
 	} /*for*/
 
@@ -290,26 +290,27 @@ Output variables:
   	}
 
 	std_mean /=ITERATIONS->n_sample;
-	std_mean = std_mean*pow(10,6)/2;
+	std_mean = std_mean*pow(10,6)/2; // this division two only applies to pingpong
+	 // if you remove the division 2 the display answer becomes correct
+	 // but it should not be deceived because the time is prolonged due to the print
+	 // the print is between the time interval
+	 // and the print function may effect the time
 
 
 	for(i=0;i<ITERATIONS->n_sample;i++){
-		std_ele = std_array[0][i]*pow(10,6);
+		std_ele = std_array[0][i]*pow(10,6)/2; // this division two only applies to pingpong
 		std_ele = std_ele-std_mean;
 		std_ele = std_ele * std_ele;
 		std_real+= std_ele;
 	}
-
-
+	//
 	std_real/=ITERATIONS->n_sample;
 	std_real = sqroot(std_real);
 
 	// printf("%s: n_sample: %d  total: %f, test_std: %f  std_mean: %f\n", debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, (test_std)*pow(10,6)/2, std_mean);
 	printf("%d-%s: n_sample: %d  avg: %f, std_mean: %f std_real: %f\n",z, debug_array, ITERATIONS->n_sample, (*time)*pow(10,6)/2, std_mean, std_real);
 
-	if((++z)==5) z=0;
+
 
 
 }
-
-
