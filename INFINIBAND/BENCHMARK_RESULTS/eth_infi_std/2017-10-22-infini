@@ -1,0 +1,205 @@
+$ mpirun -np 2 --hostfile fiu_infi ./IMB-MPI1 pingpong
+#------------------------------------------------------------
+#    Intel (R) MPI Benchmarks 2018, MPI-1 part
+#------------------------------------------------------------
+# Date                  : Sun Oct 22 16:31:53 2017
+# Machine               : x86_64
+# System                : Linux
+# Release               : 4.4.0-96-generic
+# Version               : #119-Ubuntu SMP Tue Sep 12 14:59:54 UTC 2017
+# MPI Version           : 3.0
+# MPI Thread Environment:
+
+
+# Calling sequence was:
+
+# ./IMB-MPI1 pingpong
+
+# Minimum message length in bytes:   0
+# Maximum message length in bytes:   4194304
+#
+# MPI_Datatype                   :   MPI_BYTE
+# MPI_Datatype for reductions    :   MPI_FLOAT
+# MPI_Op                         :   MPI_SUM
+#
+#
+
+# List of Benchmarks to run:
+
+# PingPong
+pair 0: n_sample: 1  avg: 18.239021, std_mean: 18.119812 std_real: 0.000000
+pair 1: n_sample: 1  avg: 13.113022, std_mean: 12.874603 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 11.053920, std_mean: 11.019111 std_real: 1.106733
+pair 1: n_sample: 1000  avg: 11.049390, std_mean: 11.014700 std_real: 1.130225
+pair 0: n_sample: 2  avg: 12.338161, std_mean: 12.218952 std_real: 1.847744
+pair 1: n_sample: 2  avg: 11.622906, std_mean: 11.622906 std_real: 0.178814
+pair 0: n_sample: 1000  avg: 10.355949, std_mean: 10.325551 std_real: 0.828023
+
+#-pair 1: n_sample: 1000  avg: 10.354757, std_mean: 10.323405 std_real: 0.803157
+--------------------------------------------------
+# Benchmarking PingPong
+# #processes = 2
+#----------------------------pair 1: n_sample: 1  avg: 10.848045, std_mean: 10.609627 std_real: 0.000000
+-----------------------
+       #bytes #repetitions      t[usec]   Mbytes/sec
+            0         1000        10.36         0.00
+pair 0: n_sample: 1  avg: 13.232231, std_mean: 13.232231 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 9.687543, std_mean: 9.663939 std_real: 0.730380
+pair 1: n_sample: 1000  avg: 9.685278, std_mean: 9.659290 std_real: 0.707095
+pair 0: n_sample: 1000  avg: 8.878589, std_mean: 8.856654 std_real: 0.558072
+pair 1: n_sample: 1000  avg: 8.877635, std_mean: 8.853912 std_real: 0.577520
+            1         1000         8.88         0.11
+pair 1: n_sample: 1  avg: 8.702278, std_mean: 8.702278 std_real: 0.000000
+pair 0: n_sample: 1  avg: 13.232231, std_mean: 13.232231 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 8.468986, std_mean: 8.447289 std_real: 0.602493
+pair 1: n_sample: 1000  avg: 8.462191, std_mean: 8.439898 std_real: 0.632805
+pair 0: n_sample: 1000  avg: 8.195758, std_mean: 8.175731 std_real: 0.597346
+pair 1: n_sample: 1000  avg: 8.195639, std_mean: 8.176088 std_real: 0.566045
+            2         1000         8.20         0.24
+pair 1: n_sample: 1  avg: 7.510185, std_mean: 7.510185 std_real: 0.000000
+pair 0: n_sample: 1  avg: 10.609627, std_mean: 10.490417 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 7.911682, std_mean: 7.892728 std_real: 0.550810
+pair 1: n_sample: 1000  avg: 7.912040, std_mean: 7.894158 std_real: 0.519705
+pair 0: n_sample: 1000  avg: 7.583022, std_mean: 7.566214 std_real: 0.609731
+pair 1: n_sample: 1000  avg: 7.584572, std_mean: 7.564545 std_real: 0.613761
+            4         1000         7.58         0.53
+pair 1: n_sample: 1  avg: 7.867813, std_mean: 7.629395 std_real: 0.000000
+pair 0: n_sample: 1  avg: 8.821487, std_mean: 8.702278 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 7.277369, std_mean: 7.261276 std_real: 0.448554
+pair 1: n_sample: 1000  avg: 7.276535, std_mean: 7.260919 std_real: 0.478157
+pair 0: n_sample: 1000  avg: 7.260799, std_mean: 7.243276 std_real: 0.344180
+pair 1: n_sample: 1000  avg: 7.259369, std_mean: 7.239819 std_real: 0.376524
+            8         1000         7.26         1.10
+pair 1: n_sample: 1  avg: 7.271767, std_mean: 7.152557 std_real: 0.000000
+pair 0: n_sample: 1  avg: 7.390976, std_mean: 7.271767 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 7.243633, std_mean: 7.225633 std_real: 0.246658
+pair 1: n_sample: 1000  avg: 7.242799, std_mean: 7.226229 std_real: 0.278656
+pair 0: n_sample: 1000  avg: 7.233977, std_mean: 7.216454 std_real: 0.278264
+pair 1: n_sample: 1000  avg: 7.235646, std_mean: 7.217169 std_real: 0.323500
+           16         1000         7.24         2.21
+pair 1: n_sample: 1  avg: 8.344650, std_mean: 8.344650 std_real: 0.000000
+pair 0: n_sample: 1  avg: 9.179115, std_mean: 9.059906 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 7.957578, std_mean: 7.924199 std_real: 0.320965
+pair 1: n_sample: 1000  avg: 7.955074, std_mean: 7.922769 std_real: 0.275073
+pair 0: n_sample: 1000  avg: 7.968307, std_mean: 7.937312 std_real: 0.293098
+pair 1: n_sample: 1000  avg: 7.969141, std_mean: 7.939100 std_real: 0.223160
+           32         1000         7.97         4.02
+pair 1: n_sample: 1  avg: 7.271767, std_mean: 7.271767 std_real: 0.000000
+pair 0: n_sample: 1  avg: 7.748604, std_mean: 7.748604 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 7.985234, std_mean: 7.949352 std_real: 0.282809
+pair 1: n_sample: 1000  avg: 7.983327, std_mean: 7.952213 std_real: 0.242811
+pair 0: n_sample: 1000  avg: 7.972479, std_mean: 7.940054 std_real: 0.329604
+pair 1: n_sample: 1000  avg: 7.973433, std_mean: 7.939816 std_real: 0.286777
+           64         1000         7.97         8.03
+pair 1: n_sample: 1  avg: 8.821487, std_mean: 8.821487 std_real: 0.000000
+pair 0: n_sample: 1  avg: 10.848045, std_mean: 10.848045 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 8.025885, std_mean: 7.994890 std_real: 0.338387
+pair 1: n_sample: 1000  avg: 8.027673, std_mean: 7.994413 std_real: 0.311046
+pair 0: n_sample: 1000  avg: 8.009195, std_mean: 7.977247 std_real: 0.331163
+pair 1: n_sample: 1000  avg: 8.010149, std_mean: 7.977247 std_real: 0.306469
+          128         1000         8.01        15.98
+pair 1: n_sample: 1  avg: 8.225441, std_mean: 8.225441 std_real: 0.000000
+pair 0: n_sample: 1  avg: 10.967255, std_mean: 10.848045 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 8.038878, std_mean: 8.021832 std_real: 0.334907
+pair 1: n_sample: 1000  avg: 8.036852, std_mean: 8.015990 std_real: 0.341529
+pair 0: n_sample: 1000  avg: 8.033872, std_mean: 8.014917 std_real: 0.301372
+pair 1: n_sample: 1000  avg: 8.035183, std_mean: 8.015156 std_real: 0.325210
+          256         1000         8.04        31.86
+pair 1: n_sample: 1  avg: 8.225441, std_mean: 8.106232 std_real: 0.000000
+pair 0: n_sample: 1  avg: 10.728836, std_mean: 10.728836 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 8.244276, std_mean: 8.227587 std_real: 0.322784
+pair 1: n_sample: 1000  avg: 8.243322, std_mean: 8.225799 std_real: 0.379621
+pair 0: n_sample: 1000  avg: 8.251429, std_mean: 8.234143 std_real: 0.353505
+pair 1: n_sample: 1000  avg: 8.252501, std_mean: 8.233070 std_real: 0.408001
+          512         1000         8.25        62.04
+pair 1: n_sample: 1  avg: 9.894371, std_mean: 9.775162 std_real: 0.000000
+pair 0: n_sample: 1  avg: 13.113022, std_mean: 12.993813 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 10.550857, std_mean: 10.534763 std_real: 0.310714
+pair 1: n_sample: 1000  avg: 10.547280, std_mean: 10.529637 std_real: 0.295407
+pair 0: n_sample: 1000  avg: 10.537386, std_mean: 10.519028 std_real: 0.297603
+pair 1: n_sample: 1000  avg: 10.537028, std_mean: 10.520339 std_real: 0.277120
+         1024         1000        10.54        97.18
+pair 1: n_sample: 1  avg: 11.920929, std_mean: 11.920929 std_real: 0.000000
+pair 0: n_sample: 1  avg: 16.808510, std_mean: 16.808510 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 14.208436, std_mean: 14.191747 std_real: 0.541591
+pair 1: n_sample: 1000  avg: 14.203310, std_mean: 14.183879 std_real: 0.572164
+pair 0: n_sample: 1000  avg: 14.285207, std_mean: 14.264822 std_real: 0.584852
+pair 1: n_sample: 1000  avg: 14.284015, std_mean: 14.264822 std_real: 0.597330
+         2048         1000        14.29       143.37
+pair 1: n_sample: 1  avg: 11.920929, std_mean: 11.801720 std_real: 0.000000
+pair 0: n_sample: 1  avg: 16.927719, std_mean: 16.927719 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 15.450478, std_mean: 15.432119 std_real: 0.493934
+pair 1: n_sample: 1000  avg: 15.445590, std_mean: 15.426517 std_real: 0.544531
+pair 0: n_sample: 1000  avg: 15.643716, std_mean: 15.625477 std_real: 0.631497
+pair 1: n_sample: 1000  avg: 15.639663, std_mean: 15.622139 std_real: 0.629778
+         4096         1000        15.64       261.83
+pair 0: n_sample: 1  avg: 20.742416, std_mean: 20.623207 std_real: 0.000000
+pair 1: n_sample: 1  avg: 13.113022, std_mean: 13.113022 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 18.265009, std_mean: 18.243909 std_real: 0.507660
+pair 1: n_sample: 1000  avg: 18.259168, std_mean: 18.240571 std_real: 0.496358
+pair 0: n_sample: 1000  avg: 18.379927, std_mean: 18.359542 std_real: 0.470067
+         8192         1000        18.38       445.70
+pair 1: n_sample: 1000  avg: 18.374920, std_mean: 18.353939 std_real: 0.484153
+pair 1: n_sample: 1  avg: 19.550323, std_mean: 19.431114 std_real: 0.000000
+pair 0: n_sample: 1  avg: 28.252602, std_mean: 28.252602 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 23.465276, std_mean: 23.442864 std_real: 0.601370
+pair 1: n_sample: 1000  avg: 23.457170, std_mean: 23.437142 std_real: 0.626399
+pair 0: n_sample: 1000  avg: 23.391247, std_mean: 23.368955 std_real: 0.629374
+pair 1: n_sample: 1000  avg: 23.383021, std_mean: 23.364186 std_real: 0.656939
+        16384         1000        23.39       700.43
+pair 1: n_sample: 1  avg: 33.497810, std_mean: 33.378601 std_real: 0.000000
+pair 0: n_sample: 1  avg: 43.630600, std_mean: 43.630600 std_real: 0.000000
+pair 0: n_sample: 1000  avg: 32.263279, std_mean: 32.240987 std_real: 0.719872
+pair 1: n_sample: 1000  avg: 32.253861, std_mean: 32.226682 std_real: 0.704802
+pair 0: n_sample: 1000  avg: 29.162526, std_mean: 29.145479 std_real: 1.705051
+pair 1: n_sample: 1000  avg: 29.152989, std_mean: 29.130459 std_real: 1.695555
+        32768         1000        29.16      1123.63
+pair 1: n_sample: 1  avg: 38.266182, std_mean: 38.146973 std_real: 0.000000
+pair 0: n_sample: 1  avg: 60.081482, std_mean: 60.081482 std_real: 0.000000
+pair 0: n_sample: 640  avg: 45.077316, std_mean: 45.060180 std_real: 1.822205
+pair 1: n_sample: 640  avg: 45.046769, std_mean: 45.025535 std_real: 1.786835
+pair 0: n_sample: 640  avg: 44.438615, std_mean: 44.420175 std_real: 1.244869
+pair 1: n_sample: 640  avg: 44.415891, std_mean: 44.397637 std_real: 1.359287
+        65536          640        44.44      1474.75
+pair 0: n_sample: 1  avg: 111.699104, std_mean: 111.579895 std_real: 0.000000
+pair 1: n_sample: 1  avg: 72.836876, std_mean: 72.836876 std_real: 0.000000
+pair 0: n_sample: 320  avg: 90.741739, std_mean: 90.717152 std_real: 2.677992
+pair 1: n_sample: 320  avg: 90.625137, std_mean: 90.596825 std_real: 2.992010
+pair 0: n_sample: 320  avg: 90.215728, std_mean: 90.195984 std_real: 2.115078
+pair 1: n_sample: 320  avg: 90.126693, std_mean: 90.103224 std_real: 2.131219
+       131072          320        90.22      1452.87
+pair 1: n_sample: 1  avg: 97.751617, std_mean: 97.751617 std_real: 0.000000
+pair 0: n_sample: 1  avg: 156.998634, std_mean: 156.879425 std_real: 0.000000
+pair 1: n_sample: 160  avg: 147.059560, std_mean: 147.032738 std_real: 4.034605
+pair 0: n_sample: 160  avg: 147.344917, std_mean: 147.321820 std_real: 2.956671
+pair 1: n_sample: 160  avg: 146.540999, std_mean: 146.508217 std_real: 4.626565
+pair 0: n_sample: 160  avg: 146.912038, std_mean: 146.890432 std_real: 3.537928
+       262144          160       146.91      1784.36
+pair 1: n_sample: 1  avg: 194.430351, std_mean: 194.311142 std_real: 0.000000
+pair 0: n_sample: 1  avg: 278.830528, std_mean: 278.830528 std_real: 0.000000
+pair 1: n_sample: 80  avg: 257.462263, std_mean: 257.439911 std_real: 7.808978
+pair 0: n_sample: 80  avg: 258.307159, std_mean: 258.275867 std_real: 6.456033
+pair 1: n_sample: 80  avg: 256.918371, std_mean: 256.896019 std_real: 7.595653
+pair 0: n_sample: 80  avg: 257.879496, std_mean: 257.852674 std_real: 5.742900
+       524288           80       257.88      2033.07
+pair 1: n_sample: 1  avg: 420.331955, std_mean: 420.212746 std_real: 0.000000
+pair 0: n_sample: 1  avg: 481.128693, std_mean: 481.128693 std_real: 0.000000
+pair 1: n_sample: 40  avg: 478.735566, std_mean: 478.693843 std_real: 12.402003
+pair 0: n_sample: 40  avg: 480.255485, std_mean: 480.228662 std_real: 7.736166
+pair 1: n_sample: 40  avg: 480.568409, std_mean: 480.541587 std_real: 11.551447
+pair 0: n_sample: 40  avg: 481.775403, std_mean: 481.748581 std_real: 8.008442
+      1048576           40       481.78      2176.48
+pair 1: n_sample: 1  avg: 856.518745, std_mean: 856.399536 std_real: 0.000000
+pair 0: n_sample: 1  avg: 930.905342, std_mean: 930.905342 std_real: 0.000000
+pair 1: n_sample: 20  avg: 925.141573, std_mean: 925.129652 std_real: 18.969209
+pair 0: n_sample: 20  avg: 928.878784, std_mean: 928.854942 std_real: 14.466901
+pair 1: n_sample: 20  avg: 924.235582, std_mean: 924.187899 std_real: 20.473975
+pair 0: n_sample: 20  avg: 928.580761, std_mean: 928.568840 std_real: 11.210770
+      2097152           20       928.58      2258.45
+pair 1: n_sample: 1  avg: 1770.138741, std_mean: 1770.138741 std_real: 0.000000
+pair 0: n_sample: 1  avg: 1834.154129, std_mean: 1834.154129 std_real: 0.000000
+pair 1: n_sample: 10  avg: 1817.452908, std_mean: 1817.429066 std_real: 17.443790
+pair 0: n_sample: 10  avg: 1826.345921, std_mean: 1826.310158 std_real: 22.819772
+pair 1: n_sample: 10  avg: 1814.484596, std_mean: 1814.436913 std_real: 17.565981
+pair 0: n_sample: 10  avg: 1820.862293, std_mean: 1820.802689 std_real: 24.649299
+      4194304           10      1820.86      2303.47

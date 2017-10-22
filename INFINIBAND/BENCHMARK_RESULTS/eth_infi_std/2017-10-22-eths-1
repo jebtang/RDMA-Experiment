@@ -1,0 +1,77 @@
+$ mpirun -np 2 --hostfile fiu_eths ./IMB-MPI1 pingpong
+#------------------------------------------------------------
+#    Intel (R) MPI Benchmarks 2018, MPI-1 part
+#------------------------------------------------------------
+# Date                  : Sun Oct 22 16:34:01 2017
+# Machine               : x86_64
+# System                : Linux
+# Release               : 4.4.0-96-generic
+# Version               : #119-Ubuntu SMP Tue Sep 12 14:59:54 UTC 2017
+# MPI Version           : 3.0
+# MPI Thread Environment:
+
+
+# Calling sequence was:
+
+# ./IMB-MPI1 pingpong
+
+# Minimum message length in bytes:   0
+# Maximum message length in bytes:   4194304
+#
+# MPI_Datatype                   :   MPI_BYTE
+# MPI_Datatype for reductions    :   MPI_FLOAT
+# MPI_Op                         :   MPI_SUM
+#
+#
+
+# List of Benchmarks to run:
+
+# PingPong
+pair 0: n_sample: 1000  avg: 34.312010     std_mean: 34.293294    std_real: 0.705675
+pair 1: n_sample: 1000  avg: 34.307718     std_mean: 34.285665    std_real: 0.711372
+pair 0: n_sample: 1000  avg: 33.764839     std_mean: 33.746481    std_real: 0.359621
+pair 1: n_sample: 1000  avg: 33.749819     std_mean: 33.730745    std_real: 0.589090
+pair 0: n_sample: 1000  avg: 33.782363     std_mean: 33.765912    std_real: 0.366091
+pair 1: n_sample: 1000  avg: 33.767581     std_mean: 33.749938    std_real: 0.574482
+pair 0: n_sample: 1000  avg: 33.769608     std_mean: 33.751130    std_real: 0.357337
+pair 1: n_sample: 1000  avg: 33.764124     std_mean: 33.746839    std_real: 0.397828
+pair 0: n_sample: 1000  avg: 33.792496     std_mean: 33.774853    std_real: 0.398077
+pair 1: n_sample: 1000  avg: 33.780217     std_mean: 33.762336    std_real: 0.550962
+pair 0: n_sample: 1000  avg: 33.083797     std_mean: 33.070207    std_real: 0.777409
+pair 1: n_sample: 1000  avg: 33.076048     std_mean: 33.061504    std_real: 0.752365
+pair 0: n_sample: 1000  avg: 34.205317     std_mean: 34.179926    std_real: 0.422793
+pair 1: n_sample: 1000  avg: 34.192204     std_mean: 34.166574    std_real: 0.550250
+pair 0: n_sample: 1000  avg: 35.393000     std_mean: 35.368204    std_real: 0.356153
+pair 1: n_sample: 1000  avg: 35.377502     std_mean: 35.350800    std_real: 0.578970
+pair 0: n_sample: 1000  avg: 37.678003     std_mean: 37.651896    std_real: 0.475219
+pair 1: n_sample: 1000  avg: 37.670255     std_mean: 37.645817    std_real: 0.460376
+pair 0: n_sample: 1000  avg: 41.819334     std_mean: 41.804910    std_real: 0.472733
+pair 1: n_sample: 1000  avg: 41.803956     std_mean: 41.789412    std_real: 0.693189
+pair 0: n_sample: 1000  avg: 48.834443     std_mean: 48.819542    std_real: 0.433653
+pair 1: n_sample: 1000  avg: 48.801422     std_mean: 48.786521    std_real: 1.094702
+pair 0: n_sample: 1000  avg: 64.742327     std_mean: 64.723969    std_real: 0.749625
+pair 1: n_sample: 1000  avg: 64.708471     std_mean: 64.691663    std_real: 1.196615
+pair 1: n_sample: 1000  avg: 122.349381    std_mean: 122.331262   std_real: 4.423004
+pair 0: n_sample: 1000  avg: 122.392535    std_mean: 122.378111   std_real: 2.983195
+pair 1: n_sample: 1000  avg: 122.752309    std_mean: 122.734785   std_real: 1.894185
+pair 0: n_sample: 1000  avg: 122.785330    std_mean: 122.770429   std_real: 1.580532
+pair 1: n_sample: 1000  avg: 162.158012    std_mean: 162.143826   std_real: 12.183864
+pair 0: n_sample: 1000  avg: 162.219644    std_mean: 162.202477   std_real: 10.300780
+pair 1: n_sample: 1000  avg: 226.823807    std_mean: 226.803064   std_real: 12.160897
+pair 0: n_sample: 1000  avg: 226.915717    std_mean: 226.899862   std_real: 12.369679
+pair 1: n_sample: 1000  avg: 373.694301    std_mean: 373.669982   std_real: 16.190283
+pair 0: n_sample: 1000  avg: 373.893023    std_mean: 373.872757   std_real: 15.432874
+pair 1: n_sample: 640   avg: 658.527017    std_mean: 658.502057   std_real: 17.836204
+pair 0: n_sample: 640   avg: 659.025274    std_mean: 659.003109   std_real: 13.986726
+pair 1: n_sample: 320   avg: 1306.077465   std_mean: 1306.046546  std_real: 38.340730
+pair 0: n_sample: 320   avg: 1307.988539   std_mean: 1307.961717  std_real: 19.875489
+pair 1: n_sample: 160   avg: 2410.553396   std_mean: 2410.516143  std_real: 96.008726
+pair 0: n_sample: 160   avg: 2417.624742   std_mean: 2417.597920  std_real: 23.061765
+pair 1: n_sample: 80    avg: 4656.949639   std_mean: 4656.907916  std_real: 173.330188
+pair 0: n_sample: 80    avg: 4675.114155   std_mean: 4675.076902  std_real: 28.367556
+pair 1: n_sample: 40    avg: 9135.836363   std_mean: 9135.803580  std_real: 199.038440
+pair 0: n_sample: 40    avg: 9167.289734   std_mean: 9167.271852  std_real: 40.847838
+pair 1: n_sample: 20    avg: 18014.103174  std_mean: 18014.049530 std_real: 365.158876
+pair 0: n_sample: 20    avg: 18095.505238  std_mean: 18095.475435 std_real: 26.884649
+pair 1: n_sample: 10    avg: 35774.600506  std_mean: 35774.552822 std_real: 485.288558
+pair 0: n_sample: 10    avg: 35935.568810  std_mean: 35935.544968 std_real: 21.610497
