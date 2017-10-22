@@ -14,7 +14,7 @@ contained in above mentioned license.
 Use of the name and trademark "Intel(R) MPI Benchmarks" is allowed ONLY
 within the regulations of the "License for Use of "Intel(R) MPI
 Benchmarks" Name and Trademark" as reproduced in the file
-"use-of-trademark-license.txt" in the "license" subdirectory. 
+"use-of-trademark-license.txt" in the "license" subdirectory.
 
 THE PROGRAM IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED INCLUDING, WITHOUT
@@ -34,7 +34,7 @@ WITHOUT LIMITATION LOST PROFITS), HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OR
 DISTRIBUTION OF THE PROGRAM OR THE EXERCISE OF ANY RIGHTS GRANTED
-HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. 
+HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 EXPORT LAWS: THIS LICENSE ADDS NO RESTRICTIONS TO THE EXPORT LAWS OF
 YOUR JURISDICTION. It is licensee's responsibility to comply with any
@@ -50,16 +50,16 @@ goods and services.
 
 For more documentation than found here, see
 
-[1] doc/ReadMe_IMB.txt 
+[1] doc/ReadMe_IMB.txt
 
 [2] Intel (R) MPI Benchmarks
     Users Guide and Methodology Description
-    In 
+    In
     doc/IMB_Users_Guide.pdf
-    
- File: IMB_pingpong.c 
 
- Implemented functions: 
+ File: IMB_pingpong.c
+
+ Implemented functions:
 
  IMB_pingpong;
 
@@ -78,7 +78,7 @@ For more documentation than found here, see
 /*************************************************************************/
 
 /* ===================================================================== */
-/* 
+/*
 IMB 3.1 changes
 July 2007
 Hans-Joachim Plum, Intel GmbH
@@ -96,32 +96,32 @@ void IMB_pingpong(struct comm_info* c_info, int size, struct iter_schedule* ITER
                   MODES RUN_MODE, double* time)
 /*
 
-                      
+
                       MPI-1 benchmark kernel
                       2 process MPI_Send + MPI_Recv  pair
-                      
 
 
-Input variables: 
 
--c_info               (type struct comm_info*)                      
+Input variables:
+
+-c_info               (type struct comm_info*)
                       Collection of all base data for MPI;
                       see [1] for more information
-                      
 
--size                 (type int)                      
+
+-size                 (type int)
                       Basic message size in bytes
 
--ITERATIONS           (type struct iter_schedule *)                      
+-ITERATIONS           (type struct iter_schedule *)
                       Repetition scheduling
 
--RUN_MODE             (type MODES)                      
+-RUN_MODE             (type MODES)
                       (only MPI-2 case: see [1])
 
 
-Output variables: 
+Output variables:
 
--time                 (type double*)                      
+-time                 (type double*)
                       Timing result per sample
 
 
@@ -136,12 +136,19 @@ Output variables:
     int dest, source;
     MPI_Status stat;
 
-#ifdef CHECK 
+    double std_array[2][ITERATIONS->n_sample];
+    for(i=0;i<ITERATIONS->n_sample;i++){
+  		std_array[0][i] = 0;
+      std_array[1][i] = 0;
+    }
+
+
+#ifdef CHECK
     defect=0;
 #endif
     ierr = 0;
 
-    /*  GET SIZE OF DATA TYPE */  
+    /*  GET SIZE OF DATA TYPE */
     MPI_Type_size(c_info->s_data_type,&s_size);
     MPI_Type_size(c_info->r_data_type,&r_size);
 
@@ -156,7 +163,7 @@ Output variables:
 
     if (c_info->rank == c_info->pair0)
     {
-	/*  CALCULATE SOURCE AND DESTINATION */ 
+	/*  CALCULATE SOURCE AND DESTINATION */
 	dest = c_info->pair1;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
 
@@ -213,10 +220,8 @@ Output variables:
 
 	*time=(t2 - t1)/ITERATIONS->n_sample;
     }
-    else 
-    { 
+    else
+    {
 	*time = 0.;
     }
 }
-
-
