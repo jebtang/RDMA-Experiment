@@ -214,7 +214,7 @@ Output variables:
     else if (c_info->rank == c_info->pair1)
     {
 
-      strncpy(debug_array, "pair 0", 20);
+      strncpy(debug_array, "pair 1", 20);
 
 	dest =c_info->pair0 ;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
