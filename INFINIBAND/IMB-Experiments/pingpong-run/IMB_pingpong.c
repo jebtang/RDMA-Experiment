@@ -172,7 +172,8 @@ Output variables:
 	t1 = MPI_Wtime();
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
-	    ierr = MPI_Send((char*)c_info->s_buffer+i%ITERATIONS->s_cache_iter*ITERATIONS->s_offs,
+      s1 = MPI_Wtime();
+      ierr = MPI_Send((char*)c_info->s_buffer+i%ITERATIONS->s_cache_iter*ITERATIONS->s_offs,
 			    s_num,c_info->s_data_type,dest,
 			    s_tag,c_info->communicator);
 	    MPI_ERRHAND(ierr);
@@ -186,10 +187,14 @@ Output variables:
 		     size, size, asize,
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
+
+      std_array[0][i]=(MPI_Wtime()-s1);
+
 	} /*for*/
 
 	t2 = MPI_Wtime();
 	*time=(t2 - t1)/ITERATIONS->n_sample;
+
     }
     else if (c_info->rank == c_info->pair1)
     {
