@@ -127,7 +127,7 @@ Output variables:
 
 */
 {
-    double t1, t2;
+    double t1, t2, s1;
     int    i;
 
     Type_Size s_size,r_size;
@@ -206,6 +206,7 @@ Output variables:
 	t1 = MPI_Wtime();
 	for(i=0;i<ITERATIONS->n_sample;i++)
 	{
+      s1 = MPI_Wtime();
 	    ierr = MPI_Recv((char*)c_info->r_buffer+i%ITERATIONS->r_cache_iter*ITERATIONS->r_offs,
 			    r_num,c_info->r_data_type,source,
 			    r_tag,c_info->communicator,&stat);
@@ -220,6 +221,7 @@ Output variables:
 		     size, size, asize,
 		     put, 0, ITERATIONS->n_sample, i,
 		     dest, &defect);
+      std_array[0][i]=(MPI_Wtime()-s1);
 	} /*for*/
 	t2 = MPI_Wtime();
 
