@@ -147,6 +147,7 @@ Output variables:
     int dest, source;
     MPI_Status stat;
 
+    char debug_array[20];
     double std_array[2][ITERATIONS->n_sample];
     for(i=0;i<ITERATIONS->n_sample;i++){
   		std_array[0][i] = 0;
@@ -174,6 +175,9 @@ Output variables:
 
     if (c_info->rank == c_info->pair0)
     {
+
+      strncpy(debug_array, "pair 0", 20);
+
 	/*  CALCULATE SOURCE AND DESTINATION */
 	dest = c_info->pair1;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
@@ -209,6 +213,9 @@ Output variables:
     }
     else if (c_info->rank == c_info->pair1)
     {
+
+      strncpy(debug_array, "pair 0", 20);
+
 	dest =c_info->pair0 ;
 	source = c_info->select_source ? dest : MPI_ANY_SOURCE;
 

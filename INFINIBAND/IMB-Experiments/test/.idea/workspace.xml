@@ -73,8 +73,8 @@
       <file leaf-file-name="IMB_pingpong.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="98" selection-end-column="1" />
+            <state relative-caret-position="-703">
+              <caret line="185" column="23" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
               <folding>
                 <element signature="e#3190#3214#0" expanded="true" />
                 <element signature="e#5134#5143#0" expanded="true" />
@@ -97,7 +97,6 @@
       <find>std_time</find>
       <find>MPI_Wait</find>
       <find>request</find>
-      <find>debug_array</find>
       <find>t1</find>
       <find>timing</find>
       <find>TOT</find>
@@ -117,6 +116,7 @@
       <find>z</find>
       <find>z=</find>
       <find>sqroot</find>
+      <find>debug_array</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -207,12 +207,12 @@
       <workItem from="1508285058972" duration="2090000" />
       <workItem from="1508351281012" duration="9454000" />
       <workItem from="1508436515658" duration="19818000" />
-      <workItem from="1508699287311" duration="1217000" />
+      <workItem from="1508699287311" duration="1328000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32579000" />
+    <option name="totallyTimeSpent" value="32690000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -489,8 +489,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IMB_pingpong.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="98" selection-end-column="1" />
+        <state relative-caret-position="-703">
+          <caret line="185" column="23" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
           <folding>
             <element signature="e#3190#3214#0" expanded="true" />
             <element signature="e#5134#5143#0" expanded="true" />
