@@ -14,7 +14,7 @@ contained in above mentioned license.
 Use of the name and trademark "Intel(R) MPI Benchmarks" is allowed ONLY
 within the regulations of the "License for Use of "Intel(R) MPI
 Benchmarks" Name and Trademark" as reproduced in the file
-"use-of-trademark-license.txt" in the "license" subdirectory.
+"use-of-trademark-license.txt" in the "license" subdirectory. 
 
 THE PROGRAM IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED INCLUDING, WITHOUT
@@ -34,7 +34,7 @@ WITHOUT LIMITATION LOST PROFITS), HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OR
 DISTRIBUTION OF THE PROGRAM OR THE EXERCISE OF ANY RIGHTS GRANTED
-HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. 
 
 EXPORT LAWS: THIS LICENSE ADDS NO RESTRICTIONS TO THE EXPORT LAWS OF
 YOUR JURISDICTION. It is licensee's responsibility to comply with any
@@ -50,16 +50,16 @@ goods and services.
 
 For more documentation than found here, see
 
-[1] doc/ReadMe_IMB.txt
+[1] doc/ReadMe_IMB.txt 
 
 [2] Intel (R) MPI Benchmarks
     Users Guide and Methodology Description
-    In
+    In 
     doc/IMB_Users_Guide.pdf
+    
+ File: IMB_output.c 
 
- File: IMB_output.c
-
- Implemented functions:
+ Implemented functions: 
 
  IMB_output;
  IMB_display_times;
@@ -94,22 +94,22 @@ enum output_format
     /* print msg size, number of iterations, bandwidth and msg rate */
     OUT_BW_AND_MSG_RATE,
 
-    /* print msg size, number of iterations,
+    /* print msg size, number of iterations, 
      * min, max and avrg times (among all ranks) and bandwidth */
-    OUT_TIME_RANGE_AND_BW,
-
-    /* print msg size, number of iterations
+    OUT_TIME_RANGE_AND_BW,     
+    
+    /* print msg size, number of iterations 
      * min, max and avrg times (among all ranks) */
-    OUT_TIME_RANGE,
-
+    OUT_TIME_RANGE,         
+    
     /* print pure communication time, total time, computation time and
        the overlap of computation and communication (in %-s) */
-    OUT_OVERLAP,
+    OUT_OVERLAP,  
 
-    /* It is used for operations where msg size is not relevant
+    /* It is used for operations where msg size is not relevant 
      * (for instance Barrier, Ibarrier). The format may differ for
      * different benchmarks, and msg size is not printed. */
-    OUT_SYNC
+    OUT_SYNC               
 };
 
 
@@ -121,7 +121,7 @@ enum output_format
 /*
 Introduce new ITERATIONS object
 */
-void IMB_output(struct comm_info* c_info, struct Bench* Bmark, MODES BMODE,
+void IMB_output(struct comm_info* c_info, struct Bench* Bmark, MODES BMODE, 
                 int header, int size, struct iter_schedule* ITERATIONS,
                 double *time)
 /* >> IMB 3.1  */
@@ -129,41 +129,41 @@ void IMB_output(struct comm_info* c_info, struct Bench* Bmark, MODES BMODE,
 
 
 
-Input variables:
+Input variables: 
 
--c_info               (type struct comm_info*)
+-c_info               (type struct comm_info*)                      
                       Collection of all base data for MPI;
                       see [1] for more information
+                      
 
-
--Bmark                (type struct Bench*)
+-Bmark                (type struct Bench*)                      
                       (For explanation of struct Bench type:
                       describes all aspects of modes of a benchmark;
                       see [1] for more information)
-
+                      
                       The actual benchmark
+                      
 
-
--BMODE                (type MODES)
+-BMODE                (type MODES)                      
                       The actual benchmark mode (if relevant; only MPI-2 case, see [1])
+                      
 
-
--header               (type int)
+-header               (type int)                      
                       1/0 for do/don't print table headers
+                      
 
-
--size                 (type int)
+-size                 (type int)                      
                       Benchmark message size
+                      
 
-
--ITERATIONS           (type struct iter_schedule)
+-ITERATIONS           (type struct iter_schedule)                      
                       Benchmark repetition descr. object
+                      
 
-
--time                 (type double *)
+-time                 (type double *)                      
                       Benchmark timing outcome
                       3 numbers (min/max/average)
-
+                      
 
 
 */
@@ -191,11 +191,11 @@ Input variables:
           all_defect = (double*)IMB_v_alloc(c_info->w_num_procs * sizeof(double), "Output 1");
           for(i=0; i<c_info->w_num_procs; i++) all_defect[i]=0.;
       }
-#endif
+#endif   
     } /*if (DO_OUT)*/
 
     /* Scale the timings */
-    for(i=0; i < Bmark->Ntimes; i++)
+    for(i=0; i < Bmark->Ntimes; i++) 
     {
         scaled_time[i] = time[i] * SCALE * Bmark->scale_time;
     }
@@ -204,44 +204,44 @@ Input variables:
     ierr=MPI_Gather(scaled_time,Bmark->Ntimes,MPI_DOUBLE,all_times,Bmark->Ntimes,MPI_DOUBLE,0,MPI_COMM_WORLD);
     MPI_ERRHAND(ierr);
 
-#ifdef CHECK
-    /* collect all defects */
+#ifdef CHECK      
+    /* collect all defects */     
     ierr=MPI_Gather(&defect,1,MPI_DOUBLE,all_defect,1,MPI_DOUBLE,0,MPI_COMM_WORLD);
     MPI_ERRHAND(ierr);
 #endif
 
-    if( DO_OUT )
+    if( DO_OUT ) 
     {
         BTYPES type= Bmark->RUN_MODES[0].type;
         const int n_groups = GROUP_OUT ? c_info->n_groups : 1;
 
-        if ( Bmark->RUN_MODES[0].NONBLOCKING && type != Sync)
+        if ( Bmark->RUN_MODES[0].NONBLOCKING && type != Sync) 
         {
             out_format = OUT_OVERLAP;
-        }
-        else if ( (type == SingleTransfer && c_info->group_mode != 0) ||
-                   type == MultPassiveTransfer ||
-                   (type == SingleElementTransfer && c_info->group_mode != 0) )
+        } 
+        else if ( (type == SingleTransfer && c_info->group_mode != 0) || 
+                   type == MultPassiveTransfer || 
+                   (type == SingleElementTransfer && c_info->group_mode != 0) ) 
         {
             out_format = OUT_TIME_AND_BW;
-        }
-        else if ( type == ParallelTransfer || type == SingleTransfer || type == SingleElementTransfer)
+        } 
+        else if ( type == ParallelTransfer || type == SingleTransfer || type == SingleElementTransfer) 
         {
             out_format = OUT_TIME_RANGE_AND_BW;
-        }
-        else if ( type == ParallelTransferMsgRate )
+        } 
+        else if ( type == ParallelTransferMsgRate ) 
         {
             out_format = OUT_BW_AND_MSG_RATE;
         }
-        else if (type == Collective )
+        else if (type == Collective ) 
         {
 #ifdef MPIIO
             out_format = OUT_TIME_RANGE_AND_BW;
 #else
             out_format = OUT_TIME_RANGE;
 #endif
-        }
-        else
+        } 
+        else 
         {
             out_format = OUT_SYNC;
         }
@@ -249,7 +249,7 @@ Input variables:
         if (header)
         {
             IMB_print_header (out_format, Bmark, c_info, BMODE);
-        }
+        } 
 
         if( GROUP_OUT )
         {
@@ -259,21 +259,21 @@ Input variables:
         for(i_gr = 0; i_gr < n_groups; i_gr++)
         {
             IMB_display_times(Bmark, all_times, c_info, i_gr, ITERATIONS->n_sample, size, out_format);
-        }
+        } 
     } /*if( DO_OUT )*/
 }
 
 
 /*****************************************************************/
-void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_info,
+void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_info, 
         int group, int n_sample, int size, int out_format)
 /*
 
 
 
-   Input variables:
+   Input variables: 
 
-   -Bmark                (type struct Bench*)
+   -Bmark                (type struct Bench*)                      
    (For explanation of struct Bench type:
    describes all aspects of modes of a benchmark;
    see [1] for more information)
@@ -281,29 +281,29 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
    The actual benchmark
 
 
-   -tlist                (type double*)
+   -tlist                (type double*)                      
    Benchmark timing outcome
    3 numbers (min/max/average)
 
 
-   -c_info               (type struct comm_info*)
+   -c_info               (type struct comm_info*)                      
    Collection of all base data for MPI;
    see [1] for more information
 
 
-   -group                (type int)
+   -group                (type int)                      
    Index of group to be displayed (multi-case only)
 
 
-   -n_sample             (type int)
+   -n_sample             (type int)                      
    Benchmark repetition number
 
 
-   -size                 (type int)
+   -size                 (type int)                      
    Benchmark message size
 
 
-   -out_format            (type int)
+   -out_format            (type int)                      
    Code for table formatting details
 
 
@@ -317,10 +317,8 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
     double overlap    = 0.;
     double t_pure     = 0.;
     double t_ovrlp    = 0.;
-    double t_comp     = 0.;
+    double t_comp     = 0.; 
     double msgrate = 0;
-
-//    printf("MAX_TIME_ID: %d  MIN %d  MAX %d  AVG %d\n", MAX_TIME_ID, MIN, MAX, AVG);
 
     Timing timing[MAX_TIME_ID]; // min, max and avg
 #ifdef CHECK
@@ -340,7 +338,7 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
 #endif
 
 #ifdef NBC
-    if ( ! strstr(Bmark->name, "_pure"))
+    if ( ! strstr(Bmark->name, "_pure")) 
     {
         const size_t rank_index = timing[MAX].offset[OVRLP];
         t_pure  = tlist[rank_index + PURE];
@@ -351,10 +349,10 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
 
 #elif defined RMA
     /* RMA benchmarks which test truly passive synchronisation presence */
-    if (Bmark->RUN_MODES[0].NONBLOCKING)
+    if (Bmark->RUN_MODES[0].NONBLOCKING) 
     {
         /* Time when the target was inside MPI stack */
-        t_pure  = timing[MAX].times[PURE];
+        t_pure  = timing[MAX].times[PURE]; 
 
         /* Time when the target was calculating something outside the MPI stack
          * for a while and then entered the MPI stack */
@@ -362,7 +360,7 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
     }
 
 #else // NBC || RMA
-    if (Bmark->RUN_MODES[0].NONBLOCKING)
+    if (Bmark->RUN_MODES[0].NONBLOCKING) 
     {
         t_pure  = timing[MAX].times[PURE];
         t_ovrlp = timing[MAX].times[OVRLP];
@@ -371,15 +369,12 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
     }
 #endif // NBC || RMA
 
-    if (timing[MAX].times[PURE] > 0.)
+    if (timing[MAX].times[PURE] > 0.) 
     {
-        if (Bmark->RUN_MODES[0].type != ParallelTransferMsgRate) {
+        if (Bmark->RUN_MODES[0].type != ParallelTransferMsgRate)
             throughput = (Bmark->scale_bw * SCALE * MEGA) * size / timing[MAX].times[PURE];
-
-//            printf("CHARA THROUGHPUT: %f\n", throughput);
 #ifndef MPIIO
-
-        }else
+        else
         {
             peers = c_info->num_procs / 2;
             msgrate = (Bmark->scale_bw * SCALE * MAX_WIN_SIZE * peers) / timing[MAX].times[PURE];
@@ -387,14 +382,14 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
         }
 #endif
     }
-    if (c_info->group_mode > 0)
+    if (c_info->group_mode > 0) 
     {
         IMB_edit_format(1, 0);
         sprintf(aux_string, format, group);
         offset=strlen(aux_string);
     }
 
-    if (Bmark->sample_failure)
+    if (Bmark->sample_failure) 
     {
         IMB_edit_format(1, 0);
         sprintf(aux_string + offset, format, size);
@@ -417,19 +412,14 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
             aux_string[0] = '\0';
             break;
         } /*switch*/
-    }
-    else
+    } 
+    else 
     {
-//        printf("CHARA PRINTING OUT\n");
-        switch (out_format) {
+        switch (out_format)
+        {
         case OUT_TIME_AND_BW:
-//          printf("\tOUT_TIME_AND_BW\n");
-            // IMB_edit_format(2, 2);
-            // just switched the pingpong printout into max min avg throughput
-            // sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
-
-            IMB_edit_format(2, 5);
-            sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], timing[STD].times[PURE], throughput);
+            IMB_edit_format(2, 2);
+            sprintf(aux_string + offset, format, size, n_sample, timing[MAX].times[PURE], throughput);
             break;
         case OUT_BW_AND_MSG_RATE:
             IMB_edit_format(2, 1);
@@ -437,15 +427,15 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
             sprintf(&(format[0]),"%%%d.0f",ow_format);
             sprintf(aux_string + offset, format, msgrate);
             break;
-        case OUT_TIME_RANGE_AND_BW:
+        case OUT_TIME_RANGE_AND_BW:    
             IMB_edit_format(2, 4);
             sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE], throughput);
             break;
-        case OUT_TIME_RANGE:
+        case OUT_TIME_RANGE:    
             IMB_edit_format(2, 3);
             sprintf(aux_string + offset, format, size, n_sample, timing[MIN].times[PURE], timing[MAX].times[PURE], timing[AVG].times[PURE]);
             break;
-        case OUT_SYNC:
+        case OUT_SYNC:    
 #ifdef NBC
             if (Bmark->RUN_MODES[0].NONBLOCKING && !strstr(Bmark->name, "_pure")) {
                 IMB_edit_format(1, 4);
@@ -461,14 +451,14 @@ void IMB_display_times(struct Bench* Bmark, double* tlist, struct comm_info* c_i
 #ifdef RMA
             IMB_edit_format(2, 2);
             sprintf(aux_string + offset, format, size, n_sample, t_pure, t_ovrlp);
-#else
+#else            
             IMB_edit_format(2, 4);
             sprintf(aux_string + offset, format, size, n_sample, t_ovrlp, t_pure, t_comp, overlap);
-#endif
-            break;
+#endif            
+            break; 
         }
 
-#ifdef CHECK
+#ifdef CHECK 
         if (out_format != OUT_SYNC  && strcmp(Bmark->name,"Window"))
         {
             IMB_edit_format(0, 1);
@@ -515,6 +505,7 @@ void IMB_calculate_times(int ntimes,
     *defect = 0;
 #endif
 
+
     for (i = 0; i < ncount; i++) {
         nproc += c_info->g_sizes[i];
     }
@@ -523,18 +514,12 @@ void IMB_calculate_times(int ntimes,
            ? c_info->g_sizes[group_id]
            : nproc;
 
-    // CHARA CALCULATE AVG MIN MAX
-    // note pure =0 and ntimes =1 in pingpong
-
-    for (time_id = PURE; time_id < ntimes; time_id++)
+    for (time_id = PURE; time_id < ntimes; time_id++) 
     {
         times_count = 0;
         timing[MIN].times[time_id] = DBL_MAX;
 
-        // TOT intialize
-        timing[STD].times[time_id] = 0;
-
-        for (i = 0; i < ncount; i++)
+        for (i = 0; i < ncount; i++) 
         {
             rank   = is_group_mode
                    ? (nproc + i) * ntimes
@@ -546,28 +531,17 @@ void IMB_calculate_times(int ntimes,
             }
             times_count++;
 
-
-            // tlist[offset] is indeed the time data
-            // it compares and see if there are small ones
             if (tlist[offset] < timing[MIN].times[time_id]) {
                 timing[MIN].times[time_id] = tlist[offset];
                 timing[MIN].offset[time_id] = rank;
             }
 
-            // and then compares if there are bigger ones
-            // and then pub them in
             if ((tlist[offset] > timing[MAX].times[time_id])) {
-                timing[MAX].times[time_id] = tlist[offset]; // this is the time data
+                timing[MAX].times[time_id] = tlist[offset];
                 timing[MAX].offset[time_id] = rank;
             }
 
-
-            // the averages are done by just adding all of them
             timing[AVG].times[time_id] += tlist[offset];
-
-            // testing total
-            // timing[TOT].times[time_id] += tlist[offset];
-
 #ifdef CHECK
             {
 		const size_t check_index = is_group_mode
@@ -575,10 +549,9 @@ void IMB_calculate_times(int ntimes,
                                      : c_info->g_ranks[i];
             	*defect = max(*defect, all_defect[check_index]);
 	    }
-#endif
+#endif 
         }
         timing[AVG].times[time_id] /= times_count;
-        timing[STD].times[time_id] = chara_std;
     }
 }
 
@@ -595,25 +568,25 @@ void IMB_show_selections(struct comm_info* c_info, struct Bench* BList, int *arg
 
 
 
-       Input variables:
+       Input variables: 
 
-       -c_info               (type struct comm_info*)
+       -c_info               (type struct comm_info*)                      
        Collection of all base data for MPI;
        see [1] for more information
 
 
-       -BList                (type struct Bench*)
+       -BList                (type struct Bench*)                      
        (For explanation of struct Bench type:
        describes all aspects of modes of a benchmark;
        see [1] for more information)
 
        The requested list of benchmarks
 
-       -argc                 (type int *)
+       -argc                 (type int *)                      
        Number of command line arguments
 
 
-       -argv                 (type char ***)
+       -argv                 (type char ***)                      
        List of command line arguments
 
 
@@ -636,7 +609,7 @@ void IMB_show_selections(struct comm_info* c_info, struct Bench* BList, int *arg
         {
             if (iarg>0 && iarg%6==0)
             {
-                if( (*argv)[iarg][0]=='-' && iarg+1<*argc )
+                if( (*argv)[iarg][0]=='-' && iarg+1<*argc ) 
                 {
                     fprintf(unit," %s %s\n#", (*argv)[iarg], (*argv)[iarg+1]);
                     iarg++;
@@ -700,7 +673,7 @@ void IMB_show_selections(struct comm_info* c_info, struct Bench* BList, int *arg
         {
             fprintf(unit,"\n\n# For nonblocking benchmarks:\n\n");
             fprintf(unit,"# Function CPU_Exploit obtains an undisturbed\n");
-            fprintf(unit,"# performance of %7.2f MFlops\n",MFlops);
+            fprintf(unit,"# performance of %7.2f MFlops\n",MFlops);         
         }
 
     } /*if(c_info->w_rank == 0 )*/
@@ -713,9 +686,9 @@ void IMB_show_procids(struct comm_info* c_info)
 
        Prints to stdout the process ids (of group eventually)
 
-       Input variables:
+       Input variables: 
 
-       -c_info               (type struct comm_info*)
+       -c_info               (type struct comm_info*)                      
        Collection of all base data for MPI;
        see [1] for more information
 
@@ -736,7 +709,7 @@ void IMB_show_procids(struct comm_info* c_info)
                 ip=0;
 
                 for( i=0; i<c_info->px && ip<c_info->NP; i++)
-                {
+                {  
                     py = c_info->w_num_procs/c_info->px;
                     if( i<c_info->w_num_procs%c_info->px ) py++;
                     py = min(py,c_info->NP-ip);
@@ -754,7 +727,7 @@ void IMB_show_procids(struct comm_info* c_info)
         if(c_info->n_groups != 1)
         {
             fprintf(unit,"\n# ( %d groups of %d processes each running simultaneous ) \n",
-                    c_info->n_groups,c_info->num_procs);
+                    c_info->n_groups,c_info->num_procs); 
 
             IMB_print_array(c_info->g_ranks,c_info->n_groups,0,
                     c_info->g_sizes[0],"Group ",unit);
@@ -775,38 +748,38 @@ void IMB_show_procids(struct comm_info* c_info)
 
 
 /****************************************************************************/
-void IMB_print_array(int* Array, int N, int disp_N,
+void IMB_print_array(int* Array, int N, int disp_N, 
         int M, char* txt, FILE* unit)
 /*
 
 
-   Formattedly prints to stdout a M by N int array
+   Formattedly prints to stdout a M by N int array 
 
 
 
-   Input variables:
+   Input variables: 
 
-   -Array                (type int*)
+   -Array                (type int*)                      
    Array to be printed
 
 
-   -N                    (type int)
+   -N                    (type int)                      
    Number of rows to be printed
 
 
-   -disp_N               (type int)
+   -disp_N               (type int)                      
    Displacement in Array where frist row begins
 
 
-   -M                    (type int)
+   -M                    (type int)                      
    Number of columns
 
 
-   -txt                  (type char*)
+   -txt                  (type char*)                      
    Accompanying text
 
 
-   -unit                 (type FILE*)
+   -unit                 (type FILE*)                      
    Output unit
 
 
@@ -832,22 +805,22 @@ void IMB_print_array(int* Array, int N, int disp_N,
     {
         if( M>MAX_SHOW )
         {
-            fprintf(unit,"#  ");
+            fprintf(unit,"#  "); 
             IMB_print_int_row(unit, Array, MAX_SHOW/2);
-            fprintf(unit," ... ");
+            fprintf(unit," ... "); 
             IMB_print_int_row(unit, &Array[M-MAX_SHOW/2], MAX_SHOW/2);
         }
         else
         {
-            if( do_out ) fprintf(unit,"# %s",txt);
-            else         fprintf(unit,"# ");
+            if( do_out ) fprintf(unit,"# %s",txt); 
+            else         fprintf(unit,"# "); 
             IMB_print_int_row(unit, Array, M);
         }
     }
     else if ( N<=MAX_SHOW )
     {
         int zero=0, one=1;
-        for( i=0; i<N; i++)
+        for( i=0; i<N; i++) 
         {
             if( do_out )
                 sprintf(outtxt,"%s %d: ",txt,disp_N+i);
@@ -862,8 +835,8 @@ void IMB_print_array(int* Array, int N, int disp_N,
 
         disp=0;
         IMB_print_array(Array, MAX_SHOW/2, disp, M, txt, unit);
-        fprintf(unit,"#  . \n");
-        fprintf(unit,"#  . \n");
+        fprintf(unit,"#  . \n"); 
+        fprintf(unit,"#  . \n"); 
         disp=N-MAX_SHOW/2;
         IMB_print_array(&Array[(N-MAX_SHOW/2)*M], MAX_SHOW/2, disp, M, txt, unit);
     }
@@ -883,17 +856,17 @@ void IMB_print_int_row(FILE* unit, int* Array, int M)
 
 
 
-       Input variables:
+       Input variables: 
 
-       -unit                 (type FILE*)
+       -unit                 (type FILE*)                      
        Output unit
 
 
-       -Array                (type int*)
+       -Array                (type int*)                      
        Data to be printed
 
 
-       -M                    (type int)
+       -M                    (type int)                      
        Number of data
 
 
@@ -934,7 +907,7 @@ void IMB_print_info()
     IMB_user_set_info(&tmp_info);
 
     /* July 2002 fix V2.2.1: handle NULL case */
-    if( tmp_info!=MPI_INFO_NULL )
+    if( tmp_info!=MPI_INFO_NULL ) 
     {
         /* end change */
 
@@ -968,7 +941,7 @@ void IMB_print_info()
 
 
 /*****************************************************************/
-void IMB_print_header (int out_format, struct Bench* bmark,
+void IMB_print_header (int out_format, struct Bench* bmark, 
         struct comm_info* c_info, MODES bench_mode)
 {
 
@@ -978,28 +951,24 @@ void IMB_print_header (int out_format, struct Bench* bmark,
 
     fprintf(unit,"\n");            /* FOR GNUPLOT: CURVE SEPERATOR  */
 
-    if( c_info->group_mode > 0 )
+    if( c_info->group_mode > 0 ) 
     {
-        /* several groups output*/
-        strcpy(aux_string,"&Group") ;
-        line_len = 1;
+        /* several groups output*/ 
+        strcpy(aux_string,"&Group") ; 
+        line_len = 1; 
     }
     else
-    {
-        strcpy(aux_string,"");
-        line_len = 0;
+    { 
+        strcpy(aux_string,"");  
+        line_len = 0; 
     }
 
 
-    // CHARA PRINT HEADER
     switch (out_format)
     {
     case OUT_TIME_AND_BW:
-        // line_len += 4;
-        // strcat(aux_string,"&#bytes&#repetitions&t[usec]&Mbytes/sec&");
-        line_len += 7;
-        strcat(aux_string,"&#bytes&#repetitions&t_min[usec]&t_max[usec]&t_avg[usec]&Mbytes/sec&std[usec]");
-
+        line_len += 4;
+        strcat(aux_string,"&#bytes&#repetitions&t[usec]&Mbytes/sec&");
         break;
 
     case OUT_BW_AND_MSG_RATE:
@@ -1019,13 +988,13 @@ void IMB_print_header (int out_format, struct Bench* bmark,
         break;
 
     case OUT_SYNC:
-        if (bmark->RUN_MODES[0].NONBLOCKING && !strstr(bmark->name, "_pure"))
+        if (bmark->RUN_MODES[0].NONBLOCKING && !strstr(bmark->name, "_pure")) 
         {
             line_len += 5;
             strcat(aux_string,
                     "&#repetitions&t_ovrl[usec]&t_pure[usec]&t_CPU[usec]& overlap[%]&");
-        }
-        else
+        } 
+        else 
         {
             line_len += 4;
             strcat(aux_string,
@@ -1038,13 +1007,13 @@ void IMB_print_header (int out_format, struct Bench* bmark,
         line_len += 4;
         strcat(aux_string,
                 "&#bytes&#repetitions&t_pure[usec]&t_ovrl[usec]&");
-#else
+#else        
         line_len += 6;
         strcat(aux_string,
                 "&#bytes&#repetitions&t_ovrl[usec]&t_pure[usec]&t_CPU[usec]& overlap[%]&");
-#endif
+#endif        
         break;
-    }
+    } 
 
 #ifdef CHECK
     if( bmark->RUN_MODES[0].type != Sync && strcmp(bmark->name,"Window") )
@@ -1057,15 +1026,15 @@ void IMB_print_header (int out_format, struct Bench* bmark,
     IMB_make_line(line_len);
 
     if( c_info->n_groups > 1)
-    {
+    {    
         fprintf(unit, "# Benchmarking Multi-%s ", bmark->name);
-    }
+    }    
     else
-    {
+    {    
         fprintf(unit, "# Benchmarking %s ", bmark->name);
-    }
+    }    
 
-    IMB_show_procids(c_info);
+    IMB_show_procids(c_info); 
 
     IMB_make_line(line_len);
 
@@ -1102,13 +1071,13 @@ void IMB_edit_format(int n_ints , int n_floats)
 
 
 
-       In/out variables:
+       In/out variables: 
 
-       -n_ints               (type int)
+       -n_ints               (type int)                      
 # of int items to be printed
 
 
--n_floats             (type int)
+-n_floats             (type int)                      
 # of float items to be printed
 
 
@@ -1120,8 +1089,8 @@ void IMB_edit_format(int n_ints , int n_floats)
     ip=0;
 
     for(i=1 ; i<=n_ints; i++)
-    {
-        sprintf(&(format[ip]),"%%%dd",ow_format);
+    {    
+        sprintf(&(format[ip]),"%%%dd",ow_format); 
         ip=strlen(format);
     }
 
@@ -1141,9 +1110,9 @@ void IMB_make_line(int line_len)
 
 
 
-       Input variables:
+       Input variables: 
 
-       -line_len               (type int)
+       -line_len               (type int)                      
        Length of underline
 
 
@@ -1199,7 +1168,7 @@ void IMB_help()
 #if (defined MPI1 || defined NBC)
             "[-root_shift   <on or off>]\n"
             "[-sync         <on or off>]\n"
-#endif
+#endif            
             "[-imb_barrier  <on or off>]\n"
             "\n"
             "where \n"
@@ -1388,7 +1357,7 @@ void IMB_help()
             "on\n"
             "\n"
             "\n"
-#endif
+#endif            
             "-imb_barrier\n\n"
             "use internal MPI-independent barrier syncronization implementation,\n"
             "possible argument values are on (1|enable|yes) or off (0|disable|no)\n"
@@ -1456,7 +1425,7 @@ void IMB_help()
             "C_Read_shared\n"
             "\n");
 
-#elif defined(NBC)
+#elif defined(NBC) 
     fprintf(unit,
             "Ibcast\n"
             "Ibcast_pure\n"
@@ -1485,7 +1454,7 @@ void IMB_help()
             "Ibarrier\n"
             "Ibarrier_pure\n"
             "\n");
-
+     
 #elif defined(RMA)
     fprintf(unit,
             "Unidir_put\n"
@@ -1497,7 +1466,7 @@ void IMB_help()
             "All_put_all\n"
             "All_get_all\n"
             "Put_local\n"
-            "Get_local\n"
+            "Get_local\n"      
             "Put_all_local\n"
             "Get_all_local\n"
             "Exchange_put\n"
