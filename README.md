@@ -6,7 +6,9 @@
 
 <br>
 
-### Implemented IMB-benchmark with Standard Deviaton
+### Recent Features
+
+- **[2017-10-22] Implemented IMB-benchmark with Standard Deviation**
     - developed the pingpong benchmark which creates std for each iteraton
     - [the general changes in the source-code](/INFINIBAND/IMB-Experiments/pingpong-std-concept)
     - [implementation of the code](/INFINIBAND/IMB-Experiments/pingpong-std-impl)
