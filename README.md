@@ -1,4 +1,4 @@
-### Comparing RMDA and DPDK
+### RMDA Experiments
 
 1. **[Benchmarking Infiniband](INFINIBAND)**
 2. **[Related Research papers](MPI-PAPERS)**
