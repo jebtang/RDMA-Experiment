@@ -19,4 +19,4 @@
 ![structure](/INFINIBAND/IMB-Experiments/result.png)
 
 - **Result with Standard Deviation**
-![structure](/INFINIBAND/IMB-Experiments/output.png)
+![structure](/INFINIBAND/IMB-Experiments/output_std.png)
