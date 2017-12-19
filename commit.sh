@@ -1,5 +1,5 @@
 git add .
 wait
-git commit -m 'add'
-wait 
-git push origin master 
+git commit -m 'update RDMA experiments'
+wait
+git push origin master
