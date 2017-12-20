@@ -7,10 +7,14 @@
 #define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
 #define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
 
+
+static void die(const char *reason);
+
+
+
 int main(){
 
 // basic functions for connection
-
 #if _USE_IPV6
   struct sockaddr_in6 addr;
 #else
