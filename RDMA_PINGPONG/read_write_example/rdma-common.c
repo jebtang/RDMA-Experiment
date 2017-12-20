@@ -313,6 +313,26 @@ void send_message(struct connection *conn)
   struct ibv_send_wr wr, *bad_wr = NULL;
   struct ibv_sge sge;
 
+  /*
+
+      char *buffer = malloc(SIZE);
+      struct ibv_mr *mr;
+
+      mr = ibv_reg_mr(
+            pd,
+            buffer,
+            SIZE,
+            IBV_ACCESS_LOCAL_WRITE);
+
+
+      strcpy(buffer, "Hello!");
+
+
+
+  */
+
+
+
   memset(&wr, 0, sizeof(wr));
 
   wr.wr_id = (uintptr_t)conn;
