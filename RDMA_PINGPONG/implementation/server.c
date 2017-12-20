@@ -39,10 +39,20 @@ int main(){
     printf("listening on port %d.\n", port);
 
     while (rdma_get_cm_event(ec, &event) == 0) {
-    //       struct rdma_cm_event event_copy;
-    //
-    //       memcpy(&event_copy, event, sizeof(*event));
-    //       rdma_ack_cm_event(event);
+          struct rdma_cm_event event_copy;
+
+          memcpy(&event_copy, event, sizeof(*event));
+          rdma_ack_cm_event(event);
+
+          if(event->event == RDMA_CM_EVENT_CONNECT_REQUEST){
+              printf("RDMA_CM_EVENT_CONNECT_REQUEST\n");
+          } else if (event->event == RDMA_CM_EVENT_ESTABLISHED){
+            printf("RDMA_CM_EVENT_ESTABLISHED\n");
+          } else if (event->event == RDMA_CM_EVENT_DISCONNECTED){
+            printf("RDMA_CM_EVENT_DISCONNECTED\n");
+          }
+
+
     //       // where it actually listens
     //       if (on_event(&event_copy)){
     //           break;
