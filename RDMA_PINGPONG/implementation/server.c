@@ -46,6 +46,23 @@ int main(){
 
           if(event->event == RDMA_CM_EVENT_CONNECT_REQUEST){
               printf("RDMA_CM_EVENT_CONNECT_REQUEST\n");
+              // event->id
+              struct ibv_qp_init_attr qp_attr;
+              struct rdma_conn_param cm_params;
+              struct connection *conn;
+
+              build_context(id->verbs);
+              build_qp_attr(&qp_attr);
+              rdma_create_qp(id, s_ctx->pd, &qp_attr)
+              id->context = conn = (struct connection *)malloc(sizeof(struct connection));
+              conn->qp = id->qp;
+
+              register_memory(conn);
+              post_receives(conn);
+
+              memset(&cm_params, 0, sizeof(cm_params));
+              TEST_NZ(rdma_accept(id, &cm_params));
+
           } else if (event->event == RDMA_CM_EVENT_ESTABLISHED){
             printf("RDMA_CM_EVENT_ESTABLISHED\n");
           } else if (event->event == RDMA_CM_EVENT_DISCONNECTED){
