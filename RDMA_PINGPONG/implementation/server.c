@@ -32,6 +32,7 @@ static struct context *s_ctx = NULL;
 static void * poll_cq(void *);
 static void on_completion(struct ibv_wc *wc);
 static int on_connect_request(struct rdma_cm_id *id);
+static void build_context(struct ibv_context *verbs);
 
 
 int main(){
@@ -149,18 +150,18 @@ int on_connect_request(struct rdma_cm_id *id)
   printf("received connection request.\n");
 
   build_context(id->verbs);
-  build_qp_attr(&qp_attr);
-
-  rdma_create_qp(id, s_ctx->pd, &qp_attr);
-
-  id->context = conn = (struct connection *)malloc(sizeof(struct connection));
-  conn->qp = id->qp;
-
-  register_memory(conn);
-  post_receives(conn);
-
-  memset(&cm_params, 0, sizeof(cm_params));
-  rdma_accept(id, &cm_params);
+  // build_qp_attr(&qp_attr);
+  //
+  // rdma_create_qp(id, s_ctx->pd, &qp_attr);
+  //
+  // id->context = conn = (struct connection *)malloc(sizeof(struct connection));
+  // conn->qp = id->qp;
+  //
+  // register_memory(conn);
+  // post_receives(conn);
+  //
+  // memset(&cm_params, 0, sizeof(cm_params));
+  // rdma_accept(id, &cm_params);
 
   return 0;
 }
@@ -178,4 +179,24 @@ void on_completion(struct ibv_wc *wc){
   } else if (wc->opcode == IBV_WC_SEND) {
     printf("send completed successfully.\n");
   }
+}
+
+void build_context(struct ibv_context *verbs)
+{
+  if (s_ctx) {
+    if (s_ctx->ctx != verbs)
+      die("cannot handle events in more than one context.");
+
+    return;
+  }
+
+  s_ctx = (struct context *)malloc(sizeof(struct context));
+
+  s_ctx->ctx = verbs;
+
+  s_ctx->pd = ibv_alloc_pd(s_ctx->ctx);
+  s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx);
+  s_ctx->cq = ibv_create_cq(s_ctx->ctx, 10, NULL, s_ctx->comp_channel, 0); /* cqe=10 is arbitrary */
+  ibv_req_notify_cq(s_ctx->cq, 0);
+  pthread_create(&s_ctx->cq_poller_thread, NULL, poll_cq, NULL);
 }
