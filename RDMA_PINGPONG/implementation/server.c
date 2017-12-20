@@ -5,7 +5,7 @@
 #include <rdma/rdma_cma.h>
 
 
-static void die(const char *reason);
+// static void die(const char *reason);
 static int on_event(struct rdma_cm_event *event);
 
 
