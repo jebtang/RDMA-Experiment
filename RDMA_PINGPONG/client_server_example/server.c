@@ -78,10 +78,8 @@ int main(int argc, char **argv)
     memcpy(&event_copy, event, sizeof(*event));
     rdma_ack_cm_event(event);
 
-
     // where it actually listens
     if (on_event(&event_copy)){
-        printf("on event break\n");
         break;
     }
 
@@ -233,10 +231,17 @@ int on_connection(void *context)
   struct ibv_sge sge;
 
   snprintf(conn->send_region, BUFFER_SIZE, "message from passive/server side with pid %d", getpid());
+  conn->send_region = "howdy";
+
 
   printf("connected. posting send...\n");
 
+
+
+
+
   memset(&wr, 0, sizeof(wr));
+
 
   wr.opcode = IBV_WR_SEND;
   wr.sg_list = &sge;
