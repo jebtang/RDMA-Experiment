@@ -137,7 +137,7 @@ void * poll_cq(void *ctx)
 
 void on_completion(struct ibv_wc *wc){
   if (wc->status != IBV_WC_SUCCESS)
-    die("on_completion: status is not IBV_WC_SUCCESS.");
+    printf("on_completion: status is not IBV_WC_SUCCESS.\n");
 
   if (wc->opcode & IBV_WC_RECV) {
     struct connection *conn = (struct connection *)(uintptr_t)wc->wr_id;
