@@ -71,10 +71,10 @@ int main(){
           memcpy(&event_copy, event, sizeof(*event));
           rdma_ack_cm_event(event);
 
-          if(event->event == RDMA_CM_EVENT_CONNECT_REQUEST){
+          if(event_copy->event == RDMA_CM_EVENT_CONNECT_REQUEST){
               printf("RDMA_CM_EVENT_CONNECT_REQUEST\n");
 
-              r = on_connect_request(event->id);
+              r = on_connect_request(on_event->id);
               // event->id
               // struct ibv_qp_init_attr qp_attr;
               // struct rdma_conn_param cm_params;
@@ -112,6 +112,8 @@ int main(){
     //       if (on_event(&event_copy)){
     //           break;
     //       }
+
+
     }
 
 
@@ -194,7 +196,8 @@ void build_context(struct ibv_context *verbs)
 
   s_ctx->ctx = verbs;
 
-  s_ctx->pd = ibv_alloc_pd(s_ctx->ctx);
+  s_ctx->pd = ibv_alloc_pd(s_ctx->ctx); // error comes from here
+
   s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx);
   s_ctx->cq = ibv_create_cq(s_ctx->ctx, 10, NULL, s_ctx->comp_channel, 0); /* cqe=10 is arbitrary */
   ibv_req_notify_cq(s_ctx->cq, 0);
