@@ -185,7 +185,7 @@ void build_context(struct ibv_context *verbs)
 {
   if (s_ctx) {
     if (s_ctx->ctx != verbs)
-      die("cannot handle events in more than one context.");
+      printf("cannot handle events in more than one context.\n");
 
     return;
   }
