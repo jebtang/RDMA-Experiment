@@ -81,7 +81,7 @@ int main(int argc, char **argv)
 
     // where it actually listens
     if (on_event(&event_copy)){
-        // printf("howdy chara\n");
+        printf("on event break\n");
         break;
     }
 
