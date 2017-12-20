@@ -33,6 +33,7 @@ static void * poll_cq(void *);
 static void on_completion(struct ibv_wc *wc);
 static int on_connect_request(struct rdma_cm_id *id);
 static void build_context(struct ibv_context *verbs);
+static void build_qp_attr(struct ibv_qp_init_attr *qp_attr);
 
 
 int main(){
@@ -156,19 +157,18 @@ int on_connect_request(struct rdma_cm_id *id)
   printf("received connection request.\n");
 
   build_context(id->verbs);
-  // build_qp_attr(&qp_attr);
+  build_qp_attr(&qp_attr);
   //
-  // rdma_create_qp(id, s_ctx->pd, &qp_attr);
+  rdma_create_qp(id, s_ctx->pd, &qp_attr);
   //
-  // id->context = conn = (struct connection *)malloc(sizeof(struct connection));
-  // conn->qp = id->qp;
+  id->context = conn = (struct connection *)malloc(sizeof(struct connection));
+  conn->qp = id->qp;
   //
-  // register_memory(conn);
-  // post_receives(conn);
+  register_memory(conn);
+  post_receives(conn);
   //
-  // memset(&cm_params, 0, sizeof(cm_params));
-  // rdma_accept(id, &cm_params);
-
+  memset(&cm_params, 0, sizeof(cm_params));
+  rdma_accept(id, &cm_params);
   return 0;
 }
 
@@ -206,4 +206,19 @@ void build_context(struct ibv_context *verbs)
   s_ctx->cq = ibv_create_cq(s_ctx->ctx, 10, NULL, s_ctx->comp_channel, 0); /* cqe=10 is arbitrary */
   ibv_req_notify_cq(s_ctx->cq, 0);
   pthread_create(&s_ctx->cq_poller_thread, NULL, poll_cq, NULL);
+}
+
+
+void build_qp_attr(struct ibv_qp_init_attr *qp_attr)
+{
+  memset(qp_attr, 0, sizeof(*qp_attr));
+
+  qp_attr->send_cq = s_ctx->cq;
+  qp_attr->recv_cq = s_ctx->cq;
+  qp_attr->qp_type = IBV_QPT_RC;
+
+  qp_attr->cap.max_send_wr = 10;
+  qp_attr->cap.max_recv_wr = 10;
+  qp_attr->cap.max_send_sge = 1;
+  qp_attr->cap.max_recv_sge = 1;
 }
