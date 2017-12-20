@@ -74,7 +74,7 @@ int main(){
           if(event_copy->event == RDMA_CM_EVENT_CONNECT_REQUEST){
               printf("RDMA_CM_EVENT_CONNECT_REQUEST\n");
 
-              r = on_connect_request(on_event->id);
+              r = on_connect_request(on_event.id);
               // event->id
               // struct ibv_qp_init_attr qp_attr;
               // struct rdma_conn_param cm_params;
