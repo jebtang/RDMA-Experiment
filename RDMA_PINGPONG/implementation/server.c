@@ -7,6 +7,14 @@
 
 // static void die(const char *reason);
 // static int on_event(struct rdma_cm_event *event);
+struct context {
+  struct ibv_context *ctx;
+  struct ibv_pd *pd;
+  struct ibv_cq *cq;
+  struct ibv_comp_channel *comp_channel;
+
+  pthread_t cq_poller_thread;
+};
 
 static struct context *s_ctx = NULL;
 
