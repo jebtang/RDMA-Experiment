@@ -123,13 +123,12 @@ void * poll_cq(void *ctx)
   struct ibv_wc wc;
 
   while (1) {
-    TEST_NZ(ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx));
+    ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx);
     ibv_ack_cq_events(cq, 1);
-    TEST_NZ(ibv_req_notify_cq(cq, 0));
+    ibv_req_notify_cq(cq, 0);
 
     while (ibv_poll_cq(cq, 1, &wc))
       on_completion(&wc);
   }
-
   return NULL;
 }
