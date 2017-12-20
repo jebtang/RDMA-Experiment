@@ -230,14 +230,11 @@ int on_connection(void *context)
   struct ibv_send_wr wr, *bad_wr = NULL;
   struct ibv_sge sge;
 
-  snprintf(conn->send_region, BUFFER_SIZE, "message from passive/server side with pid %d", getpid());
-  conn->send_region = "howdy";
+  snprintf(conn->send_region, BUFFER_SIZE, "howdy howdy chara\n");
+  // conn->send_region = "howdy";
 
 
-  printf("connected. posting send...\n");
-
-
-
+  printf("connected. posting send...\n\n");
 
 
   memset(&wr, 0, sizeof(wr));
@@ -261,7 +258,7 @@ int on_disconnect(struct rdma_cm_id *id)
 {
   struct connection *conn = (struct connection *)id->context;
 
-  printf("peer disconnected.\n");
+  printf("peer disconnected.\n\n");
 
   rdma_destroy_qp(id);
 
