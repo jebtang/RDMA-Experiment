@@ -34,6 +34,7 @@ static void on_completion(struct ibv_wc *wc);
 static int on_connect_request(struct rdma_cm_id *id);
 static void build_context(struct ibv_context *verbs);
 static void build_qp_attr(struct ibv_qp_init_attr *qp_attr);
+static void register_memory(struct connection *conn);
 
 
 int main(){
@@ -221,4 +222,40 @@ void build_qp_attr(struct ibv_qp_init_attr *qp_attr)
   qp_attr->cap.max_recv_wr = 10;
   qp_attr->cap.max_send_sge = 1;
   qp_attr->cap.max_recv_sge = 1;
+}
+
+
+void register_memory(struct connection *conn)
+{
+  conn->send_region = malloc(BUFFER_SIZE);
+  conn->recv_region = malloc(BUFFER_SIZE);
+
+  conn->send_mr = ibv_reg_mr(
+                    s_ctx->pd,
+                    conn->send_region,
+                    BUFFER_SIZE,
+                    IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE);
+
+  conn->recv_mr = ibv_reg_mr(
+                    s_ctx->pd,
+                    conn->recv_region,
+                    BUFFER_SIZE,
+                    IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE);
+}
+
+void post_receives(struct connection *conn){
+
+  struct ibv_recv_wr wr, *bad_wr = NULL;
+  struct ibv_sge sge;
+
+  wr.wr_id = (uintptr_t)conn;
+  wr.next = NULL;
+  wr.sg_list = &sge;
+  wr.num_sge = 1;
+
+  sge.addr = (uintptr_t)conn->recv_region;
+  sge.length = BUFFER_SIZE;
+  sge.lkey = conn->recv_mr->lkey;
+
+  ibv_post_recv(conn->qp, &wr, &bad_wr);
 }
