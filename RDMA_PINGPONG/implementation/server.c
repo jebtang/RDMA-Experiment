@@ -16,6 +16,18 @@ struct context {
   pthread_t cq_poller_thread;
 };
 
+
+struct connection {
+  struct ibv_qp *qp;
+
+  struct ibv_mr *recv_mr;
+  struct ibv_mr *send_mr;
+
+  char *recv_region;
+  char *send_region;
+};
+
+
 static struct context *s_ctx = NULL;
 static void * poll_cq(void *);
 
