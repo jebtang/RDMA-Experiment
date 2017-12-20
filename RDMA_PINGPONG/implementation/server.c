@@ -65,16 +65,20 @@ int main(){
     printf("listening on port %d.\n", port);
 
     int r = 0;
+
+    struct rdma_cm_event *_event;
     while (rdma_get_cm_event(ec, &event) == 0) {
           struct rdma_cm_event event_copy;
 
           memcpy(&event_copy, event, sizeof(*event));
           rdma_ack_cm_event(event);
 
+          _event = &event_copy;
+
           if(event_copy->event == RDMA_CM_EVENT_CONNECT_REQUEST){
               printf("RDMA_CM_EVENT_CONNECT_REQUEST\n");
 
-              r = on_connect_request(on_event.id);
+              r = on_connect_request(_event->id);
               // event->id
               // struct ibv_qp_init_attr qp_attr;
               // struct rdma_conn_param cm_params;
