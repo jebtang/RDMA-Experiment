@@ -15,85 +15,148 @@ int main(int argc, char *argv[]){
   user_param.r_flag  = &report;
 
   // Configure the parameters values according to user arguments or defalut values
-  ret_val = parser(&user_param,argv,argc);
+	ret_val = parser(&user_param,argv,argc);
+	if (ret_val) {
+		if (ret_val != VERSION_EXIT && ret_val != HELP_EXIT)
+			fprintf(stderr," Parser function exited with Error\n");
+		return FAILURE;
+	}
 
   // Finding the IB device selected (or defalut if no selected).
-  ib_dev = ctx_find_dev(user_param.ib_devname);
+	ib_dev = ctx_find_dev(user_param.ib_devname);
 
   // Getting the relevant context from the device
-  ctx.context = ibv_open_device(ib_dev);
+	ctx.context = ibv_open_device(ib_dev);
+	if (!ctx.context) {
+		fprintf(stderr, " Couldn't get context for the device\n");
+		return FAILURE;
+	}
 
-  // Verify user parameters that require the device context
-  verify_params_with_device_context(ctx.context, &user_param);
-
-  // See if MTU and link type are valid and supported.
-  check_link(ctx.context,&user_param);
-
-  // copy the relevant user parameters to the comm struct + creating rdma_cm resources.
-  create_comm_struct(&user_comm,&user_param);
-
-  // in case of server
   if (user_param.output == FULL_VERBOSITY && user_param.machine == SERVER) {
 		printf("\n************************************\n");
 		printf("* Waiting for client to connect... *\n");
 		printf("************************************\n");
-	}
-
-  // in case of client
-  // Initialize the connection and print the local data.
-	if (establish_connection(&user_comm)) {
-		  fprintf(stderr," Unable to init the socket connection\n");
-		  return FAILURE;
-	}
-
-  exchange_versions(&user_comm, &user_param);
-  check_sys_data(&user_comm, &user_param);
-
-  // See if MTU and link type are valid and supported.
-  check_mtu(ctx.context,&user_param, &user_comm)
-
-
-  ALLOCATE(my_dest , struct pingpong_dest , user_param.num_of_qps);
-  memset(my_dest, 0, sizeof(struct pingpong_dest) * user_param.num_of_qps);  
-  ALLOCATE(rem_dest , struct pingpong_dest , user_param.num_of_qps);
-  memset(rem_dest, 0, sizeof(struct pingpong_dest) * user_param.num_of_qps);
-
-  // Allocating arrays needed for the test.
-  alloc_ctx(&ctx,&user_param);
-  ctx_init(&ctx,&user_param);
-
-
-  // Set up the Connection.
-  send_set_up_connection(&ctx,&user_param,my_dest,&mcg_params,&user_comm);
-
-
-  // Print basic test information.
-  ctx_print_test_info(&user_param);
-
-
-  for (i=0; i < user_param.num_of_qps; i++)
-		ctx_print_pingpong_data(&my_dest[i],&user_comm);
-
-
-
-  for (i=0; i < user_param.num_of_qps; i++) {
-
-		// shaking hands and gather the other side info.
-		if (ctx_hand_shake(&user_comm,&my_dest[i],&rem_dest[i])) {
-			fprintf(stderr,"Failed to exchange data between server and clients\n");
-			return FAILURE;
-		}
-
-		ctx_print_pingpong_data(&rem_dest[i],&user_comm);
 	}  
-
-
-
-
-
 }
 
 
+```
 
+> after receving transaction
+
+```c
+exchange_versions(&user_comm, &user_param);
+check_sys_data(&user_comm, &user_param);
+
+/* See if MTU and link type are valid and supported. */
+if (check_mtu(ctx.context,&user_param, &user_comm)) {
+  fprintf(stderr, " Couldn't get context for the device\n");
+  return FAILURE;
+}
+
+ALLOCATE(my_dest , struct pingpong_dest , user_param.num_of_qps);
+memset(my_dest, 0, sizeof(struct pingpong_dest)*user_param.num_of_qps);
+ALLOCATE(rem_dest , struct pingpong_dest , user_param.num_of_qps);
+memset(rem_dest, 0, sizeof(struct pingpong_dest)*user_param.num_of_qps);
+
+/* Allocating arrays needed for the test. */
+alloc_ctx(&ctx,&user_param);
+
+
+/* create all the basic IB resources (data buffer, PD, MR, CQ and events channel) */
+if (ctx_init(&ctx,&user_param)) {
+  fprintf(stderr, " Couldn't create IB resources\n");
+  return FAILURE;
+}
+
+/* Set up the Connection. */
+if (send_set_up_connection(&ctx,&user_param,my_dest,&mcg_params,&user_comm)) {
+  fprintf(stderr," Unable to set up socket connection\n");
+  return FAILURE;
+}
+
+ctx_print_test_info(&user_param);    
+
+for (i=0; i < user_param.num_of_qps; i++){
+      ctx_print_pingpong_data(&my_dest[i],&user_comm);
+}
+
+
+user_comm.rdma_params->side = REMOTE;
+
+for (i=0; i < user_param.num_of_qps; i++) {
+
+  // shaking hands and gather the other side info.
+  if (ctx_hand_shake(&user_comm,&my_dest[i],&rem_dest[i])) {
+    fprintf(stderr,"Failed to exchange data between server and clients\n");
+    return FAILURE;
+  }
+  ctx_print_pingpong_data(&rem_dest[i],&user_comm);
+}
+
+if (user_param.work_rdma_cm == OFF) {
+  if (ctx_check_gid_compatibility(&my_dest[0], &rem_dest[0])) {
+    fprintf(stderr,"\n Found Incompatibility issue with GID types.\n");
+    fprintf(stderr," Please Try to use a different IP version.\n\n");
+    return FAILURE;
+  }
+}
+
+if (user_param.work_rdma_cm == OFF) {
+
+	// Prepare IB resources for rtr/rts.
+	if (ctx_connect(&ctx,rem_dest,&user_param,my_dest)) {
+		fprintf(stderr," Unable to Connect the HCA's through the link\n");
+		return FAILURE;
+	}
+}
+
+/* shaking hands and gather the other side info. */
+if (ctx_hand_shake(&user_comm,&my_dest[0],&rem_dest[0])) {
+  fprintf(stderr,"Failed to exchange data between server and clients\n");
+  return FAILURE;
+}
+
+
+if (user_param.output == FULL_VERBOSITY) {
+  printf(RESULT_LINE);
+  printf("%s",(user_param.test_type == ITERATIONS) ? RESULT_FMT_LAT : RESULT_FMT_LAT_DUR);
+  printf((user_param.cpu_util_data.enable ? RESULT_EXT_CPU_UTIL : RESULT_EXT));
+}
+
+
+ctx_set_send_wqes(&ctx,&user_param,rem_dest);
+
+
+/* Post recevie recv_wqes fo current message size */
+if (ctx_set_recv_wqes(&ctx,&user_param)) {
+  fprintf(stderr," Failed to post receive recv_wqes\n");
+  return FAILURE;
+}
+
+
+if (ctx_hand_shake(&user_comm,my_dest,rem_dest)) {
+	fprintf(stderr,"Failed to exchange data between server and clients\n");
+	return FAILURE;
+}
+
+
+if(run_iter_lat_send(&ctx, &user_param))
+	return 17;
+
+user_param.test_type == ITERATIONS ? print_report_lat(&user_param) : print_report_lat_duration(&user_param);
+
+
+if (user_param.output == FULL_VERBOSITY) {
+  printf(RESULT_LINE);
+}
+
+if (ctx_close_connection(&user_comm,my_dest,rem_dest)) {
+  fprintf(stderr,"Failed to close connection between server and client\n");
+  fprintf(stderr," Trying to close this side resources\n");
+}
+
+return send_destroy_ctx(&ctx,&user_param,&mcg_params);
+}
 
 ```
