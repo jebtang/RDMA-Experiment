@@ -63,7 +63,7 @@ int main(){
 
               // build_context(id->verbs);
               s_ctx = (struct context *)malloc(sizeof(struct context));
-              s_ctx->ctx = id->verbs;
+              s_ctx->ctx = event->id->verbs;
               s_ctx->pd = ibv_alloc_pd(s_ctx->ctx));
               s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx);
               s_ctx->cq = ibv_create_cq(s_ctx->ctx, 10, NULL, s_ctx->comp_channel, 0);
