@@ -30,6 +30,7 @@ struct connection {
 
 static struct context *s_ctx = NULL;
 static void * poll_cq(void *);
+static void on_completion(struct ibv_wc *wc);
 
 
 int main(){
@@ -131,4 +132,20 @@ void * poll_cq(void *ctx)
       on_completion(&wc);
   }
   return NULL;
+}
+
+
+void on_completion(struct ibv_wc *wc){
+  if (wc->status != IBV_WC_SUCCESS)
+    die("on_completion: status is not IBV_WC_SUCCESS.");
+
+  if (wc->opcode & IBV_WC_RECV) {
+    struct connection *conn = (struct connection *)(uintptr_t)wc->wr_id;
+
+    printf("received message: %s\n", conn->recv_region);
+
+
+  } else if (wc->opcode == IBV_WC_SEND) {
+    printf("send completed successfully.\n");
+  }
 }
