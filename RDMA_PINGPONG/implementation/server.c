@@ -75,7 +75,7 @@ int main(){
 
           _event = &event_copy;
 
-          if(event_copy->event == RDMA_CM_EVENT_CONNECT_REQUEST){
+          if(_event->event == RDMA_CM_EVENT_CONNECT_REQUEST){
               printf("RDMA_CM_EVENT_CONNECT_REQUEST\n");
 
               r = on_connect_request(_event->id);
