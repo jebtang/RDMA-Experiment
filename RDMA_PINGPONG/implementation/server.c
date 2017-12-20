@@ -4,9 +4,6 @@
 #include <unistd.h>
 #include <rdma/rdma_cma.h>
 
-#define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
-#define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
-
 
 static void die(const char *reason);
 static int on_event(struct rdma_cm_event *event);
@@ -33,10 +30,10 @@ int main(){
     addr.sin_family = AF_INET;
   #endif
 
-    TEST_Z(ec = rdma_create_event_channel());
-    TEST_NZ(rdma_create_id(ec, &listener, NULL, RDMA_PS_TCP));
-    TEST_NZ(rdma_bind_addr(listener, (struct sockaddr *)&addr));
-    TEST_NZ(rdma_listen(listener, 10)); /* backlog=10 is arbitrary */
+    ec = rdma_create_event_channel();
+    rdma_create_id(ec, &listener, NULL, RDMA_PS_TCP);
+    rdma_bind_addr(listener, (struct sockaddr *)&addr);
+    rdma_listen(listener, 10); /* backlog=10 is arbitrary */
 
     port = ntohs(rdma_get_src_port(listener));
     printf("listening on port %d.\n", port);
