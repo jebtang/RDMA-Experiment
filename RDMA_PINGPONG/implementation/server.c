@@ -17,6 +17,7 @@ struct context {
 };
 
 static struct context *s_ctx = NULL;
+static void * poll_cq(void *);
 
 
 int main(){
@@ -64,7 +65,7 @@ int main(){
               // build_context(id->verbs);
               s_ctx = (struct context *)malloc(sizeof(struct context));
               s_ctx->ctx = event->id->verbs;
-              s_ctx->pd = ibv_alloc_pd(s_ctx->ctx));
+              s_ctx->pd = ibv_alloc_pd(s_ctx->ctx);
               s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx);
               s_ctx->cq = ibv_create_cq(s_ctx->ctx, 10, NULL, s_ctx->comp_channel, 0);
               ibv_req_notify_cq(s_ctx->cq, 0);
@@ -101,4 +102,22 @@ int main(){
 
 
   return 0;
+}
+
+
+void * poll_cq(void *ctx)
+{
+  struct ibv_cq *cq;
+  struct ibv_wc wc;
+
+  while (1) {
+    TEST_NZ(ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx));
+    ibv_ack_cq_events(cq, 1);
+    TEST_NZ(ibv_req_notify_cq(cq, 0));
+
+    while (ibv_poll_cq(cq, 1, &wc))
+      on_completion(&wc);
+  }
+
+  return NULL;
 }
