@@ -36,6 +36,7 @@ static void build_context(struct ibv_context *verbs);
 static void build_qp_attr(struct ibv_qp_init_attr *qp_attr);
 static void register_memory(struct connection *conn);
 
+#define BUFFER_SIZE 1024
 
 int main(){
 
@@ -66,8 +67,6 @@ int main(){
     port = ntohs(rdma_get_src_port(listener));
     printf("listening on port %d.\n", port);
 
-    int r = 0;
-
     struct rdma_cm_event *_event;
     while (rdma_get_cm_event(ec, &event) == 0) {
           struct rdma_cm_event event_copy;
@@ -80,7 +79,7 @@ int main(){
           if(_event->event == RDMA_CM_EVENT_CONNECT_REQUEST){
               printf("RDMA_CM_EVENT_CONNECT_REQUEST\n");
 
-              r = on_connect_request(_event->id);
+              on_connect_request(_event->id);
               // event->id
               // struct ibv_qp_init_attr qp_attr;
               // struct rdma_conn_param cm_params;
