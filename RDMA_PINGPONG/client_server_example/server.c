@@ -230,11 +230,8 @@ int on_connection(void *context)
   struct ibv_send_wr wr, *bad_wr = NULL;
   struct ibv_sge sge;
 
-  snprintf(conn->send_region, BUFFER_SIZE, "howdy howdy chara\n");
-  // conn->send_region = "howdy";
-
-
-  printf("connected. posting send...\n\n");
+  snprintf(conn->send_region, BUFFER_SIZE, "howdy from server\n");
+  printf("connected. posting send... sizeof %ld \n\n", strlen(conn->send_region));
 
 
   memset(&wr, 0, sizeof(wr));
