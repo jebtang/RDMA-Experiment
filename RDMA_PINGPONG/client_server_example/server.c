@@ -78,8 +78,12 @@ int main(int argc, char **argv)
     memcpy(&event_copy, event, sizeof(*event));
     rdma_ack_cm_event(event);
 
-    if (on_event(&event_copy))
-      break;
+
+    // where it actually listens
+    if (on_event(&event_copy)){
+        printf("howdy chara\n");
+    }
+
   }
 
   rdma_destroy_id(listener);
