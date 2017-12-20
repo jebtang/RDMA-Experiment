@@ -8,6 +8,8 @@
 // static void die(const char *reason);
 // static int on_event(struct rdma_cm_event *event);
 
+static struct context *s_ctx = NULL;
+
 
 int main(){
 
@@ -51,17 +53,26 @@ int main(){
               struct rdma_conn_param cm_params;
               struct connection *conn;
 
-              build_context(id->verbs);
-              build_qp_attr(&qp_attr);
-              rdma_create_qp(id, s_ctx->pd, &qp_attr)
-              id->context = conn = (struct connection *)malloc(sizeof(struct connection));
-              conn->qp = id->qp;
+              // build_context(id->verbs);
+              s_ctx = (struct context *)malloc(sizeof(struct context));
+              s_ctx->ctx = id->verbs;
+              s_ctx->pd = ibv_alloc_pd(s_ctx->ctx));
+              s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx);
+              s_ctx->cq = ibv_create_cq(s_ctx->ctx, 10, NULL, s_ctx->comp_channel, 0);
+              ibv_req_notify_cq(s_ctx->cq, 0);
+              pthread_create(&s_ctx->cq_poller_thread, NULL, poll_cq, NULL);
 
-              register_memory(conn);
-              post_receives(conn);
 
-              memset(&cm_params, 0, sizeof(cm_params));
-              TEST_NZ(rdma_accept(id, &cm_params));
+              // build_qp_attr(&qp_attr);
+              // rdma_create_qp(id, s_ctx->pd, &qp_attr)
+              // id->context = conn = (struct connection *)malloc(sizeof(struct connection));
+              // conn->qp = id->qp;
+              //
+              // register_memory(conn);
+              // post_receives(conn);
+              //
+              // memset(&cm_params, 0, sizeof(cm_params));
+              // TEST_NZ(rdma_accept(id, &cm_params));
 
           } else if (event->event == RDMA_CM_EVENT_ESTABLISHED){
             printf("RDMA_CM_EVENT_ESTABLISHED\n");
