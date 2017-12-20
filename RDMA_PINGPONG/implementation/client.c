@@ -9,7 +9,7 @@
 
 
 static void die(const char *reason);
-
+static int on_event(struct rdma_cm_event *event);
 
 
 int main(){
