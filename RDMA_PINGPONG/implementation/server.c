@@ -38,7 +38,7 @@ int main(){
     port = ntohs(rdma_get_src_port(listener));
     printf("listening on port %d.\n", port);
 
-    // while (rdma_get_cm_event(ec, &event) == 0) {
+    while (rdma_get_cm_event(ec, &event) == 0) {
     //       struct rdma_cm_event event_copy;
     //
     //       memcpy(&event_copy, event, sizeof(*event));
@@ -47,7 +47,8 @@ int main(){
     //       if (on_event(&event_copy)){
     //           break;
     //       }
-    // }
+    }
+
 
     rdma_destroy_id(listener);
     rdma_destroy_event_channel(ec);
