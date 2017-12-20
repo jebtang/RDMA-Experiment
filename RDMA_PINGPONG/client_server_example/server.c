@@ -194,6 +194,8 @@ void on_completion(struct ibv_wc *wc)
 
     printf("received message: %s\n", conn->recv_region);
 
+
+
   } else if (wc->opcode == IBV_WC_SEND) {
     printf("send completed successfully.\n");
   }
@@ -233,12 +235,9 @@ int on_connection(void *context)
   // snprintf(conn->send_region, BUFFER_SIZE, "howdy from server\n");
   // this is a char pointer indeed
   memset(conn->send_region, '*', BUFFER_SIZE);
-  
   printf("connected. posting send... sizeof %ld \n\n", strlen(conn->send_region));
 
   memset(&wr, 0, sizeof(wr));
-
-
   wr.opcode = IBV_WR_SEND;
   wr.sg_list = &sge;
   wr.num_sge = 1;

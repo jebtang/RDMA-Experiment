@@ -226,9 +226,11 @@ int on_connection(void *context)
   struct ibv_send_wr wr, *bad_wr = NULL;
   struct ibv_sge sge;
 
-  snprintf(conn->send_region, BUFFER_SIZE, "message from active/client side with pid %d", getpid());
+  // snprintf(conn->send_region, BUFFER_SIZE, "howdy from client %d", getpid());
 
-  printf("connected. posting send...\n");
+  memset(conn->send_region, '*', BUFFER_SIZE);
+
+  // printf("connected. posting send...\n");
 
   memset(&wr, 0, sizeof(wr));
 
