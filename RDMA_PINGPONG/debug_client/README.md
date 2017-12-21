@@ -41,10 +41,24 @@ int main(int argc, char **argv)
     die("usage: client <server-address> <server-port>");
 
   TEST_NZ(getaddrinfo(argv[1], argv[2], NULL, &addr));
+```
 
+> [getaddrinfo](getaddrinfo.md) - set the destination address <br>
+
+
+```c
   TEST_Z(ec = rdma_create_event_channel());
+  // get event channels
+  // event channels are used to direct all events on an rdma_cm_id
+
+
   TEST_NZ(rdma_create_id(ec, &conn, NULL, RDMA_PS_TCP));
+  // use the event channel to get the rdma_cm_id
+  // struct rdma_cm_id *conn= NULL;
+
   TEST_NZ(rdma_resolve_addr(conn, NULL, addr->ai_addr, TIMEOUT_IN_MS));
+  // Resolve destination and optional source addresses from IP addresses to an RDMA addre
+  
 
   freeaddrinfo(addr);
 
@@ -62,6 +76,10 @@ int main(int argc, char **argv)
 
   return 0;
 }
+
+
+
+
 
 void die(const char *reason)
 {
