@@ -19,9 +19,11 @@ struct rdma_cm_event *event = NULL;
 struct l2fwd_port_statistics {
 	uint64_t tx;
 	uint64_t rx;
+  uint64_t tx_bytes;
 	uint64_t rx_bytes;
 };
 
+void print_log();
 static int on_event(struct rdma_cm_event *event);
 static void on_completion(struct ibv_wc *wc);
 
@@ -33,6 +35,7 @@ static int on_event(struct rdma_cm_event *event);
 struct l2fwd_port_statistics port_statistics;
 
 int main(int argc, char **argv){
+
 
 #if _USE_IPV6
   struct sockaddr_in6 addr;
@@ -68,20 +71,27 @@ int main(int argc, char **argv){
 
   port = ntohs(rdma_get_src_port(listener));
 
-  memset(&port_statistics, 0, sizeof(port_statistics));
+	memset(&port_statistics, 0, sizeof(port_statistics));
+	time(&start);
+	latency = 0;
 
   printf("listening on port %d.\n", port);
-  printf("initialize port_statistics rx: %ld  tx: %ld\n", port_statistics.rx, port_statistics.tx);
 
   while (rdma_get_cm_event(ec, &event) == 0) {
+		prev_latency = latency;
     struct rdma_cm_event event_copy;
-
     memcpy(&event_copy, event, sizeof(*event));
     rdma_ack_cm_event(event);
 
     if (on_event(&event_copy)){
         break;
     }
+
+		latency = difftime(time(0), start);
+		if((latency-prev_latency)>=1){
+				print_log();
+		}
+
   }
 
   rdma_destroy_id(listener);
@@ -106,4 +116,23 @@ int on_event(struct rdma_cm_event *event){
   else
     die("on_event: unknown event.");
   return r;
+}
+
+void print_log(){
+  /* Clear screen and move to top left */
+  printf("%s%s", clr, topLeft);
+  printf("\nRDMA Pingpong Client ====================================");
+  printf("\nByte Statistics ------------------------------"
+         "\nPKT-SIZE: %d"
+         "\nBytes sent: %ld"
+         "\nBytes received: %ld"
+         "\nLatency: %f"
+         ,BUFFER_SIZE
+         ,port_statistics.tx_bytes
+         ,port_statistics.rx_bytes
+         ,latency);
+  printf("\nPacket Statistics ------------------------------"
+         "\nPackets received: %ld"
+         ,port_statistics.rx);
+  printf("\n========================================================\n");
 }

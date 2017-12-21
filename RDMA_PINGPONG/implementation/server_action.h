@@ -49,7 +49,7 @@ int on_connect_request(struct rdma_cm_id *id)
   struct rdma_conn_param cm_params;
   struct connection *conn;
 
-  printf("received connection request.\n");
+  // printf("received connection request.\n");
 
   build_context(id->verbs);
   build_qp_attr(&qp_attr);
@@ -74,7 +74,7 @@ int on_connection(void *context)
   struct ibv_send_wr wr, *bad_wr = NULL;
   struct ibv_sge sge;
 
-  snprintf(conn->send_region, BUFFER_SIZE, "howdy from server\n");
+  // snprintf(conn->send_region, BUFFER_SIZE, "howdy from server\n");
   // this is a char pointer indeed
   // memset(conn->send_region, '*', BUFFER_SIZE);
 
@@ -105,39 +105,10 @@ void on_completion(struct ibv_wc *wc)
 
   if (wc->opcode & IBV_WC_RECV) {
     struct connection *conn = (struct connection *)(uintptr_t)wc->wr_id;
-
-    // printf("received message: %s\n", conn->recv_region);
-
-
-    // CHARA BEGIN
-
-    // if(event->id->context){
-    //       conn = (struct connection *)event->id->context;
-    //       struct ibv_send_wr wr, *bad_wr = NULL;
-    //       struct ibv_sge sge;
-    //
-    //
-    //       conn->send_region = conn->recv_region
-    //       // memset(conn->send_region, conn->recv_region, BUFFER_SIZE);
-    //       printf("sending back.. sizeof %ld \n\n", strlen(conn->send_region));
-    //
-    //       memset(&wr, 0, sizeof(wr));
-    //       wr.opcode = IBV_WR_SEND;
-    //       wr.sg_list = &sge;
-    //       wr.num_sge = 1;
-    //       wr.send_flags = IBV_SEND_SIGNALED;
-    //
-    //       sge.addr = (uintptr_t)conn->send_region;
-    //       sge.length = BUFFER_SIZE;
-    //       sge.lkey = conn->send_mr->lkey;
-    //
-    //       TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
-    // }
-
-// CHARA END
-
+    port_statistics.rx_bytes+=strlen(conn->recv_region);
 
   } else if (wc->opcode == IBV_WC_SEND) {
+    port_statistics.rx_bytes+=strlen(conn->send_region);
     // printf("send completed successfully.\n");
   }
 }
@@ -148,7 +119,7 @@ int on_disconnect(struct rdma_cm_id *id)
 {
   struct connection *conn = (struct connection *)id->context;
 
-  printf("peer disconnected.\n\n");
+  // printf("peer disconnected.\n\n");
 
   rdma_destroy_qp(id);
 

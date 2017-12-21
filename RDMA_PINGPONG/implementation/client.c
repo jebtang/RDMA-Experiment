@@ -258,7 +258,7 @@ void on_completion(struct ibv_wc *wc)
 
   if (wc->opcode & IBV_WC_RECV){
     // printf("received message: %s\n", conn->recv_region);
-    
+
   }
   else if (wc->opcode == IBV_WC_SEND){
     // printf("send completed successfully.\n");
