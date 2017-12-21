@@ -1,8 +1,8 @@
 ### PERFTEST CMD
 - [reference link](https://github.com/linux-rdma/perftest)
 - [fundamentals link](https://github.com/tarickb/the-geek-in-the-corner/blob/master/02_read-write/rdma-server.c)
-- [server debug](debug_ib_send_lat_server)
-- [client debug](debug_ib_send_lat_client)
+- [server debug](debug_server)
+- [client debug](debug_client)
 
 ```
 Server:		./<test name> <options>
