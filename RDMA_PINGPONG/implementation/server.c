@@ -19,6 +19,8 @@ struct l2fwd_port_statistics {
 };
 
 static int on_event(struct rdma_cm_event *event);
+static void on_completion(struct ibv_wc *wc);
+
 
 #include "server_init.h"
 #include "server_action.h"
