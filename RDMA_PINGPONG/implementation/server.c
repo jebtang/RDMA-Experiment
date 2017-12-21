@@ -10,9 +10,6 @@
 const int BUFFER_SIZE = 1024;
 static struct context *s_ctx = NULL;
 
-#include "server_init.h"
-#include "server_action.h"
-
 /* Per-port statistics struct */
 struct l2fwd_port_statistics {
 	uint64_t tx;
@@ -20,6 +17,9 @@ struct l2fwd_port_statistics {
 	uint64_t dropped;
 	uint64_t rx_bytes;
 }
+
+#include "server_init.h"
+#include "server_action.h"
 
 static int on_event(struct rdma_cm_event *event);
 
