@@ -57,7 +57,7 @@ int main(int argc, char **argv){
 
   printf("listening on port %d.\n", port);
 
-  printf("data %d %d \n", port_statistics.rx, port_statistics.tx);
+  printf("data %ld %ld \n", port_statistics.rx, port_statistics.tx);
 
 
   while (rdma_get_cm_event(ec, &event) == 0) {
