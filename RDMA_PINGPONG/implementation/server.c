@@ -67,9 +67,9 @@ int main(){
     port = ntohs(rdma_get_src_port(listener));
     printf("listening on port %d.\n", port);
 
-    struct rdma_cm_event *_event;
     while (rdma_get_cm_event(ec, &event) == 0) {
           struct rdma_cm_event event_copy;
+          struct rdma_cm_event *_event;
 
           memcpy(&event_copy, event, sizeof(*event));
           rdma_ack_cm_event(event);
