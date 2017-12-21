@@ -1,4 +1,4 @@
-### RDMA PINGPONG
+### PREREQUISTIES
 - [reference link](https://github.com/linux-rdma/perftest)
 - [fundamentals link](https://github.com/tarickb/the-geek-in-the-corner/blob/master/02_read-write/rdma-server.c)
 - [server debug](debug_server)
