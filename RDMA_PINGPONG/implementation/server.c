@@ -27,6 +27,8 @@ struct l2fwd_port_statistics {
 	uint64_t rx_bytes;
 };
 
+struct l2fwd_port_statistics port_statistics;
+
 void print_log();
 static int on_event(struct rdma_cm_event *event);
 static void on_completion(struct ibv_wc *wc);
@@ -36,7 +38,6 @@ static void on_completion(struct ibv_wc *wc);
 
 static int on_event(struct rdma_cm_event *event);
 
-struct l2fwd_port_statistics port_statistics;
 
 int main(int argc, char **argv){
 
