@@ -18,6 +18,13 @@ struct connection {
 };
 
 
+static void die(const char *reason);
+static void build_context(struct ibv_context *verbs);
+static void build_qp_attr(struct ibv_qp_init_attr *qp_attr);
+static void * poll_cq(void *);
+static void register_memory(struct connection *conn);
+
+
 void die(const char *reason)
 {
   fprintf(stderr, "%s\n", reason);

@@ -1,3 +1,9 @@
+static void post_receives(struct connection *conn);
+static void on_completion(struct ibv_wc *wc);
+static int on_connect_request(struct rdma_cm_id *id);
+static int on_connection(void *context);
+static int on_disconnect(struct rdma_cm_id *id);
+
 void post_receives(struct connection *conn)
 {
   struct ibv_recv_wr wr, *bad_wr = NULL;

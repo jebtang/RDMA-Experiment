@@ -18,17 +18,6 @@ struct l2fwd_port_statistics {
 	uint64_t rx_bytes;
 };
 
-static void die(const char *reason);
-static void build_context(struct ibv_context *verbs);
-static void build_qp_attr(struct ibv_qp_init_attr *qp_attr);
-static void * poll_cq(void *);
-static void post_receives(struct connection *conn);
-static void register_memory(struct connection *conn);
-
-static void on_completion(struct ibv_wc *wc);
-static int on_connect_request(struct rdma_cm_id *id);
-static int on_connection(void *context);
-static int on_disconnect(struct rdma_cm_id *id);
 static int on_event(struct rdma_cm_event *event);
 
 #include "server_init.h"
