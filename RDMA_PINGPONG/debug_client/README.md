@@ -57,8 +57,8 @@ int main(int argc, char **argv)
   // struct rdma_cm_id *conn= NULL;
 
   TEST_NZ(rdma_resolve_addr(conn, NULL, addr->ai_addr, TIMEOUT_IN_MS));
-  // Resolve destination and optional source addresses from IP addresses to an RDMA addre
-  
+  // Resolve destination and optional source addresses from IP addresses to an RDMA address
+
 
   freeaddrinfo(addr);
 

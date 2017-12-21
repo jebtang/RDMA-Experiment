@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <rdma/rdma_cma.h>
 
+#define PORT "3490"  // the port users will be connecting to
 #define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
 #define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
 
@@ -12,6 +13,7 @@ const int TIMEOUT_IN_MS = 500; /* ms */
 const int BUFFER_SIZE = 1024;
 static struct context *s_ctx = NULL;
 struct rdma_cm_event *event = NULL;
+
 
 /* Per-port statistics struct */
 struct l2fwd_port_statistics {
@@ -48,12 +50,23 @@ int main(int argc, char **argv){
   addr.sin_family = AF_INET;
 #endif
 
+
+
+	// struct addrinfo hints, *servinfo, *p;
+	// if ((rv = getaddrinfo(NULL, PORT, &hints, &servinfo)) != 0) {
+	// 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
+	// 		return 1;
+	// }
+  //
+	// inet_ntop(their_addr.ss_family, get_in_addr((struct sockaddr *)&their_addr), s, sizeof s);
+
+
   TEST_Z(ec = rdma_create_event_channel());
   TEST_NZ(rdma_create_id(ec, &listener, NULL, RDMA_PS_TCP));
   TEST_NZ(rdma_bind_addr(listener, (struct sockaddr *)&addr));
   TEST_NZ(rdma_listen(listener, 10)); /* backlog=10 is arbitrary */
 
-  // port = ntohs(rdma_get_src_port(listener));
+  port = ntohs(rdma_get_src_port(listener));
 
   memset(&port_statistics, 0, sizeof(port_statistics));
 
