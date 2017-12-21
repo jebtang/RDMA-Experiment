@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 #include <rdma/rdma_cma.h>
 
 #define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
@@ -10,6 +11,19 @@
 
 const int BUFFER_SIZE = 1024;
 const int TIMEOUT_IN_MS = 500; /* ms */
+const char clr[] = { 27, '[', '2', 'J', '\0' };
+const char topLeft[] = { 27, '[', '1', ';', '1', 'H','\0' };
+time_t start; //adding timer
+double latency, prev_latency;
+
+/* Per-port statistics struct */
+struct l2fwd_port_statistics {
+	uint64_t tx;
+	uint64_t rx;
+  uint64_t tx_bytes;
+	uint64_t rx_bytes;
+};
+
 
 struct context {
   struct ibv_context *ctx;
@@ -33,8 +47,8 @@ struct connection {
   int num_completions;
 };
 
+struct l2fwd_port_statistics port_statistics;
 static void die(const char *reason);
-
 static void build_context(struct ibv_context *verbs);
 static void build_qp_attr(struct ibv_qp_init_attr *qp_attr);
 static void * poll_cq(void *);
@@ -47,25 +61,31 @@ static int on_connection(void *context);
 static int on_disconnect(struct rdma_cm_id *id);
 static int on_event(struct rdma_cm_event *event);
 static int on_route_resolved(struct rdma_cm_id *id);
+void print_log();
+
+
 
 static struct context *s_ctx = NULL;
 
-int main(int argc, char **argv)
-{
-
+int main(int argc, char **argv){
 
   struct addrinfo *addr;
   struct rdma_cm_event *event = NULL;
   struct rdma_cm_id *conn= NULL;
   struct rdma_event_channel *ec = NULL;
+  memset(&port_statistics, 0, sizeof(port_statistics));
+  time(&start);
+  latency = 0;
 
-  TEST_NZ(getaddrinfo("172.24.30.31", argv[1], NULL, &addr));
-  TEST_Z(ec = rdma_create_event_channel());
-  TEST_NZ(rdma_create_id(ec, &conn, NULL, RDMA_PS_TCP));
-  TEST_NZ(rdma_resolve_addr(conn, NULL, addr->ai_addr, TIMEOUT_IN_MS));
-  freeaddrinfo(addr);
+  // transferring packets
 
   while(1){
+        prev_latency = latency;
+        TEST_NZ(getaddrinfo("172.24.30.31", argv[1], NULL, &addr));
+        TEST_Z(ec = rdma_create_event_channel());
+        TEST_NZ(rdma_create_id(ec, &conn, NULL, RDMA_PS_TCP));
+        TEST_NZ(rdma_resolve_addr(conn, NULL, addr->ai_addr, TIMEOUT_IN_MS));
+        freeaddrinfo(addr);
         while (rdma_get_cm_event(ec, &event) == 0) {
                 struct rdma_cm_event event_copy;
                 memcpy(&event_copy, event, sizeof(*event));
@@ -74,16 +94,42 @@ int main(int argc, char **argv)
                     break;
         }
 
+        latency = difftime(time(0), start);
+        if((latency-prev_latency)>=1){
+            print_log();
+        }
 
-
-
+        if(latency>=10){
+            break;
+        }
   }
-
 
   rdma_destroy_event_channel(ec);
 
   return 0;
 }
+
+
+void print_log(){
+  /* Clear screen and move to top left */
+  printf("%s%s", clr, topLeft);
+  printf("\nRDMA Pingpong Client ====================================");
+  printf("\nByte Statistics ------------------------------"
+         "\nPKT-SIZE: %d"
+         "\nBytes sent: %ld"
+         "\nBytes received: %ld"
+         "\nLatency: %f"
+         ,BUFFER_SIZE
+         ,port_statistics.tx_bytes
+         ,port_statistics.rx_bytes
+         ,latency);
+  printf("\nPacket Statistics ------------------------------"
+         "\nPackets received: %d"
+         ,port_statistics.rx);
+  printf("\n========================================================\n");
+  intervals = 0;
+}
+
 
 void die(const char *reason)
 {
@@ -228,9 +274,8 @@ int on_connection(void *context)
   struct ibv_send_wr wr, *bad_wr = NULL;
   struct ibv_sge sge;
 
-  snprintf(conn->send_region, BUFFER_SIZE, "howdy from client %d", getpid());
-
-  // memset(conn->send_region, '*', BUFFER_SIZE);
+  // snprintf(conn->send_region, BUFFER_SIZE, "howdy from client %d", getpid());
+  memset(conn->send_region, '*', BUFFER_SIZE);
 
   // printf("connected. posting send...\n");
 
