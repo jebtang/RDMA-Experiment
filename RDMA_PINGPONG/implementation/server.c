@@ -70,55 +70,14 @@ int main(){
 
     while (rdma_get_cm_event(ec, &event) == 0) {
           struct rdma_cm_event event_copy;
-          struct rdma_cm_event *_event;
 
           memcpy(&event_copy, event, sizeof(*event));
           rdma_ack_cm_event(event);
 
-          _event = &event_copy;
-
-          if(event->event == RDMA_CM_EVENT_CONNECT_REQUEST){
-              printf("RDMA_CM_EVENT_CONNECT_REQUEST\n");
-
-              // on_connect_request(event->id);
-              // event->id
-              // struct ibv_qp_init_attr qp_attr;
-              // struct rdma_conn_param cm_params;
-              // struct connection *conn;
-              //
-              // // build_context(id->verbs);
-              // s_ctx = (struct context *)malloc(sizeof(struct context));
-              // s_ctx->ctx = event->id->verbs;
-              // s_ctx->pd = ibv_alloc_pd(s_ctx->ctx);
-              // s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx);
-              // s_ctx->cq = ibv_create_cq(s_ctx->ctx, 10, NULL, s_ctx->comp_channel, 0);
-              // ibv_req_notify_cq(s_ctx->cq, 0);
-              // pthread_create(&s_ctx->cq_poller_thread, NULL, poll_cq, NULL);
-
-
-              // build_qp_attr(&qp_attr);
-              // rdma_create_qp(id, s_ctx->pd, &qp_attr)
-              // id->context = conn = (struct connection *)malloc(sizeof(struct connection));
-              // conn->qp = id->qp;
-              //
-              // register_memory(conn);
-              // post_receives(conn);
-              //
-              // memset(&cm_params, 0, sizeof(cm_params));
-              // TEST_NZ(rdma_accept(id, &cm_params));
-
-          } else if (event->event == RDMA_CM_EVENT_ESTABLISHED){
-            printf("RDMA_CM_EVENT_ESTABLISHED\n");
-          } else if (event->event == RDMA_CM_EVENT_DISCONNECTED){
-            printf("RDMA_CM_EVENT_DISCONNECTED\n");
-          }
-
-
-    //       // where it actually listens
-    //       if (on_event(&event_copy)){
-    //           break;
-    //       }
-
+              // where it actually listens
+              if (on_event(&event_copy)){
+                  break;
+              }
 
     }
 
@@ -187,6 +146,25 @@ void on_completion(struct ibv_wc *wc){
     printf("send completed successfully.\n");
   }
 }
+
+
+
+int on_event(struct rdma_cm_event *event)
+{
+  int r = 0;
+
+  if (event->event == RDMA_CM_EVENT_CONNECT_REQUEST)
+    r = on_connect_request(event->id);
+  // else if (event->event == RDMA_CM_EVENT_ESTABLISHED)
+  //   r = on_connection(event->id->context);
+  // else if (event->event == RDMA_CM_EVENT_DISCONNECTED)
+  //   r = on_disconnect(event->id);
+  // else
+  //   die("on_event: unknown event.");
+
+  return r;
+}
+
 
 void build_context(struct ibv_context *verbs)
 {
