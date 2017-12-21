@@ -32,6 +32,7 @@ static struct context *s_ctx = NULL;
 static void * poll_cq(void *);
 static void on_completion(struct ibv_wc *wc);
 static int on_connect_request(struct rdma_cm_id *id);
+static void post_receives(struct connection *conn);
 static void build_context(struct ibv_context *verbs);
 static void build_qp_attr(struct ibv_qp_init_attr *qp_attr);
 static void register_memory(struct connection *conn);
