@@ -302,7 +302,7 @@ int on_disconnect(struct rdma_cm_id *id)
 {
   struct connection *conn = (struct connection *)id->context;
 
-  printf("disconnected.\n");
+  // printf("disconnected.\n");
 
   rdma_destroy_qp(id);
 
@@ -342,7 +342,6 @@ int on_route_resolved(struct rdma_cm_id *id)
   struct rdma_conn_param cm_params;
 
   // printf("route resolved.\n");
-
   memset(&cm_params, 0, sizeof(cm_params));
   TEST_NZ(rdma_connect(id, &cm_params));
 
