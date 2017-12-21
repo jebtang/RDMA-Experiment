@@ -78,12 +78,22 @@ int main(int argc, char **argv)
     memcpy(&event_copy, event, sizeof(*event));
     rdma_ack_cm_event(event);
 
-    // where it actually listens
-    if (on_event(&event_copy)){
-        break;
+    if (event->event == RDMA_CM_EVENT_CONNECT_REQUEST){
+      on_connect_request(event->id);
+      printf("RDMA_CM_EVENT_CONNECT_REQUEST\n");
+      break;
     }
 
   }
+
+  // chara update
+
+
+
+
+
+  // chara end
+
 
   rdma_destroy_id(listener);
   rdma_destroy_event_channel(ec);
