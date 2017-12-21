@@ -77,6 +77,11 @@ int on_connection(void *context)
   snprintf(conn->send_region, BUFFER_SIZE, "howdy from server\n");
   // this is a char pointer indeed
   // memset(conn->send_region, '*', BUFFER_SIZE);
+
+  if(conn->recv_region){
+    printf("checking the recv region file %ld \n\n", strlen(conn->recv_region));
+  }
+
   printf("connected. posting send... sizeof %ld \n\n", strlen(conn->send_region));
 
   memset(&wr, 0, sizeof(wr));
@@ -103,7 +108,7 @@ void on_completion(struct ibv_wc *wc)
   if (wc->opcode & IBV_WC_RECV) {
     struct connection *conn = (struct connection *)(uintptr_t)wc->wr_id;
 
-    printf("received message: %s\n", conn->recv_region);
+    // printf("received message: %s\n", conn->recv_region);
 
 
     // CHARA BEGIN
@@ -135,7 +140,7 @@ void on_completion(struct ibv_wc *wc)
 
 
   } else if (wc->opcode == IBV_WC_SEND) {
-    printf("send completed successfully.\n");
+    // printf("send completed successfully.\n");
   }
 }
 
