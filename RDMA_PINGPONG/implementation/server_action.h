@@ -103,24 +103,27 @@ void on_completion(struct ibv_wc *wc)
 
 
     // CHARA BEGIN
-    conn = (struct connection *)context;
-    struct ibv_send_wr wr, *bad_wr = NULL;
-    struct ibv_sge sge;
 
-    memset(conn->send_region, conn->recv_region, BUFFER_SIZE);
-    printf("sending back.. sizeof %ld \n\n", strlen(conn->send_region));
+    if(event->id->context){
+          conn = (struct connection *)event->id->context;
+          struct ibv_send_wr wr, *bad_wr = NULL;
+          struct ibv_sge sge;
 
-    memset(&wr, 0, sizeof(wr));
-    wr.opcode = IBV_WR_SEND;
-    wr.sg_list = &sge;
-    wr.num_sge = 1;
-    wr.send_flags = IBV_SEND_SIGNALED;
+          memset(conn->send_region, conn->recv_region, BUFFER_SIZE);
+          printf("sending back.. sizeof %ld \n\n", strlen(conn->send_region));
 
-    sge.addr = (uintptr_t)conn->send_region;
-    sge.length = BUFFER_SIZE;
-    sge.lkey = conn->send_mr->lkey;
+          memset(&wr, 0, sizeof(wr));
+          wr.opcode = IBV_WR_SEND;
+          wr.sg_list = &sge;
+          wr.num_sge = 1;
+          wr.send_flags = IBV_SEND_SIGNALED;
 
-    TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
+          sge.addr = (uintptr_t)conn->send_region;
+          sge.length = BUFFER_SIZE;
+          sge.lkey = conn->send_mr->lkey;
+
+          TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
+    }
 
 // CHARA END
 

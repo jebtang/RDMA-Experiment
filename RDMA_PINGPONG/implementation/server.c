@@ -9,6 +9,7 @@
 
 const int BUFFER_SIZE = 1024;
 static struct context *s_ctx = NULL;
+struct rdma_cm_event *event = NULL;
 
 /* Per-port statistics struct */
 struct l2fwd_port_statistics {
@@ -34,7 +35,6 @@ int main(int argc, char **argv){
 #else
   struct sockaddr_in addr;
 #endif
-  struct rdma_cm_event *event = NULL;
   struct rdma_cm_id *listener = NULL;
   struct rdma_event_channel *ec = NULL;
   uint16_t port = 0;
