@@ -14,6 +14,10 @@ const int BUFFER_SIZE = 1024;
 static struct context *s_ctx = NULL;
 struct rdma_cm_event *event = NULL;
 
+const char clr[] = { 27, '[', '2', 'J', '\0' };
+const char topLeft[] = { 27, '[', '1', ';', '1', 'H','\0' };
+time_t start; //adding timer
+double latency, prev_latency;
 
 /* Per-port statistics struct */
 struct l2fwd_port_statistics {
