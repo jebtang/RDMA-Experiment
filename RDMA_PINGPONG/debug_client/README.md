@@ -1,3 +1,4 @@
+```c
 #include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,10 +58,10 @@ int main(int argc, char **argv)
   struct rdma_cm_id *conn= NULL;
   struct rdma_event_channel *ec = NULL;
 
-  // if (argc != 3)
-    // die("usage: client <server-address> <server-port>");
+  if (argc != 3)
+    die("usage: client <server-address> <server-port>");
 
-  TEST_NZ(getaddrinfo("172.24.30.31", "3260", NULL, &addr));
+  TEST_NZ(getaddrinfo(argv[1], argv[2], NULL, &addr));
 
   TEST_Z(ec = rdma_create_event_channel());
   TEST_NZ(rdma_create_id(ec, &conn, NULL, RDMA_PS_TCP));
@@ -299,3 +300,5 @@ int on_route_resolved(struct rdma_cm_id *id)
 
   return 0;
 }
+
+```
