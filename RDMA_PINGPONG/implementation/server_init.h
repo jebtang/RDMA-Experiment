@@ -8,6 +8,7 @@ struct context {
 };
 
 struct connection {
+  struct rdma_cm_id *id;
   struct ibv_qp *qp;
 
   struct ibv_mr *recv_mr;
@@ -15,6 +16,8 @@ struct connection {
 
   char *recv_region;
   char *send_region;
+
+  int num_completions;
 };
 
 
