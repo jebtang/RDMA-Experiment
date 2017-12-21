@@ -1,23 +1,12 @@
-### PERFTEST CMD
+### RDMA PINGPONG
 - [reference link](https://github.com/linux-rdma/perftest)
 - [fundamentals link](https://github.com/tarickb/the-geek-in-the-corner/blob/master/02_read-write/rdma-server.c)
 - [server debug](debug_server)
 - [client debug](debug_client)
 
-```
-Server:		./<test name> <options>
-Client:		./<test name> <options> <server IP address>
+<br>
 
-// server
-gdb ./ib_send_lat
-break src/send_lat.c:190  // before initializing   
-break src/send_lat.c:268  // after initializing
-break src/send_lat.c:383  // skip due to broken pipe line
-
-// client
-gdb --args ./ib_send_lat 172.24.30.31
-```
-
+### creating packets
 
 ```c
 const size_t SIZE = 1024;
@@ -50,9 +39,5 @@ wr.wr.rdma.remote_addr = peer_addr;
 wr.wr.rdma.rkey = peer_key;
 
 ibv_post_send(qp, &wr, &bad_wr);
-
-
-
-
 
 ```
