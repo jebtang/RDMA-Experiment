@@ -70,6 +70,7 @@ int main(int argc, char **argv)
     memcpy(&event_copy, event, sizeof(*event));
     rdma_ack_cm_event(event);
 
+    on_event(&event_copy);
     // if (on_event(&event_copy))
       // break;
   }
