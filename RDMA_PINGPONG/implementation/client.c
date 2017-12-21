@@ -57,11 +57,7 @@ int main(int argc, char **argv)
   struct rdma_cm_id *conn= NULL;
   struct rdma_event_channel *ec = NULL;
 
-  // if (argc != 3)
-    // die("usage: client <server-address> <server-port>");
-
   TEST_NZ(getaddrinfo("172.24.30.31", argv[1], NULL, &addr));
-
   TEST_Z(ec = rdma_create_event_channel());
   TEST_NZ(rdma_create_id(ec, &conn, NULL, RDMA_PS_TCP));
   TEST_NZ(rdma_resolve_addr(conn, NULL, addr->ai_addr, TIMEOUT_IN_MS));
@@ -74,8 +70,8 @@ int main(int argc, char **argv)
     memcpy(&event_copy, event, sizeof(*event));
     rdma_ack_cm_event(event);
 
-    if (on_event(&event_copy))
-      break;
+    // if (on_event(&event_copy))
+      // break;
   }
 
   rdma_destroy_event_channel(ec);
