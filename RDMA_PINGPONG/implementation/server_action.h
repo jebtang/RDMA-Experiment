@@ -79,23 +79,21 @@ int on_connection(void *context)
   // memset(conn->send_region, '*', BUFFER_SIZE);
 
   if(conn->recv_region){
-    printf("checking the recv region file %ld \n\n", strlen(conn->recv_region));
+    // printf("checking the recv region file %ld \n\n", strlen(conn->recv_region));
+    memset(&wr, 0, sizeof(wr));
+    wr.opcode = IBV_WR_SEND;
+    wr.sg_list = &sge;
+    wr.num_sge = 1;
+    wr.send_flags = IBV_SEND_SIGNALED;
+
+    sge.addr = (uintptr_t)conn->send_region;
+    sge.length = BUFFER_SIZE;
+    sge.lkey = conn->send_mr->lkey;
+
+    TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
   }
 
-  printf("connected. posting send... sizeof %ld \n\n", strlen(conn->send_region));
-
-  memset(&wr, 0, sizeof(wr));
-  wr.opcode = IBV_WR_SEND;
-  wr.sg_list = &sge;
-  wr.num_sge = 1;
-  wr.send_flags = IBV_SEND_SIGNALED;
-
-  sge.addr = (uintptr_t)conn->send_region;
-  sge.length = BUFFER_SIZE;
-  sge.lkey = conn->send_mr->lkey;
-
-  TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
-
+  // printf("connected. posting send... sizeof %ld \n\n", strlen(conn->send_region));
   return 0;
 }
 
