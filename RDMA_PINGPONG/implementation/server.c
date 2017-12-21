@@ -20,8 +20,8 @@ struct l2fwd_port_statistics {
 
 static int on_event(struct rdma_cm_event *event);
 
-#include "server_action.h"
 #include "server_init.h"
+#include "server_action.h"
 
 static int on_event(struct rdma_cm_event *event);
 
@@ -73,8 +73,7 @@ int main(int argc, char **argv){
 }
 
 
-int on_event(struct rdma_cm_event *event)
-{
+int on_event(struct rdma_cm_event *event){
   int r = 0;
 
   if (event->event == RDMA_CM_EVENT_CONNECT_REQUEST)
