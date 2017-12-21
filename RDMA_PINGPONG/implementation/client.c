@@ -62,7 +62,7 @@ int main(int argc, char **argv)
 
 
 
-  TEST_NZ(getaddrinfo("172.24.30.31", "111", NULL, &addr));
+  TEST_NZ(getaddrinfo("172.24.30.31", "3260", NULL, &addr));
 
   TEST_Z(ec = rdma_create_event_channel());
   TEST_NZ(rdma_create_id(ec, &conn, NULL, RDMA_PS_TCP));
