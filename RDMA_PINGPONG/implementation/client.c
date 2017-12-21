@@ -65,12 +65,14 @@ int main(int argc, char **argv)
   freeaddrinfo(addr);
 
   while (rdma_get_cm_event(ec, &event) == 0) {
-    struct rdma_cm_event event_copy;
 
-    memcpy(&event_copy, event, sizeof(*event));
-    rdma_ack_cm_event(event);
+    for(int i =0 ; i<10; i++){
+          struct rdma_cm_event event_copy;
+          memcpy(&event_copy, event, sizeof(*event));
+          rdma_ack_cm_event(event);
+          on_event(&event_copy);
+    }
 
-    on_event(&event_copy);
     // if (on_event(&event_copy))
       // break;
   }
