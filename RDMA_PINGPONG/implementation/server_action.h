@@ -109,7 +109,9 @@ void on_completion(struct ibv_wc *wc)
           struct ibv_send_wr wr, *bad_wr = NULL;
           struct ibv_sge sge;
 
-          memset(conn->send_region, conn->recv_region, BUFFER_SIZE);
+
+          conn->send_region = conn->recv_region
+          // memset(conn->send_region, conn->recv_region, BUFFER_SIZE);
           printf("sending back.. sizeof %ld \n\n", strlen(conn->send_region));
 
           memset(&wr, 0, sizeof(wr));
