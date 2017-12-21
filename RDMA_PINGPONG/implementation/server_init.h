@@ -18,9 +18,6 @@ struct connection {
 };
 
 
-
-
-
 void die(const char *reason)
 {
   fprintf(stderr, "%s\n", reason);

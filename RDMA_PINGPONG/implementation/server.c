@@ -16,7 +16,7 @@ struct l2fwd_port_statistics {
 	uint64_t rx;
 	uint64_t dropped;
 	uint64_t rx_bytes;
-}
+};
 
 #include "server_init.h"
 #include "server_action.h"
