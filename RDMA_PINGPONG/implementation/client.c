@@ -127,7 +127,6 @@ void print_log(){
          "\nPackets received: %d"
          ,port_statistics.rx);
   printf("\n========================================================\n");
-  intervals = 0;
 }
 
 
