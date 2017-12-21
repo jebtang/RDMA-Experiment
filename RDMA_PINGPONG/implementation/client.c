@@ -59,23 +59,24 @@ int main(int argc, char **argv)
 
   TEST_NZ(getaddrinfo("172.24.30.31", argv[1], NULL, &addr));
   TEST_Z(ec = rdma_create_event_channel());
-  TEST_NZ(rdma_create_id(ec, &conn, NULL, RDMA_PS_TCP));
-  TEST_NZ(rdma_resolve_addr(conn, NULL, addr->ai_addr, TIMEOUT_IN_MS));
 
-  freeaddrinfo(addr);
+  for(int i =0; i<10; i++){
+        TEST_NZ(rdma_create_id(ec, &conn, NULL, RDMA_PS_TCP));
+        TEST_NZ(rdma_resolve_addr(conn, NULL, addr->ai_addr, TIMEOUT_IN_MS));
 
-  while (rdma_get_cm_event(ec, &event) == 0) {
+        freeaddrinfo(addr);
 
-    for(int i =0 ; i<10; i++){
-          struct rdma_cm_event event_copy;
-          memcpy(&event_copy, event, sizeof(*event));
-          rdma_ack_cm_event(event);
-          on_event(&event_copy);
-    }
+        while (rdma_get_cm_event(ec, &event) == 0) {
 
-    // if (on_event(&event_copy))
-      // break;
+                struct rdma_cm_event event_copy;
+                memcpy(&event_copy, event, sizeof(*event));
+                rdma_ack_cm_event(event);
+                // on_event(&event_copy);
+                if (on_event(&event_copy))
+                    break;
+        }
   }
+
 
   rdma_destroy_event_channel(ec);
 
