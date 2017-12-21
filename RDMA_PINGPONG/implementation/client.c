@@ -256,10 +256,13 @@ void on_completion(struct ibv_wc *wc)
   if (wc->status != IBV_WC_SUCCESS)
     die("on_completion: status is not IBV_WC_SUCCESS.");
 
-  if (wc->opcode & IBV_WC_RECV)
-    printf("received message: %s\n", conn->recv_region);
-  else if (wc->opcode == IBV_WC_SEND)
-    printf("send completed successfully.\n");
+  if (wc->opcode & IBV_WC_RECV){
+    // printf("received message: %s\n", conn->recv_region);
+    // chara count
+  }
+  else if (wc->opcode == IBV_WC_SEND){
+    // printf("send completed successfully.\n");
+  }
   else
     die("on_completion: completion isn't a send or a receive.");
 
