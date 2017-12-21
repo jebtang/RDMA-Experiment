@@ -228,7 +228,7 @@ int on_addr_resolved(struct rdma_cm_id *id)
   struct ibv_qp_init_attr qp_attr;
   struct connection *conn;
 
-  printf("address resolved.\n");
+  // printf("address resolved.\n");
 
   build_context(id->verbs);
   build_qp_attr(&qp_attr);
@@ -341,7 +341,7 @@ int on_route_resolved(struct rdma_cm_id *id)
 {
   struct rdma_conn_param cm_params;
 
-  printf("route resolved.\n");
+  // printf("route resolved.\n");
 
   memset(&cm_params, 0, sizeof(cm_params));
   TEST_NZ(rdma_connect(id, &cm_params));
