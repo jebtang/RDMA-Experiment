@@ -52,6 +52,9 @@ static struct context *s_ctx = NULL;
 
 int main(int argc, char **argv)
 {
+
+  for(int i =0; i<10; i++){
+
   struct addrinfo *addr;
   struct rdma_cm_event *event = NULL;
   struct rdma_cm_id *conn= NULL;
@@ -60,7 +63,6 @@ int main(int argc, char **argv)
   TEST_NZ(getaddrinfo("172.24.30.31", argv[1], NULL, &addr));
   TEST_Z(ec = rdma_create_event_channel());
 
-  for(int i =0; i<10; i++){
         TEST_NZ(rdma_create_id(ec, &conn, NULL, RDMA_PS_TCP));
         TEST_NZ(rdma_resolve_addr(conn, NULL, addr->ai_addr, TIMEOUT_IN_MS));
 
