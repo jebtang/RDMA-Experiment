@@ -53,7 +53,7 @@ int main(int argc, char **argv){
   TEST_NZ(rdma_bind_addr(listener, (struct sockaddr *)&addr));
   TEST_NZ(rdma_listen(listener, 10)); /* backlog=10 is arbitrary */
 
-  port = ntohs(rdma_get_src_port(listener));
+  // port = ntohs(rdma_get_src_port(listener));
 
   memset(&port_statistics, 0, sizeof(port_statistics));
 

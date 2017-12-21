@@ -60,6 +60,8 @@ int main(int argc, char **argv)
   // if (argc != 3)
     // die("usage: client <server-address> <server-port>");
 
+
+
   TEST_NZ(getaddrinfo("172.24.30.31", argv[1], NULL, &addr));
 
   TEST_Z(ec = rdma_create_event_channel());
