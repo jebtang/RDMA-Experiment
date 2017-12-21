@@ -38,22 +38,6 @@ void register_memory(struct connection *conn)
     IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
 }
 
-void on_completion(struct ibv_wc *wc)
-{
-  if (wc->status != IBV_WC_SUCCESS)
-    die("on_completion: status is not IBV_WC_SUCCESS.");
-
-  if (wc->opcode & IBV_WC_RECV) {
-    struct connection *conn = (struct connection *)(uintptr_t)wc->wr_id;
-
-    printf("received message: %s\n", conn->recv_region);
-
-
-
-  } else if (wc->opcode == IBV_WC_SEND) {
-    printf("send completed successfully.\n");
-  }
-}
 
 int on_connect_request(struct rdma_cm_id *id)
 {
@@ -105,6 +89,48 @@ int on_connection(void *context)
 
   return 0;
 }
+
+
+void on_completion(struct ibv_wc *wc)
+{
+  if (wc->status != IBV_WC_SUCCESS)
+    die("on_completion: status is not IBV_WC_SUCCESS.");
+
+  if (wc->opcode & IBV_WC_RECV) {
+    struct connection *conn = (struct connection *)(uintptr_t)wc->wr_id;
+
+    printf("received message: %s\n", conn->recv_region);
+
+
+    // CHARA BEGIN
+    struct connection *conn = (struct connection *)context;
+    struct ibv_send_wr wr, *bad_wr = NULL;
+    struct ibv_sge sge;
+
+    memset(conn->send_region, conn->recv_region, BUFFER_SIZE);
+    printf("sending back.. sizeof %ld \n\n", strlen(conn->send_region));
+
+    memset(&wr, 0, sizeof(wr));
+    wr.opcode = IBV_WR_SEND;
+    wr.sg_list = &sge;
+    wr.num_sge = 1;
+    wr.send_flags = IBV_SEND_SIGNALED;
+
+    sge.addr = (uintptr_t)conn->send_region;
+    sge.length = BUFFER_SIZE;
+    sge.lkey = conn->send_mr->lkey;
+
+    TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
+
+// CHARA END
+
+
+  } else if (wc->opcode == IBV_WC_SEND) {
+    printf("send completed successfully.\n");
+  }
+}
+
+
 
 int on_disconnect(struct rdma_cm_id *id)
 {

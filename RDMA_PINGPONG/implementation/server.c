@@ -56,9 +56,7 @@ int main(int argc, char **argv){
   memset(&port_statistics, 0, sizeof(port_statistics));
 
   printf("listening on port %d.\n", port);
-
-  printf("data %ld %ld \n", port_statistics.rx, port_statistics.tx);
-
+  printf("initialize port_statistics rx: %ld  tx: %ld\n", port_statistics.rx, port_statistics.tx);
 
   while (rdma_get_cm_event(ec, &event) == 0) {
     struct rdma_cm_event event_copy;
