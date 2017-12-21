@@ -8,6 +8,7 @@
 #define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
 
 const int BUFFER_SIZE = 1024;
+static struct context *s_ctx = NULL;
 
 #include "server_init.h"
 #include "server_action.h"
@@ -21,7 +22,6 @@ struct l2fwd_port_statistics {
 }
 
 static int on_event(struct rdma_cm_event *event);
-static struct context *s_ctx = NULL;
 
 
 int main(int argc, char **argv){
