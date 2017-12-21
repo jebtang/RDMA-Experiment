@@ -1,14 +1,4 @@
 ```c
-#include <netdb.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <rdma/rdma_cma.h>
-
-#define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
-#define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
-
 const int BUFFER_SIZE = 1024;
 const int TIMEOUT_IN_MS = 500; /* ms */
 
@@ -33,22 +23,11 @@ struct connection {
 
   int num_completions;
 };
+```
 
-static void die(const char *reason);
+> `recv_region` and `send_region` are the data offset
 
-static void build_context(struct ibv_context *verbs);
-static void build_qp_attr(struct ibv_qp_init_attr *qp_attr);
-static void * poll_cq(void *);
-static void post_receives(struct connection *conn);
-static void register_memory(struct connection *conn);
-
-static int on_addr_resolved(struct rdma_cm_id *id);
-static void on_completion(struct ibv_wc *wc);
-static int on_connection(void *context);
-static int on_disconnect(struct rdma_cm_id *id);
-static int on_event(struct rdma_cm_event *event);
-static int on_route_resolved(struct rdma_cm_id *id);
-
+```c
 static struct context *s_ctx = NULL;
 
 int main(int argc, char **argv)
@@ -300,5 +279,4 @@ int on_route_resolved(struct rdma_cm_id *id)
 
   return 0;
 }
-
 ```
