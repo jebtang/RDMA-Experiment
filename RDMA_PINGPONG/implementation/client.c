@@ -115,7 +115,7 @@ void print_log(){
   printf("%s%s", clr, topLeft);
   printf("\nRDMA Pingpong Client ====================================");
   printf("\nByte Statistics ------------------------------"
-         "\nPKT-SIZE: %d"
+         "\nPKT-SIZE: %ld"
          "\nBytes sent: %ld"
          "\nBytes received: %ld"
          "\nLatency: %f"
