@@ -103,7 +103,7 @@ void on_completion(struct ibv_wc *wc)
 
 
     // CHARA BEGIN
-    struct connection *conn = (struct connection *)context;
+    conn = (struct connection *)context;
     struct ibv_send_wr wr, *bad_wr = NULL;
     struct ibv_sge sge;
 
