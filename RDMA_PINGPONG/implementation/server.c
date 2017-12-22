@@ -8,9 +8,7 @@
 #define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
 #define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
 
-
-const int TIMEOUT_IN_MS = 500; /* ms */
-const int BUFFER_SIZE = 1024;
+const int BUFFER_SIZE = 64;
 static struct context *s_ctx = NULL;
 struct rdma_cm_event *event = NULL;
 
