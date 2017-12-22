@@ -73,11 +73,18 @@ int main(int argc, char **argv){
   struct rdma_cm_event *event = NULL;
   struct rdma_cm_id *conn= NULL;
   struct rdma_event_channel *ec = NULL;
+  FILE * nic_file;
   memset(&port_statistics, 0, sizeof(port_statistics));
   time(&start);
   latency = 0;
 
   // transferring packets
+  nic_file = fopen("/sys/class/net/eno1/statistics/rx_packets" , "r");
+  if (nic_file) {
+      fscanf(nic_file, "%s", nic_str);
+      port_statistics.rx = atoi(nic_str);
+      fclose(nic_file);
+  }
 
   while(1){
         prev_latency = latency;
@@ -106,6 +113,15 @@ int main(int argc, char **argv){
 
   rdma_destroy_event_channel(ec);
 
+
+  nic_file = fopen("/sys/class/net/eno1/statistics/rx_packets" , "r");
+  if (nic_file) {
+      fscanf(nic_file, "%s", nic_str);
+      port_statistics.rx = atoi(nic_str) - port_statistics.rx;
+      fclose(nic_file);
+  }
+
+  print_log();
   return 0;
 }
 
