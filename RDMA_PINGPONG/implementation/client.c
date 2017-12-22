@@ -9,7 +9,7 @@
 #define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
 #define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
 
-const int BUFFER_SIZE = 1000000;
+const int BUFFER_SIZE = 64;
 const int TIMEOUT_IN_MS = 500; /* ms */
 const char clr[] = { 27, '[', '2', 'J', '\0' };
 const char topLeft[] = { 27, '[', '1', ';', '1', 'H','\0' };
@@ -80,7 +80,7 @@ int main(int argc, char **argv){
   latency = 0;
 
   // transferring packets
-  nic_file = fopen("/sys/class/net/eno1/statistics/rx_packets" , "r");
+  nic_file = fopen("/sys/class/net/ib0/statistics/rx_packets" , "r");
   if (nic_file) {
       fscanf(nic_file, "%s", nic_str);
       port_statistics.rx = atoi(nic_str);
@@ -115,7 +115,7 @@ int main(int argc, char **argv){
   rdma_destroy_event_channel(ec);
 
 
-  nic_file = fopen("/sys/class/net/eno1/statistics/rx_packets" , "r");
+  nic_file = fopen("/sys/class/net/ib0/statistics/rx_packets" , "r");
   if (nic_file) {
       fscanf(nic_file, "%s", nic_str);
       port_statistics.rx = atoi(nic_str) - port_statistics.rx;
