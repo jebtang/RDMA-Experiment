@@ -15,6 +15,7 @@ const char clr[] = { 27, '[', '2', 'J', '\0' };
 const char topLeft[] = { 27, '[', '1', ';', '1', 'H','\0' };
 time_t start; //adding timer
 double latency, prev_latency;
+char nic_str[100];
 
 /* Per-port statistics struct */
 struct l2fwd_port_statistics {
