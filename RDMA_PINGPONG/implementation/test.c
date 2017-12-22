@@ -8,9 +8,9 @@ int main(){
 
   strcpy(d, s);
 
-  printf("%s", d);
+  printf("%ld", strlen(d));
 
-  printf("%s", s);
+  printf("%ld", strlen(s));
 
 
   return 0;
