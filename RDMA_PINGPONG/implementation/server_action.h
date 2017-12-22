@@ -90,7 +90,7 @@ int on_connection(void *context)
 
     sge.addr = (uintptr_t)conn->recv_region;
     sge.length = BUFFER_SIZE;
-    sge.lkey = conn->send_mr->lkey;
+    sge.lkey = conn->recv_mr->lkey;
 
     port_statistics.tx_bytes+=strlen(conn->recv_region);
     TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
