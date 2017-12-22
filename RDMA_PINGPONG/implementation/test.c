@@ -8,6 +8,8 @@ int main(){
 
   strcpy(d, s);
 
+  printf("%s", d);
+
   printf("%s", s);
 
 
