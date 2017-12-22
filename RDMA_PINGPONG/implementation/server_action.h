@@ -108,7 +108,11 @@ void on_completion(struct ibv_wc *wc)
     port_statistics.rx_bytes+=strlen(conn->recv_region);
 
   } else if (wc->opcode == IBV_WC_SEND) {
-    // struct connection *conn = (struct connection *)(uintptr_t)wc->wr_id;
+    struct connection *conn = (struct connection *)(uintptr_t)wc->wr_id;
+    if(conn->send_region){
+        
+    }
+
     // port_statistics.rx_bytes+=strlen(conn->send_region);
     // printf("send completed successfully.\n");
   }
