@@ -2,9 +2,6 @@ static void post_receives(struct connection *conn);
 static int on_connect_request(struct rdma_cm_id *id);
 static int on_connection(void *context);
 static int on_disconnect(struct rdma_cm_id *id);
-static int on_addr_resolved(struct rdma_cm_id *id);
-static int on_route_resolved(struct rdma_cm_id *id);
-
 
 
 void post_receives(struct connection *conn)
