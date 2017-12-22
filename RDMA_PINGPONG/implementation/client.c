@@ -257,8 +257,7 @@ void on_completion(struct ibv_wc *wc)
     die("on_completion: status is not IBV_WC_SUCCESS.");
 
   if (wc->opcode & IBV_WC_RECV){
-    // printf("received message: %s\n", conn->recv_region);
-
+    port_statistics.rx_bytes+=strlen(conn->recv_region);
   }
   else if (wc->opcode == IBV_WC_SEND){
     // printf("send completed successfully.\n");
