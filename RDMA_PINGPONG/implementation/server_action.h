@@ -80,8 +80,8 @@ int on_connection(void *context)
 
   if(conn->recv_region){
     // printf("checking the recv region file %ld \n\n", strlen(conn->recv_region));
-    conn->recv_region = conn->send_region;
-
+    memset(conn->send_region, '*', BUFFER_SIZE);
+    
     memset(&wr, 0, sizeof(wr));
     wr.opcode = IBV_WR_SEND;
     wr.sg_list = &sge;
