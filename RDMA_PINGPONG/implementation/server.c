@@ -112,10 +112,6 @@ int on_event(struct rdma_cm_event *event){
     r = on_connection(event->id->context);
   else if (event->event == RDMA_CM_EVENT_DISCONNECTED)
     r = on_disconnect(event->id);
-  else if (event->event == RDMA_CM_EVENT_ADDR_RESOLVED)
-    r = on_addr_resolved(event->id);
-  else if (event->event == RDMA_CM_EVENT_ROUTE_RESOLVED)
-    r = on_route_resolved(event->id);
   else
     die("on_event: unknown event.");
   return r;
