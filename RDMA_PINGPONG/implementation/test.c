@@ -6,7 +6,7 @@ int main(){
   char *d="safsdafds";
   char *s;
 
-  strcpy(d, s);
+  *d = *s;
 
   printf("%ld", strlen(d));
 
