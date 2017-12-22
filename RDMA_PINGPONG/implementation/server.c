@@ -10,7 +10,7 @@
 
 
 const int TIMEOUT_IN_MS = 500; /* ms */
-const int BUFFER_SIZE = 10000;
+const int BUFFER_SIZE = 50000;
 static struct context *s_ctx = NULL;
 struct rdma_cm_event *event = NULL;
 
