@@ -2,6 +2,9 @@ static void post_receives(struct connection *conn);
 static int on_connect_request(struct rdma_cm_id *id);
 static int on_connection(void *context);
 static int on_disconnect(struct rdma_cm_id *id);
+static int on_addr_resolved(struct rdma_cm_id *id);
+static int on_route_resolved(struct rdma_cm_id *id);
+
 
 
 void post_receives(struct connection *conn)
@@ -136,6 +139,46 @@ int on_disconnect(struct rdma_cm_id *id)
   free(conn);
 
   rdma_destroy_id(id);
+
+  return 0;
+}
+
+
+int on_addr_resolved(struct rdma_cm_id *id)
+{
+  struct ibv_qp_init_attr qp_attr;
+  struct connection *conn;
+
+  // printf("address resolved.\n");
+
+  build_context(id->verbs);
+  build_qp_attr(&qp_attr);
+
+  TEST_NZ(rdma_create_qp(id, s_ctx->pd, &qp_attr));
+
+  id->context = conn = (struct connection *)malloc(sizeof(struct connection));
+
+  conn->id = id;
+  conn->qp = id->qp;
+  conn->num_completions = 0;
+
+  register_memory(conn);
+  post_receives(conn);
+
+  TEST_NZ(rdma_resolve_route(id, TIMEOUT_IN_MS));
+
+  return 0;
+}
+
+
+int on_route_resolved(struct rdma_cm_id *id)
+{
+  struct rdma_conn_param cm_params;
+
+  // printf("route resolved.\n");
+
+  memset(&cm_params, 0, sizeof(cm_params));
+  TEST_NZ(rdma_connect(id, &cm_params));
 
   return 0;
 }
