@@ -80,7 +80,7 @@ int on_connection(void *context)
 
   if(conn->recv_region){
     // printf("checking the recv region file %ld \n\n", strlen(conn->recv_region));
-    memset(conn->send_region, '*', BUFFER_SIZE);
+    // memset(conn->send_region, '*', BUFFER_SIZE);
 
     memset(&wr, 0, sizeof(wr));
     wr.opcode = IBV_WR_SEND;
@@ -88,11 +88,11 @@ int on_connection(void *context)
     wr.num_sge = 1;
     wr.send_flags = IBV_SEND_SIGNALED;
 
-    sge.addr = (uintptr_t)conn->send_region;
+    sge.addr = (uintptr_t)conn->recv_region;
     sge.length = BUFFER_SIZE;
     sge.lkey = conn->send_mr->lkey;
 
-    port_statistics.rx_bytes+=strlen(conn->send_region);
+    port_statistics.tx_bytes+=strlen(conn->recv_region);
     TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
   }
 
