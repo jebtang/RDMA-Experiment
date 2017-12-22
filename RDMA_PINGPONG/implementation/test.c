@@ -8,7 +8,7 @@ int main(){
 
   strcpy(d, s);
 
-  printf(%s, s);
+  printf("%s", s);
 
 
   return 0;
