@@ -126,7 +126,7 @@ int on_event(struct rdma_cm_event *event){
 void print_log(){
   /* Clear screen and move to top left */
   printf("%s%s", clr, topLeft);
-  printf("\nRDMA Pingpong Client ====================================");
+  printf("\nRDMA Pingpong Server ====================================");
   printf("\nByte Statistics ------------------------------"
          "\nPKT-SIZE: %d"
          "\nBytes sent: %ld"
