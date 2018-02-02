@@ -129,7 +129,7 @@ int main(int argc, char **argv){
 
 void print_log(){
   /* Clear screen and move to top left */
-  printf("%s%s", clr, topLeft);
+  printf("%s%s", clr, topLeft);t
   printf("\nRDMA Pingpong Client ====================================");
   printf("\nByte Statistics ------------------------------"
          "\nPKT-SIZE: %d"
