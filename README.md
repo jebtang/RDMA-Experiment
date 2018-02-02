@@ -9,7 +9,7 @@
 
 <br>
 
-### Recent Features
+### Customized Applications
 
 - **Implemented IMB-benchmark with Standard Deviation**
     - developed the pingpong benchmark which creates std for each iteraton
