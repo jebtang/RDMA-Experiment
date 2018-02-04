@@ -1,0 +1,1683 @@
+Package: ar-mgr
+Priority: extra
+Section: libs
+Installed-Size: 1015
+Maintainer: Tamir Ronen <tamirr@mellanox.com>
+Architecture: amd64
+Version: 1.0-0.35.gd1e8f82.42120
+Depends: ibutils2, libc6 (>= 2.14), libgcc1 (>= 1:3.0), libstdc++6 (>= 5.2)
+Filename: ./ar-mgr_1.0-0.35.gd1e8f82.42120_amd64.deb
+Size: 177316
+MD5sum: e94dc017ec899afe26a3e293340fefc2
+SHA1: 919d76666ff783c26255a61fb0adcbf9ba0f1cc5
+SHA256: 5ffd4d32cf235d553683ccec72ce2e74ea6c43aa6e55e8cbfac228d74a4d3c8c
+SHA512: 2167dc54b4056dd5c468d071b4614712f9f05a710eaceb3c99afa3fe8bb6a6723a567a26c594bc6a3773dd7b1e67435172564e49230bfd59edfa93735e0df89c
+Description: Adaptive Routing Manager
+ Adaptive Routing manager configures Adaptive Routing
+ forwarding tables in the fabric.
+
+Package: cc-mgr
+Priority: extra
+Section: libs
+Installed-Size: 438
+Maintainer: Tamir Ronen <tamirr@mellanox.com>
+Architecture: amd64
+Version: 1.0-0.34.gd1e8f82.42120
+Depends: ibutils2, libc6 (>= 2.14), libgcc1 (>= 1:3.0)
+Filename: ./cc-mgr_1.0-0.34.gd1e8f82.42120_amd64.deb
+Size: 75092
+MD5sum: 494ab3ba2e1054ac0763abdb13dbee45
+SHA1: 58d3f76f2bab7f87ac8b93985c17a299673db322
+SHA256: dceca27ea9c889246378e1ced8c96a75919e84ca767572cb3026318ff1e52148
+SHA512: a28066b6b3e716500f3bc0f1f8bb162ad115fb52e13b55ab2652efa8ff251eec741ca37b71e9eba844bf114e1dac69db28f3cd3eb372eeb7cbfa31f9e16c40e4
+Description: Congestion Control Manager
+ Congestion Control manager configures congestion control
+ settings and logs congestion control events in the fabric.
+
+Package: dapl2-utils
+Priority: extra
+Section: net
+Installed-Size: 417
+Maintainer: OFED and Debian Developement and Discussion <pkg-ofed-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: dapl
+Version: 2.1.10mlnx-OFED.3.4.2.1.0.42120
+Depends: libc6 (>= 2.14), libdapl2 (>= 2.0.19), libibverbs1 (>= 1.1.2)
+Filename: ./dapl2-utils_2.1.10mlnx-OFED.3.4.2.1.0.42120_amd64.deb
+Size: 205776
+MD5sum: 15445dfd45cc33a7bc6f115596892120
+SHA1: 4f08672903849c070eed599447acd4678d4053a0
+SHA256: 5be6e670ee91091c96396c1ea617ef7bd6cb200e66e6fcd534adc171491c1fab
+SHA512: c77c5a1547a5e479cf357158cd2bcbee19c4b4b02cc578161533c4c2c029c07fe613609fc5575fd133c647e9f0c8e55080ceb00ba80a59ebaace76c1e47bd957
+Description: Utilities for use with the DAPL libraries
+ The Direct Access Programming Library (DAPL) is a transport-independent,
+ platform-independent API that supports Remote Direct Memory Access (RDMA)
+ devices such as Infiniband and iWARP .
+ .
+ This package contains example utilities that use the DAPL API.
+Homepage: http://www.openfabrics.org
+
+Package: dump-pr
+Priority: extra
+Section: libs
+Installed-Size: 47
+Maintainer: Tamir Ronen <tamirr@mellanox.com>
+Architecture: amd64
+Version: 1.0-0.30.gd1e8f82.42120
+Depends: libc6 (>= 2.4)
+Filename: ./dump-pr_1.0-0.30.gd1e8f82.42120_amd64.deb
+Size: 9280
+MD5sum: 4c27ece0c0e3e190f202efdd94754bb7
+SHA1: 3c9c7e2c292ed0957ca45e85bb9ac64ecf11e15e
+SHA256: 6d81e688690c4aabde05d25e4f2dc00e7e1ac6756bddfb70b233ee8c4039647a
+SHA512: d0a5b9b5feed4f38c067d399f060ecb6b9727bd02ce7dc737906eaf0448d79f4b8fe1c1ec5990cca584833e5e2e8a18853d49531e2e3a0b585aaa8395663c038
+Description: Dump PathRecord Plugin
+ Dump PathRecord plugin dumps the SA path records.
+ The output files are dependent on an environment
+ variable and the routing protocol in use.
+
+Package: hcoll
+Priority: extra
+Section: libs
+Installed-Size: 10602
+Maintainer: Mellanox Technologies Ltd. <support@mellanox.com>
+Architecture: amd64
+Version: 3.9.1901-1.42120
+Depends: libc6 (>= 2.14), libibumad, libibverbs1 (>= 1.1.2), libnuma1, librdmacm1 (>= 1.0.7), mxm, sharp, ucx
+Filename: ./hcoll_3.9.1901-1.42120_amd64.deb
+Size: 1533656
+MD5sum: 81152209d81b06760f673fe3d1be1bf3
+SHA1: 97028bb02a81a03871f550efb4f374304c1f7b38
+SHA256: 6526831b74b72195eb39397bb9c84a75f1a329feffd12c636d1ccc9f509fcb9c
+SHA512: d62d518d56e3b211ad641760aab579e73bddbdc89ac465eca35be2f7d9db2b1eb7ebcda69484e40506f485ddf5d9c1c221c55c5766f6e8b5e7e3e58719c7bf24
+Description: Hierarchical collectives (HCOLL)
+ Hierarchical collectives (HCOLL)
+Homepage: http://www.mellanox.com
+
+Package: ibacm-dev
+Priority: optional
+Section: net
+Installed-Size: 38
+Maintainer: Sean Hefty <sean.hefty@intel.com>
+Architecture: amd64
+Source: ibacm
+Version: 41mlnx1-OFED.4.1.0.1.0.42120
+Depends: ibacm
+Filename: ./ibacm-dev_41mlnx1-OFED.4.1.0.1.0.42120_amd64.deb
+Size: 10846
+MD5sum: 5baf57b73787d58f6eaaed49f0d62523
+SHA1: b2f0628e56ccbdf3d053a0d841e90b7c8da53a68
+SHA256: f3ad8135146002cbf6381d28d6514e2053d9f8985952b12ef1a77d48ab2b0994
+SHA512: e920e4951dff4eb28846ebb25ee1234a3c0377502d740b1baf2b5d0a90ea661e5486e5d0a8b753f47ee6eacd52d2e0be9929649d0de6f72eb99843baea986b50
+Description: Most applications do not need to know how to talk directly to the ibacm
+ daemon, but it does have a socket that it listens on, and it has a
+ specific protocol for incoming/outgoing data.  So if you wish to build
+ the ability to communicate directly with ibacm into your own application,
+ the protocol used to communicate with it, and the data structures
+ involved, are in this header file.  Please note that this is an unsupported
+ method of using this daemon.  The only supported means of using this is
+ via librdmacm.  As such, even though this header file is provided, no
+ further documentation is available.  One must read the source if they
+ wish to make use of this header file.
+Homepage: http://www.openfabrics.org/
+
+Package: ibacm
+Priority: optional
+Section: net
+Installed-Size: 138
+Maintainer: Sean Hefty <sean.hefty@intel.com>
+Architecture: amd64
+Version: 41mlnx1-OFED.4.1.0.1.0.42120
+Depends: libc6 (>= 2.15), libibumad, libibverbs1 (>= 1.1.2)
+Filename: ./ibacm_41mlnx1-OFED.4.1.0.1.0.42120_amd64.deb
+Size: 50314
+MD5sum: 1af055f85b5b15b2fb768d0e5e146017
+SHA1: 2557512524fa82bc10cf5c8c1b54e8492c7c243a
+SHA256: e1360ae44793ebfb1b306b46eb7850a078a9928662dbcd0f69ef422e8022e38e
+SHA512: e2fdec057691f97f4e183bc4a645912906d4839c1470792cc6702bc13604b121efd31db6e9bb7292e6bbf0c0915579ab32508ea1d7f0f72df9e16ebad105bde9
+Description: The ibacm daemon helps reduce the load of managing path record lookups on
+ large InfiniBand fabrics by providing a user space implementation of what
+ is functionally similar to an ARP cache.  The use of ibacm, when properly
+ configured, can reduce the SA packet load of a large IB cluster from O(n^2)
+ to O(n).  The ibacm daemon is started and normally runs in the background,
+ user applications need not know about this daemon as long as their app
+ uses librdmacm to handle connection bring up/tear down.  The librdmacm
+ library knows how to talk directly to the ibacm daemon to retrieve data.
+Homepage: http://www.openfabrics.org/
+
+Package: ibdump
+Priority: extra
+Section: net
+Installed-Size: 5144
+Maintainer: mohammad <mohammad@unknown>
+Architecture: amd64
+Version: 5.0.0-1.42120
+Depends: libc6 (>= 2.14), libibverbs1 (>= 1.1.2)
+Filename: ./ibdump_5.0.0-1.42120_amd64.deb
+Size: 864190
+MD5sum: c925cb109b9ce068566478c573a20506
+SHA1: ed4e30b308d95b18fc5b5e21bc4a01d8edc3030d
+SHA256: 3349e4cb6a2478b394eef67c35de4525db608120db8f4d1b02aafada3194f35e
+SHA512: b1e48f82d1a625e0222e46e55cb0456fb10e60c57bd535ea8617c0897cac7d8d0c67921a3ed2e50cecdeb9501e09af5a4a18ddf112b4adb545cc299915b55115
+Description: Mellanox packets sniffer tool
+ This package contains sniffer tool for IB packets.
+Homepage: http://www.mellanox.com
+
+Package: ibsim-doc
+Priority: extra
+Section: net
+Installed-Size: 9
+Maintainer: Alex Netes <alexne@voltaire.com>
+Architecture: all
+Source: ibsim
+Version: 0.6mlnx1-0.8.g9d76581.42120
+Filename: ./ibsim-doc_0.6mlnx1-0.8.g9d76581.42120_all.deb
+Size: 1932
+MD5sum: d4e09684c75acaff24a57133a2109d11
+SHA1: b31cc81afb04de3e7fc4946911fd8b21a5c9aa46
+SHA256: 0ac0d688331c0f73083e1c7a5448010540e3b9209c492434c5f4d8c66bc5b89a
+SHA512: b27c12d441c4c1e8fe9c77bcc6af36aa3f6c6cfa347ae533cf670c8df62c0d50894529faadd96a1bf84eb8f694fd27ab9ce031f72f64490b9e77634ed8e1406f
+Description: documentation for ibsim
+ Documentation for ibsim
+Homepage: http://openfabrics.org/downloads/management
+
+Package: ibsim
+Priority: extra
+Section: net
+Installed-Size: 176
+Maintainer: Alex Netes <alexne@voltaire.com>
+Architecture: amd64
+Version: 0.6mlnx1-0.8.g9d76581.42120
+Depends: libc6 (>= 2.14), libibmad, libibumad
+Filename: ./ibsim_0.6mlnx1-0.8.g9d76581.42120_amd64.deb
+Size: 48552
+MD5sum: c35115448a1158838757ea453e441156
+SHA1: 5de2bae6953e8bea5814478749a1973d010c8cf8
+SHA256: 99338bc6d7d6c721a0942299e7fffc92b0602ef5d15ad1ec459d85b0db63193d
+SHA512: 3be3db923b11c377b895fc0a38735a9193c4ab5f7b8baeb4118abe9ae935c2ff37141bea2a4fa283e84e3c8deba062c2cd2102a8531e59a94bff48346b90681a
+Description: InfiniBand fabric simulator for management
+ ibsim provides simulation of infiniband fabric for using with OFA OpenSM,
+ diagnostic and management tools.
+Homepage: http://openfabrics.org/downloads/management
+
+Package: ibutils2
+Priority: extra
+Section: net
+Installed-Size: 13569
+Maintainer: Tamir Ronen <tamirr@mellanox.com>
+Architecture: amd64
+Version: 2.1.1-0.92.MLNX20170822.g2c10d6f.42120
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libibmad, libibumad, libstdc++6 (>= 5.2)
+Filename: ./ibutils2_2.1.1-0.92.MLNX20170822.g2c10d6f.42120_amd64.deb
+Size: 1564408
+MD5sum: 93c3020964accab5467d7170f88aee20
+SHA1: 619433650b947fc06f2fe68de44502f3e18d0dbd
+SHA256: ad7641dddb1a146083e0afaa4cc02be9fa78a9298d3948c2cabd1d6528e3efd7
+SHA512: 9582341af9374ebde162e90ba5c23451da5d0cc32f8d63c429489ba3b4dba89a55cdfc5ab14661ec64633404297fac33d04e12dc55c7c2b6b67b7ec3b1f11921
+Description: OpenIB Mellanox InfiniBand Diagnostic Tools
+ ibutils provides IB network and path diagnostics.
+
+Package: ibutils
+Priority: extra
+Section: net
+Installed-Size: 1814
+Maintainer: Yevgeny Kliteynik <kliteyn@dev.mellanox.co.il>
+Architecture: amd64
+Version: 1.5.7.1-0.12.gdcaeae2.42120
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libibdm1, libopensm, libstdc++6 (>= 5.2), libtcl8.6 (>= 8.6.0)
+Filename: ./ibutils_1.5.7.1-0.12.gdcaeae2.42120_amd64.deb
+Size: 387300
+MD5sum: 14bb01479c1907c478c0a9808cdf38d6
+SHA1: 3c858cc16717c522a2ed0aaae272c66d635cfd12
+SHA256: 4cf0da81c524f551a47ee9feec7db15344a01cdf587507b30bbd6b7bdf259934
+SHA512: cf82b53380b858037e3f58aa3265b8651d732ccb1c37cdd5c5262984bcaaf8c30e7bdfc6b75efc4012d82f13164a11593cf69e0fca41736d676ccf80c62d93c7
+Description: InfiniBand network utilities
+ This package contains a set of utilities useful for
+ diagnosing and testing InfiniBand based networks.
+
+Package: ibverbs-utils
+Priority: extra
+Section: net
+Installed-Size: 368
+Maintainer: Roland Dreier <roland@digitalvampire.org>
+Architecture: amd64
+Source: libibverbs
+Version: 41mlnx1-OFED.4.2.1.0.6.42120
+Depends: libc6 (>= 2.14), libibverbs1 (>= 1.1.2)
+Filename: ./ibverbs-utils_41mlnx1-OFED.4.2.1.0.6.42120_amd64.deb
+Size: 92642
+MD5sum: 5989c8835641c218bd8b2ec2acd7b84e
+SHA1: 5b888ef229493c4083bd6c16c180c959255ce4a9
+SHA256: 1ed6e18a9a3b39f890ca1ac6f09caf33f019b7f3b717572b96a8db701d94681c
+SHA512: 3c5bf49b70898d88ab3df1b0e2b6aad60937fb9256e8e067da0960c307c59a9f13e39518526e57c9e320a7cb754f7b8a469d79a9c7600ed1b12aeb27b29bf442
+Description: Examples for the libibverbs library
+ libibverbs is a library that allows userspace processes to use RDMA
+ "verbs" as described in the InfiniBand Architecture Specification and
+ the RDMA Protocol Verbs Specification.  iWARP ethernet NICs support
+ RDMA over hardware-offloaded TCP/IP, while InfiniBand is a
+ high-throughput, low-latency networking technology.  InfiniBand host
+ channel adapters (HCAs) and iWARP NICs commonly support direct
+ hardware access from userspace (kernel bypass), and libibverbs
+ supports this when available.
+ .
+ This package contains useful libibverbs1 example programs such as
+ ibv_devinfo, which displays information about InfiniBand devices.
+Homepage: http://www.openfabrics.org/
+
+Package: infiniband-diags-compat
+Priority: extra
+Section: libs
+Installed-Size: 141
+Maintainer: Ira Weiny <weiny2@llnl.gov>
+Architecture: amd64
+Source: infiniband-diags
+Version: 1.6.7.MLNX20171022.b127f52-0.1.42120
+Depends: libibmad-devel, libopensm-devel, libibumad-devel
+Filename: ./infiniband-diags-compat_1.6.7.MLNX20171022.b127f52-0.1.42120_amd64.deb
+Size: 59376
+MD5sum: ccfb15a7abb90a808286deffb14b20b2
+SHA1: 3c93b2578d7aebd7ff768c79f39a9f6fa4db8628
+SHA256: 6e385b071439ead9aa4bf868dad488f3a92d14c310deb4eaccbea3e93f4f3a61
+SHA512: 4fb810c21601dbce8b951a338c4c239b970f4b1c830cec47a8d52f2f85e6bcb2cdf1cb766b9847275defd22885c837a86514a5d3ea13e51e3c67d6d5d9c295b4
+Description: OpenFabrics Alliance InfiniBand Diagnostic Tools
+ Deprecated scripts and utilities which provide duplicated functionality, most
+ often at a reduced performance.  These are maintained for the time being for
+ compatibility reasons.
+Homepage: http://www.openfabrics.org/downloads/management/
+
+Package: infiniband-diags-guest
+Priority: extra
+Section: libs
+Installed-Size: 94
+Maintainer: Ira Weiny <weiny2@llnl.gov>
+Architecture: amd64
+Source: infiniband-diags
+Version: 1.6.7.MLNX20171022.b127f52-0.1.42120
+Depends: libc6 (>= 2.4), libibmad, libibumad
+Filename: ./infiniband-diags-guest_1.6.7.MLNX20171022.b127f52-0.1.42120_amd64.deb
+Size: 54426
+MD5sum: b116a69aa7be2c63b2cebc4c05e8494f
+SHA1: dd9d497db114fba067d367a1d4dbdc84be02acdc
+SHA256: c5cfbd2e4c53d9704f3b22f3f701f7a9afc216f01cc580fd30d2e02e406e6ab2
+SHA512: 9e12db6d4f8a7f7ce7d1d8a6e11c1f5382b3ac76af74eb0773d1e18bf16f23df5516da558a8e5ae40c4362dec680ab54e05ab4e2eb70d355c1736e500e82ebe1
+Description: OpenFabrics Alliance InfiniBand Diagnostic Tools for Guest OS
+ This package provides IB diagnostic programs and scripts for Virtual Machines,
+ needed to diagnose an IB subnet.
+Homepage: http://www.openfabrics.org/downloads/management/
+
+Package: infiniband-diags
+Priority: extra
+Section: libs
+Installed-Size: 1022
+Maintainer: Ira Weiny <weiny2@llnl.gov>
+Architecture: amd64
+Version: 1.6.7.MLNX20171022.b127f52-0.1.42120
+Depends: libc6 (>= 2.14), libglib2.0-0 (>= 2.12.0), libibmad, libibumad, libopensm
+Filename: ./infiniband-diags_1.6.7.MLNX20171022.b127f52-0.1.42120_amd64.deb
+Size: 267478
+MD5sum: 6ef0da1f77c62f77e78afeb8c16c0cd3
+SHA1: d7434da1bfeb37db61746f0576f8a06b2d193d5f
+SHA256: 6575999df0d8466cd30b213172330e6dd2a549625bc5010d0f8882bc9d6d37ca
+SHA512: dac915bcaadc89ec42fa7ce49392ccfa2a5c5ebf1364d1513ce9ef4d02f5a1f08d7cc1cfbb0c2cfd9262b1ae422e33a9becc718b66c48b94863e9ee688fd48bc
+Description: OpenFabrics Alliance InfiniBand Diagnostic Tools
+ This package provides IB diagnostic programs and scripts needed to
+ diagnose an IB subnet.
+Homepage: http://www.openfabrics.org/downloads/management/
+
+Package: iser-dkms
+Priority: optional
+Section: kernel
+Installed-Size: 170
+Maintainer: Mellanox Technologies <support@mellanox.com>
+Architecture: all
+Source: iser
+Version: 4.0-OFED.4.2.1.2.0.1.gf8de107
+Depends: dkms, make, mlnx-ofed-kernel-dkms
+Recommends: linux-headers-arm64 | linux-headers-powerpc | linux-headers-ppc64 | linux-headers-ppc64le | linux-headers-amd64 | linux-headers | linux-headers-generic
+Filename: ./iser-dkms_4.0-OFED.4.2.1.2.0.1.gf8de107_all.deb
+Size: 35094
+MD5sum: 7d91b9cb7307f06bb0223443f7915ebf
+SHA1: 6e43e698023de88920b94f27e8784a2d75437089
+SHA256: f950621a1e834a25a6d123eb5c7b975323e296c7a562549746cd757a18617144
+SHA512: c1ddda571c0f3013608cae808510bfb5251a4897fa8d1d872d7119c45784135cb4bb82032425a198595cad8a42ff0738812bfed3046055bacdeb489d173b7618
+Description: DKMS support fo iser kernel modules
+ This package provides integration with the DKMS infrastructure for automatically building out of tree kernel modules.
+ .
+ This package contains the source to be built with dkms.
+Homepage: http://www.mellanox.com
+
+Package: isert-dkms
+Priority: optional
+Section: kernel
+Installed-Size: 118
+Maintainer: Mellanox Technologies <support@mellanox.com>
+Architecture: all
+Source: isert
+Version: 4.0-OFED.4.2.1.2.0.1.gf8de107
+Depends: dkms, make, mlnx-ofed-kernel-dkms
+Recommends: linux-headers-arm64 | linux-headers-powerpc | linux-headers-ppc64 | linux-headers-ppc64le | linux-headers-amd64 | linux-headers | linux-headers-generic
+Filename: ./isert-dkms_4.0-OFED.4.2.1.2.0.1.gf8de107_all.deb
+Size: 23266
+MD5sum: 044ef8abaf04519a51a639320a0e8559
+SHA1: 3fdd0db9a2f2395a44cf753c35f8a4ea97e1ba3f
+SHA256: a888994ac2b5f02f70e346b64532105a199663443fa2166a62d5263b782fc71d
+SHA512: 8aaae2bccbb302cb445b2bc282240c0e484cf94954af956bdc5de8e8ac51c98d241bec9d86fd3ee9bde87b19a42b600965bcd0592ab9bf9989c2e0d0991ed04d
+Description: DKMS support fo isert kernel modules
+ This package provides integration with the DKMS infrastructure for automatically building out of tree kernel modules.
+ .
+ This package contains the source to be built with dkms.
+Homepage: http://www.mellanox.com
+
+Package: kernel-mft-dkms
+Priority: optional
+Section: kernel
+Installed-Size: 90
+Maintainer: Omer Dagan <omerd@mellanox.com>
+Architecture: all
+Source: kernel-mft
+Version: 4.8.1-3
+Depends: dkms, make
+Recommends: linux-headers-arm64 | linux-headers-powerpc | linux-headers-ppc64 | linux-headers-ppc64le | linux-headers-amd64 | linux-headers-generic | linux-headers
+Filename: ./kernel-mft-dkms_4.8.1-3_all.deb
+Size: 19496
+MD5sum: 7e0fdf3f93f1f32edd7a7c2ae56deeb3
+SHA1: 7357f78bd97e5fefd2b76e6f7ba3b71d87f29f28
+SHA256: cdd169d57c66ef1158c5b1ecfd46c399cb42885a78f2499b3f1e13129e3ab3b1
+SHA512: 97b6ef3bef7befc17e008e09f686536513b5312bbb5c47b546cf50bd5c5ceba86c9589ba6cb1218bbc745bd6750723717203f159a972ab91b013340d8cfeed0e
+Description: DKMS support for kernel-mft kernel modules
+ This package provides integration with the DKMS infrastructure for
+ automatically building out of tree kernel modules.
+Homepage: http://www.mellanox.com
+
+Package: knem-dkms
+Priority: optional
+Section: kernel
+Installed-Size: 1240
+Maintainer: Brice Goglin <Brice.Goglin@inria.fr>
+Architecture: all
+Source: knem
+Version: 1.1.2.90mlnx3-OFED.4.2.1.0.5.1.gbc0857b
+Depends: dkms, make, pkg-config
+Recommends: linux-headers-arm64 | linux-headers-powerpc | linux-headers-ppc64 | linux-headers-ppc64le | linux-headers-amd64 | linux-headers-generic | linux-headers
+Filename: ./knem-dkms_1.1.2.90mlnx3-OFED.4.2.1.0.5.1.gbc0857b_all.deb
+Size: 175288
+MD5sum: 98eef60ba716f16f54763b0fcc1c0605
+SHA1: 20043c9b60c0c7452e01e31dc4265b30dba4ba85
+SHA256: 22b56aa63b3432881f386143b98a5218b63287fbc0123c45391a7dcdb5d01bf1
+SHA512: c2d04d7ddd2e1e7b18d39cf26083d2668152c36a0c387f76c24295b99cbc5d902871fff2c86a850532501c38bf5696c2878a5cb8e02abd68aaf931ce3b73e28a
+Description: DKMS support for mlnx-ofed kernel modules
+ This package provides integration with the DKMS infrastructure for
+ automatically building out of tree kernel modules.
+ .
+ This package provides the source code for the mlnx-ofed kernel modules.
+ .
+ This package contains the source to be built with dkms.
+Homepage: http://runtime.bordeaux.inria.fr/knem/
+
+Package: knem
+Priority: optional
+Section: kernel
+Installed-Size: 184
+Maintainer: Brice Goglin <Brice.Goglin@inria.fr>
+Architecture: amd64
+Version: 1.1.2.90mlnx3-OFED.4.2.1.0.5.1.gbc0857b
+Depends: pkg-config
+Filename: ./knem_1.1.2.90mlnx3-OFED.4.2.1.0.5.1.gbc0857b_amd64.deb
+Size: 34312
+MD5sum: a8ea0425ced4e12ded766df60012ed83
+SHA1: 8df5a95f0f38ef6daa9dae3a0af21aeba2971e02
+SHA256: f1cb4cde2d698418b18201c0a605fdd8bab13cdbc149ba43cdb35885c5c0b4ea
+SHA512: 676f9a00245ee173a7b8d8cfd45708fa69b7814498e4de1f943f792dfc14ff90a7b7799bb895a7b447da0b20f312d6c370264b7e10d155e445532edf89a84b61
+Description: KNEM is a Linux kernel module enabling high-performance intra-node MPI communication for large messages. KNEM offers support for asynchronous and vectorial data transfers as well as offloading memory copies on to Intel I/OAT hardware. See http://runtime.bordeaux.inria.fr/knem/ for details.
+Homepage: http://runtime.bordeaux.inria.fr/knem/
+
+Package: libdapl-dev
+Priority: extra
+Section: libdevel
+Installed-Size: 1814
+Maintainer: OFED and Debian Developement and Discussion <pkg-ofed-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: dapl
+Version: 2.1.10mlnx-OFED.3.4.2.1.0.42120
+Depends: libdapl2 (= 2.1.10mlnx-OFED.3.4.2.1.0.42120)
+Filename: ./libdapl-dev_2.1.10mlnx-OFED.3.4.2.1.0.42120_amd64.deb
+Size: 284780
+MD5sum: 64057f43acf0d1b46a7141256d2aa6ae
+SHA1: 269397e7e04c21294155beec4ba58fa90f825b31
+SHA256: 2ddf6cba5bd6b2f5a28a35c5bae21c04fee0a552d2c2e2c0ec93c165e8235e56
+SHA512: ecd54373dcad57f8b66821ed72dceb78aba04f9c6480b4c2ffe45ae703a3b22c74319cda31080e4d100309f25d49af086cfbb88951f8c8ea3254b248e9c24545
+Description: Development files for the DAPL libraries
+ The Direct Access Programming Library (DAPL) is a transport-independent,
+ platform-independent API that supports Remote Direct Memory Access (RDMA)
+ devices such as Infiniband and iWARP .
+ .
+ This package contains the header files and shared libraries for building
+ applications against libdapl.
+Homepage: http://www.openfabrics.org
+
+Package: libdapl2
+Priority: extra
+Section: libs
+Installed-Size: 637
+Maintainer: OFED and Debian Developement and Discussion <pkg-ofed-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: dapl
+Version: 2.1.10mlnx-OFED.3.4.2.1.0.42120
+Depends: libc6 (>= 2.16), libibverbs1 (>= 1.1.2), librdmacm1 (>= 1.0.7)
+Filename: ./libdapl2_2.1.10mlnx-OFED.3.4.2.1.0.42120_amd64.deb
+Size: 212508
+MD5sum: e3e35dab5e03169ff1d7ac4024d30816
+SHA1: 8d13dec4718358040e52963a14dae4c96827c19e
+SHA256: e469517468fc81791798869a7837ef5abf206d66a8e781d30b9dfd4c0e6469f4
+SHA512: 20a89bf5f2c39240852da2812a53abea524f85119ff548a11aa1e0888e1cda7142fe7aeead9f8adc6753e8257864dfaa5cfc5ebbf2891bea675135bde35c22a2
+Description: The Direct Access Programming Library (DAPL)
+ The Direct Access Programming Library (DAPL) is a transport-independent,
+ platform-independent API that supports Remote Direct Memory Access (RDMA)
+ devices such as Infiniband and iWARP .
+  .
+ This package contains the libdapl shared library.
+Homepage: http://www.openfabrics.org
+
+Package: libdisni-java-jni
+Priority: extra
+Section: java
+Installed-Size: 79
+Maintainer: Patrick Stuedi <stu@zurich.ibm.com>
+Architecture: amd64
+Source: libdisni
+Version: 1.3-OFED.4.2.0.1.0.42120
+Depends: libc6 (>= 2.4), libibverbs1 (>= 1.1.2), librdmacm1 (>= 1.0.7), adduser
+Filename: ./libdisni-java-jni_1.3-OFED.4.2.0.1.0.42120_amd64.deb
+Size: 16440
+MD5sum: a2f475faca1cedc027be78b6acb5cf8c
+SHA1: 57c358bb11269555c3a94abadae84a949839a10e
+SHA256: 6a38ab4ec1d86116cba40f7ecbf4be72f5b3c7b412808881fd987bbe64d74a5c
+SHA512: a2c86ecd4b73ce292236d91b367d861fe19cb42192f96be138a115dfa9a998e65d1254d5ed1cfaee3a1b5cb2c9e892984070959e0f030e81766b035c87456a3f
+Description: Direct Storage and Networking Interface Library
+ libdisni provides a user-space API to direct storage and networking access from
+ userpace. It provides an RDMA interface to access remote memory, and an NVMf
+ interface to access remote NVMe storage.
+ .
+ This package contains the shared library.
+Homepage: https://github.com/zrlio/disni
+
+Package: libibcm-dev
+Priority: extra
+Section: libdevel
+Installed-Size: 56
+Maintainer: Gal Sivan <gsivan@unknown>
+Architecture: amd64
+Source: libibcm
+Version: 41mlnx1-OFED.4.1.0.1.0.42120
+Depends: libibcm1 (= 41mlnx1-OFED.4.1.0.1.0.42120)
+Filename: ./libibcm-dev_41mlnx1-OFED.4.1.0.1.0.42120_amd64.deb
+Size: 12496
+MD5sum: 9f4330fad56373857836ebbaeab3c2c7
+SHA1: 673e48e9128049bc4c5c5f86307eced09c5ff486
+SHA256: 42dd5e4e455fd411fe2eccd0f7d3359261b4441165f2f8daecdd207788d93e13
+SHA512: 51df9edc20618053536739bfdfd792f9a4ce79878e29b65780d671a5f3b44f8c7127200b861413a62f3cd3bf7ef79d0bc93c693a3e828f593898fb76652d34e8
+Description: Development files for the libibcm library
+ Development files for the libibcm library
+Homepage: http://www.openfabrics.org/
+
+Package: libibcm1
+Priority: extra
+Section: libs
+Installed-Size: 32
+Maintainer: Gal Sivan <gsivan@unknown>
+Architecture: amd64
+Source: libibcm
+Version: 41mlnx1-OFED.4.1.0.1.0.42120
+Depends: libc6 (>= 2.8), libibverbs1 (>= 1.1.2), libibverbs-dev (>= 1.1.6)
+Filename: ./libibcm1_41mlnx1-OFED.4.1.0.1.0.42120_amd64.deb
+Size: 8036
+MD5sum: e6c1a6617c248f53da1f9e7ed31c7b72
+SHA1: 5a7d8800221c3d84b258fc49cf3e66f810bc8df4
+SHA256: 45261bc084d3da6aff5e73f6a48ae48bc7cb473f3d83c7a8b7009b9377dd6514
+SHA512: 229713c6ad0ad998542b5a6aee4683f2a61b373db7fded37099adaf82c4a92e55f9c8bdc315de76266325fcf61dc8c9f20940cc8575630b10baae5c75d17bcbb
+Description: Userspace InfiniBand Communication Manager.
+ libibcm provides a userspace InfiniBand Communication Managment library.
+Homepage: http://www.openfabrics.org/
+
+Package: libibdm1
+Priority: extra
+Section: net
+Installed-Size: 11438
+Maintainer: Yevgeny Kliteynik <kliteyn@dev.mellanox.co.il>
+Architecture: amd64
+Source: ibutils
+Version: 1.5.7.1-0.12.gdcaeae2.42120
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libopensm, libstdc++6 (>= 5.2), libtcl8.6 (>= 8.6.0)
+Filename: ./libibdm1_1.5.7.1-0.12.gdcaeae2.42120_amd64.deb
+Size: 907072
+MD5sum: da32159e7ccd3b246b5ba536b4689301
+SHA1: 4c8eda351d554b43789ac47ca4ac90ea1bddfab0
+SHA256: 1e1a5a2e82151de74fa212b66ea98e4c6c4af911e5525eecd89ee7572ebbb5f9
+SHA512: d15d069f8b6d9554a1bcfa2a88d0e8e141f93f824d7e59184f539fafa95540f8d71aae57cab0bfe119b5da2633553879336df77d8fbe1c105f4b276a04cd8f48
+Description: InfiniBand network diagnostic library
+ This package contains a library for building tools useful
+ for diagnosing and testing InfiniBand based networks.
+
+Package: libibmad-devel
+Priority: extra
+Section: libdevel
+Installed-Size: 80
+Maintainer: Ira Weiny <weiny2@llnl.gov>
+Architecture: amd64
+Source: libibmad
+Version: 1.3.13.MLNX20170511.267a441-0.1.42120
+Depends: libibmad (= 1.3.13.MLNX20170511.267a441-0.1.42120)
+Filename: ./libibmad-devel_1.3.13.MLNX20170511.267a441-0.1.42120_amd64.deb
+Size: 28004
+MD5sum: fb09536b5ef48c09f8ae7611a3f24cc4
+SHA1: 650558f478ea9fe932ab1e17820bcd9b6923436d
+SHA256: 11e937748170c314cfbbe8029d531d72f32552fd58be5dfa02839ce7279c1420
+SHA512: 4c3332e7ef17dc6021d807c4163357ff0c0c642b53352995fd2aac9f9b307f3b54208785869e06f74627e7dc271d4732febf6af4f05e79f5674cf296cc5811af
+Description: Development files for the libibmad library
+ Development files for the libibmad library
+Homepage: http://www.openfabrics.org/downloads/management/libibmad-1.3.11.tar.gz
+
+Package: libibmad-static
+Priority: extra
+Section: libdevel
+Installed-Size: 186
+Maintainer: Ira Weiny <weiny2@llnl.gov>
+Architecture: amd64
+Source: libibmad
+Version: 1.3.13.MLNX20170511.267a441-0.1.42120
+Depends: libibmad (= 1.3.13.MLNX20170511.267a441-0.1.42120)
+Filename: ./libibmad-static_1.3.13.MLNX20170511.267a441-0.1.42120_amd64.deb
+Size: 45928
+MD5sum: 63d1e14fbe57b5d63a9ebb1de9e9dedc
+SHA1: d79b44407c34cb881fac9fb9ff416158eb3ef572
+SHA256: ab2ede07968eba2665d028760b33e94584e83559ac1aa15351bdd89bcaf16663
+SHA512: 4d40e5b58c881431267727a1097dac99fcc23e0bd333aec24218ac0a1c22e6f7b5e331ba38f847eedd2db30c600f162e5ebd410e689365f0c3d90b204686f05f
+Description: Static version of the libibmad library
+ Static version of the libibmad library
+Homepage: http://www.openfabrics.org/downloads/management/libibmad-1.3.11.tar.gz
+
+Package: libibmad
+Priority: extra
+Section: libs
+Installed-Size: 189
+Maintainer: Ira Weiny <weiny2@llnl.gov>
+Architecture: amd64
+Version: 1.3.13.MLNX20170511.267a441-0.1.42120
+Depends: libc6 (>= 2.14), libibumad
+Filename: ./libibmad_1.3.13.MLNX20170511.267a441-0.1.42120_amd64.deb
+Size: 60816
+MD5sum: 3ede36b52f7427a14d32203755e0c0c2
+SHA1: 25f27c07d3fffa0ea24dd8752361109734dd9f89
+SHA256: 9dad88a4f4fa8a375268724799bfb272abc6bcd1a2780ff59773fb997aa9df43
+SHA512: 71b1f0ee1d33e2ca42f65bde5db725d33a539405452b8274466f93591e66894d15502c10ae2fcc23a881e0ce1ae23106857b47f588bb7d78c7dce0b5985a2ad0
+Description: OpenFabrics Alliance InfiniBand MAD library
+ libibmad provides low layer IB functions for use by the IB diagnostic
+ and management programs. These include MAD, SA, SMP, and other basic
+ IB functions.
+Homepage: http://www.openfabrics.org/downloads/management/libibmad-1.3.11.tar.gz
+
+Package: libibumad-devel
+Priority: extra
+Section: libdevel
+Installed-Size: 51
+Maintainer: Hal Rosenstock <hal@mellanox.com>
+Architecture: amd64
+Source: libibumad
+Version: 43.1.1.MLNX20171122.0eb0969-0.1.42120
+Depends: libibumad (= 43.1.1.MLNX20171122.0eb0969-0.1.42120)
+Filename: ./libibumad-devel_43.1.1.MLNX20171122.0eb0969-0.1.42120_amd64.deb
+Size: 18272
+MD5sum: 9e587bef4bae5ef7b212b375a60d0ee1
+SHA1: 3695872dca908bf45d165dc6112f68246dd63da2
+SHA256: e4f659377a8129c8957b8f6e77f65ec2a8ccabac50d9e1a453cfd926d0e12b09
+SHA512: 73b916746f7fe6b80bc3c68da585245c33ecc0c49079dffd16dbb19b8c14673f96397dc13b6d94c347ee7ebdd2fa4adacfa8151ba857fdf4945930f38879afee
+Description: Development files for the libibumad library
+Homepage: http://www.openfabrics.org/downloads/management/libibumad-1.3.10.2.tar.gz
+
+Package: libibumad-static
+Priority: extra
+Section: libs
+Installed-Size: 78
+Maintainer: Hal Rosenstock <hal@mellanox.com>
+Architecture: amd64
+Source: libibumad
+Version: 43.1.1.MLNX20171122.0eb0969-0.1.42120
+Depends: libibumad (= 43.1.1.MLNX20171122.0eb0969-0.1.42120)
+Filename: ./libibumad-static_43.1.1.MLNX20171122.0eb0969-0.1.42120_amd64.deb
+Size: 26412
+MD5sum: 9ccb6f543639bcaf0a04820cc83de607
+SHA1: 28145a16c95e9d37a39bd9b10fd8d9bfed1e4cd9
+SHA256: c6bce8d0ff68551814d465260e44b15d4d2f50a41f59c44a17464f3db70896de
+SHA512: a6206e895625307830bb338f557a0b25694f80cb138a2e04b3b593e7fec167e3ee850268cba19779ff733c6b68eb2e1b2a1c143b93df715246f9ef3b424fcb80
+Description: Static version of the libibumad library
+Homepage: http://www.openfabrics.org/downloads/management/libibumad-1.3.10.2.tar.gz
+
+Package: libibumad
+Priority: extra
+Section: libs
+Installed-Size: 140
+Maintainer: Hal Rosenstock <hal@mellanox.com>
+Architecture: amd64
+Version: 43.1.1.MLNX20171122.0eb0969-0.1.42120
+Depends: libc6 (>= 2.4)
+Filename: ./libibumad_43.1.1.MLNX20171122.0eb0969-0.1.42120_amd64.deb
+Size: 61970
+MD5sum: 7ebf9b650c30db2d76eb4a89828223d0
+SHA1: e0a6a48091aec6c848c57a7faab083c3e700b63e
+SHA256: 25a1999ac803cab743ae51d18e069a3fdf7c3af9fcd37107a440ca80b590754c
+SHA512: 516f8c2231acce15aeabd5fca52be6612e0117949f5eefec70661f02742596fcc3367588945158f2d4b3ea1d995062eff21fe41adb0e8da0a38ef32837970ae7
+Description: OpenFabrics Alliance InfiniBand umad (user MAD) library
+ libibumad provides the user MAD library functions which sit on top of
+ the user MAD modules in the kernel. These are used by the IB diagnostic
+ and management tools, including OpenSM.
+Homepage: http://www.openfabrics.org/downloads/management/libibumad-1.3.10.2.tar.gz
+
+Package: libibverbs-dev
+Priority: extra
+Section: libdevel
+Installed-Size: 607
+Maintainer: Roland Dreier <roland@digitalvampire.org>
+Architecture: amd64
+Source: libibverbs
+Version: 41mlnx1-OFED.4.2.1.0.6.42120
+Depends: libibverbs1 (= 41mlnx1-OFED.4.2.1.0.6.42120)
+Filename: ./libibverbs-dev_41mlnx1-OFED.4.2.1.0.6.42120_amd64.deb
+Size: 191668
+MD5sum: 3271833d5dadd827d1e2562e28100e04
+SHA1: 3f01224b0a79b2c2822cd8aa17785b30affb4508
+SHA256: 235bd588afa9f3342a6f8868209d72364308d11e43ee7022b44b1bce65da9639
+SHA512: ead5431f512c6f1d1a90b793e4e91b25a0ff4c387cf6215ee05aa56e3f54a4f3b090aa4c013789a2a339d6048d463f581e6a956cfeff8f9c5c2411d02643429a
+Description: Development files for the libibverbs library
+ libibverbs is a library that allows userspace processes to use RDMA
+ "verbs" as described in the InfiniBand Architecture Specification and
+ the RDMA Protocol Verbs Specification.  iWARP ethernet NICs support
+ RDMA over hardware-offloaded TCP/IP, while InfiniBand is a
+ high-throughput, low-latency networking technology.  InfiniBand host
+ channel adapters (HCAs) and iWARP NICs commonly support direct
+ hardware access from userspace (kernel bypass), and libibverbs
+ supports this when available.
+ .
+ This package is needed to compile programs against libibverbs1.
+ It contains the header files and static libraries (optionally)
+ needed for compiling.
+Homepage: http://www.openfabrics.org/
+
+Package: libibverbs1-dbg
+Priority: extra
+Section: debug
+Installed-Size: 1772
+Maintainer: Roland Dreier <roland@digitalvampire.org>
+Architecture: amd64
+Source: libibverbs
+Version: 41mlnx1-OFED.4.2.1.0.6.42120
+Depends: libibverbs1 (= 41mlnx1-OFED.4.2.1.0.6.42120)
+Filename: ./libibverbs1-dbg_41mlnx1-OFED.4.2.1.0.6.42120_amd64.deb
+Size: 426098
+MD5sum: 880ac910e6ea4be4a2afac8a18ccee7d
+SHA1: cb68f0db0475f8806b60c33c1f76856ca59e235d
+SHA256: 4b4acff7f034bab2ee6092b4c5474eccb45d72cc5c85737bc7a9d2f1c677d5af
+SHA512: 762bdf84398ca0e266d08c51c1974e186f657167a9596111278834b228eb79fa2ed799dd87832bcff090eeb061d9dc41db6d5e58a6fa46fef40f0e575531ac47
+Description: Debugging symbols for the libibverbs library
+ libibverbs is a library that allows userspace processes to use RDMA
+ "verbs" as described in the InfiniBand Architecture Specification and
+ the RDMA Protocol Verbs Specification.  iWARP ethernet NICs support
+ RDMA over hardware-offloaded TCP/IP, while InfiniBand is a
+ high-throughput, low-latency networking technology.  InfiniBand host
+ channel adapters (HCAs) and iWARP NICs commonly support direct
+ hardware access from userspace (kernel bypass), and libibverbs
+ supports this when available.
+ .
+ This package contains the debugging symbols associated with
+ libibverbs1. They will automatically be used by gdb for debugging
+ libibverbs-related issues.
+Homepage: http://www.openfabrics.org/
+
+Package: libibverbs1
+Priority: extra
+Section: libs
+Installed-Size: 120
+Maintainer: Roland Dreier <roland@digitalvampire.org>
+Architecture: amd64
+Source: libibverbs
+Version: 41mlnx1-OFED.4.2.1.0.6.42120
+Depends: libc6 (>= 2.15), libnl-3-200 (>= 3.2.7), libnl-route-3-200 (>= 3.2.7), adduser
+Filename: ./libibverbs1_41mlnx1-OFED.4.2.1.0.6.42120_amd64.deb
+Size: 47134
+MD5sum: a84a4a25d578d9efda50bfa98c0c927c
+SHA1: 7be9d820181bcc2c313c16dde47d3f264bfb69f6
+SHA256: 39ad12c1cbe45cb71a317734bddc7452c7e20bba81b0062aa86548b3a547f7eb
+SHA512: 361a5be2e95446bcfcac1247247c3ff3d0b25330ec0a91f28e6e15cd0d60e27962e0a5c5552446ffaaa63bdf4076a274f2eecb71591ba5ca98551edb08ef3c97
+Description: Library for direct userspace use of RDMA (InfiniBand/iWARP)
+ libibverbs is a library that allows userspace processes to use RDMA
+ "verbs" as described in the InfiniBand Architecture Specification and
+ the RDMA Protocol Verbs Specification.  iWARP ethernet NICs support
+ RDMA over hardware-offloaded TCP/IP, while InfiniBand is a
+ high-throughput, low-latency networking technology.  InfiniBand host
+ channel adapters (HCAs) and iWARP NICs commonly support direct
+ hardware access from userspace (kernel bypass), and libibverbs
+ supports this when available.
+ .
+ For this library to be useful, a device-specific plug-in module
+ should also be installed.
+ .
+ This package contains the shared library.
+Homepage: http://www.openfabrics.org/
+
+Package: libmlx4-1-dbg
+Priority: extra
+Section: debug
+Installed-Size: 851
+Maintainer: Roland Dreier <rbd@debian.org>
+Architecture: amd64
+Source: libmlx4
+Version: 41mlnx1-OFED.4.1.0.1.0.42120
+Depends: libmlx4-1 (= 41mlnx1-OFED.4.1.0.1.0.42120)
+Filename: ./libmlx4-1-dbg_41mlnx1-OFED.4.1.0.1.0.42120_amd64.deb
+Size: 199544
+MD5sum: a2502e9e57528cb6dbd09490fc4f80f1
+SHA1: f6ad0dbc425300a893a76e114ef4d03e7cf7ca0d
+SHA256: 6271ead4aa83deb950380846db94c05689f2d9db641e8d6fe150f46e7b3186b8
+SHA512: c7a8bfc7a0dc56c9662c2fca84625ed938c42ba0a117aff11597508eb845a7b86d06ea4bc3ab57208965080e218ea2f13f76c382aa9a2e1a63793b101ff17d15
+Description: Debugging symbols for the libmlx4 driver
+ libmlx4 is a device-specific driver for Mellanox ConnectX InfiniBand
+ host channel adapters (HCAs) for the libibverbs library.  This allows
+ userspace processes to access Mellanox HCA hardware directly with
+ low latency and low overhead.
+ .
+ This package contains the debugging symbols associated with
+ libmlx4-1. They will automatically be used by gdb for debugging
+ libmlx4-related issues.
+Homepage: http://www.openfabrics.org/
+
+Package: libmlx4-1
+Priority: extra
+Section: libs
+Installed-Size: 162
+Maintainer: Roland Dreier <rbd@debian.org>
+Architecture: amd64
+Source: libmlx4
+Version: 41mlnx1-OFED.4.1.0.1.0.42120
+Depends: libc6 (>= 2.14), libibverbs1 (>= 1.1.3)
+Filename: ./libmlx4-1_41mlnx1-OFED.4.1.0.1.0.42120_amd64.deb
+Size: 50848
+MD5sum: 1277d38230b7c22961f1ad658e87bd27
+SHA1: 3f1b4c347cb91722d22af146b7dcc2e94aed99b5
+SHA256: 63fbdd757d84280c946441fa3e286efc646139f2aa59c68eb5ae053372075bc3
+SHA512: 3811525c32c9df8edd985985e8452fcf912665b06bff16c206b9fa7245064d26abefd545ae615a569b93f7a3436423a6df7e6a8168427fdb8964abc316512d7b
+Description: Userspace driver for Mellanox ConnectX InfiniBand HCAs
+ libmlx4 is a device-specific driver for Mellanox ConnectX InfiniBand
+ host channel adapters (HCAs) for the libibverbs library.  This allows
+ userspace processes to access Mellanox HCA hardware directly with
+ low latency and low overhead.
+ .
+ This package contains the loadable plug-in.
+Homepage: http://www.openfabrics.org/
+
+Package: libmlx4-dev
+Priority: extra
+Section: libdevel
+Installed-Size: 217
+Maintainer: Roland Dreier <rbd@debian.org>
+Architecture: amd64
+Source: libmlx4
+Version: 41mlnx1-OFED.4.1.0.1.0.42120
+Depends: libmlx4-1 (= 41mlnx1-OFED.4.1.0.1.0.42120)
+Filename: ./libmlx4-dev_41mlnx1-OFED.4.1.0.1.0.42120_amd64.deb
+Size: 53842
+MD5sum: 69327844df6d564232ffcfc0b0193d48
+SHA1: 23517ebaf1c8579fe79405e39a26048693eb4125
+SHA256: 555040590a68cd3529558db03259a615fb0cee27f7318989107ee500bcf173e3
+SHA512: b6fe53256d8c8929f930b9da055e45436dbefdff716659b4956aaa76bf75818496ece48e4dd44dc366202c34ca6f5bdb5380a455737b3219ab886ad3c84552c0
+Description: Development files for the libmlx4 driver
+ libmlx4 is a device-specific driver for Mellanox ConnectX InfiniBand
+ host channel adapters (HCAs) for the libibverbs library.  This allows
+ userspace processes to access Mellanox HCA hardware directly with
+ low latency and low overhead.
+ .
+ This package contains static versions of libmlx4 that may be linked
+ directly to an application, which may be useful for debugging.
+Homepage: http://www.openfabrics.org/
+
+Package: libmlx5-1-dbg
+Priority: extra
+Section: debug
+Installed-Size: 1655
+Maintainer: Eli Cohen <eli@mellanox.com>
+Architecture: amd64
+Source: libmlx5
+Version: 41mlnx1-OFED.4.2.1.2.0.42120
+Depends: libmlx5-1 (= 41mlnx1-OFED.4.2.1.2.0.42120)
+Filename: ./libmlx5-1-dbg_41mlnx1-OFED.4.2.1.2.0.42120_amd64.deb
+Size: 375532
+MD5sum: c3ce905a4a34f01934a2fdd3c89cbbbd
+SHA1: 414125c4f625756c5000f1f3438c28218f9d928b
+SHA256: d7e2f51013cc42f059f90c16eec6f2b5933f54b5627dec77436bf42ae0ccfb00
+SHA512: 3fcf133685fa4f9d5accc8890f577b9dad52013b5df7671e18757f9bc4b20d62442e104b3513a30c81afc7bb5a1fda806146a27e0df02a780acdb4a0487d49b3
+Description: Debugging symbols for the libmlx5 driver
+ libmlx5 is a device-specific driver for Mellanox Connect-IB InfiniBand
+ host channel adapters (HCAs) for the libibverbs library.  This allows
+ userspace processes to access Mellanox HCA hardware directly with
+ low latency and low overhead.
+ .
+ This package contains the debugging symbols associated with
+ libmlx5-1. They will automatically be used by gdb for debugging
+ libmlx5-related issues.
+Homepage: http://www.openfabrics.org/
+
+Package: libmlx5-1
+Priority: extra
+Section: libs
+Installed-Size: 313
+Maintainer: Eli Cohen <eli@mellanox.com>
+Architecture: amd64
+Source: libmlx5
+Version: 41mlnx1-OFED.4.2.1.2.0.42120
+Depends: libc6 (>= 2.14), libibverbs1 (>= 1.1.3), libnuma1
+Filename: ./libmlx5-1_41mlnx1-OFED.4.2.1.2.0.42120_amd64.deb
+Size: 104462
+MD5sum: 84feb7b50a72c228da60e27b57c065df
+SHA1: 28187a91666b5c52a4a91a3a6866b04e73361e0f
+SHA256: d5895f0da5d7a662f123ca4053173fc0d8db86249fa8bd81bb1765dd4ce5212f
+SHA512: a6ae658414afeed55289c76ac861fc63c8b1e3dde2cca8ac511441cfdc2ef668763080a80cb541611db3e80ebf454eee0fed87a12364af969cf80f3be5965661
+Description: Userspace driver for Mellanox ConnectX InfiniBand HCAs
+ libmlx5 is a device-specific driver for Mellanox Connect-IB InfiniBand
+ host channel adapters (HCAs) for the libibverbs library.  This allows
+ userspace processes to access Mellanox HCA hardware directly with
+ low latency and low overhead.
+ .
+ This package contains the loadable plug-in.
+Homepage: http://www.openfabrics.org/
+
+Package: libmlx5-dev
+Priority: extra
+Section: libdevel
+Installed-Size: 443
+Maintainer: Eli Cohen <eli@mellanox.com>
+Architecture: amd64
+Source: libmlx5
+Version: 41mlnx1-OFED.4.2.1.2.0.42120
+Depends: libmlx5-1 (= 41mlnx1-OFED.4.2.1.2.0.42120)
+Filename: ./libmlx5-dev_41mlnx1-OFED.4.2.1.2.0.42120_amd64.deb
+Size: 116530
+MD5sum: 694e33a41a574a0a065759dc0f086646
+SHA1: f01d99d92de998fc5f268781e178e1a3501091f5
+SHA256: 069750d2b6c258a242dbdf9deb80da0b8fadef4bf814a736a64f0626d3ddb844
+SHA512: e8ce454a973b319b0fbf58f3e584f0f4daf2b681af37190dbda92152b8a50143480e8308caf63f515aabafed9144c91bf8ccc51a2d391f4041b1e36eb4cf9bd1
+Description: Development files for the libmlx5 driver
+ libmlx5 is a device-specific driver for Mellanox Connect-IB InfiniBand
+ host channel adapters (HCAs) for the libibverbs library.  This allows
+ userspace processes to access Mellanox HCA hardware directly with
+ low latency and low overhead.
+ .
+ This package contains static versions of libmlx5 that may be linked
+ directly to an application, which may be useful for debugging.
+Homepage: http://www.openfabrics.org/
+
+Package: libopensm-devel
+Priority: extra
+Section: libdevel
+Installed-Size: 1853
+Maintainer: Hal Rosenstock <hal@mellanox.com>
+Architecture: amd64
+Source: opensm
+Version: 4.9.1.MLNX20171001.1764298-0.1.42120
+Depends: libopensm (= 4.9.1.MLNX20171001.1764298-0.1.42120)
+Filename: ./libopensm-devel_4.9.1.MLNX20171001.1764298-0.1.42120_amd64.deb
+Size: 548840
+MD5sum: 55316f76951dacfccc8f4caf69c3be26
+SHA1: 037ca498d40c9d6b048a0af9334ce899d93ddc5b
+SHA256: 7c8137b18ec18efd745c9dbabfd85d6b3cd6811d40c661712b58d3e3135a4383
+SHA512: f0addc12f847946e26691f8b453f64ce8f95f88844a9869045639ba9b1f606dd3d4a9b4f65b81709036b10915260aa081b0e6bc690927e23a6cfbbbc7ab5050f
+Description: Developement files for OpenSM
+ Header files for OpenSM
+Homepage: http://www.openfabrics.org/downloads/management
+
+Package: libopensm
+Priority: extra
+Section: libs
+Installed-Size: 931
+Maintainer: Hal Rosenstock <hal@mellanox.com>
+Architecture: amd64
+Source: opensm
+Version: 4.9.1.MLNX20171001.1764298-0.1.42120
+Depends: libc6 (>= 2.14), libibumad
+Filename: ./libopensm_4.9.1.MLNX20171001.1764298-0.1.42120_amd64.deb
+Size: 447402
+MD5sum: 0bfa36a64e191e6761d33db2214a2005
+SHA1: 47c9392e8264e887cd524526c653c5f7b8f5f404
+SHA256: f2161273bf3fc7a132451c9eca115c2bacbfa04c17e76e969afd16b607db5da8
+SHA512: 50c40800eee9642b7823fd897de330db2eb57b7adcf81a132c627d732bbbb7d99d6e89e12f459733dd5f5a103b55adad4c5df4ab7ccf2e432b40358e3e44683f
+Description: Infiniband subnet manager libraries
+ OpenSM provides an implementation of an Infiniband Subnet Manager (SM) and
+ Administrator (SA). One Subnet Manager is required to run on each Infiniband
+ subnet in order to initialize the Infiniband hardware.
+ .
+ This package contains shared libraries that are part of the opensm package
+ but are also used by other applications.
+Homepage: http://www.openfabrics.org/downloads/management
+
+Package: librdmacm-dev
+Priority: extra
+Section: libdevel
+Installed-Size: 285
+Maintainer: Gal Sivan <gsivan@unknown>
+Architecture: amd64
+Source: librdmacm
+Version: 41mlnx1-OFED.4.2.0.1.3.42120
+Depends: librdmacm1 (= 41mlnx1-OFED.4.2.0.1.3.42120)
+Filename: ./librdmacm-dev_41mlnx1-OFED.4.2.0.1.3.42120_amd64.deb
+Size: 104452
+MD5sum: e5cc9434a5edf441e9d54f42934478d1
+SHA1: ddf36a2842f584338ca36593ddeb73695d8ae658
+SHA256: e48ab5ef553371bbd7b496595aca48d3c501dadea4a8b0b3d511f716334e7968
+SHA512: 5847a5d42abeb0f3356c7c91e898899f6029dce951021bdf603d1991c5152aef7fec6b5f15b60f248cc39d13af07a6cbf29966bc3763039ff5f6eba5161e5c4c
+Description: Development files for the librdmacm library
+ Development files for the librdmacm library.
+Homepage: http://www.openfabrics.org/
+
+Package: librdmacm-utils
+Priority: extra
+Section: libs
+Installed-Size: 234
+Maintainer: Gal Sivan <gsivan@unknown>
+Architecture: amd64
+Source: librdmacm
+Version: 41mlnx1-OFED.4.2.0.1.3.42120
+Depends: libc6 (>= 2.14), libibverbs1 (>= 1.1.2), librdmacm1 (>= 1.0.7)
+Filename: ./librdmacm-utils_41mlnx1-OFED.4.2.0.1.3.42120_amd64.deb
+Size: 49972
+MD5sum: c7339da739817e553b0155773bbfb42a
+SHA1: 2cdd0f5254c028697847a20facc6e5f521d365ab
+SHA256: e1c1465193166d01e739ef296862475513770445f7452ec16cbcd91ad0a91de1
+SHA512: 523181575ac4e9c34dfbf9c9ac33b27daf28843678a6b789088372ec169a7f4cdbdf3bd6f92c8ec282dad26d7d159eda465ef9891f84ccf0ba95e225b255c04d
+Description: Examples for the librdmacm library
+ Example test programs for the librdmacm library.
+Homepage: http://www.openfabrics.org/
+
+Package: librdmacm1
+Priority: extra
+Section: libs
+Installed-Size: 130
+Maintainer: Gal Sivan <gsivan@unknown>
+Architecture: amd64
+Source: librdmacm
+Version: 41mlnx1-OFED.4.2.0.1.3.42120
+Depends: libc6 (>= 2.15), libibverbs1 (>= 1.1.2)
+Filename: ./librdmacm1_41mlnx1-OFED.4.2.0.1.3.42120_amd64.deb
+Size: 47994
+MD5sum: 4dc0a861dd4d01a0e2284dd958e69840
+SHA1: 0b5632f9e289e79c829506c3bec3d8c24ae836bd
+SHA256: f05e58423074799827119f04e1eef537e6059c9538c0b187e8656fb3aa3c2b97
+SHA512: 6f041474f080120d111def7e311ca8d224ebd06125a5cd267ad6a18efc0e01e0c69e1bb697c565ac13acb1249543cb44a4dee998ce3ba645ea3809a971f9eb8f
+Description: Userspace RDMA Connection Manager
+ librdmacm provides a userspace RDMA Communication Managment API.
+Homepage: http://www.openfabrics.org/
+
+Package: librxe-1-dbg
+Priority: extra
+Section: debug
+Installed-Size: 100
+Maintainer: Yonatan Cohen <yonatanc@mellanox.com>
+Architecture: amd64
+Source: librxe
+Version: 41mlnx1-OFED.4.1.0.1.7.42120
+Depends: librxe-1 (= 41mlnx1-OFED.4.1.0.1.7.42120)
+Filename: ./librxe-1-dbg_41mlnx1-OFED.4.1.0.1.7.42120_amd64.deb
+Size: 34072
+MD5sum: bd8660de5390c6a6ca53b68d76cc4be9
+SHA1: e341a0d5b5f4f52cc1a2db3f824724e5ce4976e2
+SHA256: 94e0657a53b9fd099e8be3494f056678c0f98adf42f2a2f5611cbecbe40327ce
+SHA512: f967f21b71c9783023a73dd2f877fad1497594bd1c4fc1bcd98bbe91782c4d5fde5f35f146371c7132e30cc2e5c619991b5e00ad4bbcdb0bbdf08d304c4aff48
+Description: Debugging symbols for the librxe driver
+ This package contains the debugging symbols associated with
+ librxe-1. They will automatically be used by gdb for debugging
+ librxe-related issues.
+Homepage: https://community.mellanox.com/docs/DOC-2184
+
+Package: librxe-1
+Priority: extra
+Section: libs
+Installed-Size: 33
+Maintainer: Yonatan Cohen <yonatanc@mellanox.com>
+Architecture: amd64
+Source: librxe
+Version: 41mlnx1-OFED.4.1.0.1.7.42120
+Depends: libc6 (>= 2.14), libibverbs1 (>= 1.1.3)
+Filename: ./librxe-1_41mlnx1-OFED.4.1.0.1.7.42120_amd64.deb
+Size: 8508
+MD5sum: 64201fe1df55456e19302e5de3b57ff7
+SHA1: e0803e34f5f4fc859018dbc8e530939b73e96669
+SHA256: 2cdcdc0e94c5b24b79aa855ba66a459b96ff9e94eab0c001833e519caf96febb
+SHA512: e922a1700a3d8d3dba224739d680413c8bf64e35f663577bdaeab5fee6ab60efc610e094c6a2f2a057c26bacad33b78f79ca505b9aa816520145ee3fe55c0080
+Description: Userspace driver for Soft-RoCE
+ A software implementation of the RDMA transport.
+ This package contains the loadable plug-in.
+Homepage: https://community.mellanox.com/docs/DOC-2184
+
+Package: librxe-dev
+Priority: extra
+Section: libdevel
+Installed-Size: 28
+Maintainer: Yonatan Cohen <yonatanc@mellanox.com>
+Architecture: amd64
+Source: librxe
+Version: 41mlnx1-OFED.4.1.0.1.7.42120
+Depends: librxe-1 (= 41mlnx1-OFED.4.1.0.1.7.42120)
+Filename: ./librxe-dev_41mlnx1-OFED.4.1.0.1.7.42120_amd64.deb
+Size: 7516
+MD5sum: 2c86ec9ec38d853f0b704915f77c9fc6
+SHA1: a4a30f908c569c9a169a26d3240cd9f2f72e2bf4
+SHA256: 0e03e094030edf6db39817f5e6cf953592bd3b7fafab45c4fd2193c899eac48f
+SHA512: 5f49484cba6eeceb3180bedcd3f2ec8cb69357effd9ef194b021df4cc44ef69f3a3d96d16654c335e4c25948ccc3856c115ddd2ec37b02deb04a377a2da47ea1
+Description: Development files for the librxe driver
+ This package contains static versions of librxe that may be linked
+ directly to an application, which may be useful for debugging.
+Homepage: https://community.mellanox.com/docs/DOC-2184
+
+Package: libvma-dbg
+Priority: extra
+Section: debug
+Installed-Size: 9
+Maintainer: Liran Oz <lirano@mellanox.com>
+Architecture: amd64
+Source: libvma
+Version: 8.4.10-1
+Depends: libvma (= 8.4.10-1)
+Filename: ./libvma-dbg_8.4.10-1_amd64.deb
+Size: 2088
+MD5sum: cb34a241fc9ae82a2a60efb8c32ed90b
+SHA1: 54d71d7a37af039cdccc4a0a26d95fcf4c070ee9
+SHA256: d6acdb6c1f954d37ab8358b7cac7d9fed094da64f08ac722f98f7274ccadff9c
+SHA512: e0f35d975bec1c1fa6eb28716edceb254d96608a9dbfc4afb680fa47af229435a28286671412799a4e9bd20158d697542b9a4f77b7ce0f9628fdee49e145999c
+Description: Debugging symbols for the libvma library
+ .
+ VMA library is a performance booster of TCP and UDP traffic
+ Part of Mellanox's enhanced services
+ Allows application written over standard socket API
+ To run over Infiniband/Ethernet from userspace with full network stack bypass
+ and get better throughput, latency and packets/sec rate
+ .
+ This package contains the debugging symbols associated with libvma.
+Homepage: https://github.com/Mellanox/libvma
+
+Package: libvma-dev
+Priority: extra
+Section: libdevel
+Installed-Size: 40
+Maintainer: Liran Oz <lirano@mellanox.com>
+Architecture: amd64
+Source: libvma
+Version: 8.4.10-1
+Depends: libvma (= 8.4.10-1)
+Filename: ./libvma-dev_8.4.10-1_amd64.deb
+Size: 9818
+MD5sum: 53002b2425f3c4e89869ed58efb233c0
+SHA1: 307da113ab7a9f94d2b40342a341ad7e7fffe8d1
+SHA256: 8bff16e4588ec681a33528fc6b57e15c7c05ec0ab76c02396a6fec816af45944
+SHA512: ae13e3112384166c5d87d8998a083609245306b368be54b34b3b752c275ae501896abc9c9cfc23d10e77939bec8689a1d1e25a8d632c8f34d521499fc04c7950
+Description: Development files for the libvma library
+ .
+ VMA library is a performance booster of TCP and UDP traffic
+ Part of Mellanox's enhanced services
+ Allows application written over standard socket API
+ To run over Infiniband/Ethernet from userspace with full network stack bypass
+ and get better throughput, latency and packets/sec rate
+ .
+ This package contains headers and symbolink link required to compile and
+ link with the libvma library.
+Homepage: https://github.com/Mellanox/libvma
+
+Package: libvma-utils
+Priority: extra
+Section: utils
+Installed-Size: 62
+Maintainer: Liran Oz <lirano@mellanox.com>
+Architecture: amd64
+Source: libvma
+Version: 8.4.10-1
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libstdc++6 (>= 4.9), libvma (= 8.4.10-1)
+Filename: ./libvma-utils_8.4.10-1_amd64.deb
+Size: 22570
+MD5sum: d7ec9d3874301f3a5dbc6bb95fadb176
+SHA1: 4b52a5c2fc77eb8111e938e7b43abdb22af0a6da
+SHA256: e896e1393b8fabe953fca235ce9a3581565f837bf04ed43e058e50a4599736a0
+SHA512: b2c5c460bbe80a1a46f72c2836754596fc39875d2270307a20bdf467cbd7e55f2905ddf42ce31e8a46e487c7f06aa507d9f0c0946fd422cf5532a9ce519cb20d
+Description: Examples and tools for the libvma library
+ .
+ VMA library is a performance booster of TCP and UDP traffic
+ Part of Mellanox's enhanced services
+ Allows application written over standard socket API
+ To run over Infiniband/Ethernet from userspace with full network stack bypass
+ and get better throughput, latency and packets/sec rate
+ .
+ This package contains example tests and tools for collecting and
+ analyzing Libvma statistic.
+Homepage: https://github.com/Mellanox/libvma
+
+Package: libvma
+Priority: extra
+Section: libs
+Installed-Size: 3177
+Maintainer: Liran Oz <lirano@mellanox.com>
+Architecture: amd64
+Version: 8.4.10-1
+Depends: libc6 (>= 2.22), libgcc1 (>= 1:3.0), libibverbs1 (>= 1.1.2), libnl-3-200 (>= 3.2.7), libnl-route-3-200 (>= 3.2.7), librdmacm1 (>= 1.0.7), libstdc++6 (>= 5.2)
+Filename: ./libvma_8.4.10-1_amd64.deb
+Size: 709534
+MD5sum: ff53c6e7abb654b1556052b2c37b2e45
+SHA1: 7ee32cff4656865d212a6433fbe1485a6039fd01
+SHA256: 0802e12f4560ec3829627ee0f7c22fbeabe62de6498d7bcc6106f6c795ff768e
+SHA512: 4279be07efab8684dccdfda8d35d4ab7650b61be46499444a8f1ae2d1db2e82f3c7b8e68b38aaba9c2a03e8748fc5d0bd1c370ce0911d9c34d2bea6f40531250
+Description: A library for boosting TCP and UDP traffic (over RDMA hardware)
+ .
+ VMA library is a performance booster of TCP and UDP traffic
+ Part of Mellanox's enhanced services
+ Allows application written over standard socket API
+ To run over Infiniband/Ethernet from userspace with full network stack bypass
+ and get better throughput, latency and packets/sec rate
+Homepage: https://github.com/Mellanox/libvma
+
+Package: mft
+Priority: extra
+Section: alien
+Installed-Size: 135533
+Maintainer: root <root@mtlbuild-002-009>
+Architecture: amd64
+Version: 4.8.1-3
+Depends: libc6 (>= 2.4), libgcc1 (>= 1:4.1.1), libstdc++6 (>= 4.1.1)
+Filename: ./mft-4.8.1-3.amd64.deb
+Size: 62971852
+MD5sum: 7f63085002e52f154dd218a9891691c6
+SHA1: 6e18e3de04b33f49e213857f4d4a98f5411fa737
+SHA256: e0bb9710016f9fbfc4102ededa03cf74d93c5bfac51157600b2e7b0b2d599909
+SHA512: d00a30654eb4c95933c32eed1644d5166c078d0b946f3c8f186ca958839a48cc978a6de20b5a51eb415463cd9219ba24390f13d713bd99826ebbdf585d01dc3a
+Description: Mellanox firmware tools
+ Mellanox firmware tools
+ .
+ (Converted from a rpm package by alien version 8.90.)
+
+Package: mlnx-fw-updater
+Priority: extra
+Section: utils
+Installed-Size: 10417
+Maintainer: Alaa Hleihel <alaa@mellanox.com>
+Architecture: amd64
+Version: 4.2-1.2.0.0
+Depends: libc6 (>= 2.3), libgcc1 (>= 1:4.1.1)
+Filename: ./mlnx-fw-updater_4.2-1.2.0.0_amd64.deb
+Size: 10490640
+MD5sum: 4ff6655157cf826ea9485fdfd6fad1e9
+SHA1: 26fb3c59329e02741d5dad725098cfcd12470775
+SHA256: 01078a816099499cf808d05ae589b44e63bc36463cd2a9d1076935727731d4c2
+SHA512: f844eaacb657a1171ae991379b5f5c5f333c3d0919240420fef61799b97f8be6095ec6ebed81c41e6d5a3ad25bb1d311b4a22292efa0977b54e86bb6adf4ca3b
+Description: Mellanox Technologies Firmware update package
+Homepage: http://www.mellanox.com
+
+Package: mlnx-ethtool
+Priority: optional
+Section: net
+Installed-Size: 306
+Maintainer: Ben Hutchings <bwh@kernel.org>
+Architecture: amd64
+Version: 4.2-1.42120
+Depends: libc6 (>= 2.14)
+Filename: ./mlnx-ethtool_4.2-1.42120_amd64.deb
+Size: 87882
+MD5sum: 0e3e9d2a0f76214964a5aa12298f2a98
+SHA1: bc22f4a57b55248d5d95c1d932e418cdcbbc7b9d
+SHA256: 19243442874d64231c38705f58a886b415ea7b54d0c1c9a9873abf75ef66fc49
+SHA512: d4ab2f808491095e10d06d3720f8de8417d38c5f8f687cf6b69cb7228a2b8e1652bf9d03bee333991584728254ccec052ca1fa612af806790bae0082089effbe
+Description: This utility allows querying and changing settings such as speed,
+ port, auto-negotiation, PCI locations and checksum offload on many
+ network devices, especially Ethernet devices.
+Homepage: https://ftp.kernel.org/pub/software/network/ethtool/
+
+Package: mlnx-ofed-kernel-dkms
+Priority: optional
+Section: kernel
+Installed-Size: 15933
+Maintainer: Vladimir Sokolovsky <vlad@mellanox.com>
+Architecture: all
+Source: mlnx-ofed-kernel
+Version: 4.2-OFED.4.2.1.2.0.1.gf8de107
+Depends: dkms, make, coreutils, pciutils, grep, perl, procps, module-init-tools | kmod, lsof, mlnx-ofed-kernel-utils, python-libxml2
+Recommends: linux-headers-arm64 | linux-headers-powerpc | linux-headers-ppc64 | linux-headers-ppc64le | linux-headers-amd64 | linux-headers-generic | linux-headers
+Filename: ./mlnx-ofed-kernel-dkms_4.2-OFED.4.2.1.2.0.1.gf8de107_all.deb
+Size: 1902242
+MD5sum: fce594bed5f678f7dbdbfb1b1ec482a7
+SHA1: 9efc0d664f1fc0dbe15835313b8b0024bb794e36
+SHA256: 82ef9964ee3486ed6411a3bad96a2fc3e0353cc1b5aa6e811dae10f79e2ea928
+SHA512: 23fbd825f35df59634c2cb45e002370579652562eec21d0917b7b094a42d9c1af8ab4d3603638f8093ee5573d0f69b346521f68fe73a1a530fe4c1697c5204c1
+Description: DKMS support for mlnx-ofed kernel modules
+ This package provides integration with the DKMS infrastructure for
+ automatically building out of tree kernel modules.
+ .
+ This package provides the source code for the mlnx-ofed kernel modules.
+ .
+ This package contains the source to be built with dkms.
+Homepage: http://www.mellanox.com/page/products_dyn?product_family=26&mtag=linux_sw_drivers
+
+Package: mlnx-ofed-kernel-utils
+Priority: optional
+Section: net
+Installed-Size: 437
+Maintainer: Vladimir Sokolovsky <vlad@mellanox.com>
+Architecture: amd64
+Source: mlnx-ofed-kernel
+Version: 4.2-OFED.4.2.1.2.0.1.gf8de107
+Depends: coreutils, pciutils, grep, perl, procps, module-init-tools | kmod, lsof, python-libxml2
+Filename: ./mlnx-ofed-kernel-utils_4.2-OFED.4.2.1.2.0.1.gf8de107_amd64.deb
+Size: 83266
+MD5sum: 382f39ac02bb207e9167d2cd4b5ef5be
+SHA1: e8c99f790d2a031cac0234339789881413b63100
+SHA256: 82ec702a328fcee68c8f9a20f3b0be5ad43734fb508f590a40a2cc24d8ce12b9
+SHA512: 46815cf3fa80171f828c2b43d860509228047e3b30bfb9058d1d86e21630263be0f8af187b24bf73de9092c9c766e083762f2351e84411676207895f9d7f9d30
+Description: Userspace tools to restart and tune mlnx-ofed kernel modules
+Homepage: http://www.mellanox.com/page/products_dyn?product_family=26&mtag=linux_sw_drivers
+
+Package: mpitests
+Priority: extra
+Section: libs
+Installed-Size: 2968
+Maintainer: Mellanox Ltd. <support@mellanox.com>
+Architecture: amd64
+Version: 3.2.19-84f02b3.42120
+Depends: libc6 (>= 2.17), libgcc1 (>= 1:3.0), libstdc++6 (>= 5.2)
+Filename: ./mpitests_3.2.19-84f02b3.42120_amd64.deb
+Size: 380212
+MD5sum: 3c57250e9e31d63dd066e22f8700e6b0
+SHA1: d6ea793afafcef30fa3758e9133feaa6b78a847a
+SHA256: 576a674458a14d6ee14c1ce23e4c23a5339a02e576c129cc142c80762e9b0bfa
+SHA512: 32b48db3f95b566ce9ca7593cf1de31cce2b5de31dc1a4f777bdebe8cee77c56fc996ba81da9e537bd2d5ebfdf92dcf8aeb8f2d170d63e309df7bd67e3a1146e
+Description: Set of popular MPI benchmarks and tools IMB-3.2.4 Presta-1.4.0 OSU benchmarks ver 4.0.1 mpiP-3.3 IPM-2.0.1
+Homepage: http://www.mellanox.com
+
+Package: mstflint
+Priority: extra
+Section: net
+Installed-Size: 5071
+Maintainer: Gal Sivan <gsivan@unknown>
+Architecture: amd64
+Version: 4.8.0-1.4.g501cec1.42120
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libstdc++6 (>= 5.2), zlib1g (>= 1:1.1.4)
+Filename: ./mstflint_4.8.0-1.4.g501cec1.42120_amd64.deb
+Size: 1013242
+MD5sum: 7e896a2426953fdcca90949483757b07
+SHA1: 643b6c89279b2cc9aae564e15c496dbc1e36f382
+SHA256: ef75b9b7a75f40a0f613c3e4dfdb531b9bf968cae739c50b1344e6f49b6952b7
+SHA512: 651870117b4574cf37c5dbcdb9e91f2166b14921c3c6ad49a435b3e49f07916b1dd6825237e00c15cd037075a22ec67e7687ce98765102b57179ba8a1bffbafb
+Description: Mellanox firmware burning application
+ This package contains firmware update tool, vpd dump and register dump tools
+ for network adapters based on Mellanox Technologies chips.
+Homepage: http://www.mellanox.com
+
+Package: mxm
+Priority: extra
+Section: libs
+Installed-Size: 1579
+Maintainer: Mellanox Technologies Ltd. <support@mellanox.com>
+Architecture: amd64
+Version: 3.6.3104-1.42120
+Depends: libc6 (>= 2.22), libibverbs1 (>= 1.1.2)
+Filename: ./mxm_3.6.3104-1.42120_amd64.deb
+Size: 274546
+MD5sum: a26385d8eb8668ca14f49caad475820e
+SHA1: f4da82a5db208e96d65205de54418baee4e3bcbc
+SHA256: 8a3df1389783aa0ebabe92f6917147f5b48fced3875427e9b4c84d9b68a18f26
+SHA512: 8b014b76bb89ebc194ec418513bb29ea972833df20fef328387457a364380ac1656d450f43e15a46f3de599c6de5f28781e5778207a6ce28627371392cc7b21a
+Description: MellanoX Messaging library (MXM)
+ MXM is a communication library implementing high-performance messaging.
+Homepage: http://www.mellanox.com
+
+Package: ofed-scripts
+Priority: extra
+Section: utils
+Installed-Size: 208
+Maintainer: Vladimir Sokolovsky <vlad@mellanox.com>
+Architecture: amd64
+Version: 4.2-OFED.4.2.1.2.0
+Filename: ./ofed-scripts_4.2-OFED.4.2.1.2.0_amd64.deb
+Size: 34712
+MD5sum: 8309de97a5a632fb4d2cff3923c7d446
+SHA1: 4795b416238a324c6401750955ed0b5a868b5562
+SHA256: 0196b79608ff0ca204d862fe7ca95e9795903b012628005e067ee0ce866a8682
+SHA512: da0788d4137e6c585a90d4551e8437dadbaa9ba7f62c15a3e7bc11d3f005837c44a36854c52c3fccd431368b5c89b0a7c6bf43619c247909454dc2439d8f63e9
+Description: MLNX_OFED utilities
+Homepage: http://www.mellanox.com
+
+Package: openmpi
+Priority: extra
+Section: net
+Installed-Size: 65491
+Maintainer: http://www.open-mpi.org
+Architecture: all
+Version: 3.0.0rc6-1.42120
+Filename: ./openmpi_3.0.0rc6-1.42120_all.deb
+Size: 12082536
+MD5sum: dc430eb7db8af1af934ae61aa053d612
+SHA1: 5b2528b726ff99bbb5c33cdc522e8680c922eb47
+SHA256: fcaeea59238a75190699d5d0a4dc06422da3ad5f2bcfac6e012be6f55ad60e23
+SHA512: 0db68f53e236c95272b58249f03d75b363ee9a54bde9fd7229b203950e01b6ebe8f0c46b60b93e4e5b84b02b3ccf295e9ae65ba01073f03e5b276388cc1efb20
+Description: Open MPI
+ Open MPI is a project combining technologies and resources from
+ several other projects (FT-MPI, LA-MPI, LAM/MPI, and PACX-MPI) in
+ order to build the best MPI library available.
+ This package contains all the tools necessary to compile, link, and run
+ Open MPI jobs.
+Homepage: http://www.open-mpi.org/
+
+Package: opensm-doc
+Priority: extra
+Section: doc
+Installed-Size: 440
+Maintainer: Hal Rosenstock <hal@mellanox.com>
+Architecture: amd64
+Source: opensm
+Version: 4.9.1.MLNX20171001.1764298-0.1.42120
+Filename: ./opensm-doc_4.9.1.MLNX20171001.1764298-0.1.42120_amd64.deb
+Size: 442166
+MD5sum: ca815af4f0855377be3a396fa21e8fd9
+SHA1: d79d3f7cafd649eda036035e209a8dcec829d28f
+SHA256: 1b6fcdd27dfdd5310e6ff4461732c4255634c005b33c27dc654daca3b744783c
+SHA512: d40741dfd86bb4341317659623049867ba0ffdfa36b5b0390f38ed243ec645dff2cf5cfc61359755f4ee1ba79bec6ec2b037347b75667a4dd881d069723cdb8d
+Description: Documentation for opensm
+ Documentation for the opensm Infiniband subnet manager.
+Homepage: http://www.openfabrics.org/downloads/management
+
+Package: opensm
+Priority: extra
+Section: net
+Installed-Size: 2756
+Maintainer: Hal Rosenstock <hal@mellanox.com>
+Architecture: amd64
+Version: 4.9.1.MLNX20171001.1764298-0.1.42120
+Depends: libopensm (= 4.9.1.MLNX20171001.1764298-0.1.42120), libc6 (>= 2.14)
+Filename: ./opensm_4.9.1.MLNX20171001.1764298-0.1.42120_amd64.deb
+Size: 950938
+MD5sum: 078dc0a306e7ffe99b9abdfbd9db2092
+SHA1: 5748462f2dfc49eb93f4dfda726a0f02704eb8d9
+SHA256: 553b7432412b632cd3bf24bf694f50be79f1a096ace56333c434abf90420ebf8
+SHA512: 45d8b8defa27b1b80720ede148058a4bd69ad3e41221e9d24c48b8cdfdcdad7699cba3a48991f15e8a2f8e332588f24f1dec17d11f8c06ce8cae4d8cfde1f65b
+Description: An Infiniband subnet manager
+ OpenSM provides an implementation of an InfiniBand Subnet Manager and
+ Administration. Such a software entity is required to run for in order
+ to initialize the InfiniBand hardware (at least one per each
+ InfiniBand subnet).
+Homepage: http://www.openfabrics.org/downloads/management
+
+Package: perftest
+Priority: extra
+Section: net
+Installed-Size: 2162
+Maintainer: Gil Rockah <gilr@dev.mellanox.co.il>
+Architecture: amd64
+Version: 4.2-0.2.g4f56894.42120
+Depends: libc6 (>= 2.14), libibumad, libibverbs1 (>= 1.1.6), librdmacm1 (>= 1.0.8)
+Filename: ./perftest_4.2-0.2.g4f56894.42120_amd64.deb
+Size: 198340
+MD5sum: db43f837668cb60830c9912cf034d54c
+SHA1: 58e02415268afe7a4f1d3c9da650e550f082d12b
+SHA256: 1e966edf642a848b0052002238ded79b80b2c0b4397274d825231dd47f6f751d
+SHA512: 17853cd2d6908c2ad1321692a4328773461d8d93e972cdddc7438b46cc0c96f187648cc9ee068311ab2c08541ac0215fe4af3f710f994e932472554eb426edf6
+Description: Infiniband verbs performance tests
+ This is a collection of tests written using Infiniband verbs intended for
+ use as a performance micro-benchmark. The tests can measure the latency
+ bandwidth and message rate of Infiniband or Ethernet (RoCE) fabrics.
+Homepage: https://openfabrics.org/downloads/perftest/
+
+Package: sharp
+Priority: extra
+Section: libs
+Installed-Size: 3341
+Maintainer: support@mellanox.com
+Architecture: amd64
+Version: 1.4.2.MLNX20171022.3b64c0f-1.42120
+Depends: libc6 (>= 2.22), libgcc1 (>= 1:3.0), libibmad, libibumad, libibverbs1 (>= 1.1.2), librdmacm1 (>= 1.0.7), libstdc++6 (>= 5.2)
+Filename: ./sharp_1.4.2.MLNX20171022.3b64c0f-1.42120_amd64.deb
+Size: 689582
+MD5sum: f62ce8425731dc56fc9faa8617ccf188
+SHA1: bec37a099a690dab423f97ff1e74f8f40d2a0f25
+SHA256: c0fda6613a2c2207c7a7226d44e9de30d8cf9f681b261e627a57a793a24798a5
+SHA512: 50f32e23873b8e2e9b6fc3d90a13d44b402fecc7903509fb5699fcc9f01686d5b207f4d93d354b8851efc6ae6e6fd3240384a321896bc49910ff07959dbffd7d
+Description: SHArP switch collectives
+ SHArP is a switch collectives package
+Homepage: http://www.mellanox.com
+
+Package: sockperf
+Priority: extra
+Section: unknown
+Installed-Size: 5246
+Maintainer: Mellanox Technologies Ltd. <support@mellanox.com>
+Architecture: amd64
+Version: 3.1-14.gita9f6056282ef.42120
+Depends: libc6 (>= 2.17), libgcc1 (>= 1:3.0), libstdc++6 (>= 5.2)
+Filename: ./sockperf_3.1-14.gita9f6056282ef.42120_amd64.deb
+Size: 667190
+MD5sum: 9ea1abfeaf5ea668e1143b972a549fcc
+SHA1: 5d0fee35f23a270956f6858967aca5d092d8d44a
+SHA256: e7c2c7702cdeba8d8ed0823c080c1b2ff4f15b98accae1e7e9df6b22097995ed
+SHA512: 1d3c1f8dd58d8fbd4a3a00ec4c83dfef33adad884fd72707076208aa9c7e9858764458c0e8380644f032927fe66b93741c1206e0c84111ef63407a8ea079bb9b
+Description: auto-generated package by debmake
+ This Debian binary package was auto-generated by the
+ debmake(1) command provided by the debmake package.
+ .
+ ===== This comes from the unmodified template file =====
+ .
+ Please edit this template file (debian/control) and other package files
+ (debian/*) to make them meet all the requirements of the Debian Policy
+ before uploading this package to the Debian archive.
+ .
+ See
+  * http://www.debian.org/doc/manuals/maint-guide/dreq.en.html#control
+  * http://www.debian.org/doc/manuals/developers-reference/best-pkging-practices.html#bpp-debian-control
+ .
+ The synopsis description at the top should be about 60 characters and
+ written as a phrase.  No extra capital letters or a final period.  No
+ articles — "a", "an", or "the".
+ .
+ The package description for general-purpose applications should be
+ written for a less technical user.  This means that we should avoid
+ jargon.  GNOME or KDE is fine but GTK+ is probably not.
+ .
+ Use the canonical forms of words:
+  * Use X Window System, X11, or X; not X Windows, X-Windows, or X Window.
+  * Use GTK+, not GTK or gtk.
+  * Use GNOME, not Gnome.
+  * Use PostScript, not Postscript or postscript.
+Multi-Arch: foreign
+Homepage: http://www.mellanox.com
+
+Package: srp-dkms
+Priority: optional
+Section: kernel
+Installed-Size: 197
+Maintainer: Mellanox Technologies <support@mellanox.com>
+Architecture: all
+Source: srp
+Version: 4.0-OFED.4.2.1.2.0.1.gf8de107
+Depends: dkms, make, mlnx-ofed-kernel-dkms
+Recommends: linux-headers-arm64 | linux-headers-powerpc | linux-headers-ppc64 | linux-headers-ppc64le | linux-headers-amd64 | linux-headers | linux-headers-generic
+Filename: ./srp-dkms_4.0-OFED.4.2.1.2.0.1.gf8de107_all.deb
+Size: 40770
+MD5sum: 11fbccb2a7b9f1fa59446457d83016cf
+SHA1: 6a38909865b6dc86056969f2515295e146bd3bdc
+SHA256: e88dc196abd7be7461fcdc8bae934e43c4d77f973f68be7945d5d5f3781a413e
+SHA512: 57022e0f52caa38821e26ef33c4ce26a1c43dc38de2d5a13f4962f34060e5cf7e00deaf6a017eb393b863467b9366bf05cd77b337cf2e13932a569ab145e9a9a
+Description: DKMS support fo srp kernel modules
+ This package provides integration with the DKMS infrastructure for automatically building out of tree kernel modules.
+ .
+ This package contains the source to be built with dkms.
+Homepage: http://www.mellanox.com
+
+Package: srptools
+Priority: optional
+Section: net
+Installed-Size: 104
+Maintainer: Sagi Grimberg <sagig@mellanox.com>
+Architecture: amd64
+Version: 41mlnx1-4.42120
+Depends: libc6 (>= 2.15), libibumad, libibverbs1 (>= 1.1.2), librdmacm1
+Filename: ./srptools_41mlnx1-4.42120_amd64.deb
+Size: 34446
+MD5sum: fd2fd51a89f07ba74c8fd1d7da41bfe7
+SHA1: 063fb348cd74c2969405986aff2de7e0893bc1b2
+SHA256: ac8b329c567914f6e9b557ce6a0b5cab6688cc979f1dadacf984002f20970027
+SHA512: 72b971fe0fe3961547cf8905796b78300e9b1e5fba9264086405de905080cbf9c2af6792d803ec2e0c3e9dc1fda05e1619fe0f539f1c245ca8331e97e19b8822
+Description: In conjunction with the kernel ib_srp driver, srptools allows you to
+ discover and use SCSI devices via the SCSI RDMA Protocol over InfiniBand.
+Homepage: http://www.openfabrics.org/
+
+Package: ucx
+Priority: extra
+Section: libs
+Installed-Size: 3360
+Maintainer: ucx-group@elist.ornl.gov
+Architecture: amd64
+Version: 1.3.0-1.42120
+Depends: libc6 (>= 2.15), libgomp1 (>= 4.9), libibcm1, libibverbs1 (>= 1.1.2), libnuma1, librdmacm1 (>= 1.0.7)
+Filename: ./ucx_1.3.0-1.42120_amd64.deb
+Size: 652128
+MD5sum: 62047a65588d7111e01ab0575720607e
+SHA1: a6330eee70ae35d62e3b89eace7cd167ce21d175
+SHA256: d0e35445440a2b5a2b17da7ea98d40ef22e1f9fdf40d8d781cebcce1db5a867d
+SHA512: 725b765b7ccf7dc2d89f8a295da109691e2b55ab2c05b38cdb732d2c9e76e38a4a71d98055157a14826571f3d8a0ab0d70078d4a813dbb3f69d662033105f204
+Description: Unified Communication X
+ UCX is a communication library implementing high-performance messaging.
+Homepage: http://www.openucx.org
+
+Package: mlnx-ofed-vma
+Priority: extra
+Section: utils
+Installed-Size: 27
+Maintainer: Alaa Hleihel <alaa@mellanox.com>
+Architecture: all
+Version: 4.2-1.2.0.0
+Depends: cc-mgr (>= 1.0-0.34.gd1e8f82.42120), ibacm (>= 41mlnx1-OFED.4.1.0.1.0.42120), libibumad (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), mstflint (>= 4.8.0-1.4.g501cec1.42120), libmlx4-1 (>= 41mlnx1-OFED.4.1.0.1.0.42120), libmlx4-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), kernel-mft-dkms (>= 4.8.1-3), mft (>= 4.8.1-3), ibverbs-utils (>= 41mlnx1-OFED.4.2.1.0.6.42120), ibutils2 (>= 2.1.1-0.92.MLNX20170822.g2c10d6f.42120), librdmacm1 (>= 41mlnx1-OFED.4.2.0.1.3.42120), isert-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), srp-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), infiniband-diags-compat (>= 1.6.7.MLNX20171022.b127f52-0.1.42120), librxe-dev (>= 41mlnx1-OFED.4.1.0.1.7.42120), ibsim-doc (>= 0.6mlnx1-0.8.g9d76581.42120), mlnx-ethtool (>= 4.2-1.42120), ar-mgr (>= 1.0-0.35.gd1e8f82.42120), perftest (>= 4.2-0.2.g4f56894.42120), librdmacm-dev (>= 41mlnx1-OFED.4.2.0.1.3.42120), srptools (>= 41mlnx1-4.42120), iser-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), opensm (>= 4.9.1.MLNX20171001.1764298-0.1.42120), mlnx-ofed-kernel-utils (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), libibmad-devel (>= 1.3.13.MLNX20170511.267a441-0.1.42120), ibacm-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), ibsim (>= 0.6mlnx1-0.8.g9d76581.42120), ibutils (>= 1.5.7.1-0.12.gdcaeae2.42120), librxe-1 (>= 41mlnx1-OFED.4.1.0.1.7.42120), libibverbs-dev (>= 41mlnx1-OFED.4.2.1.0.6.42120), infiniband-diags (>= 1.6.7.MLNX20171022.b127f52-0.1.42120), dump-pr (>= 1.0-0.30.gd1e8f82.42120), sockperf (>= 3.1-14.gita9f6056282ef.42120), libvma (>= 8.4.10-1), libmlx5-dev (>= 41mlnx1-OFED.4.2.1.2.0.42120), libvma-utils (>= 8.4.10-1), libibmad (>= 1.3.13.MLNX20170511.267a441-0.1.42120), libibumad-static (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), librdmacm-utils (>= 41mlnx1-OFED.4.2.0.1.3.42120), libibcm1 (>= 41mlnx1-OFED.4.1.0.1.0.42120), opensm-doc (>= 4.9.1.MLNX20171001.1764298-0.1.42120), ofed-scripts (>= 4.2-OFED.4.2.1.2.0), libibumad-devel (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), libmlx5-1 (>= 41mlnx1-OFED.4.2.1.2.0.42120), libibcm-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), libvma-dev (>= 8.4.10-1), libibmad-static (>= 1.3.13.MLNX20170511.267a441-0.1.42120), libopensm (>= 4.9.1.MLNX20171001.1764298-0.1.42120), mlnx-ofed-kernel-dkms (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), libibdm1 (>= 1.5.7.1-0.12.gdcaeae2.42120), libibverbs1 (>= 41mlnx1-OFED.4.2.1.0.6.42120), libopensm-devel (>= 4.9.1.MLNX20171001.1764298-0.1.42120)
+Filename: ./mlnx-ofed-vma_4.2-1.2.0.0_all.deb
+Size: 2572
+MD5sum: e67d411a148f79355780241910a8660c
+SHA1: 151c0db99e5da4204d24fc293e4afede6b285c9a
+SHA256: 5e9bd5282d482a1aee4978617cc83d2a343be5e33af8a72118b75479a2fadb7d
+SHA512: 02ca21a3930ad8d4af0aba2e1f5f09931816097ee7c557db12dbc005f4de5e4dfa3b0ee77c2dea52c931a1184ffc66fdf5eb431fbe6e073127af38e06bb484c2
+Description: MLNX_OFED vma installer package (with DKMS support)
+Homepage: http://www.mellanox.com
+
+Package: mlnx-ofed-kernel-only
+Priority: extra
+Section: utils
+Installed-Size: 26
+Maintainer: Alaa Hleihel <alaa@mellanox.com>
+Architecture: all
+Version: 4.2-1.2.0.0
+Depends: kernel-mft-dkms (>= 4.8.1-3), mft (>= 4.8.1-3), isert-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), srp-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), ofed-scripts (>= 4.2-OFED.4.2.1.2.0), knem-dkms (>= 1.1.2.90mlnx3-OFED.4.2.1.0.5.1.gbc0857b), knem (>= 1.1.2.90mlnx3-OFED.4.2.1.0.5.1.gbc0857b), iser-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), mlnx-ofed-kernel-utils (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), mlnx-ofed-kernel-dkms (>= 4.2-OFED.4.2.1.2.0.1.gf8de107)
+Filename: ./mlnx-ofed-kernel-only_4.2-1.2.0.0_all.deb
+Size: 1818
+MD5sum: 3f49ef76d0bebf6430f258a183a20359
+SHA1: a04804b90b4e0a439126b3874e159665a5d132ce
+SHA256: f348b7d35491a5ffde83987ac0cc495b713b8b499c46f32e7cb8b83b1e5710bb
+SHA512: 53e24a527676146c61a47bf0674707639787236b66d4263690f34f6d287528a564c759fd008822d18745ea96215b2d9d9bb77f708f08d32271e1731f071a9598
+Description: MLNX_OFED kernel-only installer package (with DKMS support)
+Homepage: http://www.mellanox.com
+
+Package: mlnx-ofed-hpc
+Priority: extra
+Section: utils
+Installed-Size: 26
+Maintainer: Alaa Hleihel <alaa@mellanox.com>
+Architecture: all
+Version: 4.2-1.2.0.0
+Depends: mlnx-ofed-kernel-utils (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), hcoll (>= 3.9.1901-1.42120), mlnx-ethtool (>= 4.2-1.42120), ar-mgr (>= 1.0-0.35.gd1e8f82.42120), librxe-dev (>= 41mlnx1-OFED.4.1.0.1.7.42120), dapl2-utils (>= 2.1.10mlnx-OFED.3.4.2.1.0.42120), ucx (>= 1.3.0-1.42120), mft (>= 4.8.1-3), libmlx4-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), libdapl2 (>= 2.1.10mlnx-OFED.3.4.2.1.0.42120), mstflint (>= 4.8.0-1.4.g501cec1.42120), libibumad (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), ibacm (>= 41mlnx1-OFED.4.1.0.1.0.42120), libibdm1 (>= 1.5.7.1-0.12.gdcaeae2.42120), libopensm-devel (>= 4.9.1.MLNX20171001.1764298-0.1.42120), mlnx-ofed-kernel-dkms (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), libopensm (>= 4.9.1.MLNX20171001.1764298-0.1.42120), knem (>= 1.1.2.90mlnx3-OFED.4.2.1.0.5.1.gbc0857b), libibcm-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), ofed-scripts (>= 4.2-OFED.4.2.1.2.0), libibumad-devel (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), opensm-doc (>= 4.9.1.MLNX20171001.1764298-0.1.42120), librdmacm-utils (>= 41mlnx1-OFED.4.2.0.1.3.42120), libibumad-static (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), libibcm1 (>= 41mlnx1-OFED.4.1.0.1.0.42120), ibutils (>= 1.5.7.1-0.12.gdcaeae2.42120), sharp (>= 1.4.2.MLNX20171022.3b64c0f-1.42120), ibacm-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), ibsim (>= 0.6mlnx1-0.8.g9d76581.42120), libibmad-devel (>= 1.3.13.MLNX20170511.267a441-0.1.42120), iser-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), mpitests (>= 3.2.19-84f02b3.42120), opensm (>= 4.9.1.MLNX20171001.1764298-0.1.42120), librdmacm-dev (>= 41mlnx1-OFED.4.2.0.1.3.42120), srptools (>= 41mlnx1-4.42120), libdapl-dev (>= 2.1.10mlnx-OFED.3.4.2.1.0.42120), ibsim-doc (>= 0.6mlnx1-0.8.g9d76581.42120), perftest (>= 4.2-0.2.g4f56894.42120), infiniband-diags-compat (>= 1.6.7.MLNX20171022.b127f52-0.1.42120), srp-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), librdmacm1 (>= 41mlnx1-OFED.4.2.0.1.3.42120), isert-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), ibverbs-utils (>= 41mlnx1-OFED.4.2.1.0.6.42120), ibutils2 (>= 2.1.1-0.92.MLNX20170822.g2c10d6f.42120), kernel-mft-dkms (>= 4.8.1-3), openmpi (>= 3.0.0rc6-1.42120), cc-mgr (>= 1.0-0.34.gd1e8f82.42120), libmlx4-1 (>= 41mlnx1-OFED.4.1.0.1.0.42120), libibverbs1 (>= 41mlnx1-OFED.4.2.1.0.6.42120), libibmad-static (>= 1.3.13.MLNX20170511.267a441-0.1.42120), libmlx5-1 (>= 41mlnx1-OFED.4.2.1.2.0.42120), knem-dkms (>= 1.1.2.90mlnx3-OFED.4.2.1.0.5.1.gbc0857b), mxm (>= 3.6.3104-1.42120), libibmad (>= 1.3.13.MLNX20170511.267a441-0.1.42120), libmlx5-dev (>= 41mlnx1-OFED.4.2.1.2.0.42120), libibverbs-dev (>= 41mlnx1-OFED.4.2.1.0.6.42120), infiniband-diags (>= 1.6.7.MLNX20171022.b127f52-0.1.42120), dump-pr (>= 1.0-0.30.gd1e8f82.42120), librxe-1 (>= 41mlnx1-OFED.4.1.0.1.7.42120)
+Filename: ./mlnx-ofed-hpc_4.2-1.2.0.0_all.deb
+Size: 2428
+MD5sum: 7726cfa47fb67a1183613dbf66e9d488
+SHA1: ffadcc8f0c6731d31a76cac814c3e8835e7a4217
+SHA256: f2340adbe948bcd67f5a81c99936d6d37013c778c8a3da79cc74276ab043e19c
+SHA512: f5c38011b61fa4fd7ce67a532c6bfdb10331db9141ae058fdf166450f74747e5fc2f25a2dd98bf12770437af48e093abe6635cba2a1ccdcf2a5f46e403a62a9c
+Description: MLNX_OFED hpc installer package (with DKMS support)
+Homepage: http://www.mellanox.com
+
+Package: mlnx-ofed-vma-eth
+Priority: extra
+Section: utils
+Installed-Size: 27
+Maintainer: Alaa Hleihel <alaa@mellanox.com>
+Architecture: all
+Version: 4.2-1.2.0.0
+Depends: libibverbs1 (>= 41mlnx1-OFED.4.2.1.0.6.42120), mlnx-ofed-kernel-dkms (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), libvma-dev (>= 8.4.10-1), libmlx5-1 (>= 41mlnx1-OFED.4.2.1.2.0.42120), libibumad-devel (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), ofed-scripts (>= 4.2-OFED.4.2.1.2.0), librdmacm-utils (>= 41mlnx1-OFED.4.2.0.1.3.42120), libibumad-static (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), libvma-utils (>= 8.4.10-1), sockperf (>= 3.1-14.gita9f6056282ef.42120), libvma (>= 8.4.10-1), libmlx5-dev (>= 41mlnx1-OFED.4.2.1.2.0.42120), libibverbs-dev (>= 41mlnx1-OFED.4.2.1.0.6.42120), librxe-1 (>= 41mlnx1-OFED.4.1.0.1.7.42120), ibacm-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), mlnx-ofed-kernel-utils (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), iser-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), librdmacm-dev (>= 41mlnx1-OFED.4.2.0.1.3.42120), mlnx-ethtool (>= 4.2-1.42120), librxe-dev (>= 41mlnx1-OFED.4.1.0.1.7.42120), srp-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), isert-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), librdmacm1 (>= 41mlnx1-OFED.4.2.0.1.3.42120), ibverbs-utils (>= 41mlnx1-OFED.4.2.1.0.6.42120), mft (>= 4.8.1-3), kernel-mft-dkms (>= 4.8.1-3), libmlx4-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), libmlx4-1 (>= 41mlnx1-OFED.4.1.0.1.0.42120), ibacm (>= 41mlnx1-OFED.4.1.0.1.0.42120), mstflint (>= 4.8.0-1.4.g501cec1.42120), libibumad (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120)
+Filename: ./mlnx-ofed-vma-eth_4.2-1.2.0.0_all.deb
+Size: 2280
+MD5sum: c7d9a2705ec2ffccdab951d662ca6312
+SHA1: 8639bc04cea20ef8316c75924fd9f2fae8deda8b
+SHA256: 64026c19a7bca505c9e9dcb3afe9ddb548443f34795d713d5a7c0cb5a23c35c2
+SHA512: d2b17d83d3e5b8604d6c322f7ef3153808fddc5c56272ed33b87ca1a57946ae717346aa82a4908f1da191a5e0e5030a7c1cbf29c28b447b51127d0df409b62f0
+Description: MLNX_OFED vma-eth installer package (with DKMS support)
+Homepage: http://www.mellanox.com
+
+Package: mlnx-ofed-basic
+Priority: extra
+Section: utils
+Installed-Size: 26
+Maintainer: Alaa Hleihel <alaa@mellanox.com>
+Architecture: all
+Version: 4.2-1.2.0.0
+Depends: opensm-doc (>= 4.9.1.MLNX20171001.1764298-0.1.42120), librdmacm-utils (>= 41mlnx1-OFED.4.2.0.1.3.42120), libibumad-static (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), libibmad (>= 1.3.13.MLNX20170511.267a441-0.1.42120), libmlx5-dev (>= 41mlnx1-OFED.4.2.1.2.0.42120), libibverbs-dev (>= 41mlnx1-OFED.4.2.1.0.6.42120), infiniband-diags (>= 1.6.7.MLNX20171022.b127f52-0.1.42120), librxe-1 (>= 41mlnx1-OFED.4.1.0.1.7.42120), libopensm-devel (>= 4.9.1.MLNX20171001.1764298-0.1.42120), libibverbs1 (>= 41mlnx1-OFED.4.2.1.0.6.42120), mlnx-ofed-kernel-dkms (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), libopensm (>= 4.9.1.MLNX20171001.1764298-0.1.42120), libibmad-static (>= 1.3.13.MLNX20170511.267a441-0.1.42120), libmlx5-1 (>= 41mlnx1-OFED.4.2.1.2.0.42120), ofed-scripts (>= 4.2-OFED.4.2.1.2.0), libibumad-devel (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), librxe-dev (>= 41mlnx1-OFED.4.1.0.1.7.42120), infiniband-diags-compat (>= 1.6.7.MLNX20171022.b127f52-0.1.42120), srp-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), librdmacm1 (>= 41mlnx1-OFED.4.2.0.1.3.42120), isert-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), mft (>= 4.8.1-3), ibverbs-utils (>= 41mlnx1-OFED.4.2.1.0.6.42120), kernel-mft-dkms (>= 4.8.1-3), libmlx4-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), libibumad (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), mstflint (>= 4.8.0-1.4.g501cec1.42120), ibacm (>= 41mlnx1-OFED.4.1.0.1.0.42120), libmlx4-1 (>= 41mlnx1-OFED.4.1.0.1.0.42120), ibacm-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), mlnx-ofed-kernel-utils (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), libibmad-devel (>= 1.3.13.MLNX20170511.267a441-0.1.42120), iser-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), opensm (>= 4.9.1.MLNX20171001.1764298-0.1.42120), librdmacm-dev (>= 41mlnx1-OFED.4.2.0.1.3.42120), srptools (>= 41mlnx1-4.42120), mlnx-ethtool (>= 4.2-1.42120)
+Filename: ./mlnx-ofed-basic_4.2-1.2.0.0_all.deb
+Size: 2114
+MD5sum: b7cbf2b86a79fd1f170d81c6a4eec6e2
+SHA1: cbd3b3632f01494b2ef3a91c7ba99d8d1165bc7e
+SHA256: 02c55aee2caa7cbf1b3dbf1747c0bbe3d9dc255943c351f7292f82cb622ef9de
+SHA512: c1a28ef16366c42252354d6a9f8b9d7a97aa343cb26d1ef20782adfa11c5f461c3f3ad64a7b3d8c62ca162ba2634e481a12b80b93890d1696db9a5534eb451ec
+Description: MLNX_OFED basic installer package (with DKMS support)
+Homepage: http://www.mellanox.com
+
+Package: mlnx-ofed-vma-vpi
+Priority: extra
+Section: utils
+Installed-Size: 27
+Maintainer: Alaa Hleihel <alaa@mellanox.com>
+Architecture: all
+Version: 4.2-1.2.0.0
+Depends: libopensm (>= 4.9.1.MLNX20171001.1764298-0.1.42120), libibmad-static (>= 1.3.13.MLNX20170511.267a441-0.1.42120), mlnx-ofed-kernel-dkms (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), libibverbs1 (>= 41mlnx1-OFED.4.2.1.0.6.42120), libopensm-devel (>= 4.9.1.MLNX20171001.1764298-0.1.42120), libibdm1 (>= 1.5.7.1-0.12.gdcaeae2.42120), libibumad-devel (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), ofed-scripts (>= 4.2-OFED.4.2.1.2.0), libmlx5-1 (>= 41mlnx1-OFED.4.2.1.2.0.42120), libibcm-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), libvma-dev (>= 8.4.10-1), libibmad (>= 1.3.13.MLNX20170511.267a441-0.1.42120), libibcm1 (>= 41mlnx1-OFED.4.1.0.1.0.42120), librdmacm-utils (>= 41mlnx1-OFED.4.2.0.1.3.42120), libibumad-static (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), opensm-doc (>= 4.9.1.MLNX20171001.1764298-0.1.42120), librxe-1 (>= 41mlnx1-OFED.4.1.0.1.7.42120), ibutils (>= 1.5.7.1-0.12.gdcaeae2.42120), infiniband-diags (>= 1.6.7.MLNX20171022.b127f52-0.1.42120), dump-pr (>= 1.0-0.30.gd1e8f82.42120), libibverbs-dev (>= 41mlnx1-OFED.4.2.1.0.6.42120), libvma-utils (>= 8.4.10-1), libmlx5-dev (>= 41mlnx1-OFED.4.2.1.2.0.42120), sockperf (>= 3.1-14.gita9f6056282ef.42120), libvma (>= 8.4.10-1), libibmad-devel (>= 1.3.13.MLNX20170511.267a441-0.1.42120), mlnx-ofed-kernel-utils (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), ibsim (>= 0.6mlnx1-0.8.g9d76581.42120), ibacm-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), perftest (>= 4.2-0.2.g4f56894.42120), mlnx-ethtool (>= 4.2-1.42120), ibsim-doc (>= 0.6mlnx1-0.8.g9d76581.42120), ar-mgr (>= 1.0-0.35.gd1e8f82.42120), srptools (>= 41mlnx1-4.42120), librdmacm-dev (>= 41mlnx1-OFED.4.2.0.1.3.42120), opensm (>= 4.9.1.MLNX20171001.1764298-0.1.42120), iser-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), isert-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), librdmacm1 (>= 41mlnx1-OFED.4.2.0.1.3.42120), srp-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), infiniband-diags-compat (>= 1.6.7.MLNX20171022.b127f52-0.1.42120), librxe-dev (>= 41mlnx1-OFED.4.1.0.1.7.42120), libmlx4-1 (>= 41mlnx1-OFED.4.1.0.1.0.42120), cc-mgr (>= 1.0-0.34.gd1e8f82.42120), ibacm (>= 41mlnx1-OFED.4.1.0.1.0.42120), libibumad (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), mstflint (>= 4.8.0-1.4.g501cec1.42120), libmlx4-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), kernel-mft-dkms (>= 4.8.1-3), ibverbs-utils (>= 41mlnx1-OFED.4.2.1.0.6.42120), ibutils2 (>= 2.1.1-0.92.MLNX20170822.g2c10d6f.42120), mft (>= 4.8.1-3)
+Filename: ./mlnx-ofed-vma-vpi_4.2-1.2.0.0_all.deb
+Size: 2562
+MD5sum: 773657719403939206b346490be1e05a
+SHA1: 40ff9b00b831f109194f4f7351104bd0d2a169f1
+SHA256: 9914fdc9925c62c10e691e2fd1f86d6b66818d23deed5bc3f8a5d0cf9c52323e
+SHA512: 0078fe22941b037a481c6ed69c746b6a39d93efb05a42c517d1f518b4dc5630af0b2ae4f83af6b297acb9a830db3cc1192220cc734ca150871a3f30e2cde65a1
+Description: MLNX_OFED vma-vpi installer package (with DKMS support)
+Homepage: http://www.mellanox.com
+
+Package: mlnx-ofed-all
+Priority: extra
+Section: utils
+Installed-Size: 26
+Maintainer: Alaa Hleihel <alaa@mellanox.com>
+Architecture: all
+Version: 4.2-1.2.0.0
+Depends: dapl2-utils (>= 2.1.10mlnx-OFED.3.4.2.1.0.42120), ucx (>= 1.3.0-1.42120), librxe-dev (>= 41mlnx1-OFED.4.1.0.1.7.42120), libmlx4-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), libdapl2 (>= 2.1.10mlnx-OFED.3.4.2.1.0.42120), mstflint (>= 4.8.0-1.4.g501cec1.42120), libibumad (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), ibacm (>= 41mlnx1-OFED.4.1.0.1.0.42120), mft (>= 4.8.1-3), mlnx-ofed-kernel-utils (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), mlnx-ethtool (>= 4.2-1.42120), ar-mgr (>= 1.0-0.35.gd1e8f82.42120), hcoll (>= 3.9.1901-1.42120), librdmacm-utils (>= 41mlnx1-OFED.4.2.0.1.3.42120), libibumad-static (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), libibcm1 (>= 41mlnx1-OFED.4.1.0.1.0.42120), opensm-doc (>= 4.9.1.MLNX20171001.1764298-0.1.42120), ibutils (>= 1.5.7.1-0.12.gdcaeae2.42120), mlnx-ofed-kernel-dkms (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), libopensm (>= 4.9.1.MLNX20171001.1764298-0.1.42120), libibdm1 (>= 1.5.7.1-0.12.gdcaeae2.42120), libopensm-devel (>= 4.9.1.MLNX20171001.1764298-0.1.42120), ofed-scripts (>= 4.2-OFED.4.2.1.2.0), libibumad-devel (>= 43.1.1.MLNX20171122.0eb0969-0.1.42120), knem (>= 1.1.2.90mlnx3-OFED.4.2.1.0.5.1.gbc0857b), libibcm-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), srp-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), librdmacm1 (>= 41mlnx1-OFED.4.2.0.1.3.42120), isert-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), infiniband-diags-compat (>= 1.6.7.MLNX20171022.b127f52-0.1.42120), openmpi (>= 3.0.0rc6-1.42120), cc-mgr (>= 1.0-0.34.gd1e8f82.42120), libmlx4-1 (>= 41mlnx1-OFED.4.1.0.1.0.42120), ibutils2 (>= 2.1.1-0.92.MLNX20170822.g2c10d6f.42120), ibverbs-utils (>= 41mlnx1-OFED.4.2.1.0.6.42120), kernel-mft-dkms (>= 4.8.1-3), libibmad-devel (>= 1.3.13.MLNX20170511.267a441-0.1.42120), sharp (>= 1.4.2.MLNX20171022.3b64c0f-1.42120), ibacm-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), ibsim (>= 0.6mlnx1-0.8.g9d76581.42120), ibsim-doc (>= 0.6mlnx1-0.8.g9d76581.42120), libdapl-dev (>= 2.1.10mlnx-OFED.3.4.2.1.0.42120), perftest (>= 4.2-0.2.g4f56894.42120), iser-dkms (>= 4.0-OFED.4.2.1.2.0.1.gf8de107), mpitests (>= 3.2.19-84f02b3.42120), opensm (>= 4.9.1.MLNX20171001.1764298-0.1.42120), srptools (>= 41mlnx1-4.42120), librdmacm-dev (>= 41mlnx1-OFED.4.2.0.1.3.42120), mxm (>= 3.6.3104-1.42120), libibmad (>= 1.3.13.MLNX20170511.267a441-0.1.42120), librxe-1 (>= 41mlnx1-OFED.4.1.0.1.7.42120), libmlx5-dev (>= 41mlnx1-OFED.4.2.1.2.0.42120), libibverbs-dev (>= 41mlnx1-OFED.4.2.1.0.6.42120), dump-pr (>= 1.0-0.30.gd1e8f82.42120), infiniband-diags (>= 1.6.7.MLNX20171022.b127f52-0.1.42120), ibdump (>= 5.0.0-1.42120), libibmad-static (>= 1.3.13.MLNX20170511.267a441-0.1.42120), libibverbs1 (>= 41mlnx1-OFED.4.2.1.0.6.42120), libmlx5-1 (>= 41mlnx1-OFED.4.2.1.2.0.42120), knem-dkms (>= 1.1.2.90mlnx3-OFED.4.2.1.0.5.1.gbc0857b)
+Filename: ./mlnx-ofed-all_4.2-1.2.0.0_all.deb
+Size: 2444
+MD5sum: 5143204cd0188e356b451a8f4bf18121
+SHA1: 65699f9b89387da22d79143237d51859e269a505
+SHA256: 88e470741ecb021699bbb68b66dab266a9109939fdc3ec1bc522f93bea82ae39
+SHA512: a0f737ba4b86029d8d2c6791bb3a328d37aeb5b3274becc9ba4ca36c3c8443191eb9b2db4d0f4274a0711fc0b5c1eb4ba8dfbc25ca7053e2129240891a39eaf4
+Description: MLNX_OFED all installer package (with DKMS support)
+Homepage: http://www.mellanox.com
+
+Package: mlnx-ofed-dpdk
+Priority: extra
+Section: utils
+Installed-Size: 26
+Maintainer: Alaa Hleihel <alaa@mellanox.com>
+Architecture: all
+Version: 4.2-1.2.0.0
+Depends: libibverbs1 (>= 41mlnx1-OFED.4.2.1.0.6.42120), mlnx-ofed-kernel-dkms (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), mlnx-ofed-kernel-utils (>= 4.2-OFED.4.2.1.2.0.1.gf8de107), librdmacm-dev (>= 41mlnx1-OFED.4.2.0.1.3.42120), libmlx5-1 (>= 41mlnx1-OFED.4.2.1.2.0.42120), ofed-scripts (>= 4.2-OFED.4.2.1.2.0), librdmacm-utils (>= 41mlnx1-OFED.4.2.0.1.3.42120), librdmacm1 (>= 41mlnx1-OFED.4.2.0.1.3.42120), ibverbs-utils (>= 41mlnx1-OFED.4.2.1.0.6.42120), libmlx5-dev (>= 41mlnx1-OFED.4.2.1.2.0.42120), mft (>= 4.8.1-3), kernel-mft-dkms (>= 4.8.1-3), libibverbs-dev (>= 41mlnx1-OFED.4.2.1.0.6.42120), libmlx4-dev (>= 41mlnx1-OFED.4.1.0.1.0.42120), libmlx4-1 (>= 41mlnx1-OFED.4.1.0.1.0.42120)
+Filename: ./mlnx-ofed-dpdk_4.2-1.2.0.0_all.deb
+Size: 1854
+MD5sum: 83c372307d2aac16163247d83e2713e5
+SHA1: 983bed22aa6dd1bd7ad445b628a0b8a10bc0b77e
+SHA256: fd2a8d76ed251c0491b3b95bf252bff234fe9af0e7c6af3e762b41053fdf85c2
+SHA512: 1e5b87eee48cbbf1c9bdd1d3f10b86d52fc31cf1d7ded912d91c6eb30784174b57a4c866d4d822e0e2aeb82e22e6af0f7b0d4a3ac75749edc2b4122f5147b28d
+Description: MLNX_OFED dpdk installer package (with DKMS support)
+Homepage: http://www.mellanox.com
+
