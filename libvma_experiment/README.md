@@ -28,7 +28,7 @@ mlnxofedinstall
 <br>
 
 
-### installation orders
+### installation of official package
 ```
 ./mlnxofedinstall --vma
 ./mlnxofedinstall --vma-eth
@@ -39,12 +39,15 @@ cat /etc/modprobe.d/mlnx.conf file.
     // options mlx4_core log_num_mgm_entry_size=-1
 /etc/init.d/openibd restart
 ibv_devinfo
-# install sockperf
 
-
-
-
+// install sockperf
+./autogen.sh
+./configure prefix=/home/users/sungho/sockperf/usr
+make
+make install
 ```
+
+
 
 <br>
 
