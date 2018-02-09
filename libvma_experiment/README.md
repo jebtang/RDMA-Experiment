@@ -17,11 +17,6 @@ scp /disk/bear-b/users/jcabr020/MLNX_OFED_LINUX-4.2-1.2.0.0-ubuntu16.04-x86_64.t
 
 scp /Users/hongdavid/Desktop/sysinfo-snapshot-3.2.3.tar jcabr020@bear.cs.fiu.edu:/disk/bear-b/users/jcabr020
 scp /disk/bear-b/users/jcabr020/sysinfo-snapshot-3.2.3.tar sungho@172.23.10.15:/home/users/sungho
-
-
-
-
-
 ```
 
 <br>
@@ -41,7 +36,6 @@ ibv_devinfo
 
 sudo apt-get install infiniband-diags
 ibstat
-
 
 // install sockperf
 ./autogen.sh
@@ -86,31 +80,43 @@ export LD_PRELOAD=/home/users/sungho/libvma/usr/lib64/libvma.so
 ./autogen.sh
 ./configure prefix=/home/users/sungho/sockperf/usr
 make
-make install
+make install                              
 ```
 
 <br>
 
-
-### RUNNING SOCKETPERF
-
-- server side
-```
-// normal tcp
-numactl --cpunodebind=1 taskset -c 19,13 ./sockperf sr --msg-size 14 --ip 172.24.30.31 --port 19140 --tcp
-
-// running with rdma
-export VMA_LOAD=/home/users/sungho/libvma/usr/lib64/libvma.so
-VMA_SPEC=latency LD_PRELOAD=$VMA_LOAD numactl --cpunodebind=1 taskset -c 19,13 ./sockperf sr --msg-size 14 --ip 172.24.30.30 --port 19140 --tcp
-```
-
-- client side
+### results from socketperf
 
 ```
-// normal tcp
-numactl --cpunodebind=1 taskset -c 19,13 ./sockperf pp --time 4 --msg-size 14 --ip 172.24.30.30 --port 19140 --tcp
+# infiniband used with userspace TCP stack
+LD_PRELOAD=libvma.so sockperf server -i 172.24.30.31
+LD_PRELOAD=libvma.so sockperf ping-pong -t 4 -i 172.24.30.31
 
-// running with rdma
-export VMA_LOAD=/home/users/sungho/libvma/usr/lib64/libvma.so
-VMA_SPEC=latency LD_PRELOAD=$VMA_LOAD numactl --cpunodebind=1 taskset -c 19,13 ./sockperf pp --time 4 --msg-size 14 --ip 172.24.30.30 --port 19140 --tcp
+sockperf: ---> <MAX> observation =  180.783
+sockperf: ---> percentile 99.999 =   56.069
+sockperf: ---> percentile 99.990 =    7.196
+sockperf: ---> percentile 99.900 =    2.624
+sockperf: ---> percentile 99.000 =    2.165
+sockperf: ---> percentile 90.000 =    1.609
+sockperf: ---> percentile 75.000 =    1.446
+sockperf: ---> percentile 50.000 =    1.394
+sockperf: ---> percentile 25.000 =    1.372
+sockperf: ---> <MIN> observation =    1.290
+
+
+# infiniband used with native TCP stack
+LD_PRELOAD=
+sockperf server -i 172.24.30.31
+sockperf ping-pong -t 4 -i 172.24.30.31
+
+sockperf: ---> <MAX> observation =   54.169
+sockperf: ---> percentile 99.999 =   42.183
+sockperf: ---> percentile 99.990 =   29.072
+sockperf: ---> percentile 99.900 =   17.618
+sockperf: ---> percentile 99.000 =   14.113
+sockperf: ---> percentile 90.000 =   12.961
+sockperf: ---> percentile 75.000 =   11.963
+sockperf: ---> percentile 50.000 =   10.830
+sockperf: ---> percentile 25.000 =    9.937
+sockperf: ---> <MIN> observation =    7.803      
 ```
