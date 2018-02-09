@@ -7,21 +7,20 @@ cannot ping to 172.23.10.15
 scp /Users/hongdavid/Desktop/MLNX_OFED_LINUX-4.2-1.2.0.0-ubuntu16.04-x86_64.tgz sungho@lab02:/home/sungho/Desktop
 scp /Users/hongdavid/Desktop/sysinfo-snapshot-3.2.3.tar sungho@lab02:/home/sungho/Desktop
 
-
-
 # from wenji-wrk to vm
 scp /home/sungho/Desktop/MLNX_OFED_LINUX-4.2-1.2.0.0-ubuntu16.04-x86_64.tgz sungho@vlab01:/home/sungho/Desktop
 scp /home/sungho/Desktop/sysinfo-snapshot-3.2.3.tar sungho@vlab01:/home/sungho/Desktop
 
-
 # fiu c1n15
-curl ipinfo.io/ip // c1n15  131.94.130.131
-scp /Users/hongdavid/Desktop/MLNX_OFED_LINUX-4.2-1.2.0.0-ubuntu16.04-x86_64.tgz sungho@131.94.130.131:/home/users/sungho
-ssh-copy-id -i id_rsa.pub sungho@131.94.130.131
+scp /Users/hongdavid/Desktop/MLNX_OFED_LINUX-4.2-1.2.0.0-ubuntu16.04-x86_64.tgz jcabr020@bear.cs.fiu.edu:/disk/bear-b/users/jcabr020
+scp /disk/bear-b/users/jcabr020/MLNX_OFED_LINUX-4.2-1.2.0.0-ubuntu16.04-x86_64.tgz sungho@172.23.10.15:/home/users/sungho
 
-mlnxofedinstall
-/home/users/sungho/MLNX_OFED_LINUX-4.2-1.2.0.0-ubuntu16.04-x86_64/mlnxofedinstall
-/home/users/sungho/sysinfo-snapshot-3.2.3/sysinfo-snapshot.py
+scp /Users/hongdavid/Desktop/sysinfo-snapshot-3.2.3.tar jcabr020@bear.cs.fiu.edu:/disk/bear-b/users/jcabr020
+scp /disk/bear-b/users/jcabr020/sysinfo-snapshot-3.2.3.tar sungho@172.23.10.15:/home/users/sungho
+
+
+
+
 
 ```
 
@@ -30,15 +29,19 @@ mlnxofedinstall
 
 ### installation of official package
 ```
-./mlnxofedinstall --vma
-./mlnxofedinstall --vma-eth
+sudo ./mlnxofedinstall --vma
+sudo ./mlnxofedinstall --vma-eth
 cat /etc/infiniband/info
-cat /etc/modprobe.d/mlnx.conf file.
+cat /etc/modprobe.d/mlnx.conf
     // options ib_uverbs disable_raw_qp_enforcement=1
     // options mlx4_core fast_drop=1
     // options mlx4_core log_num_mgm_entry_size=-1
-/etc/init.d/openibd restart
+sudo /etc/init.d/openibd restart
 ibv_devinfo
+
+sudo apt-get install infiniband-diags
+ibstat
+
 
 // install sockperf
 ./autogen.sh
