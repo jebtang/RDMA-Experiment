@@ -86,11 +86,26 @@ make install
 <br>
 
 ### results from socketperf
+  - [testing in clusters](test_clusters.md)
 
 ```
+VMA_SPEC=latency LD_PRELOAD=libvma.so numactl --cpunodebind=1 taskset -c 17,21,19 sockperf sr --msg-size 64 --ip 172.24.30.31 --port 19142 --tcp
+
+VMA_SPEC=latency LD_PRELOAD=libvma.so numactl --cpunodebind=1 taskset -c 17,21,19 sockperf ul --time 4 --msg-size 64 --ip 172.24.30.31 --port 19142 --tcp
+
+
 # infiniband used with userspace TCP stack
-LD_PRELOAD=libvma.so sockperf server -i 172.24.30.31
-LD_PRELOAD=libvma.so sockperf ping-pong -t 4 -i 172.24.30.31
+LD_PRELOAD=libvma.so sockperf server -i 172.24.30.30 --tcp
+VMA_SPEC=latency LD_PRELOAD=libvma.so numactl --cpunodebind=1 taskset -c 17,21,19 sockperf server -i 172.24.30.30 --tcp
+
+
+VMA_SPEC=latency LD_PRELOAD=libvma.so numactl --cpunodebind=1 taskset -c 17,21,19 sockperf ping-pong -t 2 -i 172.24.30.31 --tcp
+VMA_SPEC=latency LD_PRELOAD=libvma.so numactl --cpunodebind=1 taskset -c 17,21,19 sockperf ping-pong -t 4 -i 172.24.30.31 --tcp
+VMA_SPEC=latency LD_PRELOAD=libvma.so numactl --cpunodebind=1 taskset -c 17,21,19 sockperf ping-pong -t 8 -i 172.24.30.31 --tcp
+VMA_SPEC=latency LD_PRELOAD=libvma.so numactl --cpunodebind=1 taskset -c 17,21,19 sockperf ping-pong -t 16 -i 172.24.30.31 --tcp
+VMA_SPEC=latency LD_PRELOAD=libvma.so numactl --cpunodebind=1 taskset -c 17,21,19 sockperf ping-pong -t 32 -i 172.24.30.31 --tcp
+VMA_SPEC=latency LD_PRELOAD=libvma.so numactl --cpunodebind=1 taskset -c 17,21,19 sockperf ping-pong -t 64 -i 172.24.30.31 --tcp
+
 
 sockperf: ---> <MAX> observation =  180.783
 sockperf: ---> percentile 99.999 =   56.069
