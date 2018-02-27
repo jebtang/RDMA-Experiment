@@ -148,20 +148,20 @@ int main(int argc, char *argv[])
 
 int i;
 while(i<3){
-    printf("chara: %d\n",i++);
+    // printf("chara: %d\n",i++);
 
     err = rdma_get_cm_event(cm_channel, &event);
     if (err)
         return err;
 
-    printf("chara: %d\n",i++);
+    // printf("chara: %d\n",i++);
 
     if (event->event != RDMA_CM_EVENT_ESTABLISHED)
         return 1;
 
     rdma_ack_cm_event(event);
 
-    printf("chara: %d\n",i++);
+    // printf("chara: %d\n",i++);
 
     /* Wait for receive completion */
 
@@ -178,7 +178,7 @@ while(i<3){
         return 1;
 
 
-   printf("chara: %d\n",i++);
+   // printf("chara: %d\n",i++);
 
     /* Add two integers and send reply back */
 
