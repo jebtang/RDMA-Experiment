@@ -199,12 +199,13 @@ int main(int argc, char *argv[])
     }
     /* Wait for send completion */
 
-    if (ibv_get_cq_event(comp_chan, &evt_cq, &cq_context))
-        return 1;
+    if (ibv_get_cq_event(comp_chan, &evt_cq, &cq_context)){
+      //  return 1;
+    }
 
-    if (ibv_poll_cq(cq, 1, &wc) < 1)
-        return 1;
-
+    if (ibv_poll_cq(cq, 1, &wc) < 1){
+      //  return 1;
+      }
     if (wc.status != IBV_WC_SUCCESS)
         return 1;
 
