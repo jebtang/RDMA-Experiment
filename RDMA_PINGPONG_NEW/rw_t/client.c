@@ -197,12 +197,13 @@ int main(int argc, char   *argv[ ])
 	send_wr.sg_list               =&sge;
 	send_wr.num_sge               = 1;
 
+  while (i<3) {
+
 	if (ibv_post_send(cm_id->qp, &send_wr,&bad_send_wr))
 		return 1;
 
 	/* 等待接收完成 */
 
-	while (i<3) {
 		if (ibv_get_cq_event(comp_chan,&evt_cq, &cq_context))
 			return 1;
 
