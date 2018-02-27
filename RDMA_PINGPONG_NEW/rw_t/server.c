@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
 
     int                     err;
 
+    int i;
     /* Set up RDMA CM structures */
 
     cm_channel = rdma_create_event_channel();
@@ -146,7 +147,6 @@ int main(int argc, char *argv[])
         return 1;
 
 
-int i;
 while(i<3){
     // printf("chara: %d\n",i++);
 

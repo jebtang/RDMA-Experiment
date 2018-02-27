@@ -1,7 +1,7 @@
 TARGET ="server"
 TARGET_2="client"
 all:
-	cc -o ${TARGET} ${TARGET}.c -lrdmacm -libverbs
+	cc -g -o ${TARGET} ${TARGET}.c -lrdmacm -libverbs
 	$ cc -o ${TARGET_2} ${TARGET_2}.c -lrdmacm -libverbs
 
 .PHONY: clean
