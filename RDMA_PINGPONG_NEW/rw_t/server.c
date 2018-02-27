@@ -142,12 +142,12 @@ int main(int argc, char *argv[])
 
     /* Accept connection */
 
+    while(1){
     err = rdma_accept(cm_id, &conn_param);
     if (err)
         return 1;
 
 
-while(i<3){
     // printf("chara: %d\n",i++);
 
     err = rdma_get_cm_event(cm_channel, &event);
@@ -211,9 +211,8 @@ while(i<3){
     ibv_ack_cq_events(cq, 2);
 
     // printf("chara: %d\n",i++);
-}
 // end
-
+  }
 
     return 0;
 }
