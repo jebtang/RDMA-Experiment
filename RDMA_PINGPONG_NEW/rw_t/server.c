@@ -149,6 +149,7 @@ int main(int argc, char *argv[])
 
 
     // printf("chara: %d\n",i++);
+while(1){
 
     err = rdma_get_cm_event(cm_channel, &event);
     if (err)
@@ -181,7 +182,7 @@ int main(int argc, char *argv[])
    // printf("chara: %d\n",i++);
 
     /* Add two integers and send reply back */
-    printf("%d - %d \n", ntohl(buf[0]), ntohl(buf[0]));
+    printf("%d - %d \n", ntohl(buf[0]), ntohl(buf[1]));
     buf[0] = htonl(ntohl(buf[0]) + ntohl(buf[1]));
 
 
@@ -212,7 +213,7 @@ int main(int argc, char *argv[])
 
     // printf("chara: %d\n",i++);
 // end
-
+}
 
     return 0;
 }
