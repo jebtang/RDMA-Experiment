@@ -148,8 +148,7 @@ int main(int argc, char *argv[])
 
 
     // printf("chara: %d\n",i++);
-  while(1){
-    err = rdma_get_cm_event(cm_channel, &event);
+    while(rdma_get_cm_event(cm_channel, &event)==0){
     if (err)
         return err;
 
@@ -209,8 +208,9 @@ int main(int argc, char *argv[])
 
     ibv_ack_cq_events(cq, 2);
 
+  }
     // printf("chara: %d\n",i++);
 // end
-}
+
     return 0;
 }

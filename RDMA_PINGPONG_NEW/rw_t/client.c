@@ -140,7 +140,7 @@ int main(int argc, char   *argv[ ])
 	if (err)
 					return err;
 
-	err = rdma_get_cm_event(cm_channel,&event);
+	while(rdma_get_cm_event(cm_channel,&event)==0){
 	if (err)
 					return err;
 
@@ -167,14 +167,13 @@ int main(int argc, char   *argv[ ])
 
 
 
-
-  while(i){
 	buf[0] = strtoul(argv[2], NULL, 0); // printing out the arguments
 	buf[1] = strtoul(argv[3], NULL, 0);
 	printf("%d + %d = ", buf[0], buf[1]);
 
 	buf[0] = htonl(buf[0]);
 	buf[1] = htonl(buf[1]);
+
 
 	sge.addr 					  = (uintptr_t) buf;
 	sge.length                    = sizeof (uint32_t);
@@ -204,7 +203,6 @@ int main(int argc, char   *argv[ ])
 
 	/* 等待接收完成 */
 
-	while (1) {
 		if (ibv_get_cq_event(comp_chan,&evt_cq, &cq_context))
 			return 1;
 
@@ -223,7 +221,7 @@ int main(int argc, char   *argv[ ])
 			break;
 		}
    }
- }
+
 
    return 0;
 }
