@@ -218,7 +218,6 @@ int main(int argc, char   *argv[ ])
 		if (wc.wr_id == 0) {
 			printf("%d\n", ntohl(buf[0])); // the actual data received
       i++;
-			break;
 		}
    }
 
