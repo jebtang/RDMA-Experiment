@@ -160,8 +160,9 @@ int main(int argc, char   *argv[ ])
 	recv_wr.sg_list =   &sge;
 	recv_wr.num_sge =   1;
 
-	if (ibv_post_recv(cm_id->qp, &recv_wr, &bad_recv_wr))
-					return 1;
+  ibv_post_recv(cm_id->qp, &recv_wr, &bad_recv_wr);
+	// if (ibv_post_recv(cm_id->qp, &recv_wr, &bad_recv_wr))
+	// 				return 1;
 
 	/* 寫入/傳送要新增的兩個整數 */
 
