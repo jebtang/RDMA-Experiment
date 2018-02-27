@@ -183,6 +183,8 @@ int main(int argc, char *argv[])
     /* Add two integers and send reply back */
 
     buf[0] = htonl(ntohl(buf[0]) + ntohl(buf[1]));
+    printf("%d - %d \n", buf[0], buf[0]);
+
 
     sge.addr = (uintptr_t) buf;
     sge.length = sizeof (uint32_t);
@@ -194,8 +196,7 @@ int main(int argc, char *argv[])
     send_wr.num_sge = 1 ;
 
     if (ibv_post_send(cm_id->qp, &send_wr, &bad_send_wr)){
-        printf("chara: %d\n",i++);
-        // return 1;
+        return 1;
     }
     /* Wait for send completion */
 

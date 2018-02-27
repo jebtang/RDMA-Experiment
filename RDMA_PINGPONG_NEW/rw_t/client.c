@@ -47,7 +47,7 @@ int main(int argc, char   *argv[ ])
 	int								n;
 	uint32_t						*buf;
 	int								err;
-
+  int i=0;
       /* 設定 RDMA CM 結構 */
 	cm_channel = rdma_create_event_channel();
 	if (!cm_channel)
@@ -134,8 +134,8 @@ int main(int argc, char   *argv[ ])
 	conn_param.initiator_depth = 1;
 	conn_param.retry_count     = 7;
 
-	/* 連接至伺服器 */
 
+// actual connect
 	err = rdma_connect(cm_id, &conn_param);
 	if (err)
 					return err;
@@ -165,9 +165,14 @@ int main(int argc, char   *argv[ ])
 
 	/* 寫入/傳送要新增的兩個整數 */
 
-	buf[0] = strtoul(argv[2], NULL, 0);
+
+
+
+  while(i<3){
+	buf[0] = strtoul(argv[2], NULL, 0); // printing out the arguments
 	buf[1] = strtoul(argv[3], NULL, 0);
 	printf("%d + %d = ", buf[0], buf[1]);
+
 	buf[0] = htonl(buf[0]);
 	buf[1] = htonl(buf[1]);
 
@@ -213,9 +218,12 @@ int main(int argc, char   *argv[ ])
 			return 1;
 
 		if (wc.wr_id == 0) {
-			printf("%d\n", ntohl(buf[0]));
-			return 0;
+			printf("%d\n", ntohl(buf[0])); // the actual data received
+      i++;
+			break;
 		}
    }
+ }
+
    return 0;
 }
