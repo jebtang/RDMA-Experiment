@@ -200,7 +200,7 @@ while(i<3){
 
     ibv_ack_cq_events(cq, 2);
 
-    printf("chara: $d\n",i++);
+    printf("chara: %d\n",i++);
 }
 // end
 
