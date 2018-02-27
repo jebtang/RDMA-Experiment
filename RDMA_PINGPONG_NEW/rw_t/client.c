@@ -140,7 +140,7 @@ int main(int argc, char   *argv[ ])
 	if (err)
 					return err;
 
-	while(rdma_get_cm_event(cm_channel,&event)==0){
+	err = rdma_get_cm_event(cm_channel,&event);
 	if (err)
 					return err;
 
@@ -160,9 +160,8 @@ int main(int argc, char   *argv[ ])
 	recv_wr.sg_list =   &sge;
 	recv_wr.num_sge =   1;
 
-  ibv_post_recv(cm_id->qp, &recv_wr, &bad_recv_wr);
-	// if (ibv_post_recv(cm_id->qp, &recv_wr, &bad_recv_wr))
-	// 				return 1;
+	if (ibv_post_recv(cm_id->qp, &recv_wr, &bad_recv_wr))
+					return 1;
 
 	/* 寫入/傳送要新增的兩個整數 */
 
@@ -175,6 +174,7 @@ int main(int argc, char   *argv[ ])
 	buf[0] = htonl(buf[0]);
 	buf[1] = htonl(buf[1]);
 
+  while (1) {
 
 	sge.addr 					  = (uintptr_t) buf;
 	sge.length                    = sizeof (uint32_t);
@@ -199,6 +199,7 @@ int main(int argc, char   *argv[ ])
 	send_wr.sg_list               =&sge;
 	send_wr.num_sge               = 1;
 
+  while(i<3){
 	if (ibv_post_send(cm_id->qp, &send_wr,&bad_send_wr))
 		return 1;
 
