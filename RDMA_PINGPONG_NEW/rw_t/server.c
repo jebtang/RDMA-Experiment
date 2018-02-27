@@ -181,9 +181,8 @@ int main(int argc, char *argv[])
    // printf("chara: %d\n",i++);
 
     /* Add two integers and send reply back */
-
+    printf("%d - %d \n", buf[0], buf[1]);
     buf[0] = htonl(ntohl(buf[0]) + ntohl(buf[1]));
-    printf("%d - %d \n", buf[0], buf[0]);
 
 
     sge.addr = (uintptr_t) buf;
