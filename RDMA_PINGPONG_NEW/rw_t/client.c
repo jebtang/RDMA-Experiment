@@ -166,6 +166,7 @@ int main(int argc, char   *argv[ ])
 	/* 寫入/傳送要新增的兩個整數 */
 
 
+  while (i<3) {
 
 	buf[0] = strtoul(argv[2], NULL, 0); // printing out the arguments
 	buf[1] = strtoul(argv[3], NULL, 0);
@@ -197,7 +198,6 @@ int main(int argc, char   *argv[ ])
 	send_wr.sg_list               =&sge;
 	send_wr.num_sge               = 1;
 
-  while (i<3) {
 
 	if (ibv_post_send(cm_id->qp, &send_wr,&bad_send_wr))
 		return 1;
