@@ -1,15 +1,3 @@
-/*
- * build:
- * cc -o server server.c -lrdmacm
- *
- * usage:
- * server
- *
- * waits for client to connect, receives two integers, and sends their
- * sum back to the client.
- * lib:libibverbs-dev
- */
-
 #include <stdlib.h>
 #include <stdint.h>
 #include <arpa/inet.h>
@@ -72,7 +60,6 @@ int main(int argc, char *argv[])
 
 
     /* Bind to local port and listen for connection request */
-
     err = rdma_bind_addr(listen_id, (struct sockaddr *) &sin);
     if (err)
         return 1;
@@ -158,6 +145,9 @@ int main(int argc, char *argv[])
     if (err)
         return 1;
 
+
+int i;
+while(i<3){
     err = rdma_get_cm_event(cm_channel, &event);
     if (err)
         return err;
@@ -209,5 +199,11 @@ int main(int argc, char *argv[])
         return 1;
 
     ibv_ack_cq_events(cq, 2);
+
+    i++;
+}
+// end
+
+
     return 0;
 }
