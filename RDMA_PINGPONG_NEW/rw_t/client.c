@@ -168,7 +168,7 @@ int main(int argc, char   *argv[ ])
 
 
 
-  while(i<3){
+  while(i){
 	buf[0] = strtoul(argv[2], NULL, 0); // printing out the arguments
 	buf[1] = strtoul(argv[3], NULL, 0);
 	printf("%d + %d = ", buf[0], buf[1]);
