@@ -184,9 +184,10 @@ while(i<3){
     send_wr.sg_list = &sge;
     send_wr.num_sge = 1 ;
 
-    if (ibv_post_send(cm_id->qp, &send_wr, &bad_send_wr))
-        return 1;
-
+    if (ibv_post_send(cm_id->qp, &send_wr, &bad_send_wr)){
+        printf("chara: %d\n",i++);
+        // return 1;
+    }
     /* Wait for send completion */
 
     if (ibv_get_cq_event(comp_chan, &evt_cq, &cq_context))
@@ -200,7 +201,7 @@ while(i<3){
 
     ibv_ack_cq_events(cq, 2);
 
-    printf("chara: %d\n",i++);
+    // printf("chara: %d\n",i++);
 }
 // end
 
