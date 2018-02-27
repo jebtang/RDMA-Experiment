@@ -152,7 +152,6 @@ int main(int argc, char   *argv[ ])
 
 	/* Prepost 接收 */
 
-  while (i<3) {
 
 	sge.addr = (uintptr_t) buf;
 	sge.length = sizeof (uint32_t);
@@ -167,7 +166,7 @@ int main(int argc, char   *argv[ ])
 
 	/* 寫入/傳送要新增的兩個整數 */
 
-
+  while (i<3) {
 
 	buf[0] = strtoul(argv[2], NULL, 0); // printing out the arguments
 	buf[1] = strtoul(argv[3], NULL, 0);
