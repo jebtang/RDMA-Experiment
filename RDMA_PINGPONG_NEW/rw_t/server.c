@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
 
     /* Accept connection */
 
-    while(1){
+  // while(1){}
     err = rdma_accept(cm_id, &conn_param);
     if (err)
         return 1;
@@ -199,13 +199,12 @@ int main(int argc, char *argv[])
     }
     /* Wait for send completion */
 
-    if (ibv_get_cq_event(comp_chan, &evt_cq, &cq_context)){
-      //  return 1;
-    }
+    if (ibv_get_cq_event(comp_chan, &evt_cq, &cq_context))
+        return 1;
 
-    if (ibv_poll_cq(cq, 1, &wc) < 1){
-      //  return 1;
-      }
+    if (ibv_poll_cq(cq, 1, &wc) < 1)
+        return 1;
+
     if (wc.status != IBV_WC_SUCCESS)
         return 1;
 
@@ -213,7 +212,7 @@ int main(int argc, char *argv[])
 
     // printf("chara: %d\n",i++);
 // end
-  }
+
 
     return 0;
 }
