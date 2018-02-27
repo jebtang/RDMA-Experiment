@@ -142,8 +142,7 @@ int main(int argc, char *argv[])
 
     /* Accept connection */
 
-    while(1){
-  // while(1){}
+  while(1){
     err = rdma_accept(cm_id, &conn_param);
     if (err)
         return 1;
@@ -214,6 +213,5 @@ int main(int argc, char *argv[])
     // printf("chara: %d\n",i++);
 // end
 }
-
     return 0;
 }
