@@ -70,6 +70,8 @@ static void on_pre_conn(struct rdma_cm_id *id)
   TEST_Z(ctx->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->buffer, buffer_size, IBV_ACCESS_LOCAL_WRITE));
   posix_memalign((void **)&ctx->msg, sysconf(_SC_PAGESIZE), sizeof(*ctx->msg));
   TEST_Z(ctx->msg_mr = ibv_reg_mr(rc_get_pd(), ctx->msg, sizeof(*ctx->msg), IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
+  posix_memalign((void **)&ctx->buffer2, sysconf(_SC_PAGESIZE), buffer_size);
+  TEST_Z(ctx->buffer_mr2 = ibv_reg_mr(rc_get_pd(), ctx->buffer2, buffer_size, IBV_ACCESS_LOCAL_WRITE));
   post_receive(id);
 }
 

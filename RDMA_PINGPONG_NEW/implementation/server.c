@@ -11,6 +11,9 @@ struct conn_context
   char *buffer;
   struct ibv_mr *buffer_mr;
 
+  char *buffer2;
+  struct ibv_mr *buffer_mr2;
+
   struct message *msg;
   struct ibv_mr *msg_mr;
 
@@ -60,7 +63,6 @@ static void on_pre_conn(struct rdma_cm_id *id)
   struct conn_context *ctx = (struct conn_context *)malloc(sizeof(struct conn_context));
 
   id->context = ctx;
-
   ctx->file_name[0] = '\0'; // take this to mean we don't have the file name
 
   posix_memalign((void **)&ctx->buffer, sysconf(_SC_PAGESIZE), BUFFER_SIZE);
@@ -68,6 +70,9 @@ static void on_pre_conn(struct rdma_cm_id *id)
 
   posix_memalign((void **)&ctx->msg, sysconf(_SC_PAGESIZE), sizeof(*ctx->msg));
   TEST_Z(ctx->msg_mr = ibv_reg_mr(rc_get_pd(), ctx->msg, sizeof(*ctx->msg), IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
+
+  posix_memalign((void **)&ctx->buffer2, sysconf(_SC_PAGESIZE), BUFFER_SIZE);
+  TEST_Z(ctx->buffer_mr2 = ibv_reg_mr(rc_get_pd(), ctx->buffer2, BUFFER_SIZE, IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
 
   // frisk
   // some how this is letting you do the thing
