@@ -30,7 +30,7 @@ static void send_message(struct rdma_cm_id *id)
 
   memset(&wr, 0, sizeof(wr));
   //ctx->msg->buffer
-  strcpy(ctx->msg->buffer, "howdy");
+  // strcpy(ctx->msg->buffer, "howdy");
   // frisk problem here
 
   wr.wr_id = (uintptr_t)id;
