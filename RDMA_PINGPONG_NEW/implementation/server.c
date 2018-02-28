@@ -84,6 +84,7 @@ static void on_connection(struct rdma_cm_id *id)
 
 
 int total = 0;
+int switching = 0;
 static void on_completion(struct ibv_wc *wc)
 {
   struct rdma_cm_id *id = (struct rdma_cm_id *)(uintptr_t)wc->wr_id;
@@ -91,17 +92,6 @@ static void on_completion(struct ibv_wc *wc)
 
   if (wc->opcode == IBV_WC_RECV_RDMA_WITH_IMM) {
     uint32_t size = ntohl(wc->imm_data);
-
-    printf("received msg: %s\n", ctx->buffer);
-
-    if(++total>10){
-      printf("activated MSG_DONE\n");
-      ctx->msg->id = MSG_DONE;
-    }
-    post_receive(id);
-    ctx->msg->id = MSG_MR;
-    send_message(id);
-
 
     if (size == 0) {
       ctx->msg->id = MSG_DONE;
