@@ -97,34 +97,21 @@ static void on_completion(struct ibv_wc *wc)
       send_message(id);
       // don't need post_receive() since we're done with this connection
     } else if (switching) {
-      ssize_t ret;
       printf("received msg: %s\n", ctx->buffer);
-      // ret = write(ctx->fd, ctx->buffer, size);
-      // if (ret != size)
-      //  rc_die("write() failed");
-
-      post_receive(id);
-      ctx->msg->id = MSG_MR;
 
       if(++total>10){
         printf("activated MSG_DONE\n");
         ctx->msg->id = MSG_DONE;
       }
 
+      post_receive(id);
+      ctx->msg->id = MSG_MR;
       send_message(id);
     } else {
-
       switching = 1;
       memcpy(ctx->file_name, ctx->buffer, (size > MAX_FILE_NAME) ? MAX_FILE_NAME : size);
       ctx->file_name[size - 1] = '\0';
-
       printf("start msg: %s\n", ctx->file_name);
-
-      // ctx->fd = open(ctx->file_name, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-      //
-      // if (ctx->fd == -1)
-      //   rc_die("open() failed");
-
       post_receive(id);
       ctx->msg->id = MSG_MR;
       send_message(id);
