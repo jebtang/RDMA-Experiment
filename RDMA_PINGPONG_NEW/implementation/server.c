@@ -83,7 +83,7 @@ static void on_connection(struct rdma_cm_id *id)
 }
 
 
-int start = 0;
+int start_timer = 0;
 static void on_completion(struct ibv_wc *wc)
 {
   struct rdma_cm_id *id = (struct rdma_cm_id *)(uintptr_t)wc->wr_id;
@@ -91,8 +91,11 @@ static void on_completion(struct ibv_wc *wc)
 
   if (wc->opcode == IBV_WC_RECV_RDMA_WITH_IMM) {
 
-    if(!start) time (&start);
-
+    if(!start_timer){
+      start_timer = 1;
+      time(&start);
+    }
+    
     uint32_t size = ntohl(wc->imm_data);
     printf("received msg: %s\n", ctx->buffer);
 
