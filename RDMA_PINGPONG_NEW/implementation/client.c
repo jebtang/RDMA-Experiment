@@ -1,5 +1,7 @@
 #include <fcntl.h>
 #include <libgen.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "common.h"
 #include "messages.h"
 
@@ -98,7 +100,7 @@ int main(int argc, char **argv){
     return 1;
   }
 
-  buffer_size = argv[2];
+  buffer_size = atoi(argv[2]);
   // char send_data[PKT_SIZE];
             // memset( send_data, '*', PKT_SIZE * sizeof(char));
 
