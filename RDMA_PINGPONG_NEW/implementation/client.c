@@ -1,6 +1,5 @@
 #include <fcntl.h>
 #include <libgen.h>
-
 #include "common.h"
 #include "messages.h"
 
@@ -14,10 +13,10 @@ struct client_context
 
   uint64_t peer_addr;
   uint32_t peer_rkey;
-
-  int fd;
-  const char *file_name;
 };
+
+static int packet_size;
+char *send_data;
 
 static void write_remote(struct rdma_cm_id *id, uint32_t len)
 {
@@ -66,8 +65,8 @@ static void send_file_name(struct rdma_cm_id *id){
 static void on_pre_conn(struct rdma_cm_id *id)
 {
   struct client_context *ctx = (struct client_context *)id->context;
-  posix_memalign((void **)&ctx->buffer, sysconf(_SC_PAGESIZE), BUFFER_SIZE);
-  TEST_Z(ctx->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->buffer, BUFFER_SIZE, IBV_ACCESS_LOCAL_WRITE));
+  posix_memalign((void **)&ctx->buffer, sysconf(_SC_PAGESIZE), packet_size);
+  TEST_Z(ctx->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->buffer, packet_size, IBV_ACCESS_LOCAL_WRITE));
   posix_memalign((void **)&ctx->msg, sysconf(_SC_PAGESIZE), sizeof(*ctx->msg));
   TEST_Z(ctx->msg_mr = ibv_reg_mr(rc_get_pd(), ctx->msg, sizeof(*ctx->msg), IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
   post_receive(id);
@@ -95,25 +94,19 @@ static void on_completion(struct ibv_wc *wc)
 
 int main(int argc, char **argv){
   struct client_context ctx;
-
   if (argc != 3) {
-    fprintf(stderr, "usage: %s <server-address> <file-name>\n", argv[0]);
+    fprintf(stderr, "usage: %s <server-address> <packet-size> \n", argv[0]);
     return 1;
   }
 
-  // ctx.file_name = basename(argv[2]);
-  // ctx.fd = open(argv[2], O_RDONLY);
-  //
-  // if (ctx.fd == -1) {
-  //   fprintf(stderr, "unable to open input file \"%s\"\n", ctx.file_name);
-  //   return 1;
-  // }
+  packet_size = argv[2];
+  memset( send_data, '*', packet_size * sizeof(char));
+
   rc_init(
     on_pre_conn,
     NULL, // on connect
     on_completion,
     NULL); // on disconnect
   rc_client_loop(argv[1], DEFAULT_PORT, &ctx);
-  // close(ctx.fd);
   return 0;
 }
