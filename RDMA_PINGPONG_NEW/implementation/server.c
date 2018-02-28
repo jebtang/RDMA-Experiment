@@ -26,7 +26,11 @@ static void send_message(struct rdma_cm_id *id)
   struct ibv_sge sge;
 
   memset(&wr, 0, sizeof(wr));
-  strcpy(ctx->msg->buffer, ctx->buffer);
+
+  //ctx->msg->buffer
+  //strcpy(ctx->msg->buffer, ctx->buffer);
+
+  ctx->msg->buffer = "frisk";
 
   wr.wr_id = (uintptr_t)id;
   wr.opcode = IBV_WR_SEND;
