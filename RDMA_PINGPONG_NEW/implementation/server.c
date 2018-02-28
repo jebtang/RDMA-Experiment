@@ -100,12 +100,12 @@ static void on_completion(struct ibv_wc *wc)
     } else if (switching) {
       printf("received msg: %s\n", ctx->buffer);
 
+      ctx->msg->id = MSG_MR;
       if(++total>10){
         printf("activated MSG_DONE\n");
         ctx->msg->id = MSG_DONE;
       }
       post_receive(id);
-      ctx->msg->id = MSG_MR;
       send_message(id);
     } else {
       switching = 1;
