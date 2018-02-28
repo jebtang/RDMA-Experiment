@@ -91,18 +91,18 @@ static void on_completion(struct ibv_wc *wc)
 
   if (wc->opcode == IBV_WC_RECV_RDMA_WITH_IMM) {
 
-    // if(!start_timer){
-    //   start_timer = 1;
-    //   time(&start);
-    // }
+    if(!start_timer){
+      start_timer = 1;
+      time(&start);
+    }
 
     uint32_t size = ntohl(wc->imm_data);
     printf("received msg: %s\n", ctx->buffer);
 
     post_receive(id);
     ctx->msg->id = MSG_MR;
-    // if(difftime(time(0), start)>=10){
-    if(start_timer++>10){
+    if(difftime(time(0), start)>=10){
+    // if(start_timer++>10){
       printf("activated MSG_DONE\n");
       ctx->msg->id = MSG_DONE;
     }
