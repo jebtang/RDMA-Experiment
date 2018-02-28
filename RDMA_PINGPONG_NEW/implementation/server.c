@@ -30,7 +30,8 @@ static void send_message(struct rdma_cm_id *id)
   //ctx->msg->buffer
   //strcpy(ctx->msg->buffer, ctx->buffer);
 
-  ctx->msg->buffer = "frisk";
+  ctx->msg->buffer = (char *)malloc(30*sizeof(char));
+  strcpy(ctx->msg->buffer, ctx->buffer);
 
   wr.wr_id = (uintptr_t)id;
   wr.opcode = IBV_WR_SEND;
