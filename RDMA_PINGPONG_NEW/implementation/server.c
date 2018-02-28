@@ -95,12 +95,9 @@ static void on_completion(struct ibv_wc *wc)
     if (size == 0) {
       ctx->msg->id = MSG_DONE;
       send_message(id);
-
       // don't need post_receive() since we're done with this connection
-
     } else if (switching) {
       ssize_t ret;
-
       printf("received msg: %s\n", ctx->buffer);
       // ret = write(ctx->fd, ctx->buffer, size);
       // if (ret != size)
