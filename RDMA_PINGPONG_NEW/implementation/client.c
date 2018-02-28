@@ -39,7 +39,7 @@ static void write_remote(struct rdma_cm_id *id, uint32_t len)
     sge.length = len;
     sge.lkey = ctx->buffer_mr->lkey;
   }
-  TEST_NZ(ibv_post_send(id->qp, &wr, &bad_wr));
+  ibv_post_send(id->qp, &wr, &bad_wr);
 }
 
 static void post_receive(struct rdma_cm_id *id)
