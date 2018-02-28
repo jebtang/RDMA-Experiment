@@ -16,6 +16,7 @@ struct message
 {
   int id;
   char *buffer;
+  struct ibv_mr *buffer_mr;
 
   union
   {
