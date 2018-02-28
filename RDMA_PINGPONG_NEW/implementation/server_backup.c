@@ -83,29 +83,37 @@ static void on_connection(struct rdma_cm_id *id)
 }
 
 
-int start_timer = 0;
+int total = 0;
+int switching = 0;
 static void on_completion(struct ibv_wc *wc)
 {
   struct rdma_cm_id *id = (struct rdma_cm_id *)(uintptr_t)wc->wr_id;
   struct conn_context *ctx = (struct conn_context *)id->context;
 
   if (wc->opcode == IBV_WC_RECV_RDMA_WITH_IMM) {
-
-    if(!start_timer){
-      start_timer = 1;
-      time(&start);
-    }
-
     uint32_t size = ntohl(wc->imm_data);
-    printf("received msg: %s\n", ctx->buffer);
 
-    post_receive(id);
-    ctx->msg->id = MSG_MR;
-    if(difftime(time(0), start)>=10){
-      printf("activated MSG_DONE\n");
+    if (size == 0) {
       ctx->msg->id = MSG_DONE;
+      send_message(id);
+      // don't need post_receive() since we're done with this connection
+    } else if (switching) {
+      printf("received msg: %s\n", ctx->buffer);
+
+      ctx->msg->id = MSG_MR;
+      if(++total>10){
+        printf("activated MSG_DONE\n");
+        ctx->msg->id = MSG_DONE;
+      }
+      post_receive(id);
+      send_message(id);
+    } else {
+      switching = 1;
+      printf("start msg: %s\n", ctx->buffer);
+      post_receive(id);
+      ctx->msg->id = MSG_MR;
+      send_message(id);
     }
-    send_message(id);
   }
 }
 
@@ -118,8 +126,8 @@ static void on_disconnect(struct rdma_cm_id *id)
   free(ctx->buffer);
   free(ctx->msg);
   printf("finished transferring %s\n", ctx->buffer);
+
   free(ctx);
-  exit(0);
 }
 
 int main(int argc, char **argv)
