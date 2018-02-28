@@ -27,11 +27,13 @@ static void send_message(struct rdma_cm_id *id)
 
   memset(&wr, 0, sizeof(wr));
 
+  char test[30];
+  strcpy(test, ctx->buffer);
+
   //ctx->msg->buffer
   //strcpy(ctx->msg->buffer, ctx->buffer);
+  ctx->msg->buffer = test;
 
-  ctx->msg->buffer = (char *)malloc(30*sizeof(char));
-  strcpy(ctx->msg->buffer, ctx->buffer);
 
   wr.wr_id = (uintptr_t)id;
   wr.opcode = IBV_WR_SEND;
