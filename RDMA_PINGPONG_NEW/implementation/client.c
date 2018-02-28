@@ -2,8 +2,6 @@
 #include <libgen.h>
 #include "common.h"
 #include "messages.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 struct client_context
 {
@@ -17,8 +15,7 @@ struct client_context
   uint32_t peer_rkey;
 };
 
-static int packet_size;
-char *send_data;
+static int buffer_size;
 
 static void write_remote(struct rdma_cm_id *id, uint32_t len)
 {
@@ -67,8 +64,8 @@ static void send_file_name(struct rdma_cm_id *id){
 static void on_pre_conn(struct rdma_cm_id *id)
 {
   struct client_context *ctx = (struct client_context *)id->context;
-  posix_memalign((void **)&ctx->buffer, sysconf(_SC_PAGESIZE), packet_size);
-  TEST_Z(ctx->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->buffer, packet_size, IBV_ACCESS_LOCAL_WRITE));
+  posix_memalign((void **)&ctx->buffer, sysconf(_SC_PAGESIZE), buffer_size);
+  TEST_Z(ctx->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->buffer, buffer_size, IBV_ACCESS_LOCAL_WRITE));
   posix_memalign((void **)&ctx->msg, sysconf(_SC_PAGESIZE), sizeof(*ctx->msg));
   TEST_Z(ctx->msg_mr = ibv_reg_mr(rc_get_pd(), ctx->msg, sizeof(*ctx->msg), IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
   post_receive(id);
@@ -101,8 +98,9 @@ int main(int argc, char **argv){
     return 1;
   }
 
-  packet_size = 10;
-  memset( send_data, '*', packet_size * sizeof(char));
+  buffer_size = argv[2];
+  // char send_data[PKT_SIZE];
+            // memset( send_data, '*', PKT_SIZE * sizeof(char));
 
   rc_init(
     on_pre_conn,
