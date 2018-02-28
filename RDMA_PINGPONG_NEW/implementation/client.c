@@ -10,6 +10,9 @@ struct client_context
   char *buffer;
   struct ibv_mr *buffer_mr;
 
+  char *buffer2;
+  struct ibv_mr *buffer_mr2;
+
   struct message *msg;
   struct ibv_mr *msg_mr;
 
