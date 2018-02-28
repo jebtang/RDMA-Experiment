@@ -101,7 +101,7 @@ int main(int argc, char **argv){
     return 1;
   }
 
-  packet_size = atoi(argv[2]);
+  packet_size = 10;
   memset( send_data, '*', packet_size * sizeof(char));
 
   rc_init(
