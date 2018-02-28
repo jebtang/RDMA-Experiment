@@ -59,7 +59,10 @@ static void post_receive(struct rdma_cm_id *id)
 
 static void send_file_name(struct rdma_cm_id *id){
   struct client_context *ctx = (struct client_context *)id->context;
-  strcpy(ctx->buffer, "chara");
+  char send_data[buffer_size];
+  memset( send_data, '*', buffer_size * sizeof(char));
+  strcpy(ctx->buffer, send_data);
+
   write_remote(id, strlen(ctx->buffer) + 1);
 }
 
@@ -101,8 +104,6 @@ int main(int argc, char **argv){
   }
 
   buffer_size = atoi(argv[2]);
-  // char send_data[PKT_SIZE];
-            // memset( send_data, '*', PKT_SIZE * sizeof(char));
 
   rc_init(
     on_pre_conn,
