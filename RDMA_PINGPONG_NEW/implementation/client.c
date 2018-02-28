@@ -99,7 +99,7 @@ int main(int argc, char **argv){
     return 1;
   }
 
-  packet_size = argv[2];
+  packet_size = (int)argv[2];
   memset( send_data, '*', packet_size * sizeof(char));
 
   rc_init(
