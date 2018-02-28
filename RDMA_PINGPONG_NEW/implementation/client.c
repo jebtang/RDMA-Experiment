@@ -2,7 +2,8 @@
 #include <libgen.h>
 #include "common.h"
 #include "messages.h"
-#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 struct client_context
 {
@@ -100,7 +101,7 @@ int main(int argc, char **argv){
     return 1;
   }
 
-  packet_size = stoi(argv[2]);
+  packet_size = atoi(argv[2]);
   memset( send_data, '*', packet_size * sizeof(char));
 
   rc_init(
