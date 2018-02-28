@@ -95,12 +95,12 @@ static void on_completion(struct ibv_wc *wc)
       start_timer = 1;
       time(&start);
     }
-    
+
     uint32_t size = ntohl(wc->imm_data);
     printf("received msg: %s\n", ctx->buffer);
 
     // if(++total>10){
-    if(difftime(time(0), start)>10 ){
+    if(difftime(time(0), start)>10){
       printf("activated MSG_DONE\n");
       ctx->msg->id = MSG_DONE;
     }
