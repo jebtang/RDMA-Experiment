@@ -100,10 +100,10 @@ static void on_completion(struct ibv_wc *wc)
     printf("received msg: %s\n", ctx->buffer);
 
     // if(++total>10){
-    if(difftime(time(0), start)>10){
-      printf("activated MSG_DONE\n");
-      ctx->msg->id = MSG_DONE;
-    }
+    // if(difftime(time(0), start)>=10){
+    //   printf("activated MSG_DONE\n");
+    //   ctx->msg->id = MSG_DONE;
+    // }
 
     post_receive(id);
     ctx->msg->id = MSG_MR;
