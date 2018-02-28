@@ -2,7 +2,6 @@
 #define RDMA_MESSAGES_H
 
 const char *DEFAULT_PORT = "12345";
-static const size_t BUFFER_SIZE = 28;
 
 enum message_id
 {
@@ -15,7 +14,7 @@ enum message_id
 struct message
 {
   int id;
-  char buffer[BUFFER_SIZE];
+  char buffer[30];
 
   union
   {
