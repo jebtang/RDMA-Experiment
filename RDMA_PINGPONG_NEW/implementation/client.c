@@ -82,7 +82,7 @@ static void on_completion(struct ibv_wc *wc)
     if (ctx->msg->id == MSG_MR) {
       ctx->peer_addr = ctx->msg->data.mr.addr;
       ctx->peer_rkey = ctx->msg->data.mr.rkey;
-      printf("received msg: %s\n", ctx->msg->buffer);
+      printf("received msg: %s\n", ctx->buffer);
       send_file_name(id);
     } else if (ctx->msg->id == MSG_DONE) {
       printf("received done: disconnecting\n");
