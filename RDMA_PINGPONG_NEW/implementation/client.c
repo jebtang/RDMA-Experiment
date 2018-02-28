@@ -2,6 +2,7 @@
 #include <libgen.h>
 #include "common.h"
 #include "messages.h"
+#include <math.h>
 
 struct client_context
 {
