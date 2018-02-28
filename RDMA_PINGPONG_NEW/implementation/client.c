@@ -17,7 +17,6 @@ struct client_context
   uint32_t peer_rkey;
 };
 
-static int buffer_size;
 
 static void write_remote(struct rdma_cm_id *id, uint32_t len)
 {
@@ -66,12 +65,12 @@ static void send_file_name(struct rdma_cm_id *id){
 static void on_pre_conn(struct rdma_cm_id *id)
 {
   struct client_context *ctx = (struct client_context *)id->context;
-  posix_memalign((void **)&ctx->buffer, sysconf(_SC_PAGESIZE), buffer_size);
-  TEST_Z(ctx->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->buffer, buffer_size, IBV_ACCESS_LOCAL_WRITE));
+  posix_memalign((void **)&ctx->buffer, sysconf(_SC_PAGESIZE), BUFFER_SIZE);
+  TEST_Z(ctx->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->buffer, BUFFER_SIZE, IBV_ACCESS_LOCAL_WRITE));
   posix_memalign((void **)&ctx->msg, sysconf(_SC_PAGESIZE), sizeof(*ctx->msg));
   TEST_Z(ctx->msg_mr = ibv_reg_mr(rc_get_pd(), ctx->msg, sizeof(*ctx->msg), IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
-  posix_memalign((void **)&ctx->msg->buffer, sysconf(_SC_PAGESIZE), buffer_size);
-  TEST_Z(ctx->msg->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->msg->buffer, buffer_size, IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
+  posix_memalign((void **)&ctx->msg->buffer, sysconf(_SC_PAGESIZE), BUFFER_SIZE);
+  TEST_Z(ctx->msg->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->msg->buffer, BUFFER_SIZE, IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
   post_receive(id);
 }
 
@@ -84,7 +83,7 @@ static void on_completion(struct ibv_wc *wc)
     if (ctx->msg->id == MSG_MR) {
       ctx->peer_addr = ctx->msg->data.mr.addr;
       ctx->peer_rkey = ctx->msg->data.mr.rkey;
-      printf("received msg: %s\n", ctx->buffer);
+      printf("received msg: %s\n", ctx->msg->buffer);
       send_file_name(id);
     } else if (ctx->msg->id == MSG_DONE) {
       printf("received done: disconnecting\n");
@@ -97,12 +96,10 @@ static void on_completion(struct ibv_wc *wc)
 
 int main(int argc, char **argv){
   struct client_context ctx;
-  if (argc != 3) {
+  if (argc != 2) {
     fprintf(stderr, "usage: %s <server-address> <packet-size> \n", argv[0]);
     return 1;
   }
-
-  buffer_size = atoi(argv[2]);
 
   rc_init(
     on_pre_conn,

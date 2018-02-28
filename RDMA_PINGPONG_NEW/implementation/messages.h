@@ -15,8 +15,7 @@ enum message_id
 struct message
 {
   int id;
-  char *buffer;
-  struct ibv_mr *buffer_mr;
+  char buffer[28];
 
   union
   {
