@@ -60,8 +60,6 @@ static void on_pre_conn(struct rdma_cm_id *id)
   struct conn_context *ctx = (struct conn_context *)malloc(sizeof(struct conn_context));
 
   id->context = ctx;
-  ctx->file_name[0] = '\0'; // take this to mean we don't have the file name
-
   posix_memalign((void **)&ctx->buffer, sysconf(_SC_PAGESIZE), BUFFER_SIZE);
   TEST_Z(ctx->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->buffer, BUFFER_SIZE, IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
 
@@ -109,15 +107,12 @@ static void on_completion(struct ibv_wc *wc)
         printf("activated MSG_DONE\n");
         ctx->msg->id = MSG_DONE;
       }
-
       post_receive(id);
       ctx->msg->id = MSG_MR;
       send_message(id);
     } else {
       switching = 1;
-      memcpy(ctx->file_name, ctx->buffer, (size > MAX_FILE_NAME) ? MAX_FILE_NAME : size);
-      ctx->file_name[size - 1] = '\0';
-      printf("start msg: %s\n", ctx->file_name);
+      printf("start msg: %s\n", ctx->buffer);
       post_receive(id);
       ctx->msg->id = MSG_MR;
       send_message(id);
@@ -129,15 +124,11 @@ static void on_disconnect(struct rdma_cm_id *id)
 {
   struct conn_context *ctx = (struct conn_context *)id->context;
 
-  close(ctx->fd);
-
   ibv_dereg_mr(ctx->buffer_mr);
   ibv_dereg_mr(ctx->msg_mr);
-
   free(ctx->buffer);
   free(ctx->msg);
-
-  printf("finished transferring %s\n", ctx->file_name);
+  printf("finished transferring %s\n", ctx->buffer);
 
   free(ctx);
 }
