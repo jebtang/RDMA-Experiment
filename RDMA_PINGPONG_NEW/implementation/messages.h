@@ -15,7 +15,7 @@ enum message_id
 struct message
 {
   int id;
-  char buffer[20];
+  char buffer[BUFFER_SIZE];
 
   union
   {
