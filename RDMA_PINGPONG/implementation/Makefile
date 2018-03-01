@@ -1,12 +1,10 @@
+TARGET ="server"
+TARGET_2 = "client"
+all:
+	cc common.c  ${TARGET}.c -o ${TARGET} -lrdmacm -libverbs -lpthread
+	cc common.c ${TARGET_2}.c -o ${TARGET_2} -lrdmacm -libverbs -lpthread
+
+
 .PHONY: clean
-
-CFLAGS  := -Wall -g
-LDLIBS  := ${LDLIBS} -lrdmacm -libverbs -lpthread
-
-APPS    := server client
-
-all: ${APPS}
-
-
 clean:
-	rm -f ${APPS}
+	rm -f *.o ${TARGET} ${TARGET_2}

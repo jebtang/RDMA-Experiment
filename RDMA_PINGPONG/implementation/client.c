@@ -1,367 +1,169 @@
-#include <netdb.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <time.h>
-#include <rdma/rdma_cma.h>
+#include <fcntl.h>
+#include <libgen.h>
+#include <sys/time.h>
 
-#define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
-#define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
 
-const int BUFFER_SIZE = 64;
-const int TIMEOUT_IN_MS = 500; /* ms */
-const char clr[] = { 27, '[', '2', 'J', '\0' };
-const char topLeft[] = { 27, '[', '1', ';', '1', 'H','\0' };
-time_t start; //adding timer
-double latency, prev_latency;
-char nic_str[100];
+#include "common.h"
+#include "messages.h"
 
-/* Per-port statistics struct */
-struct l2fwd_port_statistics {
-	uint64_t tx;
-	uint64_t rx;
-  uint64_t tx_bytes;
-	uint64_t rx_bytes;
+static time_t start; //adding timer
+struct client_context
+
+{
+  char *buffer;
+  struct ibv_mr *buffer_mr;
+
+  struct message *msg;
+  struct ibv_mr *msg_mr;
+
+  uint64_t peer_addr;
+  uint32_t peer_rkey;
+
+  int fd;
+  const char *file_name;
 };
 
-
-struct context {
-  struct ibv_context *ctx;
-  struct ibv_pd *pd;
-  struct ibv_cq *cq;
-  struct ibv_comp_channel *comp_channel;
-
-  pthread_t cq_poller_thread;
-};
-
-struct connection {
-  struct rdma_cm_id *id;
-  struct ibv_qp *qp;
-
-  struct ibv_mr *recv_mr;
-  struct ibv_mr *send_mr;
-
-  char *recv_region;
-  char *send_region;
-
-  int num_completions;
-};
-
-struct l2fwd_port_statistics port_statistics;
-static void die(const char *reason);
-static void build_context(struct ibv_context *verbs);
-static void build_qp_attr(struct ibv_qp_init_attr *qp_attr);
-static void * poll_cq(void *);
-static void post_receives(struct connection *conn);
-static void register_memory(struct connection *conn);
-
-static int on_addr_resolved(struct rdma_cm_id *id);
-static void on_completion(struct ibv_wc *wc);
-static int on_connection(void *context);
-static int on_disconnect(struct rdma_cm_id *id);
-static int on_event(struct rdma_cm_event *event);
-static int on_route_resolved(struct rdma_cm_id *id);
-void print_log();
-
-
-
-static struct context *s_ctx = NULL;
-
-int main(int argc, char **argv){
-
-  struct addrinfo *addr;
-  struct rdma_cm_event *event = NULL;
-  struct rdma_cm_id *conn= NULL;
-  struct rdma_event_channel *ec = NULL;
-  FILE * nic_file;
-  memset(&port_statistics, 0, sizeof(port_statistics));
-  time(&start);
-  latency = 0;
-
-  // transferring packets
-  nic_file = fopen("/sys/class/net/ib0/statistics/rx_packets" , "r");
-  if (nic_file) {
-      fscanf(nic_file, "%s", nic_str);
-      port_statistics.rx = atoi(nic_str);
-      fclose(nic_file);
-  }
-
-  while(1){
-        prev_latency = latency;
-        TEST_NZ(getaddrinfo("172.24.30.31", argv[1], NULL, &addr));
-        TEST_Z(ec = rdma_create_event_channel());
-        TEST_NZ(rdma_create_id(ec, &conn, NULL, RDMA_PS_TCP));
-        TEST_NZ(rdma_resolve_addr(conn, NULL, addr->ai_addr, TIMEOUT_IN_MS));
-        freeaddrinfo(addr);
-        while (rdma_get_cm_event(ec, &event) == 0) {
-                struct rdma_cm_event event_copy;
-                memcpy(&event_copy, event, sizeof(*event));
-                rdma_ack_cm_event(event);
-                if (on_event(&event_copy))
-                    break;
-        }
-
-        latency = difftime(time(0), start);
-        if((latency-prev_latency)>=1){
-            print_log();
-        }
-
-        if(latency>=10){
-            break;
-        }
-  }
-
-  rdma_destroy_event_channel(ec);
-
-
-  nic_file = fopen("/sys/class/net/ib0/statistics/rx_packets" , "r");
-  if (nic_file) {
-      fscanf(nic_file, "%s", nic_str);
-      port_statistics.rx = atoi(nic_str) - port_statistics.rx;
-      fclose(nic_file);
-  }
-
-  print_log();
-  return 0;
-}
-
-
-void print_log(){
-  /* Clear screen and move to top left */
-  printf("%s%s", clr, topLeft);t
-  printf("\nRDMA Pingpong Client ====================================");
-  printf("\nByte Statistics ------------------------------"
-         "\nPKT-SIZE: %d"
-         "\nBytes sent: %ld"
-         "\nBytes received: %ld"
-         "\nLatency: %f"
-         ,BUFFER_SIZE
-         ,port_statistics.tx_bytes
-         ,port_statistics.rx_bytes
-         ,latency);
-  printf("\nPacket Statistics ------------------------------"
-         "\nPackets received: %ld"
-         ,port_statistics.rx);
-  printf("\n========================================================\n");
-}
-
-
-void die(const char *reason)
+static void write_remote(struct rdma_cm_id *id, uint32_t len)
 {
-  fprintf(stderr, "%s\n", reason);
-  exit(EXIT_FAILURE);
-}
+  struct client_context *ctx = (struct client_context *)id->context;
 
-void build_context(struct ibv_context *verbs)
-{
-  if (s_ctx) {
-    if (s_ctx->ctx != verbs)
-      die("cannot handle events in more than one context.");
-
-    return;
-  }
-
-  s_ctx = (struct context *)malloc(sizeof(struct context));
-
-  s_ctx->ctx = verbs;
-
-  TEST_Z(s_ctx->pd = ibv_alloc_pd(s_ctx->ctx));
-  TEST_Z(s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx));
-  TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 10, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary */
-  TEST_NZ(ibv_req_notify_cq(s_ctx->cq, 0));
-
-  TEST_NZ(pthread_create(&s_ctx->cq_poller_thread, NULL, poll_cq, NULL));
-}
-
-void build_qp_attr(struct ibv_qp_init_attr *qp_attr)
-{
-  memset(qp_attr, 0, sizeof(*qp_attr));
-
-  qp_attr->send_cq = s_ctx->cq;
-  qp_attr->recv_cq = s_ctx->cq;
-  qp_attr->qp_type = IBV_QPT_RC;
-
-  qp_attr->cap.max_send_wr = 10;
-  qp_attr->cap.max_recv_wr = 10;
-  qp_attr->cap.max_send_sge = 1;
-  qp_attr->cap.max_recv_sge = 1;
-}
-
-void * poll_cq(void *ctx)
-{
-  struct ibv_cq *cq;
-  struct ibv_wc wc;
-
-  while (1) {
-    TEST_NZ(ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx));
-    ibv_ack_cq_events(cq, 1);
-    TEST_NZ(ibv_req_notify_cq(cq, 0));
-
-    while (ibv_poll_cq(cq, 1, &wc))
-      on_completion(&wc);
-  }
-
-  return NULL;
-}
-
-void post_receives(struct connection *conn)
-{
-  struct ibv_recv_wr wr, *bad_wr = NULL;
-  struct ibv_sge sge;
-
-  wr.wr_id = (uintptr_t)conn;
-  wr.next = NULL;
-  wr.sg_list = &sge;
-  wr.num_sge = 1;
-
-  sge.addr = (uintptr_t)conn->recv_region;
-  sge.length = BUFFER_SIZE;
-  sge.lkey = conn->recv_mr->lkey;
-
-  TEST_NZ(ibv_post_recv(conn->qp, &wr, &bad_wr));
-}
-
-void register_memory(struct connection *conn)
-{
-  conn->send_region = malloc(BUFFER_SIZE);
-  conn->recv_region = malloc(BUFFER_SIZE);
-
-  TEST_Z(conn->send_mr = ibv_reg_mr(
-    s_ctx->pd,
-    conn->send_region,
-    BUFFER_SIZE,
-    IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
-
-  TEST_Z(conn->recv_mr = ibv_reg_mr(
-    s_ctx->pd,
-    conn->recv_region,
-    BUFFER_SIZE,
-    IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
-}
-
-int on_addr_resolved(struct rdma_cm_id *id)
-{
-  struct ibv_qp_init_attr qp_attr;
-  struct connection *conn;
-
-  // printf("address resolved.\n");
-
-  build_context(id->verbs);
-  build_qp_attr(&qp_attr);
-
-  TEST_NZ(rdma_create_qp(id, s_ctx->pd, &qp_attr));
-
-  id->context = conn = (struct connection *)malloc(sizeof(struct connection));
-
-  conn->id = id;
-  conn->qp = id->qp;
-  conn->num_completions = 0;
-
-  register_memory(conn);
-  post_receives(conn);
-
-  TEST_NZ(rdma_resolve_route(id, TIMEOUT_IN_MS));
-
-  return 0;
-}
-
-void on_completion(struct ibv_wc *wc)
-{
-  struct connection *conn = (struct connection *)(uintptr_t)wc->wr_id;
-
-  if (wc->status != IBV_WC_SUCCESS)
-    die("on_completion: status is not IBV_WC_SUCCESS.");
-
-  if (wc->opcode & IBV_WC_RECV){
-    port_statistics.rx_bytes+=strlen(conn->recv_region);
-
-
-  }
-  else if (wc->opcode == IBV_WC_SEND){
-    // printf("send completed successfully.\n");
-  }
-  else
-    die("on_completion: completion isn't a send or a receive.");
-
-  if (++conn->num_completions == 2)
-    rdma_disconnect(conn->id);
-}
-
-int on_connection(void *context)
-{
-  struct connection *conn = (struct connection *)context;
   struct ibv_send_wr wr, *bad_wr = NULL;
   struct ibv_sge sge;
 
-  // snprintf(conn->send_region, BUFFER_SIZE, "howdy from client %d", getpid());
-  memset(conn->send_region, '*', BUFFER_SIZE);
+  memset(&wr, 0, sizeof(wr));
 
-  // printf("connected. posting send...\n");
+  wr.wr_id = (uintptr_t)id;
+  wr.opcode = IBV_WR_RDMA_WRITE_WITH_IMM;
+  wr.send_flags = IBV_SEND_SIGNALED;
+  wr.imm_data = htonl(len);
+  wr.wr.rdma.remote_addr = ctx->peer_addr;
+  wr.wr.rdma.rkey = ctx->peer_rkey;
+
+  if (len) {
+    wr.sg_list = &sge;
+    wr.num_sge = 1;
+
+    sge.addr = (uintptr_t)ctx->buffer;
+    sge.length = len;
+    sge.lkey = ctx->buffer_mr->lkey;
+  }
+
+  TEST_NZ(ibv_post_send(id->qp, &wr, &bad_wr));
+}
+
+static void post_receive(struct rdma_cm_id *id)
+{
+  struct client_context *ctx = (struct client_context *)id->context;
+
+  struct ibv_recv_wr wr, *bad_wr = NULL;
+  struct ibv_sge sge;
 
   memset(&wr, 0, sizeof(wr));
 
-  wr.wr_id = (uintptr_t)conn;
-  wr.opcode = IBV_WR_SEND;
+  wr.wr_id = (uintptr_t)id;
   wr.sg_list = &sge;
   wr.num_sge = 1;
-  wr.send_flags = IBV_SEND_SIGNALED;
 
-  sge.addr = (uintptr_t)conn->send_region;
-  sge.length = BUFFER_SIZE;
-  sge.lkey = conn->send_mr->lkey;
+  sge.addr = (uintptr_t)ctx->msg;
+  sge.length = sizeof(*ctx->msg);
+  sge.lkey = ctx->msg_mr->lkey;
 
-  TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
-
-  return 0;
+  TEST_NZ(ibv_post_recv(id->qp, &wr, &bad_wr));
 }
 
-int on_disconnect(struct rdma_cm_id *id)
+static void send_next_chunk(struct rdma_cm_id *id)
 {
-  struct connection *conn = (struct connection *)id->context;
-
-  // printf("disconnected.\n");
-
-  rdma_destroy_qp(id);
-
-  ibv_dereg_mr(conn->send_mr);
-  ibv_dereg_mr(conn->recv_mr);
-
-  free(conn->send_region);
-  free(conn->recv_region);
-
-  free(conn);
-
-  rdma_destroy_id(id);
-
-  return 1; /* exit event loop */
+  struct client_context *ctx = (struct client_context *)id->context;
+  // size = read(ctx->fd, ctx->buffer, BUFFER_SIZE);
+  memset( ctx->buffer, '*', BUFFER_SIZE * sizeof(char));
+  // if (size == -1)
+  //   rc_die("read() failed\n");
+  write_remote(id, BUFFER_SIZE);
 }
 
-int on_event(struct rdma_cm_event *event)
+static void send_file_name(struct rdma_cm_id *id)
 {
-  int r = 0;
+  struct client_context *ctx = (struct client_context *)id->context;
 
-  if (event->event == RDMA_CM_EVENT_ADDR_RESOLVED)
-    r = on_addr_resolved(event->id);
-  else if (event->event == RDMA_CM_EVENT_ROUTE_RESOLVED)
-    r = on_route_resolved(event->id);
-  else if (event->event == RDMA_CM_EVENT_ESTABLISHED)
-    r = on_connection(event->id->context);
-  else if (event->event == RDMA_CM_EVENT_DISCONNECTED)
-    r = on_disconnect(event->id);
-  else
-    die("on_event: unknown event.");
+  // strcpy(ctx->buffer, "chara");
+  memset( ctx->buffer, '*', BUFFER_SIZE * sizeof(char));
 
-  return r;
+  write_remote(id, BUFFER_SIZE);
 }
 
-int on_route_resolved(struct rdma_cm_id *id)
+static void on_pre_conn(struct rdma_cm_id *id)
 {
-  struct rdma_conn_param cm_params;
+  struct client_context *ctx = (struct client_context *)id->context;
 
-  // printf("route resolved.\n");
-  memset(&cm_params, 0, sizeof(cm_params));
-  TEST_NZ(rdma_connect(id, &cm_params));
+  posix_memalign((void **)&ctx->buffer, sysconf(_SC_PAGESIZE), BUFFER_SIZE);
+  TEST_Z(ctx->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->buffer, BUFFER_SIZE, IBV_ACCESS_LOCAL_WRITE));
+
+  posix_memalign((void **)&ctx->msg, sysconf(_SC_PAGESIZE), sizeof(*ctx->msg));
+  TEST_Z(ctx->msg_mr = ibv_reg_mr(rc_get_pd(), ctx->msg, sizeof(*ctx->msg), IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
+
+  post_receive(id);
+}
+
+static void on_completion(struct ibv_wc *wc)
+{
+  struct rdma_cm_id *id = (struct rdma_cm_id *)(uintptr_t)(wc->wr_id);
+  struct client_context *ctx = (struct client_context *)id->context;
+
+  if (wc->opcode & IBV_WC_RECV) {
+    if (ctx->msg->id == MSG_MR) {
+      ctx->peer_addr = ctx->msg->data.mr.addr;
+      ctx->peer_rkey = ctx->msg->data.mr.rkey;
+      // printf("received MR: %s\n", ctx->msg->buffer);
+      total_throughput+=strlen(ctx->msg->buffer);
+
+      send_file_name(id);
+    } else if (ctx->msg->id == MSG_READY) {
+      // printf("received READY: %s\n", ctx->msg->buffer);
+      total_throughput+=strlen(ctx->msg->buffer);
+
+      send_next_chunk(id);
+    } else if (ctx->msg->id == MSG_DONE) {
+      printf("received DONE, disconnecting\n");  // print the result here
+      rc_disconnect(id);
+      return;
+    }
+    post_receive(id);
+  }
+
+  // PRINT OUT THE RESULT BEGIN
+  if(THROUGHPUT && difftime(time(0), start)>=TIMER){
+    printf("total throughput: %d for %d seconds using %ld packet size\n", total_throughput, TIMER, BUFFER_SIZE);
+    rc_disconnect(id);
+  }
+  else if(LATENCY && total_throughput >= LIMIT){
+    end_time = getTimeStamp();
+    printf("total latency: %ld for the sending the size %d using %ld packet size\n", end_time - start_time, LIMIT, BUFFER_SIZE);
+    rc_disconnect(id);
+  }
+  // PRINT OUT THE RESULT END
+}
+
+int main(int argc, char **argv)
+{
+  struct client_context ctx;
+
+  rc_init(
+    on_pre_conn,
+    NULL, // on connect
+    on_completion,
+    NULL); // on disconnect
+
+
+  // INITIALIZE THE TEST BEGIN
+  if (THROUGHPUT) time(&start);
+  if (LATENCY){
+             start_time = getTimeStamp();
+             total_throughput = 0;
+  }
+  // INITIALIZE THE TEST END
+  rc_client_loop("172.24.30.30", DEFAULT_PORT, &ctx);
+
+  close(ctx.fd);
 
   return 0;
 }

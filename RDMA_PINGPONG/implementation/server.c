@@ -1,143 +1,145 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <rdma/rdma_cma.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/time.h>
 
-#define PORT "3490"  // the port users will be connecting to
-#define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
-#define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
+#include "common.h"
+#include "messages.h"
 
+#define MAX_FILE_NAME 10
 
-const int BUFFER_SIZE = 64;
-const int TIMEOUT_IN_MS = 500; /* ms */
-static struct context *s_ctx = NULL;
-struct rdma_cm_event *event = NULL;
+struct conn_context
+{
+  char *buffer;
+  struct ibv_mr *buffer_mr;
 
-const char clr[] = { 27, '[', '2', 'J', '\0' };
-const char topLeft[] = { 27, '[', '1', ';', '1', 'H','\0' };
-time_t start; //adding timer
-double latency, prev_latency;
+  struct message *msg;
+  struct ibv_mr *msg_mr;
 
-/* Per-port statistics struct */
-struct l2fwd_port_statistics {
-	uint64_t tx;
-	uint64_t rx;
-  uint64_t tx_bytes;
-	uint64_t rx_bytes;
+  int fd;
+  char file_name[MAX_FILE_NAME];
 };
 
-struct l2fwd_port_statistics port_statistics;
+static void send_message(struct rdma_cm_id *id)
+{
+  struct conn_context *ctx = (struct conn_context *)id->context;
 
-void print_log();
-static int on_event(struct rdma_cm_event *event);
-static void on_completion(struct ibv_wc *wc);
+  struct ibv_send_wr wr, *bad_wr = NULL;
+  struct ibv_sge sge;
 
-#include "server_init.h"
-#include "server_action.h"
+  memset(&wr, 0, sizeof(wr));
 
-static int on_event(struct rdma_cm_event *event);
+  wr.wr_id = (uintptr_t)id;
+  wr.opcode = IBV_WR_SEND;
+  wr.sg_list = &sge;
+  wr.num_sge = 1;
+  wr.send_flags = IBV_SEND_SIGNALED;
 
+  sge.addr = (uintptr_t)ctx->msg;
+  sge.length = sizeof(*ctx->msg);
+  sge.lkey = ctx->msg_mr->lkey;
 
-int main(int argc, char **argv){
+  TEST_NZ(ibv_post_send(id->qp, &wr, &bad_wr));
+}
 
+static void post_receive(struct rdma_cm_id *id)
+{
+  struct ibv_recv_wr wr, *bad_wr = NULL;
 
-#if _USE_IPV6
-  struct sockaddr_in6 addr;
-#else
-  struct sockaddr_in addr;
-#endif
-  struct rdma_cm_id *listener = NULL;
-  struct rdma_event_channel *ec = NULL;
-  uint16_t port = 0;
+  memset(&wr, 0, sizeof(wr));
 
-  memset(&addr, 0, sizeof(addr));
-#if _USE_IPV6
-  addr.sin6_family = AF_INET6;
-#else
-  addr.sin_family = AF_INET;
-#endif
+  wr.wr_id = (uintptr_t)id;
+  wr.sg_list = NULL;
+  wr.num_sge = 0;
 
+  TEST_NZ(ibv_post_recv(id->qp, &wr, &bad_wr));
+}
 
+static void on_pre_conn(struct rdma_cm_id *id)
+{
+  struct conn_context *ctx = (struct conn_context *)malloc(sizeof(struct conn_context));
 
-	// struct addrinfo hints, *servinfo, *p;
-	// if ((rv = getaddrinfo(NULL, PORT, &hints, &servinfo)) != 0) {
-	// 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
-	// 		return 1;
-	// }
-  //
-	// inet_ntop(their_addr.ss_family, get_in_addr((struct sockaddr *)&their_addr), s, sizeof s);
+  id->context = ctx;
 
+  ctx->file_name[0] = '\0'; // take this to mean we don't have the file name
 
-  TEST_Z(ec = rdma_create_event_channel());
-  TEST_NZ(rdma_create_id(ec, &listener, NULL, RDMA_PS_TCP));
-  TEST_NZ(rdma_bind_addr(listener, (struct sockaddr *)&addr));
-  TEST_NZ(rdma_listen(listener, 10)); /* backlog=10 is arbitrary */
+  posix_memalign((void **)&ctx->buffer, sysconf(_SC_PAGESIZE), BUFFER_SIZE);
+  TEST_Z(ctx->buffer_mr = ibv_reg_mr(rc_get_pd(), ctx->buffer, BUFFER_SIZE, IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
 
-  port = ntohs(rdma_get_src_port(listener));
+  posix_memalign((void **)&ctx->msg, sysconf(_SC_PAGESIZE), sizeof(*ctx->msg));
+  TEST_Z(ctx->msg_mr = ibv_reg_mr(rc_get_pd(), ctx->msg, sizeof(*ctx->msg), IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE));
 
-	memset(&port_statistics, 0, sizeof(port_statistics));
-	time(&start);
-	latency = 0;
+  post_receive(id);
+}
 
-  printf("listening on port %d.\n", port);
+static void on_connection(struct rdma_cm_id *id)
+{
+  struct conn_context *ctx = (struct conn_context *)id->context;
 
-  while (rdma_get_cm_event(ec, &event) == 0) {
-		prev_latency = latency;
-    struct rdma_cm_event event_copy;
-    memcpy(&event_copy, event, sizeof(*event));
-    rdma_ack_cm_event(event);
+  ctx->msg->id = MSG_MR;
+  ctx->msg->data.mr.addr = (uintptr_t)ctx->buffer_mr->addr;
+  ctx->msg->data.mr.rkey = ctx->buffer_mr->rkey;
 
-    if (on_event(&event_copy)){
-        break;
+  send_message(id);
+}
+
+static void on_completion(struct ibv_wc *wc)
+{
+  struct rdma_cm_id *id = (struct rdma_cm_id *)(uintptr_t)wc->wr_id;
+  struct conn_context *ctx = (struct conn_context *)id->context;
+
+  if (wc->opcode == IBV_WC_RECV_RDMA_WITH_IMM) {
+    uint32_t size = ntohl(wc->imm_data);
+
+    if (size == 0) {  // end the program
+      ctx->msg->id = MSG_DONE;
+      send_message(id);
+
+    } else if (ctx->file_name[0]) { // sends the files
+      ssize_t ret;
+      strcpy(ctx->msg->buffer, ctx->buffer);
+      post_receive(id);
+      ctx->msg->id = MSG_MR;
+      send_message(id);
+
+    } else {
+      memcpy(ctx->file_name, ctx->buffer, (size > MAX_FILE_NAME) ? MAX_FILE_NAME : size); // starts first
+      strcpy(ctx->msg->buffer, ctx->buffer);
+
+      post_receive(id);
+      ctx->msg->id = MSG_READY;
+      send_message(id);
     }
-
-		latency = difftime(time(0), start);
-		if((latency-prev_latency)>=1){
-				print_log();
-		}
-
   }
+}
 
-  rdma_destroy_id(listener);
-  rdma_destroy_event_channel(ec);
+static void on_disconnect(struct rdma_cm_id *id)
+{
+  struct conn_context *ctx = (struct conn_context *)id->context;
+
+  close(ctx->fd);
+
+  ibv_dereg_mr(ctx->buffer_mr);
+  ibv_dereg_mr(ctx->msg_mr);
+
+  free(ctx->buffer);
+  free(ctx->msg);
+
+  printf("finished transferring %s\n", ctx->file_name);
+
+  free(ctx);
+}
+
+int main(int argc, char **argv)
+{
+  rc_init(
+    on_pre_conn,
+    on_connection,
+    on_completion,
+    on_disconnect);
+
+  printf("waiting for connections. interrupt (^C) to exit.\n");
+
+  rc_server_loop(DEFAULT_PORT);
+
   return 0;
-}
-
-
-int on_event(struct rdma_cm_event *event){
-  int r = 0;
-
-  if (event->event == RDMA_CM_EVENT_CONNECT_REQUEST)
-    r = on_connect_request(event->id);
-  else if (event->event == RDMA_CM_EVENT_ESTABLISHED)
-    r = on_connection(event->id->context);
-  else if (event->event == RDMA_CM_EVENT_DISCONNECTED)
-    r = on_disconnect(event->id);
-  else if (event->event == RDMA_CM_EVENT_ADDR_RESOLVED)
-    r = on_addr_resolved(event->id);
-  else if (event->event == RDMA_CM_EVENT_ROUTE_RESOLVED)
-    r = on_route_resolved(event->id);
-  else
-    die("on_event: unknown event.");
-  return r;
-}
-
-void print_log(){
-  /* Clear screen and move to top left */
-  printf("%s%s", clr, topLeft);
-  printf("\nRDMA Pingpong Server ====================================");
-  printf("\nByte Statistics ------------------------------"
-         "\nPKT-SIZE: %d"
-         "\nBytes sent: %ld"
-         "\nBytes received: %ld"
-         "\nLatency: %f"
-         ,BUFFER_SIZE
-         ,port_statistics.tx_bytes
-         ,port_statistics.rx_bytes
-         ,latency);
-  printf("\nPacket Statistics ------------------------------"
-         "\nPackets received: %ld"
-         ,port_statistics.rx);
-  printf("\n========================================================\n");
 }
