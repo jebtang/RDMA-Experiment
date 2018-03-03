@@ -114,7 +114,7 @@ static void on_completion(struct ibv_wc *wc)
       ctx->peer_addr = ctx->msg->data.mr.addr;
       ctx->peer_rkey = ctx->msg->data.mr.rkey;
       // printf("received MR: %s\n", ctx->msg->buffer);
-      printf("received MR: %f\n", total_throughput);
+      // printf("received MR: %f\n", total_throughput);
       total_throughput+=strlen(ctx->msg->buffer);
 
       send_file_name(id);
@@ -129,7 +129,7 @@ static void on_completion(struct ibv_wc *wc)
 
     } else if (ctx->msg->id == MSG_READY) {
       // printf("received READY: %s\n", ctx->msg->buffer);
-      printf("received READY: %f\n", total_throughput);
+      // printf("received READY: %f\n", total_throughput);
       total_throughput+=strlen(ctx->msg->buffer);
       send_next_chunk(id);
 
