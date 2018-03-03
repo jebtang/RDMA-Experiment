@@ -18,6 +18,7 @@ struct conn_context
   char file_name[MAX_FILE_NAME];
 };
 
+
 static void send_message(struct rdma_cm_id *id)
 {
   struct conn_context *ctx = (struct conn_context *)id->context;
@@ -26,7 +27,6 @@ static void send_message(struct rdma_cm_id *id)
   struct ibv_sge sge;
 
   memset(&wr, 0, sizeof(wr));
-  strcpy(ctx->msg->buffer, "frisk");
 
   wr.wr_id = (uintptr_t)id;
   wr.opcode = IBV_WR_SEND;
@@ -37,6 +37,7 @@ static void send_message(struct rdma_cm_id *id)
   sge.addr = (uintptr_t)ctx->msg;
   sge.length = sizeof(*ctx->msg);
   sge.lkey = ctx->msg_mr->lkey;
+
   TEST_NZ(ibv_post_send(id->qp, &wr, &bad_wr));
 }
 
