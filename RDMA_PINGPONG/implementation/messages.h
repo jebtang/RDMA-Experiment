@@ -2,19 +2,7 @@
 #define RDMA_MESSAGES_H
 
 const char *DEFAULT_PORT = "12345";
-
-
-const size_t BUFFER_SIZE = 10;
-const int LATENCY = 1, LIMIT = 100000;
-const int THROUGHPUT = 0, TIMER = 10;
-int total_throughput = 0;
-uint64_t start_time, end_time;
-
-uint64_t getTimeStamp() {
-    struct timeval tv;
-    gettimeofday(&tv,NULL);
-    return tv.tv_sec*(uint64_t)1000000+tv.tv_usec;
-}
+const size_t BUFFER_SIZE = 28;
 
 enum message_id
 {
@@ -27,7 +15,8 @@ enum message_id
 struct message
 {
   int id;
-  char buffer[10];
+  char buffer[30];
+    
   union
   {
     struct
