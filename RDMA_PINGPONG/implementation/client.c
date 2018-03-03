@@ -130,7 +130,7 @@ static void on_completion(struct ibv_wc *wc)
     post_receive(id);
   }
 
- if(LATENCY && total_throughput >= LIMIT){
+ if(LATENCY && total_throughput >= LIMIT*BUFFER_SIZE){
     end_time = getTimeStamp();
     rc_disconnect(id);
   }
