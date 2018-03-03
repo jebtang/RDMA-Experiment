@@ -134,28 +134,23 @@ int main(int argc, char **argv)
 {
   struct client_context ctx;
 
-  if (argc != 3) {
-    fprintf(stderr, "usage: %s <server-address> <file-name>\n", argv[0]);
-    return 1;
-  }
-
-  ctx.file_name = basename(argv[2]);
-  ctx.fd = open(argv[2], O_RDONLY);
-
-  if (ctx.fd == -1) {
-    fprintf(stderr, "unable to open input file \"%s\"\n", ctx.file_name);
-    return 1;
-  }
-
   rc_init(
     on_pre_conn,
     NULL, // on connect
     on_completion,
     NULL); // on disconnect
 
-  rc_client_loop(argv[1], DEFAULT_PORT, &ctx);
 
+  // INITIALIZE THE TEST BEGIN
+  if (LATENCY){
+             start_time = getTimeStamp();
+             total_throughput = 0;
+  }
+  // INITIALIZE THE TEST END
+  rc_client_loop("172.24.30.30", DEFAULT_PORT, &ctx);
   close(ctx.fd);
-
+  printf("sending the %d pings using %ld byte packet\n", LIMIT, BUFFER_SIZE);
+  printf("latency: %ld\n", end_time - start_time);
+  printf("throughput: %ld Mbytes",(total_throughput/1048576)/((end_time - start_time)/1000000));
   return 0;
 }
