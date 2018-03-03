@@ -114,6 +114,7 @@ static void on_completion(struct ibv_wc *wc)
       ctx->peer_addr = ctx->msg->data.mr.addr;
       ctx->peer_rkey = ctx->msg->data.mr.rkey;
       printf("received MR: %s\n", ctx->msg->buffer);
+      printf("received MR: %f\n", total_throughput);
       total_throughput+=strlen(ctx->msg->buffer);
 
       send_file_name(id);
@@ -123,11 +124,12 @@ static void on_completion(struct ibv_wc *wc)
          rc_disconnect(id);
          printf("sending the %d pings using %ld byte packet\n", LIMIT, BUFFER_SIZE);
          printf("latency: %ld\n", end_time - start_time);
-         printf("throughput: %f Mbytes",(total_throughput/1048576)/((end_time - start_time)/1000000));
+         printf("throughput: %f Mbytes\n",(total_throughput/1048576)/((end_time - start_time)/1000000));
        }
 
     } else if (ctx->msg->id == MSG_READY) {
       // printf("received READY: %s\n", ctx->msg->buffer);
+      printf("received READY: %f\n", total_throughput);
       total_throughput+=strlen(ctx->msg->buffer);
       send_next_chunk(id);
 
