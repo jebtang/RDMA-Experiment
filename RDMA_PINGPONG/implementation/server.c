@@ -1,11 +1,10 @@
 #include <fcntl.h>
 #include <sys/stat.h>
-#include <sys/time.h>
 
 #include "common.h"
 #include "messages.h"
 
-#define MAX_FILE_NAME 10
+#define MAX_FILE_NAME 256
 
 struct conn_context
 {
@@ -27,6 +26,7 @@ static void send_message(struct rdma_cm_id *id)
   struct ibv_sge sge;
 
   memset(&wr, 0, sizeof(wr));
+  strcpy(ctx->msg->buffer, "frisk");
 
   wr.wr_id = (uintptr_t)id;
   wr.opcode = IBV_WR_SEND;
@@ -37,7 +37,6 @@ static void send_message(struct rdma_cm_id *id)
   sge.addr = (uintptr_t)ctx->msg;
   sge.length = sizeof(*ctx->msg);
   sge.lkey = ctx->msg_mr->lkey;
-
   TEST_NZ(ibv_post_send(id->qp, &wr, &bad_wr));
 }
 
@@ -82,6 +81,9 @@ static void on_connection(struct rdma_cm_id *id)
   send_message(id);
 }
 
+
+int total = 0;
+int switching = 0;
 static void on_completion(struct ibv_wc *wc)
 {
   struct rdma_cm_id *id = (struct rdma_cm_id *)(uintptr_t)wc->wr_id;
@@ -90,23 +92,44 @@ static void on_completion(struct ibv_wc *wc)
   if (wc->opcode == IBV_WC_RECV_RDMA_WITH_IMM) {
     uint32_t size = ntohl(wc->imm_data);
 
-    if (size == 0) {  // end the program
+    if (size == 0) {
       ctx->msg->id = MSG_DONE;
       send_message(id);
 
-    } else if (ctx->file_name[0]) { // sends the files
+      // don't need post_receive() since we're done with this connection
+
+    } else if (switching) {
       ssize_t ret;
-      strcpy(ctx->msg->buffer, ctx->buffer);
+
+      // printf("received msg: %s\n", ctx->buffer);
+      // ret = write(ctx->fd, ctx->buffer, size);
+      // if (ret != size)
+      //  rc_die("write() failed");
+
       post_receive(id);
       ctx->msg->id = MSG_MR;
-      send_message(id);
 
+      if(++total>10){
+        printf("activated MSG_DONE\n");
+        ctx->msg->id = MSG_DONE;
+      }
+
+      send_message(id);
     } else {
-      memcpy(ctx->file_name, ctx->buffer, (size > MAX_FILE_NAME) ? MAX_FILE_NAME : size); // starts first
-      strcpy(ctx->msg->buffer, ctx->buffer);
+
+      switching = 1;
+      memcpy(ctx->file_name, ctx->buffer, (size > MAX_FILE_NAME) ? MAX_FILE_NAME : size);
+      ctx->file_name[size - 1] = '\0';
+
+      // printf("start msg: %s\n", ctx->file_name);
+
+      // ctx->fd = open(ctx->file_name, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+      //
+      // if (ctx->fd == -1)
+      //   rc_die("open() failed");
 
       post_receive(id);
-      ctx->msg->id = MSG_READY;
+      ctx->msg->id = MSG_MR;
       send_message(id);
     }
   }
@@ -124,7 +147,7 @@ static void on_disconnect(struct rdma_cm_id *id)
   free(ctx->buffer);
   free(ctx->msg);
 
-  // printf("finished transferring %s\n", ctx->file_name);
+  printf("finished transferring %s\n", ctx->file_name);
 
   free(ctx);
 }
