@@ -109,7 +109,7 @@ static void on_completion(struct ibv_wc *wc)
 
       post_receive(id);
       ctx->msg->id = MSG_MR;
-
+      strcpy(ctx->msg->buffer, ctx->buffer);
       // if(++total>10){
       //   printf("activated MSG_DONE\n");
       //   ctx->msg->id = MSG_DONE;
@@ -120,7 +120,7 @@ static void on_completion(struct ibv_wc *wc)
 
       switching = 1;
       memcpy(ctx->file_name, ctx->buffer, (size > MAX_FILE_NAME) ? MAX_FILE_NAME : size);
-
+      strcpy(ctx->msg->buffer, ctx->buffer);
       post_receive(id);
       ctx->msg->id = MSG_MR;
       send_message(id);
