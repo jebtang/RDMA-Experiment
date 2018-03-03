@@ -113,7 +113,7 @@ static void on_completion(struct ibv_wc *wc)
     if (ctx->msg->id == MSG_MR) {
       ctx->peer_addr = ctx->msg->data.mr.addr;
       ctx->peer_rkey = ctx->msg->data.mr.rkey;
-      printf("received MR: %s\n", ctx->msg->buffer);
+      // printf("received MR: %s\n", ctx->msg->buffer);
       total_throughput+=strlen(ctx->msg->buffer);
 
       send_file_name(id);
@@ -165,6 +165,6 @@ int main(int argc, char **argv)
   close(ctx.fd);
   printf("sending the %d pings using %ld byte packet\n", LIMIT, BUFFER_SIZE);
   printf("latency: %ld\n", end_time - start_time);
-  printf("throughput: %ld Mbytes",(total_throughput/1048576)/((end_time - start_time)/1000000));
+  printf("throughput: %f Mbytes",(total_throughput/1048576)/((end_time - start_time)/1000000));
   return 0;
 }

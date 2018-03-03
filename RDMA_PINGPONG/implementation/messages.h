@@ -3,8 +3,8 @@
 #include <sys/time.h>
 
 const char *DEFAULT_PORT = "12345";
-const size_t BUFFER_SIZE = 10;
-const int LATENCY = 1, LIMIT = 10;// 1000000;
+const size_t BUFFER_SIZE = 64;
+const int LATENCY = 1, LIMIT = 1000000;// 1000000;
 const int THROUGHPUT = 0, TIMER = 10;
 double total_throughput = 0;
 uint64_t start_time, end_time;
