@@ -101,22 +101,10 @@ static void on_completion(struct ibv_wc *wc)
 
     } else if (switching) {
       ssize_t ret;
-
-      // printf("received msg: %s\n", ctx->buffer);
-      // ret = write(ctx->fd, ctx->buffer, size);
-      // if (ret != size)
-      //  rc_die("write() failed");
-
       strcpy(ctx->msg->buffer, ctx->buffer);
 
       post_receive(id);
       ctx->msg->id = MSG_MR;
-
-      // if(++total>10){
-      //   printf("activated MSG_DONE\n");
-      //   ctx->msg->id = MSG_DONE;
-      // }
-
       send_message(id);
     } else {
 
