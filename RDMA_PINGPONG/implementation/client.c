@@ -1,10 +1,14 @@
 #include <fcntl.h>
 #include <libgen.h>
+#include <sys/time.h>
+
 
 #include "common.h"
 #include "messages.h"
 
+static time_t start; //adding timer
 struct client_context
+
 {
   char *buffer;
   struct ibv_mr *buffer_mr;
@@ -30,7 +34,7 @@ static void write_remote(struct rdma_cm_id *id, uint32_t len)
 
   wr.wr_id = (uintptr_t)id;
   wr.opcode = IBV_WR_RDMA_WRITE_WITH_IMM;
-//  wr.send_flags = IBV_SEND_SIGNALED;
+  wr.send_flags = IBV_SEND_SIGNALED;
   wr.imm_data = htonl(len);
   wr.wr.rdma.remote_addr = ctx->peer_addr;
   wr.wr.rdma.rkey = ctx->peer_rkey;
@@ -70,10 +74,10 @@ static void post_receive(struct rdma_cm_id *id)
 static void send_next_chunk(struct rdma_cm_id *id)
 {
   struct client_context *ctx = (struct client_context *)id->context;
-
   // size = read(ctx->fd, ctx->buffer, BUFFER_SIZE);
   memset( ctx->buffer, '*', BUFFER_SIZE * sizeof(char));
-
+  // if (size == -1)
+  //   rc_die("read() failed\n");
   write_remote(id, BUFFER_SIZE);
 }
 
@@ -81,9 +85,10 @@ static void send_file_name(struct rdma_cm_id *id)
 {
   struct client_context *ctx = (struct client_context *)id->context;
 
+  // strcpy(ctx->buffer, "chara");
   memset( ctx->buffer, '*', BUFFER_SIZE * sizeof(char));
 
-  write_remote(id, strlen(ctx->file_name) + 1);
+  write_remote(id, BUFFER_SIZE);
 }
 
 static void on_pre_conn(struct rdma_cm_id *id)
@@ -132,7 +137,6 @@ static void on_completion(struct ibv_wc *wc)
   // PRINT OUT THE RESULT END
 }
 
-
 int main(int argc, char **argv)
 {
   struct client_context ctx;
@@ -152,8 +156,8 @@ int main(int argc, char **argv)
   // INITIALIZE THE TEST END
   rc_client_loop("172.24.30.30", DEFAULT_PORT, &ctx);
   close(ctx.fd);
-  printf("sending the %d pings using %ld byte packet\n", LIMIT, BUFFER_SIZE);
-  printf("latency: %ld\n", end_time - start_time);
-  printf("throughput: %ld Mbytes",(total_throughput/1048576)/((end_time - start_time)/1000000));
+  // printf("sending the %d pings using %ld byte packet\n", LIMIT, BUFFER_SIZE);
+  // printf("latency: %ld\n", end_time - start_time);
+  // printf("throughput: %ld Mbytes",(total_throughput/1048576)/((end_time - start_time)/1000000));
   return 0;
 }
