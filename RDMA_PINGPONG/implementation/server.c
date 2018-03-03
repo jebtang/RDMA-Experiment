@@ -124,7 +124,7 @@ static void on_disconnect(struct rdma_cm_id *id)
   free(ctx->buffer);
   free(ctx->msg);
 
-  printf("finished transferring %s\n", ctx->file_name);
+  // printf("finished transferring %s\n", ctx->file_name);
 
   free(ctx);
 }

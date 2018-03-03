@@ -130,14 +130,8 @@ static void on_completion(struct ibv_wc *wc)
     post_receive(id);
   }
 
-  // PRINT OUT THE RESULT BEGIN
-  if(THROUGHPUT && difftime(time(0), start)>=TIMER){
-    printf("total throughput: %d for %d seconds using %ld packet size\n", total_throughput, TIMER, BUFFER_SIZE);
-    rc_disconnect(id);
-  }
-  else if(LATENCY && total_throughput >= LIMIT){
+ if(LATENCY && total_throughput >= LIMIT){
     end_time = getTimeStamp();
-    printf("total latency: %ld for the sending the size %d using %ld packet size\n", end_time - start_time, LIMIT, BUFFER_SIZE);
     rc_disconnect(id);
   }
   // PRINT OUT THE RESULT END
@@ -155,15 +149,15 @@ int main(int argc, char **argv)
 
 
   // INITIALIZE THE TEST BEGIN
-  if (THROUGHPUT) time(&start);
   if (LATENCY){
              start_time = getTimeStamp();
              total_throughput = 0;
   }
   // INITIALIZE THE TEST END
   rc_client_loop("172.24.30.30", DEFAULT_PORT, &ctx);
-
   close(ctx.fd);
-
+  printf("sending the size %d using %ld byte packet\n", LIMIT, BUFFER_SIZE);
+  printf("latency: %ld\n", end_time - start_time);
+  printf("throughput: %f Mbytes",(total_throughput/1048576)/((end_time - start_time)/1000000));
   return 0;
 }
