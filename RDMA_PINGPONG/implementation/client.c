@@ -127,7 +127,7 @@ static void on_completion(struct ibv_wc *wc)
        }
 
     } else if (ctx->msg->id == MSG_READY) {
-      printf("received READY: %s\n", ctx->msg->buffer);
+      // printf("received READY: %s\n", ctx->msg->buffer);
       total_throughput+=strlen(ctx->msg->buffer);
       send_next_chunk(id);
 
