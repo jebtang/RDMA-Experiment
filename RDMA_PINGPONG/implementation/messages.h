@@ -4,7 +4,7 @@
 const char *DEFAULT_PORT = "12345";
 
 
-#define BUFFER_SIZE  10
+#define BUFFER_SIZE  64
 #define LATENCY 1
 #define PINGS 1000000
 #define LIMIT PINGS*BUFFER_SIZE
