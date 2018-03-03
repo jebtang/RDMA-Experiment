@@ -107,6 +107,8 @@ static void on_completion(struct ibv_wc *wc)
       // if (ret != size)
       //  rc_die("write() failed");
 
+      strcpy(ctx->msg->buffer, ctx->buffer);
+
       post_receive(id);
       ctx->msg->id = MSG_MR;
 
@@ -120,6 +122,7 @@ static void on_completion(struct ibv_wc *wc)
 
       switching = 1;
       memcpy(ctx->file_name, ctx->buffer, (size > MAX_FILE_NAME) ? MAX_FILE_NAME : size);
+      strcpy(ctx->msg->buffer, ctx->buffer);
 
       post_receive(id);
       ctx->msg->id = MSG_MR;
