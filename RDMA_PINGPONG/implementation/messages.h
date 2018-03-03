@@ -26,7 +26,7 @@ enum message_id
 struct message
 {
   int id;
-  char buffer[128]; // need to change with the buffer
+  char buffer[256]; // need to change with the buffer
 
   union
   {
