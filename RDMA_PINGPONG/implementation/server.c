@@ -83,8 +83,7 @@ static void on_connection(struct rdma_cm_id *id)
 }
 
 
-int total = 0;
-int switching = 0;
+
 static void on_completion(struct ibv_wc *wc)
 {
   struct rdma_cm_id *id = (struct rdma_cm_id *)(uintptr_t)wc->wr_id;
@@ -93,44 +92,23 @@ static void on_completion(struct ibv_wc *wc)
   if (wc->opcode == IBV_WC_RECV_RDMA_WITH_IMM) {
     uint32_t size = ntohl(wc->imm_data);
 
-    if (size == 0) {
+    if (size == 0) {  // end the program
       ctx->msg->id = MSG_DONE;
       send_message(id);
 
-      // don't need post_receive() since we're done with this connection
-
-    } else if (switching) {
+    } else if (ctx->file_name[0]) { // sends the files
       ssize_t ret;
-
-      // printf("received msg: %s\n", ctx->buffer);
-      // ret = write(ctx->fd, ctx->buffer, size);
-      // if (ret != size)
-      //  rc_die("write() failed");
-
+      strcpy(ctx->msg->buffer, ctx->buffer);
       post_receive(id);
       ctx->msg->id = MSG_MR;
-
-      // if(++total>10){
-      //   printf("activated MSG_DONE\n");
-      //   ctx->msg->id = MSG_DONE;
-      // }
-
       send_message(id);
+
     } else {
-
-      switching = 1;
-      memcpy(ctx->file_name, ctx->buffer, (size > MAX_FILE_NAME) ? MAX_FILE_NAME : size);
-      ctx->file_name[size - 1] = '\0';
-
-      // printf("start msg: %s\n", ctx->file_name);
-
-      // ctx->fd = open(ctx->file_name, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-      //
-      // if (ctx->fd == -1)
-      //   rc_die("open() failed");
+      memcpy(ctx->file_name, ctx->buffer, (size > MAX_FILE_NAME) ? MAX_FILE_NAME : size); // starts first
+      strcpy(ctx->msg->buffer, ctx->buffer);
 
       post_receive(id);
-      ctx->msg->id = MSG_MR;
+      ctx->msg->id = MSG_READY;
       send_message(id);
     }
   }
