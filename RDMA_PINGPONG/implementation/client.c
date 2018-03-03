@@ -130,7 +130,7 @@ static void on_completion(struct ibv_wc *wc)
     post_receive(id);
   }
 
- if(LATENCY && total_throughput >= LIMIT*BUFFER_SIZE){
+ if(total_throughput >= LIMIT*BUFFER_SIZE){
     end_time = getTimeStamp();
     rc_disconnect(id);
   }
@@ -149,10 +149,9 @@ int main(int argc, char **argv)
 
 
   // INITIALIZE THE TEST BEGIN
-  if (LATENCY){
-             start_time = getTimeStamp();
-             total_throughput = 0;
-  }
+  start_time = getTimeStamp();
+  total_throughput = 0;
+
   // INITIALIZE THE TEST END
   rc_client_loop("172.24.30.30", DEFAULT_PORT, &ctx);
   close(ctx.fd);
