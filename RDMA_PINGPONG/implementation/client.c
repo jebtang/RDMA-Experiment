@@ -122,6 +122,14 @@ static void on_completion(struct ibv_wc *wc)
       total_throughput+=strlen(ctx->msg->buffer);
 
       send_next_chunk(id);
+
+
+     if(total_throughput >= LIMIT*BUFFER_SIZE){
+        end_time = getTimeStamp();
+        rc_disconnect(id);
+      }
+
+
     } else if (ctx->msg->id == MSG_DONE) {
       printf("received DONE, disconnecting\n");  // print the result here
       rc_disconnect(id);
@@ -130,10 +138,8 @@ static void on_completion(struct ibv_wc *wc)
     post_receive(id);
   }
 
- if(total_throughput >= LIMIT*BUFFER_SIZE){
-    end_time = getTimeStamp();
-    rc_disconnect(id);
-  }
+
+
   // PRINT OUT THE RESULT END
 }
 
