@@ -156,7 +156,7 @@ int main(int argc, char **argv)
   // INITIALIZE THE TEST END
   rc_client_loop("172.24.30.30", DEFAULT_PORT, &ctx);
   close(ctx.fd);
-  printf("sending the size %d using %ld byte packet\n", LIMIT, BUFFER_SIZE);
+  printf("sending the size %ld using %ld byte packet\n", LIMIT, BUFFER_SIZE);
   printf("latency: %ld\n", end_time - start_time);
   printf("throughput: %f Mbytes",(total_throughput/1048576)/((end_time - start_time)/1000000));
   return 0;
