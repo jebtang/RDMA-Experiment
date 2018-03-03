@@ -71,22 +71,17 @@ static void send_next_chunk(struct rdma_cm_id *id)
 {
   struct client_context *ctx = (struct client_context *)id->context;
 
-  ssize_t size = 0;
   // size = read(ctx->fd, ctx->buffer, BUFFER_SIZE);
-   strcpy(ctx->buffer, "frisk");
-   size = 30;
+  memset( ctx->buffer, '*', BUFFER_SIZE * sizeof(char));
 
-  if (size == -1)
-    rc_die("read() failed\n");
-
-  write_remote(id, size);
+  write_remote(id, BUFFER_SIZE);
 }
 
 static void send_file_name(struct rdma_cm_id *id)
 {
   struct client_context *ctx = (struct client_context *)id->context;
 
-  strcpy(ctx->buffer, "chara");
+  memset( ctx->buffer, '*', BUFFER_SIZE * sizeof(char));
 
   write_remote(id, strlen(ctx->file_name) + 1);
 }
@@ -113,22 +108,30 @@ static void on_completion(struct ibv_wc *wc)
     if (ctx->msg->id == MSG_MR) {
       ctx->peer_addr = ctx->msg->data.mr.addr;
       ctx->peer_rkey = ctx->msg->data.mr.rkey;
+      // printf("received MR: %s\n", ctx->msg->buffer);
+      total_throughput+=strlen(ctx->msg->buffer);
 
-      printf("received msg: %s\n", ctx->msg->buffer);
       send_file_name(id);
     } else if (ctx->msg->id == MSG_READY) {
-      // printf("received READY, sending chunk\n");
-      // printf("received msg: %s\n", ctx->msg->buffer);
+      // printf("received READY: %s\n", ctx->msg->buffer);
+      total_throughput+=strlen(ctx->msg->buffer);
+
       send_next_chunk(id);
     } else if (ctx->msg->id == MSG_DONE) {
-      printf("received DONE, disconnecting\n");
+      printf("received DONE, disconnecting\n");  // print the result here
       rc_disconnect(id);
       return;
     }
-
     post_receive(id);
   }
+
+ if(LATENCY && total_throughput >= LIMIT){
+    end_time = getTimeStamp();
+    rc_disconnect(id);
+  }
+  // PRINT OUT THE RESULT END
 }
+
 
 int main(int argc, char **argv)
 {
