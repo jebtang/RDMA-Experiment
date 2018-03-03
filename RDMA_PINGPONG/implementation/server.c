@@ -99,7 +99,7 @@ static void on_completion(struct ibv_wc *wc)
 
       // don't need post_receive() since we're done with this connection
 
-    } else if (ctx->file_name[0]) {
+    } else if (switching) {
       ssize_t ret;
 
       // printf("received msg: %s\n", ctx->buffer);
@@ -107,7 +107,6 @@ static void on_completion(struct ibv_wc *wc)
       // if (ret != size)
       //  rc_die("write() failed");
 
-      strcpy(ctx->msg->buffer, ctx->buffer);
       post_receive(id);
       ctx->msg->id = MSG_MR;
 
@@ -118,8 +117,9 @@ static void on_completion(struct ibv_wc *wc)
 
       send_message(id);
     } else {
+
+      switching = 1;
       memcpy(ctx->file_name, ctx->buffer, (size > MAX_FILE_NAME) ? MAX_FILE_NAME : size);
-      strcpy(ctx->msg->buffer, ctx->buffer);
 
       post_receive(id);
       ctx->msg->id = MSG_MR;
