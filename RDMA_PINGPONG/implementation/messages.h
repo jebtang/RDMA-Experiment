@@ -4,12 +4,10 @@
 const char *DEFAULT_PORT = "12345";
 
 
-#define BUFFER_SIZE  64
-#define LATENCY 1
-#define PINGS 100000
-#define LIMIT PINGS*BUFFER_SIZE
-
-double total_throughput = 0;
+const size_t BUFFER_SIZE = 10;
+const int LATENCY = 1, LIMIT = 100000;
+const int THROUGHPUT = 0, TIMER = 10;
+int total_throughput = 0;
 uint64_t start_time, end_time;
 
 uint64_t getTimeStamp() {
