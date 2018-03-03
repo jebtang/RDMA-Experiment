@@ -101,7 +101,7 @@ static void on_completion(struct ibv_wc *wc)
     } else if (switching) {
       ssize_t ret;
 
-      printf("received msg: %s\n", ctx->buffer);
+      // printf("received msg: %s\n", ctx->buffer);
       // ret = write(ctx->fd, ctx->buffer, size);
       // if (ret != size)
       //  rc_die("write() failed");
