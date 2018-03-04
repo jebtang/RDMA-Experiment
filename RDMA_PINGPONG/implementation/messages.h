@@ -3,7 +3,7 @@
 #include <sys/time.h>
 
 const char *DEFAULT_PORT = "12345";
-const size_t BUFFER_SIZE = 1024;
+const size_t BUFFER_SIZE = 2048;
 const int LIMIT = 1000000;// 1000000;
 double total_throughput = 0;
 uint64_t start_time, end_time;
@@ -26,7 +26,7 @@ enum message_id
 struct message
 {
   int id;
-  char buffer[1024]; // need to change with the buffer
+  char buffer[2048]; // need to change with the buffer
 
   union
   {
