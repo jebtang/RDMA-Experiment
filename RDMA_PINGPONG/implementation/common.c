@@ -1,4 +1,5 @@
 #include "common.h"
+#include <fcntl.h>
 
 const int TIMEOUT_IN_MS = 500;
 
