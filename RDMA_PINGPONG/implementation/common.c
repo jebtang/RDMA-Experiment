@@ -50,6 +50,12 @@ void build_context(struct ibv_context *verbs)
   TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 10, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary */
   TEST_NZ(ibv_req_notify_cq(s_ctx->cq, 0));
 
+  // changed to nonblocking
+  fcntl(s_ctx->comp_channel->fd, F_GETFL);
+  if(fcntl(channel->fd, F_SETFL, flags | O_NONBLOCK)<0){
+      printf("failed to change it\n");
+  }
+
   TEST_NZ(pthread_create(&s_ctx->cq_poller_thread, NULL, poll_cq, NULL));
 }
 
