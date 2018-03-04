@@ -53,7 +53,7 @@ void build_context(struct ibv_context *verbs)
 
   // changed to nonblocking
   fcntl(s_ctx->comp_channel->fd, F_GETFL);
-  if(fcntl(channel->fd, F_SETFL, flags | O_NONBLOCK)<0){
+  if(fcntl(s_ctx->comp_channel->fd, F_SETFL, flags | O_NONBLOCK)<0){
       printf("failed to change it\n");
   }
 
