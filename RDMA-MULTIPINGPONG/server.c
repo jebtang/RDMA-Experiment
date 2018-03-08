@@ -57,7 +57,7 @@ void *server_thread (void *arg)
         	send_wr_ind = (send_wr_ind + batch_size) % num_concurr_msgs;
     }
 
-    while (ops_count < TOT_NUM_OPS) {
+    while (1) {
         /* loop till receive a msg from server */
         while ((*msg_start != 'A') && (*msg_end != 'A')) {
         }
@@ -83,9 +83,9 @@ void *server_thread (void *arg)
         msg_start  = buf_ptr + buf_offset;
         msg_end    = msg_start + batch_msg_size - 1;
 
-        if (ops_count == NUM_WARMING_UP_OPS) {
-            gettimeofday (&start, NULL);
-        }
+        // if (ops_count == NUM_WARMING_UP_OPS) {
+        //     gettimeofday (&start, NULL);
+        // }
 
 	n = ibv_poll_cq (cq, num_wc, wc);
 	debug ("ops_count = %ld", ops_count);
