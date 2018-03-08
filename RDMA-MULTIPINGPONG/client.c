@@ -52,15 +52,18 @@ void *client_thread_func (void *arg)
 
 
     while (ops_count < TOT_NUM_OPS) {
-	/* loop till receive a msg from server */
+
+
+  /* loop till receive a msg from server */
 	while ((*msg_start != 'A') && (*msg_end != 'A')) {
 	}
+
+  ops_count += strlen(buf_ptr);
 
 	/* reset recv buffer */
 	memset ((char *)msg_start, '\0', batch_msg_size);
 
 	/* send a msg back to the server */
-	ops_count += batch_size;
 	if ((ops_count % SIG_INTERVAL) == 0) {
 	    send_wr[send_wr_ind].send_flags = IBV_SEND_SIGNALED;
 	    ret = ibv_post_send (qp, &send_wr[send_wr_ind], &bad_send_wr);
