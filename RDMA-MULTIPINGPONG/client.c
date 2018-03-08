@@ -9,6 +9,19 @@
 #include "ib.h"
 #include "client.h"
 
+const char *DEFAULT_PORT = "12345";
+// const size_t BUFFER_SIZE = 64;
+const int LIMIT = 1000000;// 1000000;
+double total_throughput = 0;
+uint64_t start_time, end_time;
+
+uint64_t getTimeStamp() {
+    struct timeval tv;
+    gettimeofday(&tv,NULL);
+    return tv.tv_sec*(uint64_t)1000000+tv.tv_usec;
+}
+
+
 void *client_thread_func (void *arg)
 {
     int         ret		 = 0, n = 0;
@@ -51,51 +64,48 @@ void *client_thread_func (void *arg)
     check (ret == 0, "thread[%ld]: failed to set thread affinity", thread_id);
 
 
-    while (ops_count < TOT_NUM_OPS) {
+    while (total_throughput < (LIMIT * batch_msg_size)) {
+
+            /* loop till receive a msg from server */
+          	while ((*msg_start != 'A') && (*msg_end != 'A')) {
+          	}
+
+            // RECEIVES DATA
+            // printf("before: %s - %ld \n",msg_start, strlen(msg_start));
+          	/* reset recv buffer */
+          	memset ((char *)msg_start, '\0', batch_msg_size);
 
 
-  /* loop till receive a msg from server */
-	while ((*msg_start != 'A') && (*msg_end != 'A')) {
-	}
+            // CLEARS DATA
+            // printf("after: %s - %ld \n",msg_start, strlen(msg_start));
+            total_throughput += strlen(buf_ptr);
 
-  printf("before: %s - %ld \n",msg_start, strlen(msg_start));
+          	/* send a msg back to the server */
+          	if ((ops_count % SIG_INTERVAL) == 0) {
+          	    send_wr[send_wr_ind].send_flags = IBV_SEND_SIGNALED;
+          	    ret = ibv_post_send (qp, &send_wr[send_wr_ind], &bad_send_wr);
+          	} else {
+          	    ret = ibv_post_send (qp, &send_wr[send_wr_ind], &bad_send_wr);
+          	}
 
-	/* reset recv buffer */
-	memset ((char *)msg_start, '\0', batch_msg_size);
+          	send_wr_ind = (send_wr_ind + batch_size) % num_concurr_msgs;
+          	buf_offset = (buf_offset + batch_msg_size) % buf_size;
+          	msg_start  = buf_ptr + buf_offset;
+          	msg_end    = msg_start + batch_msg_size - 1;
 
+          	if (ops_count == NUM_WARMING_UP_OPS) {
+          	    gettimeofday (&start, NULL);
+          	}
 
-  printf("after: %s - %ld \n",msg_start, strlen(msg_start));
-
-
-  ops_count += strlen(buf_ptr);
-	/* send a msg back to the server */
-	if ((ops_count % SIG_INTERVAL) == 0) {
-	    send_wr[send_wr_ind].send_flags = IBV_SEND_SIGNALED;
-	    ret = ibv_post_send (qp, &send_wr[send_wr_ind], &bad_send_wr);
-	} else {
-	    ret = ibv_post_send (qp, &send_wr[send_wr_ind], &bad_send_wr);
-	}
-
-	send_wr_ind = (send_wr_ind + batch_size) % num_concurr_msgs;
-	buf_offset = (buf_offset + batch_msg_size) % buf_size;
-	msg_start  = buf_ptr + buf_offset;
-	msg_end    = msg_start + batch_msg_size - 1;
-
-	if (ops_count == NUM_WARMING_UP_OPS) {
-	    gettimeofday (&start, NULL);
-	}
-
-	n = ibv_poll_cq (cq, num_wc, wc);
-	debug ("ops_count = %ld", ops_count);
-    }
+          	n = ibv_poll_cq (cq, num_wc, wc);
+          	debug ("ops_count = %ld", ops_count);
+   }
 
     gettimeofday (&end, NULL);
-    /* dump statistics */
-    duration   = (double)((end.tv_sec - start.tv_sec) * 1000000 +
-			  (end.tv_usec - start.tv_usec));
-    throughput = (double)(ops_count) / duration;
-    printf("thread[%ld]: throughput = %f (Mops/s)\n",  thread_id, throughput);
-
+    end_time = getTimeStamp();
+    printf("sending the %d pings using %ld byte packet\n", LIMIT, BUFFER_SIZE);
+    printf("latency: %ld\n", end_time - start_time);
+    printf("throughput: %f Mbytes\n",(total_throughput/1048576)/((end_time - start_time)/1000000));
     free (wc);
     pthread_exit ((void *)0);
 
@@ -125,17 +135,18 @@ int run_client ()
     client_threads = (pthread_t *) calloc (num_threads, sizeof(pthread_t));
     check (client_threads != NULL, "Failed to allocate client_threads.");
 
+    start_time = getTimeStamp();
+    total_throughput = 0;
     for (i = 0; i < num_threads; i++) {
-	ret = pthread_create (&client_threads[i], &attr,
-			      client_thread_func, (void *)i);
-	check (ret == 0, "Failed to create client_thread[%ld]", i);
+	     ret = pthread_create (&client_threads[i], &attr, client_thread_func, (void *)i);
+	     check (ret == 0, "Failed to create client_thread[%ld]", i);
     }
 
     bool thread_ret_normally = true;
     for (i = 0; i < num_threads; i++) {
-	ret = pthread_join (client_threads[i], &status);
-	check (ret == 0, "Failed to join client_thread[%ld].", i);
-	if ((long)status != 0) {
+	        ret = pthread_join (client_threads[i], &status);
+	        check (ret == 0, "Failed to join client_thread[%ld].", i);
+	      if ((long)status != 0) {
             thread_ret_normally = false;
             printf("thread[%ld]: failed to execute\n", i);
         }

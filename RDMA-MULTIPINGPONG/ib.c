@@ -98,7 +98,7 @@ int post_send (uint32_t req_size, uint32_t lkey, uint64_t wr_id,
     return ret;
 }
 
-int post_recv (uint32_t req_size, uint32_t lkey, uint64_t wr_id, 
+int post_recv (uint32_t req_size, uint32_t lkey, uint64_t wr_id,
 	       struct ibv_qp *qp, char *buf)
 {
     int ret = 0;

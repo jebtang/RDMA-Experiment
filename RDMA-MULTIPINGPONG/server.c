@@ -53,8 +53,8 @@ void *server_thread (void *arg)
 
     /* pre-post writes */
     for (i = 0; i < num_batches; i++) {
-	ret = ibv_post_send (qp, &send_wr[send_wr_ind], &bad_send_wr);
-	send_wr_ind = (send_wr_ind + batch_size) % num_concurr_msgs;
+        	ret = ibv_post_send (qp, &send_wr[send_wr_ind], &bad_send_wr);
+        	send_wr_ind = (send_wr_ind + batch_size) % num_concurr_msgs;
     }
 
     while (ops_count < TOT_NUM_OPS) {
