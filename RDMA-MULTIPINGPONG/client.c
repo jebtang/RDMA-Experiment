@@ -79,7 +79,7 @@ void *client_thread_func (void *arg)
             // CLEARS DATA
             // printf("after: %s - %ld \n",msg_start, strlen(msg_start));
             total_throughput += strlen(buf_ptr);
-
+            ops_count += batch_size;
           	/* send a msg back to the server */
           	if ((ops_count % SIG_INTERVAL) == 0) {
           	    send_wr[send_wr_ind].send_flags = IBV_SEND_SIGNALED;
@@ -93,9 +93,9 @@ void *client_thread_func (void *arg)
           	msg_start  = buf_ptr + buf_offset;
           	msg_end    = msg_start + batch_msg_size - 1;
 
-          	if (ops_count == NUM_WARMING_UP_OPS) {
-          	    gettimeofday (&start, NULL);
-          	}
+          	// if (ops_count == NUM_WARMING_UP_OPS) {
+          	//     gettimeofday (&start, NULL);
+          	// }
 
           	n = ibv_poll_cq (cq, num_wc, wc);
           	debug ("ops_count = %ld", ops_count);
