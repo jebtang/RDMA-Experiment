@@ -111,7 +111,7 @@ void *server_thread (void *arg)
 int run_server ()
 {
     int   ret         = 0;
-    long  num_threads = 1;
+    long  num_threads = 2;
     long  i           = 0;
 
     pthread_t           *threads = NULL;
