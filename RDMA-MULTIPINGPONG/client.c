@@ -58,12 +58,13 @@ void *client_thread_func (void *arg)
 	while ((*msg_start != 'A') && (*msg_end != 'A')) {
 	}
 
-  printf("frisk: %s\n",buf_ptr);
-  ops_count += strlen(buf_ptr);
+  printf("frisk: %s - %d \n",buf_ptr, strlen(buf_ptr));
 
 	/* reset recv buffer */
 	memset ((char *)msg_start, '\0', batch_msg_size);
 
+
+  ops_count += strlen(buf_ptr);
 	/* send a msg back to the server */
 	if ((ops_count % SIG_INTERVAL) == 0) {
 	    send_wr[send_wr_ind].send_flags = IBV_SEND_SIGNALED;
