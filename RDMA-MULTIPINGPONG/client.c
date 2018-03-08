@@ -79,11 +79,11 @@ void *client_thread_func (void *arg)
             // CLEARS DATA
             // printf("after: %s - %ld \n",msg_start, strlen(msg_start));
 
-            printf("chara: total: %f  < %ld", total_throughput, (LIMIT * batch_msg_size));
             total_throughput += strlen(buf_ptr);
             ops_count += batch_size;
           	/* send a msg back to the server */
           	if ((ops_count % SIG_INTERVAL) == 0) {
+                printf("chara: total: %f  < %ld \n", total_throughput, (LIMIT * batch_msg_size));
           	    send_wr[send_wr_ind].send_flags = IBV_SEND_SIGNALED;
           	    ret = ibv_post_send (qp, &send_wr[send_wr_ind], &bad_send_wr);
           	} else {
