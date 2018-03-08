@@ -103,7 +103,7 @@ void *client_thread_func (void *arg)
 
     gettimeofday (&end, NULL);
     end_time = getTimeStamp();
-    printf("sending the %d pings using %ld byte packet\n", LIMIT, BUFFER_SIZE);
+    printf("sending the %d pings using %ld byte packet\n", LIMIT, batch_msg_size);
     printf("latency: %ld\n", end_time - start_time);
     printf("throughput: %f Mbytes\n",(total_throughput/1048576)/((end_time - start_time)/1000000));
     free (wc);
