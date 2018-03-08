@@ -70,7 +70,7 @@ void *server_thread (void *arg)
 
 
         /* send a msg back to the server */
-	      // ops_count += batch_size;
+	      ops_count += batch_size;
         if ((ops_count % SIG_INTERVAL) == 0) {
             send_wr[send_wr_ind].send_flags = IBV_SEND_SIGNALED;
             ret = ibv_post_send (qp, &send_wr[send_wr_ind], &bad_send_wr);

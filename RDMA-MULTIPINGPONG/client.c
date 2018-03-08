@@ -78,6 +78,8 @@ void *client_thread_func (void *arg)
 
             // CLEARS DATA
             // printf("after: %s - %ld \n",msg_start, strlen(msg_start));
+
+            printf("chara: total: %d  < %d", total_throughput, (LIMIT * batch_msg_size));
             total_throughput += strlen(buf_ptr);
             ops_count += batch_size;
           	/* send a msg back to the server */
