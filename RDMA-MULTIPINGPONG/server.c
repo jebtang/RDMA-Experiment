@@ -92,7 +92,7 @@ void *server_thread (void *arg)
     duration   = (double)((end.tv_sec - start.tv_sec) * 1000000 +
                           (end.tv_usec - start.tv_usec));
     throughput = (double)(ops_count) / duration;
-    log ("thread[%ld]: throughput = %f (Mops/s)",  thread_id, throughput);
+    printf("thread[%ld]: throughput = %f (Mops/s)\n",  thread_id, throughput);
 
     free (wc);
     pthread_exit ((void *)0);
@@ -131,7 +131,7 @@ int run_server ()
         check (ret == 0, "Failed to join thread[%ld].", i);
         if ((long)status != 0) {
             thread_ret_normally = false;
-            log ("server_thread[%ld]: failed to execute", i);
+            printf("server_thread[%ld]: failed to execute\n", i);
         }
     }
 
