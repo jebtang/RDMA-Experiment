@@ -65,6 +65,10 @@ void *server_thread (void *arg)
         /* reset recv buffer */
         memset ((char *)msg_start, '\0', batch_msg_size);
 
+
+        printf("chara received: %s\n", buf_ptr);
+
+
         /* send a msg back to the server */
 	ops_count += batch_size;
         if ((ops_count % SIG_INTERVAL) == 0) {
