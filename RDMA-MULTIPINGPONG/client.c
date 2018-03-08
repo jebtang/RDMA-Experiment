@@ -58,7 +58,7 @@ void *client_thread_func (void *arg)
 	while ((*msg_start != 'A') && (*msg_end != 'A')) {
 	}
 
-  printf("frisk: %s - %d \n",buf_ptr, strlen(buf_ptr));
+  printf("frisk: %s - %ld \n",buf_ptr, strlen(buf_ptr));
 
 	/* reset recv buffer */
 	memset ((char *)msg_start, '\0', batch_msg_size);
