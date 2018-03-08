@@ -11,7 +11,7 @@
 
 const char *DEFAULT_PORT = "12345";
 // const size_t BUFFER_SIZE = 64;
-const int LIMIT = 1000000;// 1000000;
+const int LIMIT = 1000;// 1000000;
 double total_throughput = 0;
 uint64_t start_time, end_time;
 
@@ -83,7 +83,7 @@ void *client_thread_func (void *arg)
             ops_count += batch_size;
           	/* send a msg back to the server */
           	if ((ops_count % SIG_INTERVAL) == 0) {
-                // printf("chara: total: %f  < %ld \n", total_throughput, (LIMIT * batch_msg_size));
+                printf("chara: total: %f  < %ld \n", total_throughput, (LIMIT * batch_msg_size));
           	    send_wr[send_wr_ind].send_flags = IBV_SEND_SIGNALED;
           	    ret = ibv_post_send (qp, &send_wr[send_wr_ind], &bad_send_wr);
           	} else {
