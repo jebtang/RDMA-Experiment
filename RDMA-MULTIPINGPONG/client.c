@@ -64,7 +64,7 @@ void *client_thread_func (void *arg)
     check (ret == 0, "thread[%ld]: failed to set thread affinity", thread_id);
 
 
-    while (total_throughput < (LIMIT * batch_msg_size)) {
+    while (total_throughput < (LIMIT * config_info.msg_size)) {
 
             /* loop till receive a msg from server */
           	while ((*msg_start != 'A') && (*msg_end != 'A')) {
