@@ -109,6 +109,7 @@ void *client_thread_func (void *arg)
     printf("sending the %d pings using %d byte packet with %d batches\n", LIMIT, config_info.msg_size, num_concurr_msgs);
     printf("latency: %ld\n", end_time - start_time);
     printf("throughput: %f Mbytes\n",(total_throughput/1048576)/((end_time - start_time)/1000000));
+    rc_disconnect(wid);
     free (wc);
     pthread_exit ((void *)0);
 
