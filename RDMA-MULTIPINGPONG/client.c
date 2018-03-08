@@ -62,6 +62,7 @@ void *client_thread_func (void *arg)
     self = pthread_self ();
     ret  = pthread_setaffinity_np (self, sizeof(cpu_set_t), &cpuset);
     check (ret == 0, "thread[%ld]: failed to set thread affinity", thread_id);
+    struct rdma_cm_id *wid = (struct rdma_cm_id *)(uintptr_t)(wc->wr_id);
 
 
     while (total_throughput < (LIMIT * config_info.msg_size)) {
@@ -109,6 +110,10 @@ void *client_thread_func (void *arg)
     printf("latency: %ld\n", end_time - start_time);
     printf("throughput: %f Mbytes\n",(total_throughput/1048576)/((end_time - start_time)/1000000));
     free (wc);
+
+    &send_wr[send_wr_ind].wr_id
+
+
     pthread_exit ((void *)0);
 
  error:
