@@ -66,7 +66,7 @@ void *server_thread (void *arg)
         memset ((char *)msg_start, '\0', batch_msg_size);
 
 
-        printf("chara received: %s\n", buf_ptr);
+        // printf("chara received: %s\n", buf_ptr);
 
 
         /* send a msg back to the server */
