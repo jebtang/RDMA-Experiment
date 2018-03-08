@@ -58,6 +58,7 @@ void *client_thread_func (void *arg)
 	while ((*msg_start != 'A') && (*msg_end != 'A')) {
 	}
 
+  printf("frisk: %s\n",buf_ptr);
   ops_count += strlen(buf_ptr);
 
 	/* reset recv buffer */
