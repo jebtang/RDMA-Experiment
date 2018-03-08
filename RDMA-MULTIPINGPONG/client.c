@@ -110,10 +110,6 @@ void *client_thread_func (void *arg)
     printf("latency: %ld\n", end_time - start_time);
     printf("throughput: %f Mbytes\n",(total_throughput/1048576)/((end_time - start_time)/1000000));
     free (wc);
-
-    &send_wr[send_wr_ind].wr_id
-
-
     pthread_exit ((void *)0);
 
  error:
