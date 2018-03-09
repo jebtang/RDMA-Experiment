@@ -11,7 +11,7 @@
 
 const char *DEFAULT_PORT = "12345";
 // const size_t BUFFER_SIZE = 64;
-const int LIMIT = 1000000000; // 1000000;
+const int LIMIT = 1000000; // 1000000;
                 //10000000
 double total_throughput = 0;
 uint64_t start_time, end_time;
@@ -65,8 +65,8 @@ void *client_thread_func (void *arg)
     check (ret == 0, "thread[%ld]: failed to set thread affinity", thread_id);
     struct rdma_cm_id *wid = (struct rdma_cm_id *)(uintptr_t)(wc->wr_id);
 
-
-    while (total_throughput < (LIMIT * config_info.msg_size)) {
+    total_throughput = 0;
+    while ((ops_count<=(LIMIT*batch_size))total_throughput < (LIMIT * config_info.msg_size)) {
 
             /* loop till receive a msg from server */
           	while ((*msg_start != 'A') && (*msg_end != 'A')) {
