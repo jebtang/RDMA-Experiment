@@ -66,7 +66,7 @@ void *client_thread_func (void *arg)
     struct rdma_cm_id *wid = (struct rdma_cm_id *)(uintptr_t)(wc->wr_id);
 
     total_throughput = 0;
-    while ((ops_count<=(LIMIT*batch_size))total_throughput < (LIMIT * config_info.msg_size)) {
+    while ((ops_count<=(LIMIT*batch_size)) && total_throughput < (LIMIT * config_info.msg_size)) {
 
             /* loop till receive a msg from server */
           	while ((*msg_start != 'A') && (*msg_end != 'A')) {
